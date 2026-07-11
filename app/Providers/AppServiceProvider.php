@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Domain\Character\EffectiveStats;
 use App\Domain\Content\ContentRepository;
 use App\Domain\Support\Rng\RngInterface;
 use App\Domain\Support\Rng\SecureRng;
@@ -31,6 +32,12 @@ class AppServiceProvider extends ServiceProvider
         // Domyślne (produkcyjne) RNG — nieprzewidywalne dla klienta. Kod domenowy,
         // który potrzebuje determinizmu (golden-vectory), tworzy Mulberry32Rng jawnie.
         $this->app->bind(RngInterface::class, SecureRng::class);
+
+        // Efektywne staty postaci (port getEffectiveChar) — walidacja/anty-cheat.
+        $this->app->singleton(
+            EffectiveStats::class,
+            fn ($app): EffectiveStats => EffectiveStats::fromContent($app->make(ContentRepository::class)),
+        );
 
         // Weryfikator JWT Supabase — wybierany po SUPABASE_JWT_DRIVER.
         //   'hmac' — legacy HS256 (współdzielony sekret).

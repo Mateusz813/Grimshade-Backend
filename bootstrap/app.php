@@ -3,6 +3,7 @@
 use App\Http\Middleware\EnsureOwnsCharacter;
 use App\Http\Middleware\VerifySupabaseJwt;
 use App\Services\InsufficientFundsException;
+use App\Services\StateValidationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -33,6 +34,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         // Odmowa gry (brak środków itp.) = 422, nie 500.
         $exceptions->render(function (InsufficientFundsException $e) {
+            return response()->json(['message' => $e->getMessage()], 422);
+        });
+
+        // Odrzucenie zapisu stanu (tryb STRICT anty-cheatu) = 422.
+        $exceptions->render(function (StateValidationException $e) {
             return response()->json(['message' => $e->getMessage()], 422);
         });
     })->create();

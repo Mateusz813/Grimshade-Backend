@@ -35,6 +35,8 @@ Route::middleware('supabase.auth')->group(function (): void {
     Route::middleware('owns.character')->group(function (): void {
         // Stan gry (hydracja frontu) + preferencje klienta.
         Route::get('/characters/{character}/state', [CharacterStateController::class, 'show']);
+        // Autorytatywny commit pełnego stanu (klient liczy walkę, serwer persystuje).
+        Route::put('/characters/{character}/state', [CharacterStateController::class, 'commit']);
         Route::put('/characters/{character}/prefs', [CharacterStateController::class, 'updatePrefs']);
 
         // Autorytatywne intencje — serwer liczy wynik, klient aplikuje odpowiedź.
