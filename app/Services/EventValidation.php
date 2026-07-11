@@ -14,12 +14,13 @@ use Illuminate\Support\Carbon;
  * względem przysłanego, zsanityzowanego (next) i sprawdza, czy przejście jest
  * legalne — "nic nie idzie do bazy na ślepo".
  *
- * Zwraca dwie listy naruszeń:
- *   - hard  — jednoznaczny cheat (dupe uuid, gold < 0). ZAWSZE → 422, bez względu
- *             na jakikolwiek flag. Rollback transakcji, nic się nie zapisuje.
- *   - soft  — podejrzane, ale niepewne (nowe itemy, dzienne limity, spójność
- *             śmierci, skok poziomu). Domyślnie tylko logowane; 422 wyłącznie gdy
- *             config('supabase.event_validation_strict') === true.
+ * PODZIAŁ: TWARDE niezmienniki, które nie potrzebują kontekstu zdarzenia (dupe
+ * uuid, skok poziomu, absurdalne sufity) egzekwuje CharacterStateService::
+ * guardInvariants na KAŻDYM commicie (z eventem czy bez) — patrz duplicateUuids()
+ * i stała MAX_LEVEL_JUMP, wystawione publicznie dla tej ścieżki. Ta klasa liczy
+ * tylko naruszenia wymagające `event` (dzienne limity, spójność śmierci, spadek
+ * poziomu bez śmierci) — wszystkie SOFT: domyślnie logowane, 422 wyłącznie gdy
+ * config('supabase.event_validation_strict') === true.
  *
  * @phpstan-type EventPayload array{
  *     type?: string, sourceId?: string|null, outcome?: string|null,
@@ -37,8 +38,11 @@ final class EventValidation
     /** Hojny dzienny limit ukończeń (dungeonStore.MAX_DAILY_ATTEMPTS = 5). */
     private const DAILY_ATTEMPT_CAP = 5;
 
-    /** Maks. wiarygodny przyrost poziomu w JEDNYM commicie (hojny bufor). */
-    private const MAX_LEVEL_JUMP = 50;
+    /**
+     * Maks. wiarygodny przyrost poziomu w JEDNYM commicie (hojny bufor). Publiczna,
+     * bo egzekwowana jako ALWAYS-RUN HARD w CharacterStateService::guardInvariants.
+     */
+    public const MAX_LEVEL_JUMP = 50;
 
     /** Zdarzenia z dziennym licznikiem prób i ścieżka wpisu w blobie. */
     private const ATTEMPT_PATHS = [
@@ -60,32 +64,19 @@ final class EventValidation
     ];
 
     /**
+     * DIFF prev↔next dla naruszeń WYMAGAJĄCYCH kontekstu zdarzenia (event obecny):
+     * dzienne limity prób, spójność śmierci, spadek poziomu bez śmierci. Wszystkie
+     * SOFT. Twarde niezmienniki (dupe uuid, skok poziomu wzwyż, absurdalne sufity)
+     * egzekwuje CharacterStateService::guardInvariants na KAŻDYM commicie — NIE tutaj.
+     *
      * @param  array<string, mixed>  $prev  zablokowany poprzedni blob (przed nadpisaniem)
      * @param  array<string, mixed>  $next  zsanityzowany przysłany blob (do zapisu)
      * @param  EventPayload  $event
-     * @return array{hard: list<string>, soft: list<string>, newItems: int}
+     * @return array{soft: list<string>, newItems: int}
      */
     public function evaluate(array $prev, array $next, array $event, Character $character): array
     {
-        $hard = [];
         $soft = [];
-
-        // ---- HARD (zawsze 422) --------------------------------------------------
-
-        // 1) Żaden uuid itemu nie może wystąpić dwa razy w całym `next` (rdzeń dupe).
-        foreach ($this->duplicateUuids($next) as $uuid) {
-            $hard[] = "duplicate item uuid: {$uuid}";
-        }
-
-        // 2) inventory.gold skończony i >= 0 (sanityzacja już klampuje — assert).
-        $gold = $next['inventory']['gold'] ?? null;
-        if (! is_int($gold) && ! is_float($gold)) {
-            $hard[] = 'inventory.gold nie jest liczbą';
-        } elseif (! is_finite((float) $gold) || $gold < 0) {
-            $hard[] = "inventory.gold nieskończone lub ujemne ({$gold})";
-        }
-
-        // ---- SOFT (log; 422 tylko w event_validation_strict) -------------------
 
         $type = is_string($event['type'] ?? null) ? $event['type'] : '';
         $sourceId = is_string($event['sourceId'] ?? null) ? $event['sourceId'] : '';
@@ -102,10 +93,10 @@ final class EventValidation
             }
         }
 
-        // 3) Nowe itemy — bounds loota nie są jeszcze zweryfikowane vs realne dane,
+        // 1) Nowe itemy — bounds loota nie są jeszcze zweryfikowane vs realne dane,
         //    więc NIE flagujemy; liczbę raportujemy do logu (przez `newItems`).
 
-        // 4) Dzienne próby (dungeon/boss/raid) — poprawny inkrement + limit.
+        // 2) Dzienne próby (dungeon/boss/raid) — poprawny inkrement + limit.
         if (isset(self::ATTEMPT_PATHS[$type]) && $sourceId !== '') {
             $prevUsed = $this->attemptCount($prev, $type, $sourceId, $today);
             $nextUsed = $this->attemptCount($next, $type, $sourceId, $today);
@@ -119,7 +110,7 @@ final class EventValidation
             }
         }
 
-        // 5) Spójność śmierci.
+        // 3) Spójność śmierci (event-context — wymaga event.died/protectionConsumed).
         $prevLevel = (int) ($prev['_characterStats']['level'] ?? $character->level);
         $nextLevel = (int) ($next['_characterStats']['level'] ?? $prevLevel);
         if ($died) {
@@ -134,16 +125,13 @@ final class EventValidation
             }
         }
 
-        // 6) Skok poziomu / XP (bez śmierci poziom nie może spaść ani skoczyć absurdalnie).
-        if (! $died) {
-            if ($nextLevel < $prevLevel) {
-                $soft[] = "poziom spadł bez śmierci ({$prevLevel} -> {$nextLevel})";
-            } elseif ($nextLevel - $prevLevel > self::MAX_LEVEL_JUMP) {
-                $soft[] = "niewiarygodny skok poziomu w jednym commicie ({$prevLevel} -> {$nextLevel})";
-            }
+        // 4) Spadek poziomu bez śmierci (event-context SOFT). Skok WZWYŻ >MAX_LEVEL_JUMP
+        //    to teraz ALWAYS-RUN HARD w guardInvariants — nie sprawdzamy go tutaj.
+        if (! $died && $nextLevel < $prevLevel) {
+            $soft[] = "poziom spadł bez śmierci ({$prevLevel} -> {$nextLevel})";
         }
 
-        return ['hard' => $hard, 'soft' => $soft, 'newItems' => $newItems];
+        return ['soft' => $soft, 'newItems' => $newItems];
     }
 
     /**
@@ -151,10 +139,13 @@ final class EventValidation
      * slotów equipment + opcjonalny skarbiec/escrow). Itemy bez uuid pomijane
      * (stackowalne consumables/kamienie identyfikowane po id+count, nie uuid).
      *
+     * Publiczna: CharacterStateService::guardInvariants woła ją na KAŻDYM commicie
+     * (ALWAYS-RUN HARD), niezależnie od obecności `event`.
+     *
      * @param  array<string, mixed>  $state
      * @return list<string>
      */
-    private function duplicateUuids(array $state): array
+    public function duplicateUuids(array $state): array
     {
         $counts = array_count_values($this->collectItemUuids($state));
 

@@ -65,11 +65,15 @@ final class CharacterStateService
      *
      * Wywoływać w transakcji z lockForUpdate na characters + game_saves.
      *
-     * Gdy podano `$event` (semantyczny opis walki), DODATKOWO uruchamia bramkę
-     * EventValidation: DIFFUJE poprzedni (zablokowany) blob względem przysłanego i
-     * egzekwuje HARD (dupe uuid / gold — ZAWSZE 422) oraz SOFT (nowe itemy, dzienne
-     * limity, spójność śmierci, skok poziomu — 422 tylko gdy $eventStrict). Bez
-     * `$event` zachowanie jest identyczne jak dotąd (wsteczna zgodność).
+     * ALWAYS-RUN: guardInvariants() DIFFUJE poprzedni (zablokowany) blob `$prev`
+     * względem przysłanego, zsanityzowanego `$next` na KAŻDYM commicie (z eventem
+     * czy bez) i egzekwuje HARD niezmienniki — dupe uuid, skok poziomu >50,
+     * absurdalne sufity (gold/stacki/arena/skill) — ZAWSZE → 422, niezależnie od
+     * jakiegokolwiek flagu. To zamyka bypass "pomiń `event` = pomiń walidację".
+     *
+     * Gdy DODATKOWO podano `$event` (semantyczny opis walki), guardEvent() liczy
+     * naruszenia WYMAGAJĄCE kontekstu zdarzenia (dzienne limity, spójność śmierci,
+     * spadek poziomu bez śmierci) — SOFT, 422 tylko gdy $eventStrict.
      *
      * @param  array<string, mixed>  $submittedState  pełny blob (jak GET /state.state)
      * @param  array<string, mixed>|null  $event  semantyczny opis zdarzenia (opcjonalny)
@@ -102,6 +106,10 @@ final class CharacterStateService
             ]);
         }
 
+        // ALWAYS-RUN: HARD niezmienniki na KAŻDYM commicie (event obecny czy nie) —
+        // zamyka bypass "pomiń event = pomiń walidację". HARD → 422 niezależnie od flag.
+        $this->guardInvariants($character, $prev, $sanitized, $effective, $strict);
+
         if ($event !== null) {
             $this->guardEvent($character, $prev, $sanitized, $event, $eventStrict);
         }
@@ -116,9 +124,128 @@ final class CharacterStateService
     }
 
     /**
-     * Bramka zdarzenia: DIFF prev vs next przez EventValidation. HARD (dupe uuid /
-     * gold) → 422 ZAWSZE (rollback transakcji, nic nie zapisane). SOFT → 422 tylko
-     * w trybie $eventStrict; inaczej Log::warning i zapis mimo to.
+     * ALWAYS-RUN bramka niezmienników: DIFF `$prev` (zablokowany poprzedni blob) vs
+     * `$next` (zsanityzowany przysłany) na KAŻDYM commicie — z eventem czy bez.
+     *
+     * HARD (ZAWSZE → 422, niezależnie od jakiegokolwiek flagu; rollback transakcji):
+     *   1. duplikat uuid itemu w całym blobie (bag ∪ deposit ∪ 12 slotów equipment
+     *      ∪ opcjonalny skarbiec/escrow) — legalny zapis fizycznie nie może trzymać
+     *      tego samego uuid dwa razy → zero false-reject. #1 fix (anty-dupe/clone).
+     *   2. skok poziomu wzwyż > EventValidation::MAX_LEVEL_JUMP w jednym commicie
+     *      (tylko gdy istnieje poprzedni blob z poziomem — pierwszy commit ustala
+     *      bazę, nie ma czego diffować). Spadek poziomu DOZWOLONY (kara śmierci).
+     *   3. absurdalne sufity absolutne (łapią tylko absurd, nie umiarkowane wartości
+     *      — właściciel ma ~363M golda, więc sufity są ~2750× nad legit): gold,
+     *      consumables/stones (per stack), arenaPoints, skillLevels (per skill).
+     *
+     * SOFT (Log::warning; 422 wyłącznie gdy $strict = state_commit_strict — te niosą
+     * ryzyko false-reject wobec realnego end-game save'u właściciela):
+     *   4. delta golda w jednym commicie (jeden high-level dungeon legalnie płaci
+     *      ~360M — NIE limitujemy delty twardo; logujemy tylko absurdalne przyrosty).
+     *   5. magnituda bazowych statów (attack/defense/max_hp) vs recompute
+     *      getEffectiveChar × margines (drift transform/eliksir + zaokrąglenia).
+     *
+     * @param  array<string, mixed>  $prev
+     * @param  array<string, mixed>  $next
+     */
+    private function guardInvariants(Character $character, array $prev, array $next, EffectiveStats $effective, bool $strict): void
+    {
+        $hard = [];
+
+        // HARD 1) Żaden uuid itemu nie może wystąpić >1 raz w całym blobie (rdzeń dupe).
+        foreach ((new EventValidation)->duplicateUuids($next) as $uuid) {
+            $hard[] = "duplikat uuid itemu: {$uuid}";
+        }
+
+        // HARD 2) Skok poziomu wzwyż > MAX_LEVEL_JUMP (tylko gdy jest poprzedni blob z poziomem).
+        $prevLevelRaw = $prev['_characterStats']['level'] ?? null;
+        if ($prevLevelRaw !== null) {
+            $prevLevel = (int) $this->finiteNumber($prevLevelRaw);
+            $nextLevel = (int) $this->finiteNumber($next['_characterStats']['level'] ?? $prevLevel);
+            if ($nextLevel - $prevLevel > EventValidation::MAX_LEVEL_JUMP) {
+                $hard[] = "niewiarygodny skok poziomu w jednym commicie ({$prevLevel} -> {$nextLevel}, max +".EventValidation::MAX_LEVEL_JUMP.')';
+            }
+        }
+
+        // HARD 3) Absurdalne sufity absolutne.
+        $inv = is_array($next['inventory'] ?? null) ? $next['inventory'] : [];
+        $gold = $this->finiteNumber($inv['gold'] ?? 0);
+        if ($gold > self::ABSURD_GOLD_CAP) {
+            $hard[] = "gold {$gold} > absurdalny sufit (".self::ABSURD_GOLD_CAP.')';
+        }
+        foreach ((array) ($inv['consumables'] ?? []) as $id => $count) {
+            if (is_numeric($count) && (float) $count > self::ABSURD_STACK_CAP) {
+                $hard[] = "consumable {$id}={$count} > absurdalny sufit (".self::ABSURD_STACK_CAP.')';
+            }
+        }
+        foreach ((array) ($inv['stones'] ?? []) as $type => $count) {
+            if (is_numeric($count) && (float) $count > self::ABSURD_STACK_CAP) {
+                $hard[] = "kamień {$type}={$count} > absurdalny sufit (".self::ABSURD_STACK_CAP.')';
+            }
+        }
+        $arena = $this->finiteNumber($inv['arenaPoints'] ?? 0);
+        if ($arena > self::ABSURD_ARENA_CAP) {
+            $hard[] = "arenaPoints {$arena} > absurdalny sufit (".self::ABSURD_ARENA_CAP.')';
+        }
+        foreach ($this->skillLevelsFrom($next) as $skill => $lvl) {
+            if (is_numeric($lvl) && (float) $lvl > self::ABSURD_SKILL_CAP) {
+                $hard[] = "skillLevel {$skill}={$lvl} > absurdalny sufit (".self::ABSURD_SKILL_CAP.')';
+            }
+        }
+
+        if ($hard !== []) {
+            throw new StateValidationException(
+                'Odrzucono commit (HARD niezmiennik): '.implode('; ', $hard),
+            );
+        }
+
+        // ---- SOFT (log; 422 tylko w state_commit_strict) ------------------------
+        $soft = [];
+
+        // SOFT 4) Delta golda w jednym commicie (logujemy tylko absurdalne przyrosty).
+        $prevGold = $this->finiteNumber($prev['inventory']['gold'] ?? 0);
+        if ($gold - $prevGold > self::SOFT_GOLD_DELTA) {
+            $soft[] = "przyrost golda w jednym commicie ({$prevGold} -> {$gold}, > ".self::SOFT_GOLD_DELTA.')';
+        }
+
+        // SOFT 5) Magnituda bazowych statów vs recompute × margines (log-only default).
+        $stats = is_array($next['_characterStats'] ?? null) ? $next['_characterStats'] : [];
+        try {
+            $recomputed = $effective->getEffectiveChar(
+                $stats,
+                $this->equipmentFrom($next),
+                $this->skillLevelsFrom($next),
+                (string) $character->class,
+            );
+            foreach (['attack', 'defense', 'max_hp'] as $field) {
+                $claimed = (float) $this->finiteNumber($stats[$field] ?? 0);
+                $ceil = (float) $this->finiteNumber($recomputed[$field] ?? 0) * self::BASE_STAT_MARGIN;
+                if ($ceil > 0 && $claimed > $ceil) {
+                    $soft[] = "bazowy stat {$field}={$claimed} > recompute×".self::BASE_STAT_MARGIN." (~{$ceil})";
+                }
+            }
+        } catch (Throwable) {
+            // getEffectiveChar rzucił — już raportowane w validateState; tu ignorujemy.
+        }
+
+        if ($soft !== []) {
+            if ($strict) {
+                throw new StateValidationException(
+                    'Odrzucono commit (STRICT niezmiennik): '.implode('; ', $soft),
+                );
+            }
+            Log::warning('state.commit: invariant soft-violations (SOFT — zapisuję mimo to)', [
+                'character_id' => $character->id,
+                'violations' => $soft,
+            ]);
+        }
+    }
+
+    /**
+     * Bramka zdarzenia (event-context): DIFF prev vs next przez EventValidation dla
+     * naruszeń WYMAGAJĄCYCH `event` (dzienne limity, spójność śmierci, spadek poziomu
+     * bez śmierci) — wszystkie SOFT. Twarde niezmienniki egzekwuje guardInvariants
+     * WCZEŚNIEJ, na każdym commicie. SOFT → 422 tylko w $eventStrict; inaczej log.
      *
      * @param  array<string, mixed>  $prev
      * @param  array<string, mixed>  $next
@@ -127,12 +254,6 @@ final class CharacterStateService
     private function guardEvent(Character $character, array $prev, array $next, array $event, bool $eventStrict): void
     {
         $result = (new EventValidation)->evaluate($prev, $next, $event, $character);
-
-        if ($result['hard'] !== []) {
-            throw new StateValidationException(
-                'Odrzucono commit zdarzenia (HARD): '.implode('; ', $result['hard']),
-            );
-        }
 
         if ($result['soft'] !== []) {
             if ($eventStrict) {
@@ -248,6 +369,30 @@ final class CharacterStateService
     private const RARITY_BONUS_CEIL = [
         'common' => 5, 'rare' => 12, 'epic' => 18, 'legendary' => 35, 'mythic' => 60, 'heroic' => 100,
     ];
+
+    // ---- ALWAYS-RUN HARD: absurdalne sufity absolutne (łapią tylko absurd) -------
+    // Właściciel ma legalnie ~363M golda / level 345 / skille kilkaset — sufity są
+    // rzędy wielkości nad legit, więc zero false-reject, a blokują koszmarny cheat.
+
+    /** gold: właściciel ~363M → ~2750× zapas. */
+    private const ABSURD_GOLD_CAP = 1_000_000_000_000; // 1e12
+
+    /** consumables[*] / stones[*] (per stack). */
+    private const ABSURD_STACK_CAP = 100_000;
+
+    /** inventory.arenaPoints. */
+    private const ABSURD_ARENA_CAP = 1_000_000_000; // 1e9
+
+    /** skills.skillLevels[*] (per skill). */
+    private const ABSURD_SKILL_CAP = 500;
+
+    // ---- ALWAYS-RUN SOFT (log-only default; 422 tylko w state_commit_strict) -----
+
+    /** Przyrost golda w jednym commicie powyżej którego logujemy (jeden dungeon ~360M legit). */
+    private const SOFT_GOLD_DELTA = 2_000_000_000; // 2e9
+
+    /** Margines tolerancji: bazowy stat vs serwerowy recompute getEffectiveChar. */
+    private const BASE_STAT_MARGIN = 1.25;
 
     /**
      * Zapisuje kolumny characters z `_characterStats` (fallback: bieżąca wartość).

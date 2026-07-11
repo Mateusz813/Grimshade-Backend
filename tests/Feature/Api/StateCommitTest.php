@@ -264,21 +264,154 @@ it('rejects a duplicate item uuid across bag + equipment with 422 in soft mode',
     expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
 });
 
-it('does NOT dupe-check when no event is present (backward compat)', function () {
+it('rejects a duplicate item uuid with 422 EVEN WITHOUT an event (root-cause regression)', function () {
     $c = scmChar();
 
-    // Ten sam duplikat uuid, ale BEZ event → stara ścieżka (soft persist, brak 422).
+    // Regresja bypassu: atakujący POMIJA `event`, żeby ominąć walidację. Teraz
+    // ALWAYS-RUN guardInvariants łapie dupe uuid na KAŻDYM commicie → 422, rollback.
     $dup = scmItem('dup-2');
     $blob = scmBlob($c);
     $blob['inventory']['bag'] = [$dup];
-    $blob['inventory']['equipment']['mainHand'] = $dup;
+    $blob['inventory']['equipment']['mainHand'] = $dup; // ten sam uuid w dwóch miejscach
 
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'no-ev-dupe',
         'state' => $blob,
+        // celowo BEZ 'event'
+    ])->assertStatus(422);
+
+    // Transakcja wycofana — nic się nie zapisało.
+    expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
+});
+
+// ---- ALWAYS-RUN HARD invariants (event obecny czy nie) ----------------------
+
+it('rejects a level jump > 50 WITHOUT an event with 422', function () {
+    $c = scmChar();
+
+    // Baseline (bez eventu) ustala prev z poziomem 5.
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'lvljump-base',
+        'state' => scmBlob($c, level: 5),
     ])->assertOk();
 
+    // Kolejny commit bez eventu skacze 5 -> 100 (+95 > 50) → HARD 422, rollback.
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'lvljump-big',
+        'state' => scmBlob($c, level: 100),
+    ])->assertStatus(422);
+
+    // Poprzedni (baseline) blob przetrwał — nadal poziom 5.
+    expect(GameSave::where('character_id', $c->id)->first()->state['_characterStats']['level'])->toBe(5);
+});
+
+it('rejects absurd gold (9e15) with 422 WITHOUT an event', function () {
+    $c = scmChar();
+
+    $blob = scmBlob($c);
+    $blob['inventory']['gold'] = 9_000_000_000_000_000; // 9e15, powyżej sufitu 1e12
+    $blob['_characterStats']['gold'] = 9_000_000_000_000_000;
+
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'absurd-gold',
+        'state' => $blob,
+    ])->assertStatus(422);
+
+    expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
+});
+
+it('rejects an absurd consumable stack (> 100k) with 422 WITHOUT an event', function () {
+    $c = scmChar();
+
+    $blob = scmBlob($c);
+    $blob['inventory']['consumables'] = ['health_potion' => 500_000];
+
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'absurd-consumable',
+        'state' => $blob,
+    ])->assertStatus(422);
+
+    expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
+});
+
+it('rejects an absurd stone stack (> 100k) with 422 WITHOUT an event', function () {
+    $c = scmChar();
+
+    $blob = scmBlob($c);
+    $blob['inventory']['stones'] = ['power' => 250_000];
+
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'absurd-stone',
+        'state' => $blob,
+    ])->assertStatus(422);
+
+    expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
+});
+
+it('accepts a normal small commit WITHOUT an event (backward compat)', function () {
+    $c = scmChar();
+
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'small-no-ev',
+        'state' => scmBlob($c, level: 5, gold: 1234, bag: [scmItem('sole-1')]),
+    ])->assertOk()->assertJsonPath('state.inventory.gold', 1234);
+
     expect(GameSave::where('character_id', $c->id)->first())->not->toBeNull();
+});
+
+// ---- SAFETY: realny end-game save właściciela MUSI przejść (zero false-reject) --
+
+it('persists a realistic end-game save (363M gold, level 345, unique-uuid mythic gear) WITHOUT event', function () {
+    $c = scmChar();
+
+    // 365 unikatowych itemów w bag.
+    $bag = [];
+    for ($i = 0; $i < 365; $i++) {
+        $bag[] = scmItem("bag-{$i}", [
+            'itemId' => 'ring_lvl400_mythic', 'rarity' => 'mythic', 'itemLevel' => 400,
+            'upgradeLevel' => 15, 'bonuses' => ['attack' => 800, 'critChance' => 10],
+        ]);
+    }
+
+    // 12 założonych mitycznych/heroicznych itemów, każdy z unikatowym uuid.
+    $slots = ['helmet', 'armor', 'pants', 'gloves', 'shoulders', 'boots',
+        'mainHand', 'offHand', 'ring1', 'ring2', 'earrings', 'necklace'];
+    $equipment = [];
+    foreach ($slots as $idx => $slot) {
+        $equipment[$slot] = scmItem("eq-{$slot}", [
+            'itemId' => 'ring_lvl400_mythic', 'rarity' => $idx % 2 === 0 ? 'mythic' : 'heroic',
+            'itemLevel' => 400, 'upgradeLevel' => 18, 'bonuses' => ['attack' => 1500, 'critChance' => 15],
+        ]);
+    }
+
+    $blob = scmBlob($c, level: 345, gold: 363_637_692, bag: $bag, extra: [
+        '_characterStats' => [
+            'level' => 345, 'xp' => 5000, 'attack' => 90000, 'defense' => 8000,
+            'max_hp' => 40000, 'magic_level' => 400, 'highest_level' => 345,
+        ],
+        'inventory' => [
+            'equipment' => $equipment,
+            'consumables' => ['health_potion' => 5000, 'mana_potion' => 5000],
+            'stones' => ['power' => 20000], 'arenaPoints' => 50000,
+        ],
+        'skills' => ['skillLevels' => ['magic_level' => 450, 'sword_fighting' => 400]],
+    ]);
+
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'endgame-safe',
+        'state' => $blob,
+        // celowo BEZ 'event' — realny zapis właściciela nie może być fałszywie odrzucony
+    ])->assertOk()
+        ->assertJsonPath('state.inventory.gold', 363_637_692)
+        ->assertJsonPath('character.level', 345);
+
+    $save = GameSave::where('character_id', $c->id)->first();
+    expect($save)->not->toBeNull()
+        ->and($save->state['inventory']['gold'])->toBe(363_637_692)
+        ->and(count($save->state['inventory']['bag']))->toBe(365)
+        ->and($save->state['inventory']['equipment']['necklace']['uuid'])->toBe('eq-necklace');
+
+    expect(Character::find($c->id)->level)->toBe(345);
 });
 
 // ---- HARD check: gold ------------------------------------------------------
