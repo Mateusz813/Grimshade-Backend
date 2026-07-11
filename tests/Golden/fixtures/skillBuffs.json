@@ -1,0 +1,1016 @@
+{
+  "system": "skillBuffs",
+  "note": "Generowane z src/systems/skillBuffs.ts. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1. Etykiety/ikony UI pominięte, op-log = liczby + klucze.",
+  "chargeBuffEffectKey": [
+    {
+      "head": "dodge_next",
+      "value": "skill_charge_dodge_next"
+    },
+    {
+      "head": "dmg_amp_next",
+      "value": "skill_charge_dmg_amp_next"
+    },
+    {
+      "head": "crit_next",
+      "value": "skill_charge_crit_next"
+    },
+    {
+      "head": "crit_buff_next",
+      "value": "skill_charge_crit_buff_next"
+    },
+    {
+      "head": "block_next_party",
+      "value": "skill_charge_block_next_party"
+    },
+    {
+      "head": "next_ally_heal",
+      "value": "skill_charge_next_ally_heal"
+    },
+    {
+      "head": "party_lifesteal_next",
+      "value": "skill_charge_party_lifesteal_next"
+    },
+    {
+      "head": "party_instant_kill_chance_next",
+      "value": "skill_charge_party_instant_kill_chance_next"
+    },
+    {
+      "head": "arbitrary_head",
+      "value": "skill_charge_arbitrary_head"
+    }
+  ],
+  "getSkillDef": [
+    {
+      "skillId": "shield_bash",
+      "value": {
+        "id": "shield_bash",
+        "name_pl": "Uderzenie Tarczą",
+        "name_en": "Shield Bash",
+        "mpCost": 15,
+        "cooldown": 8000,
+        "damage": 5.4,
+        "effect": "stun:3000",
+        "unlockLevel": 5,
+        "goldCost": 800
+      }
+    },
+    {
+      "skillId": "eagle_eye",
+      "value": {
+        "id": "eagle_eye",
+        "name_pl": "Orle Oko",
+        "name_en": "Eagle Eye",
+        "mpCost": 20,
+        "cooldown": 18000,
+        "damage": 0,
+        "effect": "crit_buff:30:10000",
+        "unlockLevel": 20,
+        "goldCost": 15000
+      }
+    },
+    {
+      "skillId": "blessing",
+      "value": {
+        "id": "blessing",
+        "name_pl": "Błogosławieństwo",
+        "name_en": "Blessing",
+        "mpCost": 50,
+        "cooldown": 30000,
+        "damage": 0,
+        "effect": "heal_party_dot:10000:5",
+        "unlockLevel": 40,
+        "goldCost": 75000
+      }
+    },
+    {
+      "skillId": "universe_song",
+      "value": {
+        "id": "universe_song",
+        "name_pl": "Pieśń Wszechświata",
+        "name_en": "Universe Song",
+        "mpCost": 500,
+        "cooldown": 300000,
+        "damage": 0,
+        "effect": "party_instant_kill_chance_next:3:5;party_immortal:3000;party_attack_up:100:30000;party_as_up:2.2:10000",
+        "unlockLevel": 1000,
+        "goldCost": 750000000
+      }
+    },
+    {
+      "skillId": "absolute_death",
+      "value": {
+        "id": "absolute_death",
+        "name_pl": "Absolutna Śmierć",
+        "name_en": "Absolute Death",
+        "mpCost": 450,
+        "cooldown": 300000,
+        "damage": 14,
+        "effect": "instant_kill_chance:8;dodge_next:1:non_magic",
+        "unlockLevel": 1000,
+        "goldCost": 750000000
+      }
+    },
+    {
+      "skillId": "sword_fighting",
+      "value": null
+    },
+    {
+      "skillId": "does_not_exist",
+      "value": null
+    }
+  ],
+  "applySkillBuff": [
+    {
+      "skillId": "eagle_eye",
+      "effect": "crit_buff:30:10000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_eagle_eye_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_eagle_eye_0",
+          "effect": "skill_eagle_eye_0",
+          "durationMs": 10000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "berserker_rage",
+      "effect": "attack_up:50:6000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_berserker_rage_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_berserker_rage_0",
+          "effect": "skill_berserker_rage_0",
+          "durationMs": 6000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "smoke_bomb",
+      "effect": "dodge_buff:50:4000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_smoke_bomb_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_smoke_bomb_0",
+          "effect": "skill_smoke_bomb_0",
+          "durationMs": 4000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "absolute_cleave",
+      "effect": "immortal:10000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_absolute_cleave_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_absolute_cleave_0",
+          "effect": "skill_absolute_cleave_0",
+          "durationMs": 10000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "mana_shield",
+      "effect": "mana_shield:20000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_mana_shield_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_mana_shield_0",
+          "effect": "skill_mana_shield_0",
+          "durationMs": 20000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "battle_cry",
+      "effect": "party_attack_up:20:5000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_battle_cry_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_battle_cry_0",
+          "effect": "skill_battle_cry_0",
+          "durationMs": 5000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "fortify",
+      "effect": "party_defense_up:30:8000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_fortify_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_fortify_0",
+          "effect": "skill_fortify_0",
+          "durationMs": 8000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "heroic_ballad",
+      "effect": "party_def_pen:40:10000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_heroic_ballad_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_heroic_ballad_0",
+          "effect": "skill_heroic_ballad_0",
+          "durationMs": 10000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "ballad_of_heroes",
+      "effect": "party_as_up:1.5:12000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_ballad_of_heroes_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_ballad_of_heroes_0",
+          "effect": "skill_ballad_of_heroes_0",
+          "durationMs": 12000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "war_song",
+      "effect": "party_crit_up:30:12000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_war_song_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_war_song_0",
+          "effect": "skill_war_song_0",
+          "durationMs": 12000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "legends_anthem",
+      "effect": "party_immortal:3000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_legends_anthem_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_legends_anthem_0",
+          "effect": "skill_legends_anthem_0",
+          "durationMs": 3000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "blessing",
+      "effect": "heal_party_dot:10000:5",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_blessing_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_blessing_0",
+          "effect": "skill_blessing_0",
+          "durationMs": 10000,
+          "isParty": true,
+          "healPctPerSec": 5
+        }
+      ]
+    },
+    {
+      "skillId": "whirlwind",
+      "effect": "aoe;aggro_steal",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_whirlwind_1"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_whirlwind_1",
+          "effect": "skill_whirlwind_1",
+          "durationMs": 2000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "evasion",
+      "effect": "dodge_next:3:non_magic",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_evasion_0",
+          "effect": "skill_charge_dodge_next",
+          "chargesToAdd": 3,
+          "cap": 6
+        }
+      ]
+    },
+    {
+      "skillId": "god_arrow",
+      "effect": "dmg_amp_next:2:8",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_god_arrow_0",
+          "effect": "skill_charge_dmg_amp_next",
+          "chargesToAdd": 8,
+          "cap": 16
+        }
+      ]
+    },
+    {
+      "skillId": "arcane_bolt",
+      "effect": "dmg_amp_next:3:1",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_arcane_bolt_0",
+          "effect": "skill_charge_dmg_amp_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "backstab",
+      "effect": "crit_next:1:1",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_backstab_0",
+          "effect": "skill_charge_crit_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "precise_shot",
+      "effect": "crit_buff_next:30",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_precise_shot_0",
+          "effect": "skill_charge_crit_buff_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "divine_shield",
+      "effect": "block_next_party:1",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_divine_shield_0",
+          "effect": "skill_charge_block_next_party",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "divine_intervention",
+      "effect": "next_ally_heal:7.5:3",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_divine_intervention_0",
+          "effect": "skill_charge_next_ally_heal",
+          "chargesToAdd": 3,
+          "cap": 6
+        }
+      ]
+    },
+    {
+      "skillId": "divine_wrath",
+      "effect": "party_lifesteal_next:100:5",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_divine_wrath_0",
+          "effect": "skill_charge_party_lifesteal_next",
+          "chargesToAdd": 5,
+          "cap": 5
+        }
+      ]
+    },
+    {
+      "skillId": "shadow_clone",
+      "effect": "dmg_amp_next:2:1",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_shadow_clone_0",
+          "effect": "skill_charge_dmg_amp_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "god_slash",
+      "effect": "aggro_steal;crit_next:1:1;dmg_amp_next:5:1",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_god_slash_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_god_slash_0",
+          "effect": "skill_god_slash_0",
+          "durationMs": 2000,
+          "isParty": false,
+          "healPctPerSec": null
+        },
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_god_slash_1",
+          "effect": "skill_charge_crit_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        },
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_god_slash_2",
+          "effect": "skill_charge_dmg_amp_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "divine_melody",
+      "effect": "party_as_up:2:10000;party_attack_up:40:10000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_divine_melody_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_divine_melody_0",
+          "effect": "skill_divine_melody_0",
+          "durationMs": 10000,
+          "isParty": true,
+          "healPctPerSec": null
+        },
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_divine_melody_1"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_divine_melody_1",
+          "effect": "skill_divine_melody_1",
+          "durationMs": 10000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "universe_song",
+      "effect": "party_instant_kill_chance_next:3:5;party_immortal:3000;party_attack_up:100:30000;party_as_up:2.2:10000",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_universe_song_0",
+          "effect": "skill_charge_party_instant_kill_chance_next",
+          "chargesToAdd": 3,
+          "cap": 6
+        },
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_universe_song_1"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_universe_song_1",
+          "effect": "skill_universe_song_1",
+          "durationMs": 3000,
+          "isParty": true,
+          "healPctPerSec": null
+        },
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_universe_song_2"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_universe_song_2",
+          "effect": "skill_universe_song_2",
+          "durationMs": 30000,
+          "isParty": true,
+          "healPctPerSec": null
+        },
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_universe_song_3"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_universe_song_3",
+          "effect": "skill_universe_song_3",
+          "durationMs": 10000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "god_ballad",
+      "effect": "aoe;party_attack_up:50:30000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_god_ballad_1"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_god_ballad_1",
+          "effect": "skill_god_ballad_1",
+          "durationMs": 30000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "apocalypse_spell",
+      "effect": "aoe;immortal:5000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_apocalypse_spell_1"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_apocalypse_spell_1",
+          "effect": "skill_apocalypse_spell_1",
+          "durationMs": 5000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "holy_apocalypse",
+      "effect": "aoe;party_immortal:5000;revive_party:5000:10000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_holy_apocalypse_1"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_holy_apocalypse_1",
+          "effect": "skill_holy_apocalypse_1",
+          "durationMs": 5000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "absolute_death",
+      "effect": "instant_kill_chance:8;dodge_next:1:non_magic",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_absolute_death_1",
+          "effect": "skill_charge_dodge_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "song_of_doom",
+      "effect": "aoe;party_attack_up:20:20000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_song_of_doom_1"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_song_of_doom_1",
+          "effect": "skill_song_of_doom_1",
+          "durationMs": 20000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "blizzard",
+      "effect": "aoe",
+      "ops": []
+    },
+    {
+      "skillId": "assassinate",
+      "effect": "execute_below:20",
+      "ops": []
+    },
+    {
+      "skillId": "summon_skeleton",
+      "effect": "summon:skeleton:1",
+      "ops": []
+    },
+    {
+      "skillId": "dark_ritual",
+      "effect": "dark_ritual:10000:25",
+      "ops": []
+    },
+    {
+      "skillId": "hemorrhage",
+      "effect": "dot:8000:4",
+      "ops": []
+    },
+    {
+      "skillId": "syn_empty",
+      "effect": "",
+      "ops": []
+    },
+    {
+      "skillId": "syn_null",
+      "effect": null,
+      "ops": []
+    },
+    {
+      "skillId": "syn_ws",
+      "effect": "  attack_up:50:6000  ",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_syn_ws_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_syn_ws_0",
+          "effect": "skill_syn_ws_0",
+          "durationMs": 6000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "syn_ws2",
+      "effect": "aoe; party_attack_up:50:5000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_syn_ws2_1"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_syn_ws2_1",
+          "effect": "skill_syn_ws2_1",
+          "durationMs": 5000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "syn_upper",
+      "effect": "ATTACK_UP:50:6000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_syn_upper_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_syn_upper_0",
+          "effect": "skill_syn_upper_0",
+          "durationMs": 6000,
+          "isParty": false,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "syn_upper_charge",
+      "effect": "DODGE_NEXT:2:NON_MAGIC",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_upper_charge_0",
+          "effect": "skill_charge_dodge_next",
+          "chargesToAdd": 2,
+          "cap": 4
+        }
+      ]
+    },
+    {
+      "skillId": "syn_zero_dur",
+      "effect": "attack_up:50:0",
+      "ops": []
+    },
+    {
+      "skillId": "syn_neg_dur",
+      "effect": "attack_up:50:-5000",
+      "ops": []
+    },
+    {
+      "skillId": "syn_crit_no_dur",
+      "effect": "crit_buff:30",
+      "ops": []
+    },
+    {
+      "skillId": "syn_immortal_bare",
+      "effect": "immortal",
+      "ops": []
+    },
+    {
+      "skillId": "syn_heal_dot_zero_dur",
+      "effect": "heal_party_dot:0:5",
+      "ops": []
+    },
+    {
+      "skillId": "syn_dodge_bare",
+      "effect": "dodge_next",
+      "ops": []
+    },
+    {
+      "skillId": "syn_dmg_amp_1arg",
+      "effect": "dmg_amp_next:2",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_dmg_amp_1arg_0",
+          "effect": "skill_charge_dmg_amp_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "syn_dmg_amp_0arg",
+      "effect": "dmg_amp_next",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_dmg_amp_0arg_0",
+          "effect": "skill_charge_dmg_amp_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "syn_next_ally_1arg",
+      "effect": "next_ally_heal:7.5",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_next_ally_1arg_0",
+          "effect": "skill_charge_next_ally_heal",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "syn_lifesteal_1arg",
+      "effect": "party_lifesteal_next:100",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_lifesteal_1arg_0",
+          "effect": "skill_charge_party_lifesteal_next",
+          "chargesToAdd": 1,
+          "cap": 1
+        }
+      ]
+    },
+    {
+      "skillId": "syn_critbuffnext_extra",
+      "effect": "crit_buff_next:30:99",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_critbuffnext_extra_0",
+          "effect": "skill_charge_crit_buff_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        }
+      ]
+    },
+    {
+      "skillId": "syn_block_bare",
+      "effect": "block_next_party",
+      "ops": []
+    },
+    {
+      "skillId": "syn_pik_alone",
+      "effect": "party_instant_kill_chance_next:3:5",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_pik_alone_0",
+          "effect": "skill_charge_party_instant_kill_chance_next",
+          "chargesToAdd": 3,
+          "cap": 6
+        }
+      ]
+    },
+    {
+      "skillId": "syn_crit_next_2",
+      "effect": "crit_next:2:1",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_crit_next_2_0",
+          "effect": "skill_charge_crit_next",
+          "chargesToAdd": 2,
+          "cap": 4
+        }
+      ]
+    },
+    {
+      "skillId": "syn_next_ally_float",
+      "effect": "next_ally_heal:5:3.9",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_next_ally_float_0",
+          "effect": "skill_charge_next_ally_heal",
+          "chargesToAdd": 3,
+          "cap": 6
+        }
+      ]
+    },
+    {
+      "skillId": "syn_dodge_float_charge",
+      "effect": "dodge_next:2.9:non_magic",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_dodge_float_charge_0",
+          "effect": "skill_charge_dodge_next",
+          "chargesToAdd": 2,
+          "cap": 4
+        }
+      ]
+    },
+    {
+      "skillId": "syn_neg_charge",
+      "effect": "dodge_next:-3:non_magic",
+      "ops": []
+    },
+    {
+      "skillId": "syn_big_charge",
+      "effect": "dodge_next:100:x",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_big_charge_0",
+          "effect": "skill_charge_dodge_next",
+          "chargesToAdd": 100,
+          "cap": 200
+        }
+      ]
+    },
+    {
+      "skillId": "syn_heal_dot_no_pct",
+      "effect": "heal_party_dot:10000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_syn_heal_dot_no_pct_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_syn_heal_dot_no_pct_0",
+          "effect": "skill_syn_heal_dot_no_pct_0",
+          "durationMs": 10000,
+          "isParty": true,
+          "healPctPerSec": 0
+        }
+      ]
+    },
+    {
+      "skillId": "syn_unknown",
+      "effect": "totally_unknown:1:2",
+      "ops": []
+    },
+    {
+      "skillId": "syn_all_ignored",
+      "effect": "aoe;summon:skeleton:5",
+      "ops": []
+    },
+    {
+      "skillId": "syn_index",
+      "effect": "aoe;aoe;party_attack_up:10:5000",
+      "ops": [
+        {
+          "op": "removeBuffByEffect",
+          "effect": "skill_syn_index_2"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_syn_index_2",
+          "effect": "skill_syn_index_2",
+          "durationMs": 5000,
+          "isParty": true,
+          "healPctPerSec": null
+        }
+      ]
+    },
+    {
+      "skillId": "syn_multi_charge_mix",
+      "effect": "dmg_amp_next:2:3;crit_next:1:1;party_lifesteal_next:50:4",
+      "ops": [
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_multi_charge_mix_0",
+          "effect": "skill_charge_dmg_amp_next",
+          "chargesToAdd": 3,
+          "cap": 6
+        },
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_multi_charge_mix_1",
+          "effect": "skill_charge_crit_next",
+          "chargesToAdd": 1,
+          "cap": 2
+        },
+        {
+          "op": "addChargeBuff",
+          "id": "skill_charge_syn_multi_charge_mix_2",
+          "effect": "skill_charge_party_lifesteal_next",
+          "chargesToAdd": 4,
+          "cap": 4
+        }
+      ]
+    }
+  ]
+}

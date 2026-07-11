@@ -1,0 +1,226 @@
+{
+    "weapons": [
+        {
+            "type": "sword",
+            "name_pl": "Miecz",
+            "name_en": "Sword",
+            "slot": "mainHand",
+            "icon": "crossed-swords",
+            "allowedClasses": ["Knight"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 8, "baseMax": 14, "perLevel": 1.8 }
+        },
+        {
+            "type": "staff",
+            "name_pl": "Kostur",
+            "name_en": "Staff",
+            "slot": "mainHand",
+            "icon": "magic-wand",
+            "allowedClasses": ["Mage"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 5, "baseMax": 10, "perLevel": 1.6 }
+        },
+        {
+            "type": "holy_wand",
+            "name_pl": "Swieta Rozdzka",
+            "name_en": "Holy Wand",
+            "slot": "mainHand",
+            "icon": "sparkles",
+            "allowedClasses": ["Cleric"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 4, "baseMax": 9, "perLevel": 1.4 }
+        },
+        {
+            "type": "bow",
+            "name_pl": "Luk",
+            "name_en": "Bow",
+            "slot": "mainHand",
+            "icon": "bow-and-arrow",
+            "allowedClasses": ["Archer"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 7, "baseMax": 13, "perLevel": 1.7 }
+        },
+        {
+            "type": "dagger",
+            "name_pl": "Sztylet",
+            "name_en": "Dagger",
+            "slot": "mainHand",
+            "icon": "dagger",
+            "allowedClasses": ["Rogue"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 4, "baseMax": 8, "perLevel": 1.1 }
+        },
+        {
+            "type": "dead_staff",
+            "name_pl": "Martwy Kostur",
+            "name_en": "Dead Staff",
+            "slot": "mainHand",
+            "icon": "skull",
+            "allowedClasses": ["Necromancer"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 5, "baseMax": 10, "perLevel": 1.6 }
+        },
+        {
+            "type": "harp",
+            "name_pl": "Harfa",
+            "name_en": "Harp",
+            "slot": "mainHand",
+            "icon": "musical-note",
+            "allowedClasses": ["Bard"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 4, "baseMax": 9, "perLevel": 1.3 }
+        }
+    ],
+    "offhands": [
+        {
+            "type": "shield",
+            "name_pl": "Tarcza",
+            "name_en": "Shield",
+            "slot": "offHand",
+            "icon": "shield",
+            "allowedClasses": ["Knight"],
+            "baseStatType": "defense",
+            "scaling": { "baseMin": 5, "baseMax": 10, "perLevel": 1.5 }
+        },
+        {
+            "type": "spellbook",
+            "name_pl": "Ksiega Czarow",
+            "name_en": "Spellbook",
+            "slot": "offHand",
+            "icon": "closed-book",
+            "allowedClasses": ["Mage"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 3, "baseMax": 7, "perLevel": 1.2 }
+        },
+        {
+            "type": "holy_cross",
+            "name_pl": "Swiety Krzyz",
+            "name_en": "Holy Cross",
+            "slot": "offHand",
+            "icon": "latin-cross",
+            "allowedClasses": ["Cleric"],
+            "baseStatType": "defense",
+            "scaling": { "baseMin": 3, "baseMax": 6, "perLevel": 1.1 }
+        },
+        {
+            "type": "quiver",
+            "name_pl": "Kolczan",
+            "name_en": "Quiver",
+            "slot": "offHand",
+            "icon": "bow-and-arrow",
+            "allowedClasses": ["Archer"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 2, "baseMax": 5, "perLevel": 0.8 }
+        },
+        {
+            "type": "voodoo_doll",
+            "name_pl": "Lalka Voodoo",
+            "name_en": "Voodoo Doll",
+            "slot": "offHand",
+            "icon": "nesting-dolls",
+            "allowedClasses": ["Necromancer"],
+            "baseStatType": "attack",
+            "scaling": { "baseMin": 3, "baseMax": 7, "perLevel": 1.2 }
+        },
+        {
+            "type": "talisman",
+            "name_pl": "Talizman",
+            "name_en": "Talisman",
+            "slot": "offHand",
+            "icon": "crystal-ball",
+            "allowedClasses": ["Bard"],
+            "baseStatType": "defense",
+            "scaling": { "baseMin": 2, "baseMax": 5, "perLevel": 0.9 }
+        }
+    ],
+    "armor": {
+        "heavy": {
+            "allowedClasses": ["Knight"],
+            "prefix_pl": "Ciezki",
+            "prefix_en": "Heavy",
+            "pieces": [
+                { "slot": "helmet",    "name_pl": "Helm",         "name_en": "Helmet",    "icon": "rescue-worker-s-helmet", "scaling": { "baseMin": 3, "baseMax": 6, "perLevel": 1.0 } },
+                { "slot": "armor",     "name_pl": "Zbroja",       "name_en": "Armor",     "icon": "safety-vest", "scaling": { "baseMin": 5, "baseMax": 10, "perLevel": 1.4 } },
+                { "slot": "pants",     "name_pl": "Spodnie",      "name_en": "Legs",      "icon": "jeans", "scaling": { "baseMin": 3, "baseMax": 7, "perLevel": 1.1 } },
+                { "slot": "boots",     "name_pl": "Buty",         "name_en": "Boots",     "icon": "woman-s-boot", "scaling": { "baseMin": 2, "baseMax": 5, "perLevel": 0.8 } },
+                { "slot": "shoulders", "name_pl": "Naramienniki", "name_en": "Shoulders", "icon": "military-medal", "scaling": { "baseMin": 3, "baseMax": 6, "perLevel": 1.0 } },
+                { "slot": "gloves",    "name_pl": "Rekawice",     "name_en": "Gloves",    "icon": "gloves", "scaling": { "baseMin": 2, "baseMax": 5, "perLevel": 0.8 } }
+            ]
+        },
+        "magic": {
+            "allowedClasses": ["Mage", "Cleric", "Necromancer"],
+            "prefix_pl": "Magiczny",
+            "prefix_en": "Magic",
+            "pieces": [
+                { "slot": "helmet",    "name_pl": "Helm",         "name_en": "Helmet",    "icon": "top-hat", "scaling": { "baseMin": 1, "baseMax": 4, "perLevel": 0.7 } },
+                { "slot": "armor",     "name_pl": "Szata",        "name_en": "Robe",      "icon": "mage", "scaling": { "baseMin": 2, "baseMax": 6, "perLevel": 0.9 } },
+                { "slot": "pants",     "name_pl": "Spodnie",      "name_en": "Legs",      "icon": "jeans", "scaling": { "baseMin": 1, "baseMax": 4, "perLevel": 0.7 } },
+                { "slot": "boots",     "name_pl": "Buty",         "name_en": "Boots",     "icon": "hiking-boot", "scaling": { "baseMin": 1, "baseMax": 3, "perLevel": 0.5 } },
+                { "slot": "shoulders", "name_pl": "Naramienniki", "name_en": "Shoulders", "icon": "reminder-ribbon", "scaling": { "baseMin": 1, "baseMax": 4, "perLevel": 0.7 } },
+                { "slot": "gloves",    "name_pl": "Rekawice",     "name_en": "Gloves",    "icon": "gloves", "scaling": { "baseMin": 1, "baseMax": 3, "perLevel": 0.5 } }
+            ]
+        },
+        "light": {
+            "allowedClasses": ["Archer", "Rogue", "Bard"],
+            "prefix_pl": "Lekki",
+            "prefix_en": "Light",
+            "pieces": [
+                { "slot": "helmet",    "name_pl": "Helm",         "name_en": "Helmet",    "icon": "military-helmet", "scaling": { "baseMin": 2, "baseMax": 5, "perLevel": 0.8 } },
+                { "slot": "armor",     "name_pl": "Zbroja",       "name_en": "Armor",     "icon": "kimono", "scaling": { "baseMin": 3, "baseMax": 8, "perLevel": 1.1 } },
+                { "slot": "pants",     "name_pl": "Spodnie",      "name_en": "Legs",      "icon": "jeans", "scaling": { "baseMin": 2, "baseMax": 5, "perLevel": 0.8 } },
+                { "slot": "boots",     "name_pl": "Buty",         "name_en": "Boots",     "icon": "running-shoe", "scaling": { "baseMin": 1, "baseMax": 4, "perLevel": 0.6 } },
+                { "slot": "shoulders", "name_pl": "Naramienniki", "name_en": "Shoulders", "icon": "military-medal", "scaling": { "baseMin": 2, "baseMax": 5, "perLevel": 0.8 } },
+                { "slot": "gloves",    "name_pl": "Rekawice",     "name_en": "Gloves",    "icon": "gloves", "scaling": { "baseMin": 1, "baseMax": 4, "perLevel": 0.6 } }
+            ]
+        }
+    },
+    "accessories": [
+        {
+            "type": "ring",
+            "name_pl": "Pierscien",
+            "name_en": "Ring",
+            "slot": "ring1",
+            "icon": "ring",
+            "allowedClasses": ["Knight", "Mage", "Cleric", "Archer", "Rogue", "Necromancer", "Bard"],
+            "baseStatType": "mixed",
+            "scaling": { "baseMin": 1, "baseMax": 4, "perLevel": 0.5 }
+        },
+        {
+            "type": "necklace",
+            "name_pl": "Naszyjnik",
+            "name_en": "Necklace",
+            "slot": "necklace",
+            "icon": "prayer-beads",
+            "allowedClasses": ["Knight", "Mage", "Cleric", "Archer", "Rogue", "Necromancer", "Bard"],
+            "baseStatType": "mixed",
+            "scaling": { "baseMin": 1, "baseMax": 4, "perLevel": 0.5 }
+        },
+        {
+            "type": "earrings",
+            "name_pl": "Kolczyki",
+            "name_en": "Earrings",
+            "slot": "earrings",
+            "icon": "sparkles",
+            "allowedClasses": ["Knight", "Mage", "Cleric", "Archer", "Rogue", "Necromancer", "Bard"],
+            "baseStatType": "mixed",
+            "scaling": { "baseMin": 1, "baseMax": 3, "perLevel": 0.4 }
+        }
+    ],
+    "rarityMultipliers": {
+        "common":    { "statMultiplier": 1.0, "priceMultiplier": 1.0 },
+        "rare":      { "statMultiplier": 1.15, "priceMultiplier": 2.5 },
+        "epic":      { "statMultiplier": 1.30, "priceMultiplier": 5.0 },
+        "legendary": { "statMultiplier": 1.45, "priceMultiplier": 10.0 },
+        "mythic":    { "statMultiplier": 1.60, "priceMultiplier": 25.0 },
+        "heroic":    { "statMultiplier": 2.05, "priceMultiplier": 50.0 }
+    },
+    "starterWeapons": {
+        "Knight":      { "type": "sword",      "name_pl": "Miecz Poczatku",     "name_en": "Sword of Beginnings",   "baseAtk": 11 },
+        "Mage":        { "type": "staff",       "name_pl": "Kostur Ucznia",      "name_en": "Apprentice Staff",      "baseAtk": 7 },
+        "Cleric":      { "type": "holy_wand",   "name_pl": "Rozdzka Nowicjusza", "name_en": "Novice Holy Wand",      "baseAtk": 6 },
+        "Archer":      { "type": "bow",         "name_pl": "Krotki Luk",         "name_en": "Short Bow",             "baseAtk": 10 },
+        "Rogue":       { "type": "dagger",      "name_pl": "Zardzewialy Sztylet","name_en": "Rusty Dagger",          "baseAtk": 6 },
+        "Necromancer": { "type": "dead_staff",   "name_pl": "Kostur Kosciany",   "name_en": "Bone Staff",            "baseAtk": 7 },
+        "Bard":        { "type": "harp",         "name_pl": "Lutnia",            "name_en": "Lute",                  "baseAtk": 7 }
+    }
+}

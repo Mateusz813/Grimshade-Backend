@@ -1,0 +1,448 @@
+{
+  "system": "deathProtection",
+  "note": "Generowane z src/systems/deathProtection.ts (+ rdzeń combatLeavePenalty.ts). NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "hasDeathProtection": [
+    {
+      "consumables": {},
+      "value": false
+    },
+    {
+      "consumables": {
+        "death_protection": 0,
+        "amulet_of_loss": 0
+      },
+      "value": false
+    },
+    {
+      "consumables": {
+        "death_protection": 1
+      },
+      "value": true
+    },
+    {
+      "consumables": {
+        "amulet_of_loss": 1
+      },
+      "value": true
+    },
+    {
+      "consumables": {
+        "death_protection": 1,
+        "amulet_of_loss": 1
+      },
+      "value": true
+    },
+    {
+      "consumables": {
+        "death_protection": 0,
+        "amulet_of_loss": 3
+      },
+      "value": true
+    },
+    {
+      "consumables": {
+        "death_protection": 2,
+        "amulet_of_loss": 5
+      },
+      "value": true
+    },
+    {
+      "consumables": {
+        "death_protection": 1,
+        "amulet_of_loss": 0,
+        "hp_potion_sm": 7
+      },
+      "value": true
+    },
+    {
+      "consumables": {
+        "amulet_of_loss": 0
+      },
+      "value": false
+    },
+    {
+      "consumables": {
+        "death_protection": 0
+      },
+      "value": false
+    },
+    {
+      "consumables": {
+        "hp_potion_sm": 4,
+        "mp_potion_sm": 2
+      },
+      "value": false
+    }
+  ],
+  "consumeDeathProtection": [
+    {
+      "consumables": {},
+      "result": {
+        "isProtected": false,
+        "consumedId": null,
+        "consumables": {}
+      }
+    },
+    {
+      "consumables": {
+        "death_protection": 0,
+        "amulet_of_loss": 0
+      },
+      "result": {
+        "isProtected": false,
+        "consumedId": null,
+        "consumables": {
+          "death_protection": 0,
+          "amulet_of_loss": 0
+        }
+      }
+    },
+    {
+      "consumables": {
+        "death_protection": 1
+      },
+      "result": {
+        "isProtected": true,
+        "consumedId": "death_protection",
+        "consumables": {
+          "death_protection": 0
+        }
+      }
+    },
+    {
+      "consumables": {
+        "amulet_of_loss": 1
+      },
+      "result": {
+        "isProtected": true,
+        "consumedId": "amulet_of_loss",
+        "consumables": {
+          "amulet_of_loss": 0
+        }
+      }
+    },
+    {
+      "consumables": {
+        "death_protection": 1,
+        "amulet_of_loss": 1
+      },
+      "result": {
+        "isProtected": true,
+        "consumedId": "death_protection",
+        "consumables": {
+          "death_protection": 0,
+          "amulet_of_loss": 1
+        }
+      }
+    },
+    {
+      "consumables": {
+        "death_protection": 0,
+        "amulet_of_loss": 3
+      },
+      "result": {
+        "isProtected": true,
+        "consumedId": "amulet_of_loss",
+        "consumables": {
+          "death_protection": 0,
+          "amulet_of_loss": 2
+        }
+      }
+    },
+    {
+      "consumables": {
+        "death_protection": 2,
+        "amulet_of_loss": 5
+      },
+      "result": {
+        "isProtected": true,
+        "consumedId": "death_protection",
+        "consumables": {
+          "death_protection": 1,
+          "amulet_of_loss": 5
+        }
+      }
+    },
+    {
+      "consumables": {
+        "death_protection": 1,
+        "amulet_of_loss": 0,
+        "hp_potion_sm": 7
+      },
+      "result": {
+        "isProtected": true,
+        "consumedId": "death_protection",
+        "consumables": {
+          "death_protection": 0,
+          "amulet_of_loss": 0,
+          "hp_potion_sm": 7
+        }
+      }
+    },
+    {
+      "consumables": {
+        "amulet_of_loss": 0
+      },
+      "result": {
+        "isProtected": false,
+        "consumedId": null,
+        "consumables": {
+          "amulet_of_loss": 0
+        }
+      }
+    },
+    {
+      "consumables": {
+        "death_protection": 0
+      },
+      "result": {
+        "isProtected": false,
+        "consumedId": null,
+        "consumables": {
+          "death_protection": 0
+        }
+      }
+    },
+    {
+      "consumables": {
+        "hp_potion_sm": 4,
+        "mp_potion_sm": 2
+      },
+      "result": {
+        "isProtected": false,
+        "consumedId": null,
+        "consumables": {
+          "hp_potion_sm": 4,
+          "mp_potion_sm": 2
+        }
+      }
+    }
+  ],
+  "computeLeavePenalty": [
+    {
+      "level": 1,
+      "xp": 0,
+      "highestLevel": null,
+      "result": {
+        "oldLevel": 1,
+        "newLevel": 1,
+        "newXp": 0,
+        "levelsLost": 0,
+        "xpPercent": 0,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 1,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 1,
+      "xp": 150,
+      "highestLevel": 1,
+      "result": {
+        "oldLevel": 1,
+        "newLevel": 1,
+        "newXp": 90,
+        "levelsLost": 0,
+        "xpPercent": 30,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 1,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "highestLevel": 5,
+      "result": {
+        "oldLevel": 1,
+        "newLevel": 1,
+        "newXp": 0,
+        "levelsLost": 0,
+        "xpPercent": 0,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 5,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 30,
+      "xp": 0,
+      "highestLevel": null,
+      "result": {
+        "oldLevel": 30,
+        "newLevel": 29,
+        "newXp": 32795,
+        "levelsLost": 1,
+        "xpPercent": 70,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 30,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 41,
+      "xp": 0,
+      "highestLevel": 41,
+      "result": {
+        "oldLevel": 41,
+        "newLevel": 40,
+        "newXp": 44777,
+        "levelsLost": 1,
+        "xpPercent": 59,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 41,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 50,
+      "xp": 3000,
+      "highestLevel": 50,
+      "result": {
+        "oldLevel": 50,
+        "newLevel": 49,
+        "newXp": 54360,
+        "levelsLost": 1,
+        "xpPercent": 53,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 50,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 51,
+      "xp": 0,
+      "highestLevel": null,
+      "result": {
+        "oldLevel": 51,
+        "newLevel": 50,
+        "newXp": 51972,
+        "levelsLost": 1,
+        "xpPercent": 49,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 51,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "highestLevel": 100,
+      "result": {
+        "oldLevel": 100,
+        "newLevel": 99,
+        "newXp": 0,
+        "levelsLost": 1,
+        "xpPercent": 0,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 100,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 100,
+      "xp": 150000,
+      "highestLevel": 200,
+      "result": {
+        "oldLevel": 100,
+        "newLevel": 99,
+        "newXp": 147756,
+        "levelsLost": 1,
+        "xpPercent": 50,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 200,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 100,
+      "xp": 150000,
+      "highestLevel": 50,
+      "result": {
+        "oldLevel": 100,
+        "newLevel": 99,
+        "newXp": 147756,
+        "levelsLost": 1,
+        "xpPercent": 50,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 100,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 200,
+      "xp": 0,
+      "highestLevel": 200,
+      "result": {
+        "oldLevel": 200,
+        "newLevel": 198,
+        "newXp": 0,
+        "levelsLost": 2,
+        "xpPercent": 0,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 200,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 500,
+      "xp": 1000,
+      "highestLevel": 500,
+      "result": {
+        "oldLevel": 500,
+        "newLevel": 495,
+        "newXp": 974,
+        "levelsLost": 5,
+        "xpPercent": 0,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 500,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 1000,
+      "xp": 0,
+      "highestLevel": 1000,
+      "result": {
+        "oldLevel": 1000,
+        "newLevel": 990,
+        "newXp": 0,
+        "levelsLost": 10,
+        "xpPercent": 0,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 1000,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 1000,
+      "xp": 400000000,
+      "highestLevel": 999,
+      "result": {
+        "oldLevel": 1000,
+        "newLevel": 990,
+        "newXp": 395532520,
+        "levelsLost": 10,
+        "xpPercent": 45,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 1000,
+        "protectionUsed": false
+      }
+    },
+    {
+      "level": 1100,
+      "xp": 12000000000,
+      "highestLevel": 1100,
+      "result": {
+        "oldLevel": 1100,
+        "newLevel": 1089,
+        "newXp": 4205926794,
+        "levelsLost": 11,
+        "xpPercent": 0,
+        "skillXpLossPercent": 25,
+        "preservedHighest": 1100,
+        "protectionUsed": false
+      }
+    }
+  ]
+}

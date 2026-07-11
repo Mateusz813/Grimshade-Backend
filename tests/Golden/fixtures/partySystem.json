@@ -1,0 +1,3718 @@
+{
+  "system": "partySystem",
+  "note": "Generowane z src/systems/partySystem.ts. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "maxPartySize": 4,
+  "calculateDropMultiplier": [
+    {
+      "size": -5,
+      "value": 1
+    },
+    {
+      "size": 0,
+      "value": 1
+    },
+    {
+      "size": 1,
+      "value": 1
+    },
+    {
+      "size": 2,
+      "value": 1.005
+    },
+    {
+      "size": 3,
+      "value": 1.01
+    },
+    {
+      "size": 4,
+      "value": 1.015
+    },
+    {
+      "size": 5,
+      "value": 1.015
+    },
+    {
+      "size": 10,
+      "value": 1.015
+    }
+  ],
+  "calculateXpMultiplier": [
+    {
+      "size": -5,
+      "value": 1
+    },
+    {
+      "size": 0,
+      "value": 1
+    },
+    {
+      "size": 1,
+      "value": 1
+    },
+    {
+      "size": 2,
+      "value": 1.065
+    },
+    {
+      "size": 3,
+      "value": 1.13
+    },
+    {
+      "size": 4,
+      "value": 1.195
+    },
+    {
+      "size": 5,
+      "value": 1.195
+    },
+    {
+      "size": 10,
+      "value": 1.195
+    }
+  ],
+  "calculateDifficultyMultiplier": [
+    {
+      "size": -5,
+      "value": 1
+    },
+    {
+      "size": 0,
+      "value": 1
+    },
+    {
+      "size": 1,
+      "value": 1
+    },
+    {
+      "size": 2,
+      "value": 1.2
+    },
+    {
+      "size": 3,
+      "value": 1.4
+    },
+    {
+      "size": 4,
+      "value": 1.6
+    },
+    {
+      "size": 5,
+      "value": 1.6
+    },
+    {
+      "size": 10,
+      "value": 1.6
+    }
+  ],
+  "canJoinParty": [
+    {
+      "size": -1,
+      "value": true
+    },
+    {
+      "size": 0,
+      "value": true
+    },
+    {
+      "size": 1,
+      "value": true
+    },
+    {
+      "size": 2,
+      "value": true
+    },
+    {
+      "size": 3,
+      "value": true
+    },
+    {
+      "size": 4,
+      "value": false
+    },
+    {
+      "size": 5,
+      "value": false
+    }
+  ],
+  "isFull": [
+    {
+      "size": 0,
+      "members": [],
+      "value": false
+    },
+    {
+      "size": 1,
+      "members": [
+        {
+          "id": "p0",
+          "name": "p0",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": false
+    },
+    {
+      "size": 3,
+      "members": [
+        {
+          "id": "p0",
+          "name": "p0",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": false
+    },
+    {
+      "size": 4,
+      "members": [
+        {
+          "id": "p0",
+          "name": "p0",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": true
+    },
+    {
+      "size": 5,
+      "members": [
+        {
+          "id": "p0",
+          "name": "p0",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Knight",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": true
+    }
+  ],
+  "getHumanCount": [
+    {
+      "label": "empty",
+      "members": [],
+      "value": 0
+    },
+    {
+      "label": "solo-knight",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 1
+    },
+    {
+      "label": "duo",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 2
+    },
+    {
+      "label": "full-4-diff",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 4
+    },
+    {
+      "label": "human-plus-bot",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": 1
+    },
+    {
+      "label": "all-bots",
+      "members": [
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Mage",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": 0
+    },
+    {
+      "label": "human-plus-3-bots",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Knight",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b3",
+          "name": "b3",
+          "class": "Mage",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": 1
+    },
+    {
+      "label": "levels-avg-floor",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 5,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 3
+    },
+    {
+      "label": "low-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 1
+    },
+    {
+      "label": "high-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Bard",
+          "level": 1000,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 1
+    },
+    {
+      "label": "cleric-knight-mage",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Cleric",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Knight",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Mage",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 3
+    }
+  ],
+  "getBotCount": [
+    {
+      "label": "empty",
+      "members": [],
+      "value": 0
+    },
+    {
+      "label": "solo-knight",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 0
+    },
+    {
+      "label": "duo",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 0
+    },
+    {
+      "label": "full-4-diff",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 0
+    },
+    {
+      "label": "human-plus-bot",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": 1
+    },
+    {
+      "label": "all-bots",
+      "members": [
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Mage",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": 2
+    },
+    {
+      "label": "human-plus-3-bots",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Knight",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b3",
+          "name": "b3",
+          "class": "Mage",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": 3
+    },
+    {
+      "label": "levels-avg-floor",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 5,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 0
+    },
+    {
+      "label": "low-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 0
+    },
+    {
+      "label": "high-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Bard",
+          "level": 1000,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 0
+    },
+    {
+      "label": "cleric-knight-mage",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Cleric",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Knight",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Mage",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 0
+    }
+  ],
+  "shouldSuggestBot": [
+    {
+      "label": "empty",
+      "members": [],
+      "value": true
+    },
+    {
+      "label": "solo-knight",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": true
+    },
+    {
+      "label": "duo",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": false
+    },
+    {
+      "label": "full-4-diff",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": false
+    },
+    {
+      "label": "human-plus-bot",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": true
+    },
+    {
+      "label": "all-bots",
+      "members": [
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Mage",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": true
+    },
+    {
+      "label": "human-plus-3-bots",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Knight",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b3",
+          "name": "b3",
+          "class": "Mage",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": true
+    },
+    {
+      "label": "levels-avg-floor",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 5,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": false
+    },
+    {
+      "label": "low-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": true
+    },
+    {
+      "label": "high-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Bard",
+          "level": 1000,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": true
+    },
+    {
+      "label": "cleric-knight-mage",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Cleric",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Knight",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Mage",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": false
+    }
+  ],
+  "createBotHelper": [
+    {
+      "label": "empty",
+      "members": [],
+      "value": {
+        "name": "Bot Lecznik",
+        "class": "Cleric",
+        "level": 10,
+        "hp": 200,
+        "maxHp": 200,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "solo-knight",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Lecznik",
+        "class": "Cleric",
+        "level": 10,
+        "hp": 200,
+        "maxHp": 200,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "duo",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Lecznik",
+        "class": "Cleric",
+        "level": 15,
+        "hp": 300,
+        "maxHp": 300,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "full-4-diff",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Łucznik",
+        "class": "Archer",
+        "level": 25,
+        "hp": 500,
+        "maxHp": 500,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "human-plus-bot",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Mag",
+        "class": "Mage",
+        "level": 10,
+        "hp": 200,
+        "maxHp": 200,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "all-bots",
+      "members": [
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Mage",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Lecznik",
+        "class": "Cleric",
+        "level": 11,
+        "hp": 220,
+        "maxHp": 220,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "human-plus-3-bots",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Knight",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b3",
+          "name": "b3",
+          "class": "Mage",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Łucznik",
+        "class": "Archer",
+        "level": 50,
+        "hp": 1000,
+        "maxHp": 1000,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "levels-avg-floor",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 5,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Łucznik",
+        "class": "Archer",
+        "level": 9,
+        "hp": 180,
+        "maxHp": 180,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "low-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Lecznik",
+        "class": "Cleric",
+        "level": 1,
+        "hp": 100,
+        "maxHp": 100,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "high-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Bard",
+          "level": 1000,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Lecznik",
+        "class": "Cleric",
+        "level": 1000,
+        "hp": 20000,
+        "maxHp": 20000,
+        "isBot": true,
+        "isOnline": true
+      }
+    },
+    {
+      "label": "cleric-knight-mage",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Cleric",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Knight",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Mage",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "name": "Bot Łucznik",
+        "class": "Archer",
+        "level": 8,
+        "hp": 160,
+        "maxHp": 160,
+        "isBot": true,
+        "isOnline": true
+      }
+    }
+  ],
+  "getXpShare": [
+    {
+      "total": 1000,
+      "size": 4,
+      "value": 250
+    },
+    {
+      "total": 1000,
+      "size": 3,
+      "value": 333
+    },
+    {
+      "total": 1000,
+      "size": 1,
+      "value": 1000
+    },
+    {
+      "total": 1000,
+      "size": 0,
+      "value": 1000
+    },
+    {
+      "total": 1000,
+      "size": -2,
+      "value": 1000
+    },
+    {
+      "total": 0,
+      "size": 4,
+      "value": 0
+    },
+    {
+      "total": 7,
+      "size": 4,
+      "value": 1
+    },
+    {
+      "total": -100,
+      "size": 3,
+      "value": -34
+    },
+    {
+      "total": 999,
+      "size": 4,
+      "value": 249
+    },
+    {
+      "total": 2000000000,
+      "size": 4,
+      "value": 500000000
+    }
+  ],
+  "getGoldShare": [
+    {
+      "total": 1000,
+      "size": 4,
+      "value": 250
+    },
+    {
+      "total": 1000,
+      "size": 3,
+      "value": 333
+    },
+    {
+      "total": 1000,
+      "size": 1,
+      "value": 1000
+    },
+    {
+      "total": 1000,
+      "size": 0,
+      "value": 1000
+    },
+    {
+      "total": 1000,
+      "size": -2,
+      "value": 1000
+    },
+    {
+      "total": 0,
+      "size": 4,
+      "value": 0
+    },
+    {
+      "total": 7,
+      "size": 4,
+      "value": 1
+    },
+    {
+      "total": -100,
+      "size": 3,
+      "value": -34
+    },
+    {
+      "total": 999,
+      "size": 4,
+      "value": 249
+    },
+    {
+      "total": 2000000000,
+      "size": 4,
+      "value": 500000000
+    }
+  ],
+  "getPartySummary": [
+    {
+      "label": "empty",
+      "members": [],
+      "value": {
+        "totalMembers": 0,
+        "humanMembers": 0,
+        "botMembers": 0,
+        "avgLevel": 0,
+        "dropMultiplier": 1,
+        "xpMultiplier": 1,
+        "difficultyMultiplier": 1
+      }
+    },
+    {
+      "label": "solo-knight",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 1,
+        "humanMembers": 1,
+        "botMembers": 0,
+        "avgLevel": 10,
+        "dropMultiplier": 1,
+        "xpMultiplier": 1,
+        "difficultyMultiplier": 1
+      }
+    },
+    {
+      "label": "duo",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 2,
+        "humanMembers": 2,
+        "botMembers": 0,
+        "avgLevel": 15,
+        "dropMultiplier": 1.005,
+        "xpMultiplier": 1.065,
+        "difficultyMultiplier": 1.2
+      }
+    },
+    {
+      "label": "full-4-diff",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 4,
+        "humanMembers": 4,
+        "botMembers": 0,
+        "avgLevel": 25,
+        "dropMultiplier": 1.015,
+        "xpMultiplier": 1.195,
+        "difficultyMultiplier": 1.6
+      }
+    },
+    {
+      "label": "human-plus-bot",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 2,
+        "humanMembers": 1,
+        "botMembers": 1,
+        "avgLevel": 10,
+        "dropMultiplier": 1.005,
+        "xpMultiplier": 1.065,
+        "difficultyMultiplier": 1.2
+      }
+    },
+    {
+      "label": "all-bots",
+      "members": [
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Mage",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 2,
+        "humanMembers": 0,
+        "botMembers": 2,
+        "avgLevel": 11,
+        "dropMultiplier": 1.005,
+        "xpMultiplier": 1.065,
+        "difficultyMultiplier": 1.2
+      }
+    },
+    {
+      "label": "human-plus-3-bots",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b2",
+          "name": "b2",
+          "class": "Knight",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        },
+        {
+          "id": "b3",
+          "name": "b3",
+          "class": "Mage",
+          "level": 50,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 4,
+        "humanMembers": 1,
+        "botMembers": 3,
+        "avgLevel": 50,
+        "dropMultiplier": 1.015,
+        "xpMultiplier": 1.195,
+        "difficultyMultiplier": 1.6
+      }
+    },
+    {
+      "label": "levels-avg-floor",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 5,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 12,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 3,
+        "humanMembers": 3,
+        "botMembers": 0,
+        "avgLevel": 9,
+        "dropMultiplier": 1.01,
+        "xpMultiplier": 1.13,
+        "difficultyMultiplier": 1.4
+      }
+    },
+    {
+      "label": "low-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Rogue",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 1,
+        "humanMembers": 1,
+        "botMembers": 0,
+        "avgLevel": 1,
+        "dropMultiplier": 1,
+        "xpMultiplier": 1,
+        "difficultyMultiplier": 1
+      }
+    },
+    {
+      "label": "high-level",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Bard",
+          "level": 1000,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 1,
+        "humanMembers": 1,
+        "botMembers": 0,
+        "avgLevel": 1000,
+        "dropMultiplier": 1,
+        "xpMultiplier": 1,
+        "difficultyMultiplier": 1
+      }
+    },
+    {
+      "label": "cleric-knight-mage",
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Cleric",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Knight",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Mage",
+          "level": 8,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": {
+        "totalMembers": 3,
+        "humanMembers": 3,
+        "botMembers": 0,
+        "avgLevel": 8,
+        "dropMultiplier": 1.01,
+        "xpMultiplier": 1.13,
+        "difficultyMultiplier": 1.4
+      }
+    }
+  ],
+  "calculateHelpDamage": [
+    {
+      "attack": 100,
+      "remainingHp": 500,
+      "value": 50
+    },
+    {
+      "attack": 0,
+      "remainingHp": 100,
+      "value": 0
+    },
+    {
+      "attack": 1,
+      "remainingHp": 1,
+      "value": 0
+    },
+    {
+      "attack": 999,
+      "remainingHp": 0,
+      "value": 499
+    },
+    {
+      "attack": 7,
+      "remainingHp": 3,
+      "value": 3
+    },
+    {
+      "attack": -50,
+      "remainingHp": 100,
+      "value": -25
+    }
+  ],
+  "getPartyBuffs": [
+    {
+      "label": "empty",
+      "classes": [],
+      "value": []
+    },
+    {
+      "label": "single",
+      "classes": [
+        "Knight"
+      ],
+      "value": [
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        }
+      ]
+    },
+    {
+      "label": "two-diff",
+      "classes": [
+        "Knight",
+        "Mage"
+      ],
+      "value": [
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        }
+      ]
+    },
+    {
+      "label": "two-same",
+      "classes": [
+        "Bard",
+        "Bard"
+      ],
+      "value": [
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        }
+      ]
+    },
+    {
+      "label": "three-diff",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric"
+      ],
+      "value": [
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "cleric_heal",
+          "name": "Holy Light",
+          "sourceClass": "Cleric",
+          "effect": "heal",
+          "value": 0.15,
+          "duration": 3
+        }
+      ]
+    },
+    {
+      "label": "three-unique-with-dupe",
+      "classes": [
+        "Knight",
+        "Knight",
+        "Mage",
+        "Cleric"
+      ],
+      "value": [
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "cleric_heal",
+          "name": "Holy Light",
+          "sourceClass": "Cleric",
+          "effect": "heal",
+          "value": 0.15,
+          "duration": 3
+        }
+      ]
+    },
+    {
+      "label": "four-diff",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric",
+        "Archer"
+      ],
+      "value": [
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "cleric_heal",
+          "name": "Holy Light",
+          "sourceClass": "Cleric",
+          "effect": "heal",
+          "value": 0.15,
+          "duration": 3
+        }
+      ]
+    },
+    {
+      "label": "buff-classes",
+      "classes": [
+        "Cleric",
+        "Bard",
+        "Knight"
+      ],
+      "value": [
+        {
+          "id": "cleric_heal",
+          "name": "Holy Light",
+          "sourceClass": "Cleric",
+          "effect": "heal",
+          "value": 0.15,
+          "duration": 3
+        },
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        }
+      ]
+    },
+    {
+      "label": "all-seven",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric",
+        "Archer",
+        "Rogue",
+        "Necromancer",
+        "Bard"
+      ],
+      "value": [
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "cleric_heal",
+          "name": "Holy Light",
+          "sourceClass": "Cleric",
+          "effect": "heal",
+          "value": 0.15,
+          "duration": 3
+        },
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        }
+      ]
+    },
+    {
+      "label": "no-buffs",
+      "classes": [
+        "Rogue",
+        "Mage",
+        "Archer"
+      ],
+      "value": []
+    }
+  ],
+  "hasOptimalComposition": [
+    {
+      "label": "empty",
+      "classes": [],
+      "value": false
+    },
+    {
+      "label": "single",
+      "classes": [
+        "Knight"
+      ],
+      "value": false
+    },
+    {
+      "label": "two-diff",
+      "classes": [
+        "Knight",
+        "Mage"
+      ],
+      "value": false
+    },
+    {
+      "label": "two-same",
+      "classes": [
+        "Bard",
+        "Bard"
+      ],
+      "value": false
+    },
+    {
+      "label": "three-diff",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric"
+      ],
+      "value": true
+    },
+    {
+      "label": "three-unique-with-dupe",
+      "classes": [
+        "Knight",
+        "Knight",
+        "Mage",
+        "Cleric"
+      ],
+      "value": true
+    },
+    {
+      "label": "four-diff",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric",
+        "Archer"
+      ],
+      "value": true
+    },
+    {
+      "label": "buff-classes",
+      "classes": [
+        "Cleric",
+        "Bard",
+        "Knight"
+      ],
+      "value": true
+    },
+    {
+      "label": "all-seven",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric",
+        "Archer",
+        "Rogue",
+        "Necromancer",
+        "Bard"
+      ],
+      "value": true
+    },
+    {
+      "label": "no-buffs",
+      "classes": [
+        "Rogue",
+        "Mage",
+        "Archer"
+      ],
+      "value": true
+    }
+  ],
+  "getCompositionBonus": [
+    {
+      "label": "empty",
+      "classes": [],
+      "value": 1
+    },
+    {
+      "label": "single",
+      "classes": [
+        "Knight"
+      ],
+      "value": 1
+    },
+    {
+      "label": "two-diff",
+      "classes": [
+        "Knight",
+        "Mage"
+      ],
+      "value": 1
+    },
+    {
+      "label": "two-same",
+      "classes": [
+        "Bard",
+        "Bard"
+      ],
+      "value": 1
+    },
+    {
+      "label": "three-diff",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric"
+      ],
+      "value": 1.1
+    },
+    {
+      "label": "three-unique-with-dupe",
+      "classes": [
+        "Knight",
+        "Knight",
+        "Mage",
+        "Cleric"
+      ],
+      "value": 1.1
+    },
+    {
+      "label": "four-diff",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric",
+        "Archer"
+      ],
+      "value": 1.2
+    },
+    {
+      "label": "buff-classes",
+      "classes": [
+        "Cleric",
+        "Bard",
+        "Knight"
+      ],
+      "value": 1.1
+    },
+    {
+      "label": "all-seven",
+      "classes": [
+        "Knight",
+        "Mage",
+        "Cleric",
+        "Archer",
+        "Rogue",
+        "Necromancer",
+        "Bard"
+      ],
+      "value": 1.2
+    },
+    {
+      "label": "no-buffs",
+      "classes": [
+        "Rogue",
+        "Mage",
+        "Archer"
+      ],
+      "value": 1.1
+    }
+  ],
+  "applyPartyBuffs": [
+    {
+      "label": "none",
+      "baseAttack": 100,
+      "baseDefense": 50,
+      "maxHp": 1000,
+      "classes": [
+        "Rogue"
+      ],
+      "buffs": [],
+      "value": {
+        "attack": 100,
+        "defense": 50,
+        "healPerRound": 0
+      }
+    },
+    {
+      "label": "atk-only",
+      "baseAttack": 100,
+      "baseDefense": 50,
+      "maxHp": 1000,
+      "classes": [
+        "Bard"
+      ],
+      "buffs": [
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        }
+      ],
+      "value": {
+        "attack": 110,
+        "defense": 50,
+        "healPerRound": 0
+      }
+    },
+    {
+      "label": "def-only",
+      "baseAttack": 100,
+      "baseDefense": 50,
+      "maxHp": 1000,
+      "classes": [
+        "Knight"
+      ],
+      "buffs": [
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        }
+      ],
+      "value": {
+        "attack": 100,
+        "defense": 55,
+        "healPerRound": 0
+      }
+    },
+    {
+      "label": "heal-only",
+      "baseAttack": 100,
+      "baseDefense": 50,
+      "maxHp": 1000,
+      "classes": [
+        "Cleric"
+      ],
+      "buffs": [
+        {
+          "id": "cleric_heal",
+          "name": "Holy Light",
+          "sourceClass": "Cleric",
+          "effect": "heal",
+          "value": 0.15,
+          "duration": 3
+        }
+      ],
+      "value": {
+        "attack": 100,
+        "defense": 50,
+        "healPerRound": 150
+      }
+    },
+    {
+      "label": "all-three",
+      "baseAttack": 100,
+      "baseDefense": 50,
+      "maxHp": 1000,
+      "classes": [
+        "Bard",
+        "Knight",
+        "Cleric"
+      ],
+      "buffs": [
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "cleric_heal",
+          "name": "Holy Light",
+          "sourceClass": "Cleric",
+          "effect": "heal",
+          "value": 0.15,
+          "duration": 3
+        }
+      ],
+      "value": {
+        "attack": 110,
+        "defense": 55,
+        "healPerRound": 150
+      }
+    },
+    {
+      "label": "double-atk",
+      "baseAttack": 100,
+      "baseDefense": 50,
+      "maxHp": 1000,
+      "classes": [
+        "Bard",
+        "Bard"
+      ],
+      "buffs": [
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        }
+      ],
+      "value": {
+        "attack": 121,
+        "defense": 50,
+        "healPerRound": 0
+      }
+    },
+    {
+      "label": "zero-stats",
+      "baseAttack": 0,
+      "baseDefense": 0,
+      "maxHp": 0,
+      "classes": [
+        "Bard",
+        "Knight",
+        "Cleric"
+      ],
+      "buffs": [
+        {
+          "id": "bard_atk",
+          "name": "Inspiring Melody",
+          "sourceClass": "Bard",
+          "effect": "atk_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "knight_def",
+          "name": "Battle Cry",
+          "sourceClass": "Knight",
+          "effect": "def_boost",
+          "value": 0.1,
+          "duration": 5
+        },
+        {
+          "id": "cleric_heal",
+          "name": "Holy Light",
+          "sourceClass": "Cleric",
+          "effect": "heal",
+          "value": 0.15,
+          "duration": 3
+        }
+      ],
+      "value": {
+        "attack": 0,
+        "defense": 0,
+        "healPerRound": 0
+      }
+    }
+  ],
+  "getPartyGateLevel": [
+    {
+      "label": "null-members",
+      "myLevel": 50,
+      "members": null,
+      "value": 50
+    },
+    {
+      "label": "empty",
+      "myLevel": 50,
+      "members": [],
+      "value": 50
+    },
+    {
+      "label": "all-bots",
+      "myLevel": 50,
+      "members": [
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": 50
+    },
+    {
+      "label": "lowest-human-blocks",
+      "myLevel": 50,
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 10
+    },
+    {
+      "label": "my-level-lower",
+      "myLevel": 5,
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "value": 5
+    },
+    {
+      "label": "bot-ignored",
+      "myLevel": 50,
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Rogue",
+          "level": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "value": 10
+    }
+  ],
+  "getPartyMaxUnlockedMonsterLevel": [
+    {
+      "label": "null-members",
+      "myMax": 100,
+      "members": null,
+      "presence": {},
+      "myId": "p1",
+      "value": 100
+    },
+    {
+      "label": "no-snapshots",
+      "myMax": 100,
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "presence": {},
+      "myId": "p1",
+      "value": 100
+    },
+    {
+      "label": "min-of-presence",
+      "myMax": 100,
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "presence": {
+        "p2": {
+          "maxUnlockedMonsterLevel": 80
+        },
+        "p3": {
+          "maxUnlockedMonsterLevel": 60
+        },
+        "p4": {
+          "maxUnlockedMonsterLevel": 200
+        }
+      },
+      "myId": "p1",
+      "value": 60
+    },
+    {
+      "label": "self-skipped",
+      "myMax": 100,
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "presence": {
+        "p1": {
+          "maxUnlockedMonsterLevel": 5
+        }
+      },
+      "myId": "p1",
+      "value": 100
+    },
+    {
+      "label": "bot-skipped",
+      "myMax": 100,
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "b1",
+          "name": "b1",
+          "class": "Cleric",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": true,
+          "isOnline": true
+        }
+      ],
+      "presence": {
+        "b1": {
+          "maxUnlockedMonsterLevel": 5
+        }
+      },
+      "myId": "p1",
+      "value": 100
+    },
+    {
+      "label": "snapshot-without-field",
+      "myMax": 100,
+      "members": [
+        {
+          "id": "p1",
+          "name": "p1",
+          "class": "Knight",
+          "level": 10,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p2",
+          "name": "p2",
+          "class": "Mage",
+          "level": 20,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p3",
+          "name": "p3",
+          "class": "Cleric",
+          "level": 30,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        },
+        {
+          "id": "p4",
+          "name": "p4",
+          "class": "Archer",
+          "level": 40,
+          "hp": 100,
+          "maxHp": 100,
+          "isBot": false,
+          "isOnline": true
+        }
+      ],
+      "presence": {
+        "p2": {}
+      },
+      "myId": "p1",
+      "value": 100
+    }
+  ],
+  "getAggroWeight": [
+    {
+      "class": "Knight",
+      "value": 80
+    },
+    {
+      "class": "Rogue",
+      "value": 60
+    },
+    {
+      "class": "Archer",
+      "value": 50
+    },
+    {
+      "class": "Necromancer",
+      "value": 40
+    },
+    {
+      "class": "Mage",
+      "value": 30
+    },
+    {
+      "class": "Cleric",
+      "value": 20
+    },
+    {
+      "class": "Bard",
+      "value": 20
+    },
+    {
+      "class": "Paladin",
+      "value": 30
+    }
+  ],
+  "pickWeightedAggroTarget": [
+    {
+      "seed": 1,
+      "label": "empty",
+      "targets": [],
+      "value": null
+    },
+    {
+      "seed": 1,
+      "label": "single",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 1,
+      "label": "duo",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Cleric"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 1,
+      "label": "full",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Mage"
+        },
+        {
+          "id": "p3",
+          "class": "Cleric"
+        },
+        {
+          "id": "p4",
+          "class": "Archer"
+        }
+      ],
+      "value": "p3"
+    },
+    {
+      "seed": 1,
+      "label": "with-unknown",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Paladin"
+        },
+        {
+          "id": "p2",
+          "class": "Knight"
+        }
+      ],
+      "value": "p2"
+    },
+    {
+      "seed": 2,
+      "label": "empty",
+      "targets": [],
+      "value": null
+    },
+    {
+      "seed": 2,
+      "label": "single",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 2,
+      "label": "duo",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Cleric"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 2,
+      "label": "full",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Mage"
+        },
+        {
+          "id": "p3",
+          "class": "Cleric"
+        },
+        {
+          "id": "p4",
+          "class": "Archer"
+        }
+      ],
+      "value": "p4"
+    },
+    {
+      "seed": 2,
+      "label": "with-unknown",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Paladin"
+        },
+        {
+          "id": "p2",
+          "class": "Knight"
+        }
+      ],
+      "value": "p2"
+    },
+    {
+      "seed": 3,
+      "label": "empty",
+      "targets": [],
+      "value": null
+    },
+    {
+      "seed": 3,
+      "label": "single",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 3,
+      "label": "duo",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Cleric"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 3,
+      "label": "full",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Mage"
+        },
+        {
+          "id": "p3",
+          "class": "Cleric"
+        },
+        {
+          "id": "p4",
+          "class": "Archer"
+        }
+      ],
+      "value": "p3"
+    },
+    {
+      "seed": 3,
+      "label": "with-unknown",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Paladin"
+        },
+        {
+          "id": "p2",
+          "class": "Knight"
+        }
+      ],
+      "value": "p2"
+    },
+    {
+      "seed": 7,
+      "label": "empty",
+      "targets": [],
+      "value": null
+    },
+    {
+      "seed": 7,
+      "label": "single",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 7,
+      "label": "duo",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Cleric"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 7,
+      "label": "full",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Mage"
+        },
+        {
+          "id": "p3",
+          "class": "Cleric"
+        },
+        {
+          "id": "p4",
+          "class": "Archer"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 7,
+      "label": "with-unknown",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Paladin"
+        },
+        {
+          "id": "p2",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 13,
+      "label": "empty",
+      "targets": [],
+      "value": null
+    },
+    {
+      "seed": 13,
+      "label": "single",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 13,
+      "label": "duo",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Cleric"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 13,
+      "label": "full",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Mage"
+        },
+        {
+          "id": "p3",
+          "class": "Cleric"
+        },
+        {
+          "id": "p4",
+          "class": "Archer"
+        }
+      ],
+      "value": "p2"
+    },
+    {
+      "seed": 13,
+      "label": "with-unknown",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Paladin"
+        },
+        {
+          "id": "p2",
+          "class": "Knight"
+        }
+      ],
+      "value": "p2"
+    },
+    {
+      "seed": 42,
+      "label": "empty",
+      "targets": [],
+      "value": null
+    },
+    {
+      "seed": 42,
+      "label": "single",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 42,
+      "label": "duo",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Cleric"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 42,
+      "label": "full",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Mage"
+        },
+        {
+          "id": "p3",
+          "class": "Cleric"
+        },
+        {
+          "id": "p4",
+          "class": "Archer"
+        }
+      ],
+      "value": "p2"
+    },
+    {
+      "seed": 42,
+      "label": "with-unknown",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Paladin"
+        },
+        {
+          "id": "p2",
+          "class": "Knight"
+        }
+      ],
+      "value": "p2"
+    },
+    {
+      "seed": 99,
+      "label": "empty",
+      "targets": [],
+      "value": null
+    },
+    {
+      "seed": 99,
+      "label": "single",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 99,
+      "label": "duo",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Cleric"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 99,
+      "label": "full",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Mage"
+        },
+        {
+          "id": "p3",
+          "class": "Cleric"
+        },
+        {
+          "id": "p4",
+          "class": "Archer"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 99,
+      "label": "with-unknown",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Paladin"
+        },
+        {
+          "id": "p2",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 777,
+      "label": "empty",
+      "targets": [],
+      "value": null
+    },
+    {
+      "seed": 777,
+      "label": "single",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 777,
+      "label": "duo",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Cleric"
+        }
+      ],
+      "value": "p1"
+    },
+    {
+      "seed": 777,
+      "label": "full",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Knight"
+        },
+        {
+          "id": "p2",
+          "class": "Mage"
+        },
+        {
+          "id": "p3",
+          "class": "Cleric"
+        },
+        {
+          "id": "p4",
+          "class": "Archer"
+        }
+      ],
+      "value": "p3"
+    },
+    {
+      "seed": 777,
+      "label": "with-unknown",
+      "targets": [
+        {
+          "id": "p1",
+          "class": "Paladin"
+        },
+        {
+          "id": "p2",
+          "class": "Knight"
+        }
+      ],
+      "value": "p2"
+    }
+  ]
+}

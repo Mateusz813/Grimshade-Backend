@@ -1,0 +1,130 @@
+name: CI/CD
+
+# Widoczny w GitHub → zakładka "Actions". Każdy job to osobny krok z ✓/✗:
+#   Lint → Test → Build (obraz Docker) → Deploy
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # 1) LINT — styl kodu (Laravel Pint). Szybki, blokuje resztę.
+  lint:
+    name: 1 · Lint (Pint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          coverage: none
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+      - run: composer install --prefer-dist --no-interaction --no-progress
+      - name: Pint (sprawdzenie stylu)
+        run: ./vendor/bin/pint --test
+
+  # 2) TEST — Pest (unit + feature + golden parytet) na sqlite in-memory, z pokryciem.
+  test:
+    name: 2 · Testy (Pest)
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_pgsql, pgsql, pdo_sqlite, mbstring, bcmath, ctype, curl, openssl, tokenizer, xml
+          coverage: pcov
+          tools: composer:v2
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+      - run: composer install --prefer-dist --no-interaction --no-progress
+      - run: cp .env.example .env && php artisan key:generate
+      - name: Pest (testy + pokrycie)
+        run: ./vendor/bin/pest --coverage
+
+  # 3) BUILD — buduje obraz Docker i publikuje do GitHub Container Registry (ghcr.io).
+  #    Tylko na push do main/master (nie na PR). Dowód, że obraz się składa + gotowy artefakt.
+  build:
+    name: 3 · Build obrazu (Docker → ghcr.io)
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login do ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Metadane obrazu (tagi)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=sha
+            type=raw,value=latest
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # 4) DEPLOY — restart backendu na Twoim serwerze (docker compose pull + up).
+  #    Uruchamia się DOPIERO gdy ustawisz sekrety DEPLOY_* (Settings → Secrets).
+  #    Bez nich krok grzecznie się pomija (nie czerwieni pipeline'u).
+  deploy:
+    name: 4 · Deploy (SSH na serwer)
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+    steps:
+      - name: Status konfiguracji
+        run: |
+          if [ -z "$DEPLOY_HOST" ]; then
+            echo "::notice::Deploy pominięty — brak sekretu DEPLOY_HOST."
+            echo "Aby włączyć: Settings → Secrets and variables → Actions → dodaj"
+            echo "DEPLOY_HOST, DEPLOY_USER, DEPLOY_SSH_KEY (i opcjonalnie DEPLOY_PATH)."
+          else
+            echo "Deploy na $DEPLOY_HOST..."
+          fi
+      - name: Deploy przez SSH
+        if: ${{ env.DEPLOY_HOST != '' }}
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            cd ${{ secrets.DEPLOY_PATH || '/opt/grimshade-backend' }}
+            docker compose pull
+            docker compose up -d
+            docker compose exec -T app php artisan migrate --force

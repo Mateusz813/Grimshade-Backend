@@ -1,0 +1,2212 @@
+{
+  "system": "bossSystem",
+  "note": "Generowane z src/systems/bossSystem.ts + realne bosses.json. Funkcje RNG: seed + mulberry32; cooldown: now/last w ms. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "constants": {
+    "hpMultiplier": 3.5,
+    "atkMultiplier": 1.75,
+    "defMultiplier": 1.3,
+    "rewardMultiplier": 1
+  },
+  "getScaledBossStats": [
+    {
+      "bossId": "sewer_king",
+      "value": {
+        "hp": 16754,
+        "attack": 155,
+        "attack_min": 124,
+        "attack_max": 185,
+        "defense": 11
+      }
+    },
+    {
+      "bossId": "shadow_lord",
+      "value": {
+        "hp": 27881,
+        "attack": 273,
+        "attack_min": 217,
+        "attack_max": 327,
+        "defense": 19
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "value": {
+        "hp": 47320,
+        "attack": 479,
+        "attack_min": 383,
+        "attack_max": 574,
+        "defense": 32
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "value": {
+        "hp": 99988,
+        "attack": 882,
+        "attack_min": 705,
+        "attack_max": 1057,
+        "defense": 58
+      }
+    },
+    {
+      "bossId": "lich_king",
+      "value": {
+        "hp": 144182,
+        "attack": 1281,
+        "attack_min": 1023,
+        "attack_max": 1536,
+        "defense": 84
+      }
+    },
+    {
+      "bossId": "chaos_emperor",
+      "value": {
+        "hp": 188296,
+        "attack": 1680,
+        "attack_min": 1344,
+        "attack_max": 2016,
+        "defense": 110
+      }
+    },
+    {
+      "bossId": "abyssal_titan",
+      "value": {
+        "hp": 328457,
+        "attack": 2485,
+        "attack_min": 1988,
+        "attack_max": 2982,
+        "defense": 162
+      }
+    },
+    {
+      "bossId": "infernal_overlord",
+      "value": {
+        "hp": 433300,
+        "attack": 3284,
+        "attack_min": 2626,
+        "attack_max": 3941,
+        "defense": 214
+      }
+    },
+    {
+      "bossId": "celestial_destroyer",
+      "value": {
+        "hp": 538793,
+        "attack": 4091,
+        "attack_min": 3272,
+        "attack_max": 4908,
+        "defense": 266
+      }
+    },
+    {
+      "bossId": "world_eater",
+      "value": {
+        "hp": 642988,
+        "attack": 4889,
+        "attack_min": 3911,
+        "attack_max": 5866,
+        "defense": 318
+      }
+    },
+    {
+      "bossId": "world_destroyer",
+      "value": {
+        "hp": 853517,
+        "attack": 6494,
+        "attack_min": 5194,
+        "attack_max": 7792,
+        "defense": 422
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "value": {
+        "hp": 1063324,
+        "attack": 8099,
+        "attack_min": 6478,
+        "attack_max": 9717,
+        "defense": 525
+      }
+    }
+  ],
+  "getScaledBossStatsSynthetic": [
+    {
+      "boss": {
+        "id": "syn_zero",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x"
+      },
+      "value": {
+        "hp": 0,
+        "attack": 0,
+        "attack_min": 1,
+        "attack_max": 1,
+        "defense": 0
+      }
+    },
+    {
+      "boss": {
+        "id": "syn_one",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 1,
+        "attack": 1,
+        "defense": 1,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x"
+      },
+      "value": {
+        "hp": 3,
+        "attack": 1,
+        "attack_min": 1,
+        "attack_max": 1,
+        "defense": 1
+      }
+    },
+    {
+      "boss": {
+        "id": "syn_small_atk",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 5,
+        "hp": 100,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x"
+      },
+      "value": {
+        "hp": 350,
+        "attack": 3,
+        "attack_min": 1,
+        "attack_max": 3,
+        "defense": 0
+      }
+    },
+    {
+      "boss": {
+        "id": "syn_big",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1000,
+        "hp": 1000000,
+        "attack": 9999,
+        "defense": 500,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x"
+      },
+      "value": {
+        "hp": 3500000,
+        "attack": 17498,
+        "attack_min": 13998,
+        "attack_max": 20996,
+        "defense": 650
+      }
+    }
+  ],
+  "getBossDrops": [
+    {
+      "bossId": "sewer_king",
+      "value": [
+        {
+          "itemId": "sewer_crown",
+          "chance": 0.1,
+          "rarity": "rare"
+        },
+        {
+          "itemId": "rat_king_blade",
+          "chance": 0.06,
+          "rarity": "epic"
+        }
+      ]
+    },
+    {
+      "bossId": "shadow_lord",
+      "value": [
+        {
+          "itemId": "shadow_cloak",
+          "chance": 0.08,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "void_blade",
+          "chance": 0.04,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "ancient_dragon",
+      "value": [
+        {
+          "itemId": "dragon_scale_armor",
+          "chance": 0.06,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "dragonslayer",
+          "chance": 0.03,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "demon_king",
+      "value": [
+        {
+          "itemId": "demon_king_sword",
+          "chance": 0.05,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "hellfire_crown",
+          "chance": 0.03,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "lich_king",
+      "value": [
+        {
+          "itemId": "lich_crown",
+          "chance": 0.04,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "death_scythe",
+          "chance": 0.03,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "chaos_emperor",
+      "value": [
+        {
+          "itemId": "chaos_crown",
+          "chance": 0.03,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "disorder_blade",
+          "chance": 0.02,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "abyssal_titan",
+      "value": [
+        {
+          "itemId": "abyssal_titan_armor",
+          "chance": 0.02,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "titan_crusher",
+          "chance": 0.015,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "infernal_overlord",
+      "value": [
+        {
+          "itemId": "infernal_crown",
+          "chance": 0.01,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "hellfire_sword",
+          "chance": 0.008,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "celestial_destroyer",
+      "value": [
+        {
+          "itemId": "celestial_blade",
+          "chance": 0.007,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "destroyer_mantle",
+          "chance": 0.005,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "world_eater",
+      "value": [
+        {
+          "itemId": "world_core",
+          "chance": 0.004,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "devourer_armor",
+          "chance": 0.003,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "world_destroyer",
+      "value": [
+        {
+          "itemId": "destroyer_crown",
+          "chance": 0.001,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "world_end_armor",
+          "chance": 0.0008,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "end_of_all",
+      "value": [
+        {
+          "itemId": "all_end_gem",
+          "chance": 0.0002,
+          "rarity": "heroic"
+        },
+        {
+          "itemId": "eternal_armor",
+          "chance": 0.0001,
+          "rarity": "heroic"
+        }
+      ]
+    }
+  ],
+  "getBossDropsSynthetic": [
+    {
+      "boss": {
+        "id": "syn_unique",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x",
+        "uniqueDrops": [
+          {
+            "itemId": "a",
+            "chance": 0.5,
+            "rarity": "rare"
+          }
+        ],
+        "dropTable": [
+          {
+            "itemId": "b",
+            "chance": 0.1,
+            "rarity": "epic"
+          }
+        ]
+      },
+      "value": [
+        {
+          "itemId": "a",
+          "chance": 0.5,
+          "rarity": "rare"
+        }
+      ]
+    },
+    {
+      "boss": {
+        "id": "syn_unique_empty",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x",
+        "uniqueDrops": [],
+        "dropTable": [
+          {
+            "itemId": "b",
+            "chance": 0.1,
+            "rarity": "epic"
+          }
+        ]
+      },
+      "value": []
+    },
+    {
+      "boss": {
+        "id": "syn_droptable",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x",
+        "dropTable": [
+          {
+            "itemId": "c",
+            "chance": 0.2,
+            "rarity": "common"
+          }
+        ]
+      },
+      "value": [
+        {
+          "itemId": "c",
+          "chance": 0.2,
+          "rarity": "common"
+        }
+      ]
+    },
+    {
+      "boss": {
+        "id": "syn_no_drops",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x"
+      },
+      "value": []
+    }
+  ],
+  "getBossCooldown": [
+    {
+      "bossId": "sewer_king",
+      "value": 28800
+    },
+    {
+      "bossId": "shadow_lord",
+      "value": 28800
+    },
+    {
+      "bossId": "ancient_dragon",
+      "value": 28800
+    },
+    {
+      "bossId": "demon_king",
+      "value": 28800
+    },
+    {
+      "bossId": "lich_king",
+      "value": 28800
+    },
+    {
+      "bossId": "chaos_emperor",
+      "value": 28800
+    },
+    {
+      "bossId": "abyssal_titan",
+      "value": 28800
+    },
+    {
+      "bossId": "infernal_overlord",
+      "value": 28800
+    },
+    {
+      "bossId": "celestial_destroyer",
+      "value": 28800
+    },
+    {
+      "bossId": "world_eater",
+      "value": 28800
+    },
+    {
+      "bossId": "world_destroyer",
+      "value": 28800
+    },
+    {
+      "bossId": "end_of_all",
+      "value": 28800
+    }
+  ],
+  "getBossCooldownSynthetic": [
+    {
+      "boss": {
+        "id": "syn_cd",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x",
+        "cooldown": 3600,
+        "dailyAttempts": 3
+      },
+      "value": 3600
+    },
+    {
+      "boss": {
+        "id": "syn_cd0",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x",
+        "cooldown": 0,
+        "dailyAttempts": 3
+      },
+      "value": 0
+    },
+    {
+      "boss": {
+        "id": "syn_da7",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x",
+        "dailyAttempts": 7
+      },
+      "value": 12342
+    },
+    {
+      "boss": {
+        "id": "syn_da0",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x",
+        "dailyAttempts": 0
+      },
+      "value": 28800
+    },
+    {
+      "boss": {
+        "id": "syn_da_neg",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x",
+        "dailyAttempts": -5
+      },
+      "value": -17280
+    },
+    {
+      "boss": {
+        "id": "syn_cd_none",
+        "name_pl": "X",
+        "name_en": "X",
+        "level": 1,
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "xp": 0,
+        "gold": [
+          0,
+          0
+        ],
+        "sprite": "x",
+        "description_pl": "x"
+      },
+      "value": 28800
+    }
+  ],
+  "getBossPhaseMultiplier": [
+    {
+      "fraction": -0.1,
+      "value": 1.5
+    },
+    {
+      "fraction": 0,
+      "value": 1.5
+    },
+    {
+      "fraction": 0.1,
+      "value": 1.5
+    },
+    {
+      "fraction": 0.2,
+      "value": 1.5
+    },
+    {
+      "fraction": 0.2999,
+      "value": 1.5
+    },
+    {
+      "fraction": 0.3,
+      "value": 1
+    },
+    {
+      "fraction": 0.3001,
+      "value": 1
+    },
+    {
+      "fraction": 0.5,
+      "value": 1
+    },
+    {
+      "fraction": 1,
+      "value": 1
+    },
+    {
+      "fraction": 2,
+      "value": 1
+    }
+  ],
+  "isBossEnraged": [
+    {
+      "currentHp": 0,
+      "maxHp": 100,
+      "value": true
+    },
+    {
+      "currentHp": 29,
+      "maxHp": 100,
+      "value": true
+    },
+    {
+      "currentHp": 30,
+      "maxHp": 100,
+      "value": false
+    },
+    {
+      "currentHp": 100,
+      "maxHp": 100,
+      "value": false
+    },
+    {
+      "currentHp": 0,
+      "maxHp": 0,
+      "value": false
+    },
+    {
+      "currentHp": 50,
+      "maxHp": 0,
+      "value": false
+    },
+    {
+      "currentHp": 15,
+      "maxHp": 50,
+      "value": false
+    },
+    {
+      "currentHp": 14,
+      "maxHp": 50,
+      "value": true
+    },
+    {
+      "currentHp": 1,
+      "maxHp": 1000,
+      "value": true
+    },
+    {
+      "currentHp": 300,
+      "maxHp": 1000,
+      "value": false
+    }
+  ],
+  "computeBossRewards": [
+    {
+      "level": -5,
+      "value": {
+        "goldMin": 22,
+        "goldMax": 60,
+        "xp": 57
+      }
+    },
+    {
+      "level": 0,
+      "value": {
+        "goldMin": 22,
+        "goldMax": 60,
+        "xp": 57
+      }
+    },
+    {
+      "level": 1,
+      "value": {
+        "goldMin": 22,
+        "goldMax": 60,
+        "xp": 57
+      }
+    },
+    {
+      "level": 2,
+      "value": {
+        "goldMin": 79,
+        "goldMax": 211,
+        "xp": 161
+      }
+    },
+    {
+      "level": 5,
+      "value": {
+        "goldMin": 412,
+        "goldMax": 1100,
+        "xp": 616
+      }
+    },
+    {
+      "level": 10,
+      "value": {
+        "goldMin": 1438,
+        "goldMax": 3835,
+        "xp": 1649
+      }
+    },
+    {
+      "level": 50,
+      "value": {
+        "goldMin": 26065,
+        "goldMax": 69508,
+        "xp": 12931
+      }
+    },
+    {
+      "level": 99,
+      "value": {
+        "goldMin": 89140,
+        "goldMax": 237708,
+        "xp": 26571
+      }
+    },
+    {
+      "level": 100,
+      "value": {
+        "goldMin": 90768,
+        "goldMax": 242048,
+        "xp": 26833
+      }
+    },
+    {
+      "level": 101,
+      "value": {
+        "goldMin": 92408,
+        "goldMax": 246422,
+        "xp": 32946
+      }
+    },
+    {
+      "level": 150,
+      "value": {
+        "goldMin": 188320,
+        "goldMax": 502188,
+        "xp": 271107
+      }
+    },
+    {
+      "level": 200,
+      "value": {
+        "goldMin": 316074,
+        "goldMax": 842864,
+        "xp": 434416
+      }
+    },
+    {
+      "level": 400,
+      "value": {
+        "goldMin": 1100633,
+        "goldMax": 2935022,
+        "xp": 1168750
+      }
+    },
+    {
+      "level": 500,
+      "value": {
+        "goldMin": 1644677,
+        "goldMax": 4385806,
+        "xp": 2068315
+      }
+    },
+    {
+      "level": 600,
+      "value": {
+        "goldMin": 2283531,
+        "goldMax": 6089417,
+        "xp": 2753894
+      }
+    },
+    {
+      "level": 800,
+      "value": {
+        "goldMin": 3832629,
+        "goldMax": 10220344,
+        "xp": 15518522
+      }
+    },
+    {
+      "level": 999,
+      "value": {
+        "goldMin": 5716796,
+        "goldMax": 15244790,
+        "xp": 17104882
+      }
+    },
+    {
+      "level": 1000,
+      "value": {
+        "goldMin": 5727100,
+        "goldMax": 15272268,
+        "xp": 17112305
+      }
+    },
+    {
+      "level": 1001,
+      "value": {
+        "goldMin": 5737413,
+        "goldMax": 15299769,
+        "xp": 18810687
+      }
+    },
+    {
+      "level": 1010,
+      "value": {
+        "goldMin": 5830600,
+        "goldMax": 15548268,
+        "xp": 44084454
+      }
+    },
+    {
+      "level": 1100,
+      "value": {
+        "goldMin": 6798946,
+        "goldMax": 18130524,
+        "xp": 221072145093
+      }
+    }
+  ],
+  "getBossGoldRange": [
+    {
+      "bossId": "sewer_king",
+      "value": [
+        1438,
+        3835
+      ]
+    },
+    {
+      "bossId": "shadow_lord",
+      "value": [
+        7485,
+        19961
+      ]
+    },
+    {
+      "bossId": "ancient_dragon",
+      "value": [
+        26065,
+        69508
+      ]
+    },
+    {
+      "bossId": "demon_king",
+      "value": [
+        90768,
+        242048
+      ]
+    },
+    {
+      "bossId": "lich_king",
+      "value": [
+        188320,
+        502188
+      ]
+    },
+    {
+      "bossId": "chaos_emperor",
+      "value": [
+        316074,
+        842864
+      ]
+    },
+    {
+      "bossId": "abyssal_titan",
+      "value": [
+        655771,
+        1748724
+      ]
+    },
+    {
+      "bossId": "infernal_overlord",
+      "value": [
+        1100633,
+        2935022
+      ]
+    },
+    {
+      "bossId": "celestial_destroyer",
+      "value": [
+        1644677,
+        4385806
+      ]
+    },
+    {
+      "bossId": "world_eater",
+      "value": [
+        2283531,
+        6089417
+      ]
+    },
+    {
+      "bossId": "world_destroyer",
+      "value": [
+        3832629,
+        10220344
+      ]
+    },
+    {
+      "bossId": "end_of_all",
+      "value": [
+        5727100,
+        15272268
+      ]
+    }
+  ],
+  "getBossXp": [
+    {
+      "bossId": "sewer_king",
+      "value": 1649
+    },
+    {
+      "bossId": "shadow_lord",
+      "value": 5616
+    },
+    {
+      "bossId": "ancient_dragon",
+      "value": 12931
+    },
+    {
+      "bossId": "demon_king",
+      "value": 26833
+    },
+    {
+      "bossId": "lich_king",
+      "value": 271107
+    },
+    {
+      "bossId": "chaos_emperor",
+      "value": 434416
+    },
+    {
+      "bossId": "abyssal_titan",
+      "value": 882056
+    },
+    {
+      "bossId": "infernal_overlord",
+      "value": 1168750
+    },
+    {
+      "bossId": "celestial_destroyer",
+      "value": 2068315
+    },
+    {
+      "bossId": "world_eater",
+      "value": 2753894
+    },
+    {
+      "bossId": "world_destroyer",
+      "value": 15518522
+    },
+    {
+      "bossId": "end_of_all",
+      "value": 17112305
+    }
+  ],
+  "getBossRecommendedLevel": [
+    {
+      "bossId": "sewer_king",
+      "value": 15
+    },
+    {
+      "bossId": "shadow_lord",
+      "value": 30
+    },
+    {
+      "bossId": "ancient_dragon",
+      "value": 55
+    },
+    {
+      "bossId": "demon_king",
+      "value": 105
+    },
+    {
+      "bossId": "lich_king",
+      "value": 155
+    },
+    {
+      "bossId": "chaos_emperor",
+      "value": 205
+    },
+    {
+      "bossId": "abyssal_titan",
+      "value": 305
+    },
+    {
+      "bossId": "infernal_overlord",
+      "value": 405
+    },
+    {
+      "bossId": "celestial_destroyer",
+      "value": 505
+    },
+    {
+      "bossId": "world_eater",
+      "value": 605
+    },
+    {
+      "bossId": "world_destroyer",
+      "value": 805
+    },
+    {
+      "bossId": "end_of_all",
+      "value": 1005
+    }
+  ],
+  "canChallengeBoss": [
+    {
+      "bossId": "demon_king",
+      "characterLevel": 99,
+      "nowMs": 1700000000005,
+      "lastMs": 1700000000000,
+      "value": false
+    },
+    {
+      "bossId": "demon_king",
+      "characterLevel": 100,
+      "nowMs": 1700000000005,
+      "lastMs": null,
+      "value": true
+    },
+    {
+      "bossId": "demon_king",
+      "characterLevel": 150,
+      "nowMs": 1700010000000,
+      "lastMs": 1700000000000,
+      "value": false
+    },
+    {
+      "bossId": "demon_king",
+      "characterLevel": 150,
+      "nowMs": 1700028800000,
+      "lastMs": 1700000000000,
+      "value": true
+    },
+    {
+      "bossId": "demon_king",
+      "characterLevel": 150,
+      "nowMs": 1700028800001,
+      "lastMs": 1700000000000,
+      "value": true
+    },
+    {
+      "bossId": "demon_king",
+      "characterLevel": 150,
+      "nowMs": 1700028799999,
+      "lastMs": 1700000000000,
+      "value": false
+    },
+    {
+      "bossId": "end_of_all",
+      "characterLevel": 1000,
+      "nowMs": 1700050000000,
+      "lastMs": 1700000000000,
+      "value": true
+    },
+    {
+      "bossId": "end_of_all",
+      "characterLevel": 500,
+      "nowMs": 1700050000000,
+      "lastMs": 1700000000000,
+      "value": false
+    },
+    {
+      "bossId": "sewer_king",
+      "characterLevel": 10,
+      "nowMs": 1700000000000,
+      "lastMs": 1700000000000,
+      "value": false
+    },
+    {
+      "bossId": "sewer_king",
+      "characterLevel": 9,
+      "nowMs": 1700000000000,
+      "lastMs": null,
+      "value": false
+    }
+  ],
+  "getBossRemainingMs": [
+    {
+      "bossId": "demon_king",
+      "nowMs": 1700010000000,
+      "lastMs": 1700000000000,
+      "value": 18800000
+    },
+    {
+      "bossId": "demon_king",
+      "nowMs": 1700028800000,
+      "lastMs": 1700000000000,
+      "value": 0
+    },
+    {
+      "bossId": "demon_king",
+      "nowMs": 1700033800000,
+      "lastMs": 1700000000000,
+      "value": 0
+    },
+    {
+      "bossId": "demon_king",
+      "nowMs": 1700000000999,
+      "lastMs": null,
+      "value": 0
+    },
+    {
+      "bossId": "end_of_all",
+      "nowMs": 1700001000000,
+      "lastMs": 1700000000000,
+      "value": 27800000
+    },
+    {
+      "bossId": "sewer_king",
+      "nowMs": 1700000000000,
+      "lastMs": 1700000000000,
+      "value": 28800000
+    }
+  ],
+  "rollBossGold": [
+    {
+      "bossId": "sewer_king",
+      "seed": 1,
+      "value": 2941
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 2,
+      "value": 3198
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 3,
+      "value": 3165
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 7,
+      "value": 1466
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 13,
+      "value": 2796
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 42,
+      "value": 2879
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 99,
+      "value": 2062
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 777,
+      "value": 3083
+    },
+    {
+      "bossId": "demon_king",
+      "seed": 1,
+      "value": 185632
+    },
+    {
+      "bossId": "demon_king",
+      "seed": 2,
+      "value": 201846
+    },
+    {
+      "bossId": "demon_king",
+      "seed": 3,
+      "value": 199724
+    },
+    {
+      "bossId": "demon_king",
+      "seed": 7,
+      "value": 92538
+    },
+    {
+      "bossId": "demon_king",
+      "seed": 13,
+      "value": 176441
+    },
+    {
+      "bossId": "demon_king",
+      "seed": 42,
+      "value": 181703
+    },
+    {
+      "bossId": "demon_king",
+      "seed": 99,
+      "value": 130171
+    },
+    {
+      "bossId": "demon_king",
+      "seed": 777,
+      "value": 194604
+    },
+    {
+      "bossId": "end_of_all",
+      "seed": 1,
+      "value": 11712626
+    },
+    {
+      "bossId": "end_of_all",
+      "seed": 2,
+      "value": 12735649
+    },
+    {
+      "bossId": "end_of_all",
+      "seed": 3,
+      "value": 12601786
+    },
+    {
+      "bossId": "end_of_all",
+      "seed": 7,
+      "value": 5838823
+    },
+    {
+      "bossId": "end_of_all",
+      "seed": 13,
+      "value": 11132745
+    },
+    {
+      "bossId": "end_of_all",
+      "seed": 42,
+      "value": 11464736
+    },
+    {
+      "bossId": "end_of_all",
+      "seed": 99,
+      "value": 8213290
+    },
+    {
+      "bossId": "end_of_all",
+      "seed": 777,
+      "value": 12278700
+    }
+  ],
+  "rollBossLoot": [
+    {
+      "bossId": "sewer_king",
+      "seed": 1,
+      "value": [
+        {
+          "itemId": "rat_king_blade",
+          "chance": 0.06,
+          "rarity": "epic"
+        }
+      ]
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 2,
+      "value": []
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 3,
+      "value": [
+        {
+          "itemId": "rat_king_blade",
+          "chance": 0.06,
+          "rarity": "epic"
+        }
+      ]
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 7,
+      "value": [
+        {
+          "itemId": "sewer_crown",
+          "chance": 0.1,
+          "rarity": "rare"
+        }
+      ]
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 13,
+      "value": []
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 42,
+      "value": []
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 99,
+      "value": []
+    },
+    {
+      "bossId": "sewer_king",
+      "seed": 777,
+      "value": [
+        {
+          "itemId": "rat_king_blade",
+          "chance": 0.06,
+          "rarity": "epic"
+        }
+      ]
+    },
+    {
+      "bossId": "shadow_lord",
+      "seed": 1,
+      "value": [
+        {
+          "itemId": "void_blade",
+          "chance": 0.04,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "shadow_lord",
+      "seed": 2,
+      "value": []
+    },
+    {
+      "bossId": "shadow_lord",
+      "seed": 3,
+      "value": [
+        {
+          "itemId": "void_blade",
+          "chance": 0.04,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "shadow_lord",
+      "seed": 7,
+      "value": [
+        {
+          "itemId": "shadow_cloak",
+          "chance": 0.08,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "shadow_lord",
+      "seed": 13,
+      "value": []
+    },
+    {
+      "bossId": "shadow_lord",
+      "seed": 42,
+      "value": []
+    },
+    {
+      "bossId": "shadow_lord",
+      "seed": 99,
+      "value": []
+    },
+    {
+      "bossId": "shadow_lord",
+      "seed": 777,
+      "value": [
+        {
+          "itemId": "void_blade",
+          "chance": 0.04,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "ancient_dragon",
+      "seed": 1,
+      "value": [
+        {
+          "itemId": "dragonslayer",
+          "chance": 0.03,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "ancient_dragon",
+      "seed": 2,
+      "value": []
+    },
+    {
+      "bossId": "ancient_dragon",
+      "seed": 3,
+      "value": []
+    },
+    {
+      "bossId": "ancient_dragon",
+      "seed": 7,
+      "value": [
+        {
+          "itemId": "dragon_scale_armor",
+          "chance": 0.06,
+          "rarity": "heroic"
+        }
+      ]
+    },
+    {
+      "bossId": "ancient_dragon",
+      "seed": 13,
+      "value": []
+    },
+    {
+      "bossId": "ancient_dragon",
+      "seed": 42,
+      "value": []
+    },
+    {
+      "bossId": "ancient_dragon",
+      "seed": 99,
+      "value": []
+    },
+    {
+      "bossId": "ancient_dragon",
+      "seed": 777,
+      "value": []
+    }
+  ],
+  "resolveBoss": [
+    {
+      "bossId": "sewer_king",
+      "character": {
+        "attack": 5000,
+        "defense": 1000,
+        "max_hp": 100000,
+        "level": 50
+      },
+      "seed": 1,
+      "result": {
+        "won": true,
+        "playerHpLeft": 99997,
+        "turns": 3,
+        "drops": [
+          {
+            "itemId": "rat_king_blade",
+            "chance": 0.06,
+            "rarity": "epic"
+          }
+        ],
+        "gold": 2702,
+        "xp": 1649
+      }
+    },
+    {
+      "bossId": "sewer_king",
+      "character": {
+        "attack": 5000,
+        "defense": 1000,
+        "max_hp": 100000,
+        "level": 50
+      },
+      "seed": 2,
+      "result": {
+        "won": true,
+        "playerHpLeft": 99997,
+        "turns": 3,
+        "drops": [],
+        "gold": 2122,
+        "xp": 1649
+      }
+    },
+    {
+      "bossId": "sewer_king",
+      "character": {
+        "attack": 5000,
+        "defense": 1000,
+        "max_hp": 100000,
+        "level": 50
+      },
+      "seed": 3,
+      "result": {
+        "won": true,
+        "playerHpLeft": 99997,
+        "turns": 3,
+        "drops": [
+          {
+            "itemId": "rat_king_blade",
+            "chance": 0.06,
+            "rarity": "epic"
+          }
+        ],
+        "gold": 2531,
+        "xp": 1649
+      }
+    },
+    {
+      "bossId": "sewer_king",
+      "character": {
+        "attack": 5000,
+        "defense": 1000,
+        "max_hp": 100000,
+        "level": 50
+      },
+      "seed": 7,
+      "result": {
+        "won": true,
+        "playerHpLeft": 99997,
+        "turns": 3,
+        "drops": [
+          {
+            "itemId": "sewer_crown",
+            "chance": 0.1,
+            "rarity": "rare"
+          }
+        ],
+        "gold": 3780,
+        "xp": 1649
+      }
+    },
+    {
+      "bossId": "sewer_king",
+      "character": {
+        "attack": 5000,
+        "defense": 1000,
+        "max_hp": 100000,
+        "level": 50
+      },
+      "seed": 13,
+      "result": {
+        "won": true,
+        "playerHpLeft": 99997,
+        "turns": 3,
+        "drops": [],
+        "gold": 1607,
+        "xp": 1649
+      }
+    },
+    {
+      "bossId": "sewer_king",
+      "character": {
+        "attack": 5000,
+        "defense": 1000,
+        "max_hp": 100000,
+        "level": 50
+      },
+      "seed": 42,
+      "result": {
+        "won": true,
+        "playerHpLeft": 99997,
+        "turns": 3,
+        "drops": [],
+        "gold": 3482,
+        "xp": 1649
+      }
+    },
+    {
+      "bossId": "sewer_king",
+      "character": {
+        "attack": 5000,
+        "defense": 1000,
+        "max_hp": 100000,
+        "level": 50
+      },
+      "seed": 99,
+      "result": {
+        "won": true,
+        "playerHpLeft": 99997,
+        "turns": 3,
+        "drops": [],
+        "gold": 2735,
+        "xp": 1649
+      }
+    },
+    {
+      "bossId": "sewer_king",
+      "character": {
+        "attack": 5000,
+        "defense": 1000,
+        "max_hp": 100000,
+        "level": 50
+      },
+      "seed": 777,
+      "result": {
+        "won": true,
+        "playerHpLeft": 99997,
+        "turns": 3,
+        "drops": [
+          {
+            "itemId": "rat_king_blade",
+            "chance": 0.06,
+            "rarity": "epic"
+          }
+        ],
+        "gold": 1899,
+        "xp": 1649
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "character": {
+        "attack": 2000,
+        "defense": 200,
+        "max_hp": 50000,
+        "level": 120
+      },
+      "seed": 1,
+      "result": {
+        "won": true,
+        "playerHpLeft": 10103,
+        "turns": 51,
+        "drops": [
+          {
+            "itemId": "hellfire_crown",
+            "chance": 0.03,
+            "rarity": "heroic"
+          }
+        ],
+        "gold": 170560,
+        "xp": 26833
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "character": {
+        "attack": 2000,
+        "defense": 200,
+        "max_hp": 50000,
+        "level": 120
+      },
+      "seed": 2,
+      "result": {
+        "won": true,
+        "playerHpLeft": 10103,
+        "turns": 51,
+        "drops": [],
+        "gold": 133927,
+        "xp": 26833
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "character": {
+        "attack": 2000,
+        "defense": 200,
+        "max_hp": 50000,
+        "level": 120
+      },
+      "seed": 3,
+      "result": {
+        "won": true,
+        "playerHpLeft": 10103,
+        "turns": 51,
+        "drops": [],
+        "gold": 159781,
+        "xp": 26833
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "character": {
+        "attack": 2000,
+        "defense": 200,
+        "max_hp": 50000,
+        "level": 120
+      },
+      "seed": 7,
+      "result": {
+        "won": true,
+        "playerHpLeft": 10103,
+        "turns": 51,
+        "drops": [
+          {
+            "itemId": "demon_king_sword",
+            "chance": 0.05,
+            "rarity": "heroic"
+          }
+        ],
+        "gold": 238555,
+        "xp": 26833
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "character": {
+        "attack": 2000,
+        "defense": 200,
+        "max_hp": 50000,
+        "level": 120
+      },
+      "seed": 13,
+      "result": {
+        "won": true,
+        "playerHpLeft": 10103,
+        "turns": 51,
+        "drops": [],
+        "gold": 101447,
+        "xp": 26833
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "character": {
+        "attack": 2000,
+        "defense": 200,
+        "max_hp": 50000,
+        "level": 120
+      },
+      "seed": 42,
+      "result": {
+        "won": true,
+        "playerHpLeft": 10103,
+        "turns": 51,
+        "drops": [],
+        "gold": 219729,
+        "xp": 26833
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "character": {
+        "attack": 2000,
+        "defense": 200,
+        "max_hp": 50000,
+        "level": 120
+      },
+      "seed": 99,
+      "result": {
+        "won": true,
+        "playerHpLeft": 10103,
+        "turns": 51,
+        "drops": [],
+        "gold": 172591,
+        "xp": 26833
+      }
+    },
+    {
+      "bossId": "demon_king",
+      "character": {
+        "attack": 2000,
+        "defense": 200,
+        "max_hp": 50000,
+        "level": 120
+      },
+      "seed": 777,
+      "result": {
+        "won": true,
+        "playerHpLeft": 10103,
+        "turns": 51,
+        "drops": [],
+        "gold": 119872,
+        "xp": 26833
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "character": {
+        "attack": 1000,
+        "defense": 200,
+        "max_hp": 200000,
+        "level": 55
+      },
+      "seed": 1,
+      "result": {
+        "won": true,
+        "playerHpLeft": 184662,
+        "turns": 48,
+        "drops": [
+          {
+            "itemId": "dragonslayer",
+            "chance": 0.03,
+            "rarity": "heroic"
+          }
+        ],
+        "gold": 48979,
+        "xp": 12931
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "character": {
+        "attack": 1000,
+        "defense": 200,
+        "max_hp": 200000,
+        "level": 55
+      },
+      "seed": 2,
+      "result": {
+        "won": true,
+        "playerHpLeft": 184662,
+        "turns": 48,
+        "drops": [],
+        "gold": 38459,
+        "xp": 12931
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "character": {
+        "attack": 1000,
+        "defense": 200,
+        "max_hp": 200000,
+        "level": 55
+      },
+      "seed": 3,
+      "result": {
+        "won": true,
+        "playerHpLeft": 184662,
+        "turns": 48,
+        "drops": [],
+        "gold": 45883,
+        "xp": 12931
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "character": {
+        "attack": 1000,
+        "defense": 200,
+        "max_hp": 200000,
+        "level": 55
+      },
+      "seed": 7,
+      "result": {
+        "won": true,
+        "playerHpLeft": 184662,
+        "turns": 48,
+        "drops": [
+          {
+            "itemId": "dragon_scale_armor",
+            "chance": 0.06,
+            "rarity": "heroic"
+          }
+        ],
+        "gold": 68505,
+        "xp": 12931
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "character": {
+        "attack": 1000,
+        "defense": 200,
+        "max_hp": 200000,
+        "level": 55
+      },
+      "seed": 13,
+      "result": {
+        "won": true,
+        "playerHpLeft": 184662,
+        "turns": 48,
+        "drops": [],
+        "gold": 29131,
+        "xp": 12931
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "character": {
+        "attack": 1000,
+        "defense": 200,
+        "max_hp": 200000,
+        "level": 55
+      },
+      "seed": 42,
+      "result": {
+        "won": true,
+        "playerHpLeft": 184662,
+        "turns": 48,
+        "drops": [],
+        "gold": 63099,
+        "xp": 12931
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "character": {
+        "attack": 1000,
+        "defense": 200,
+        "max_hp": 200000,
+        "level": 55
+      },
+      "seed": 99,
+      "result": {
+        "won": true,
+        "playerHpLeft": 184662,
+        "turns": 48,
+        "drops": [],
+        "gold": 49562,
+        "xp": 12931
+      }
+    },
+    {
+      "bossId": "ancient_dragon",
+      "character": {
+        "attack": 1000,
+        "defense": 200,
+        "max_hp": 200000,
+        "level": 55
+      },
+      "seed": 777,
+      "result": {
+        "won": true,
+        "playerHpLeft": 184662,
+        "turns": 48,
+        "drops": [],
+        "gold": 34423,
+        "xp": 12931
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "character": {
+        "attack": 100,
+        "defense": 10,
+        "max_hp": 500,
+        "level": 10
+      },
+      "seed": 1,
+      "result": {
+        "won": false,
+        "playerHpLeft": 0,
+        "turns": 1,
+        "drops": [],
+        "gold": 0,
+        "xp": 0
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "character": {
+        "attack": 100,
+        "defense": 10,
+        "max_hp": 500,
+        "level": 10
+      },
+      "seed": 2,
+      "result": {
+        "won": false,
+        "playerHpLeft": 0,
+        "turns": 1,
+        "drops": [],
+        "gold": 0,
+        "xp": 0
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "character": {
+        "attack": 100,
+        "defense": 10,
+        "max_hp": 500,
+        "level": 10
+      },
+      "seed": 3,
+      "result": {
+        "won": false,
+        "playerHpLeft": 0,
+        "turns": 1,
+        "drops": [],
+        "gold": 0,
+        "xp": 0
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "character": {
+        "attack": 100,
+        "defense": 10,
+        "max_hp": 500,
+        "level": 10
+      },
+      "seed": 7,
+      "result": {
+        "won": false,
+        "playerHpLeft": 0,
+        "turns": 1,
+        "drops": [],
+        "gold": 0,
+        "xp": 0
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "character": {
+        "attack": 100,
+        "defense": 10,
+        "max_hp": 500,
+        "level": 10
+      },
+      "seed": 13,
+      "result": {
+        "won": false,
+        "playerHpLeft": 0,
+        "turns": 1,
+        "drops": [],
+        "gold": 0,
+        "xp": 0
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "character": {
+        "attack": 100,
+        "defense": 10,
+        "max_hp": 500,
+        "level": 10
+      },
+      "seed": 42,
+      "result": {
+        "won": false,
+        "playerHpLeft": 0,
+        "turns": 1,
+        "drops": [],
+        "gold": 0,
+        "xp": 0
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "character": {
+        "attack": 100,
+        "defense": 10,
+        "max_hp": 500,
+        "level": 10
+      },
+      "seed": 99,
+      "result": {
+        "won": false,
+        "playerHpLeft": 0,
+        "turns": 1,
+        "drops": [],
+        "gold": 0,
+        "xp": 0
+      }
+    },
+    {
+      "bossId": "end_of_all",
+      "character": {
+        "attack": 100,
+        "defense": 10,
+        "max_hp": 500,
+        "level": 10
+      },
+      "seed": 777,
+      "result": {
+        "won": false,
+        "playerHpLeft": 0,
+        "turns": 1,
+        "drops": [],
+        "gold": 0,
+        "xp": 0
+      }
+    }
+  ]
+}

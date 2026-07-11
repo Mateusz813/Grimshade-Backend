@@ -1,0 +1,1459 @@
+{
+  "system": "lootSystem",
+  "note": "Generowane z src/systems/lootSystem.ts (podzbiór). Funkcje RNG: seed + mulberry32. NIE edytuj ręcznie.",
+  "scaleHeroicDropRate": [
+    {
+      "rate": 0.005,
+      "lvl": 1,
+      "value": 0.005
+    },
+    {
+      "rate": 0.005,
+      "lvl": 100,
+      "value": 0.005
+    },
+    {
+      "rate": 0.005,
+      "lvl": 200,
+      "value": 0.004555
+    },
+    {
+      "rate": 0.005,
+      "lvl": 500,
+      "value": 0.00322
+    },
+    {
+      "rate": 0.005,
+      "lvl": 1000,
+      "value": 0.001
+    },
+    {
+      "rate": 0,
+      "lvl": 50,
+      "value": 0
+    }
+  ],
+  "getGeneratedSellPrice": [
+    {
+      "rarity": "common",
+      "lvl": 1,
+      "value": 15
+    },
+    {
+      "rarity": "common",
+      "lvl": 50,
+      "value": 260
+    },
+    {
+      "rarity": "common",
+      "lvl": 500,
+      "value": 2510
+    },
+    {
+      "rarity": "rare",
+      "lvl": 1,
+      "value": 70
+    },
+    {
+      "rarity": "rare",
+      "lvl": 50,
+      "value": 1050
+    },
+    {
+      "rarity": "rare",
+      "lvl": 500,
+      "value": 10050
+    },
+    {
+      "rarity": "epic",
+      "lvl": 1,
+      "value": 260
+    },
+    {
+      "rarity": "epic",
+      "lvl": 50,
+      "value": 3200
+    },
+    {
+      "rarity": "epic",
+      "lvl": 500,
+      "value": 30200
+    },
+    {
+      "rarity": "legendary",
+      "lvl": 1,
+      "value": 650
+    },
+    {
+      "rarity": "legendary",
+      "lvl": 50,
+      "value": 8000
+    },
+    {
+      "rarity": "legendary",
+      "lvl": 500,
+      "value": 75500
+    },
+    {
+      "rarity": "mythic",
+      "lvl": 1,
+      "value": 2400
+    },
+    {
+      "rarity": "mythic",
+      "lvl": 50,
+      "value": 22000
+    },
+    {
+      "rarity": "mythic",
+      "lvl": 500,
+      "value": 202000
+    },
+    {
+      "rarity": "heroic",
+      "lvl": 1,
+      "value": 5800
+    },
+    {
+      "rarity": "heroic",
+      "lvl": 50,
+      "value": 45000
+    },
+    {
+      "rarity": "heroic",
+      "lvl": 500,
+      "value": 405000
+    }
+  ],
+  "getMaxRarityForLevel": [
+    {
+      "lvl": 1,
+      "value": "common"
+    },
+    {
+      "lvl": 30,
+      "value": "common"
+    },
+    {
+      "lvl": 31,
+      "value": "rare"
+    },
+    {
+      "lvl": 60,
+      "value": "rare"
+    },
+    {
+      "lvl": 61,
+      "value": "epic"
+    },
+    {
+      "lvl": 100,
+      "value": "epic"
+    },
+    {
+      "lvl": 500,
+      "value": "epic"
+    }
+  ],
+  "getEffectiveRarityChances": [
+    {
+      "m": null,
+      "value": {
+        "normal": {
+          "base": 0.9,
+          "bonus": 0,
+          "total": 0.8999999999999999
+        },
+        "strong": {
+          "base": 0.07,
+          "bonus": 0,
+          "total": 0.07
+        },
+        "epic": {
+          "base": 0.015,
+          "bonus": 0,
+          "total": 0.015
+        },
+        "legendary": {
+          "base": 0.01,
+          "bonus": 0,
+          "total": 0.01
+        },
+        "boss": {
+          "base": 0.005,
+          "bonus": 0,
+          "total": 0.005
+        }
+      }
+    },
+    {
+      "m": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": {
+          "base": 0.9,
+          "bonus": -0.65,
+          "total": 0.25
+        },
+        "strong": {
+          "base": 0.07,
+          "bonus": 0.3,
+          "total": 0.37
+        },
+        "epic": {
+          "base": 0.015,
+          "bonus": 0.2,
+          "total": 0.21500000000000002
+        },
+        "legendary": {
+          "base": 0.01,
+          "bonus": 0.1,
+          "total": 0.11
+        },
+        "boss": {
+          "base": 0.005,
+          "bonus": 0.05,
+          "total": 0.055
+        }
+      }
+    }
+  ],
+  "rollMonsterRarity": [
+    {
+      "seed": 1,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 1,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "epic"
+    },
+    {
+      "seed": 2,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 2,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "epic"
+    },
+    {
+      "seed": 3,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 3,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "epic"
+    },
+    {
+      "seed": 7,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 7,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "normal"
+    },
+    {
+      "seed": 13,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 13,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "strong"
+    },
+    {
+      "seed": 42,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 42,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "strong"
+    },
+    {
+      "seed": 99,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 99,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "strong"
+    },
+    {
+      "seed": 100,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 100,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "normal"
+    },
+    {
+      "seed": 777,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 777,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "epic"
+    },
+    {
+      "seed": 2654435761,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 2654435761,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "strong"
+    },
+    {
+      "seed": 123456,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 123456,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "strong"
+    },
+    {
+      "seed": 987654,
+      "skip": false,
+      "mastery": null,
+      "value": "normal"
+    },
+    {
+      "seed": 987654,
+      "skip": false,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": "normal"
+    }
+  ],
+  "rollRarity": [
+    {
+      "seed": 1,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 1,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "common"
+    },
+    {
+      "seed": 2,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 2,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "common"
+    },
+    {
+      "seed": 3,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 3,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "common"
+    },
+    {
+      "seed": 7,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 7,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "heroic"
+    },
+    {
+      "seed": 13,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 13,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "common"
+    },
+    {
+      "seed": 42,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 42,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "common"
+    },
+    {
+      "seed": 99,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 99,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "heroic"
+    },
+    {
+      "seed": 100,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 100,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "heroic"
+    },
+    {
+      "seed": 777,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 777,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "common"
+    },
+    {
+      "seed": 2654435761,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 2654435761,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "common"
+    },
+    {
+      "seed": 123456,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 123456,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "heroic"
+    },
+    {
+      "seed": 987654,
+      "monsterRarity": "normal",
+      "heroic": 0,
+      "value": "common"
+    },
+    {
+      "seed": 987654,
+      "monsterRarity": "boss",
+      "heroic": 0.5,
+      "value": "heroic"
+    }
+  ],
+  "rollStoneDrop": [
+    {
+      "seed": 1,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 1,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 1,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 1,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 1,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": {
+        "type": "common_stone",
+        "count": 1
+      }
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": {
+        "type": "rare_stone",
+        "count": 1
+      }
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": {
+        "type": "epic_stone",
+        "count": 1
+      }
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": {
+        "type": "legendary_stone",
+        "count": 1
+      }
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": null
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": null
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": null
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": null
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": null
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 100,
+      "monsterRarity": "normal",
+      "value": {
+        "type": "common_stone",
+        "count": 1
+      }
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 100,
+      "monsterRarity": "strong",
+      "value": {
+        "type": "rare_stone",
+        "count": 1
+      }
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 100,
+      "monsterRarity": "epic",
+      "value": {
+        "type": "epic_stone",
+        "count": 1
+      }
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 100,
+      "monsterRarity": "legendary",
+      "value": {
+        "type": "legendary_stone",
+        "count": 1
+      }
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 100,
+      "monsterRarity": "boss",
+      "value": {
+        "type": "mythic_stone",
+        "count": 1
+      }
+    }
+  ],
+  "calculateGoldDrop": [
+    {
+      "seed": 1,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 29
+    },
+    {
+      "seed": 1,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 508
+    },
+    {
+      "seed": 2,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 32
+    },
+    {
+      "seed": 2,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 571
+    },
+    {
+      "seed": 3,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 32
+    },
+    {
+      "seed": 3,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 562
+    },
+    {
+      "seed": 7,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 10
+    },
+    {
+      "seed": 7,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 150
+    },
+    {
+      "seed": 13,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 27
+    },
+    {
+      "seed": 13,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 474
+    },
+    {
+      "seed": 42,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 28
+    },
+    {
+      "seed": 42,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 494
+    },
+    {
+      "seed": 99,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 18
+    },
+    {
+      "seed": 99,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 295
+    },
+    {
+      "seed": 100,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 16
+    },
+    {
+      "seed": 100,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 262
+    },
+    {
+      "seed": 777,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 31
+    },
+    {
+      "seed": 777,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 543
+    },
+    {
+      "seed": 2654435761,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 26
+    },
+    {
+      "seed": 2654435761,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 462
+    },
+    {
+      "seed": 123456,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 21
+    },
+    {
+      "seed": 123456,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 366
+    },
+    {
+      "seed": 987654,
+      "goldRange": [
+        10,
+        40
+      ],
+      "partySize": 1,
+      "value": 10
+    },
+    {
+      "seed": 987654,
+      "goldRange": [
+        100,
+        500
+      ],
+      "partySize": 4,
+      "value": 146
+    }
+  ],
+  "rollPotionDrop": [
+    {
+      "seed": 1,
+      "monsterLevel": 10,
+      "value": [
+        {
+          "potionId": "mp_potion_sm",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "monsterLevel": 60,
+      "value": [
+        {
+          "potionId": "mp_potion_lg",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 1,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 2,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 3,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 7,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 13,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 42,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 99,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 100,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 777,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 2654435761,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 10,
+      "value": []
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 60,
+      "value": []
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 123456,
+      "monsterLevel": 700,
+      "value": []
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 10,
+      "value": [
+        {
+          "potionId": "hp_potion_sm",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 60,
+      "value": [
+        {
+          "potionId": "hp_potion_lg",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 150,
+      "value": []
+    },
+    {
+      "seed": 987654,
+      "monsterLevel": 700,
+      "value": []
+    }
+  ]
+}

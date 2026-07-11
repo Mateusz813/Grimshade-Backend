@@ -1,0 +1,127 @@
+{
+  "system": "marketSystem",
+  "note": "Generowane z src/systems/marketSystem.ts (walidatory + tax). NIE edytuj ręcznie.",
+  "isValidPrice": [
+    {
+      "price": 0,
+      "value": false
+    },
+    {
+      "price": 1,
+      "value": true
+    },
+    {
+      "price": 100,
+      "value": true
+    },
+    {
+      "price": 999999999,
+      "value": true
+    },
+    {
+      "price": 1000000000,
+      "value": false
+    },
+    {
+      "price": -5,
+      "value": false
+    },
+    {
+      "price": 2.5,
+      "value": false
+    }
+  ],
+  "isValidQuantity": [
+    {
+      "qty": 0,
+      "max": null,
+      "value": false
+    },
+    {
+      "qty": 1,
+      "max": null,
+      "value": true
+    },
+    {
+      "qty": 999999,
+      "max": null,
+      "value": true
+    },
+    {
+      "qty": 1000000,
+      "max": null,
+      "value": false
+    },
+    {
+      "qty": 5,
+      "max": 10,
+      "value": true
+    },
+    {
+      "qty": 11,
+      "max": 10,
+      "value": false
+    },
+    {
+      "qty": 2.5,
+      "max": null,
+      "value": false
+    }
+  ],
+  "calculateMarketTax": [
+    {
+      "price": 0,
+      "value": 0
+    },
+    {
+      "price": 1,
+      "value": 0
+    },
+    {
+      "price": 100,
+      "value": 5
+    },
+    {
+      "price": 999,
+      "value": 49
+    },
+    {
+      "price": 1000,
+      "value": 50
+    },
+    {
+      "price": 12345,
+      "value": 617
+    },
+    {
+      "price": 999999999,
+      "value": 49999999
+    }
+  ],
+  "isStackKind": [
+    {
+      "kind": "item",
+      "value": false
+    },
+    {
+      "kind": "potion",
+      "value": true
+    },
+    {
+      "kind": "elixir",
+      "value": true
+    },
+    {
+      "kind": "stone",
+      "value": true
+    },
+    {
+      "kind": "arena_points",
+      "value": true
+    },
+    {
+      "kind": "spell_chest",
+      "value": true
+    }
+  ]
+}

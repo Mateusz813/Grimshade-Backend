@@ -1,0 +1,6586 @@
+{
+  "system": "transformSystem",
+  "note": "Generowane z src/systems/transformSystem.ts + transformBonuses.ts. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "constants": {
+    "TRANSFORM_COUNT": 11,
+    "TRANSFORM_SLOT_TIERS": [
+      "Normal",
+      "Strong",
+      "Epic",
+      "Boss"
+    ],
+    "TRANSFORM_BOSS_MULTIPLIER": {
+      "hp": 5,
+      "atk": 3,
+      "def": 3
+    },
+    "TRANSFORM_TIER_MULTIPLIERS": {
+      "Normal": {
+        "hp": 1,
+        "atk": 1,
+        "def": 1
+      },
+      "Strong": {
+        "hp": 2,
+        "atk": 1.5,
+        "def": 1.3
+      },
+      "Epic": {
+        "hp": 4,
+        "atk": 2.5,
+        "def": 1.8
+      },
+      "Boss": {
+        "hp": 5,
+        "atk": 3,
+        "def": 3
+      }
+    }
+  },
+  "getTransformTierMultiplier": [
+    {
+      "id": 0,
+      "value": 1
+    },
+    {
+      "id": -1,
+      "value": 1
+    },
+    {
+      "id": 1,
+      "value": 1
+    },
+    {
+      "id": 2,
+      "value": 1.3
+    },
+    {
+      "id": 3,
+      "value": 1.6
+    },
+    {
+      "id": 5,
+      "value": 2.2
+    },
+    {
+      "id": 6,
+      "value": 2.5
+    },
+    {
+      "id": 10,
+      "value": 3.6999999999999997
+    },
+    {
+      "id": 11,
+      "value": 4
+    },
+    {
+      "id": 12,
+      "value": 4.3
+    },
+    {
+      "id": 100,
+      "value": 30.7
+    }
+  ],
+  "getClassTransformBonuses": [
+    {
+      "cls": "Knight",
+      "id": null,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 420,
+        "flatMp": 70,
+        "attack": 9,
+        "defense": 16,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 1,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 420,
+        "flatMp": 70,
+        "attack": 9,
+        "defense": 16,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 2,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 546,
+        "flatMp": 91,
+        "attack": 11,
+        "defense": 20,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.7,
+        "mpRegenFlat": 0.1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 5,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 924,
+        "flatMp": 154,
+        "attack": 19,
+        "defense": 35,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.1,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 6,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 1050,
+        "flatMp": 175,
+        "attack": 22,
+        "defense": 40,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.3,
+        "mpRegenFlat": 0.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 11,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 1680,
+        "flatMp": 280,
+        "attack": 36,
+        "defense": 64,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": null,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 150,
+        "flatMp": 400,
+        "attack": 13,
+        "defense": 3,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.2,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 1,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 150,
+        "flatMp": 400,
+        "attack": 13,
+        "defense": 3,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.2,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 2,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 195,
+        "flatMp": 520,
+        "attack": 16,
+        "defense": 3,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.7,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 5,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 330,
+        "flatMp": 880,
+        "attack": 28,
+        "defense": 6,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.4,
+        "mpRegenFlat": 1.1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 6,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 375,
+        "flatMp": 1000,
+        "attack": 32,
+        "defense": 7,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 1.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 11,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 600,
+        "flatMp": 1600,
+        "attack": 52,
+        "defense": 12,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": null,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 220,
+        "flatMp": 380,
+        "attack": 10,
+        "defense": 10,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 1,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 220,
+        "flatMp": 380,
+        "attack": 10,
+        "defense": 10,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 2,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 286,
+        "flatMp": 494,
+        "attack": 13,
+        "defense": 13,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.7,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 5,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 484,
+        "flatMp": 836,
+        "attack": 22,
+        "defense": 22,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.1,
+        "mpRegenFlat": 0.9,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 6,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 550,
+        "flatMp": 950,
+        "attack": 25,
+        "defense": 25,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.3,
+        "mpRegenFlat": 1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 11,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 880,
+        "flatMp": 1520,
+        "attack": 40,
+        "defense": 40,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 1.6,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": null,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 220,
+        "flatMp": 150,
+        "attack": 0,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 1,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 220,
+        "flatMp": 150,
+        "attack": 0,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 2,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 286,
+        "flatMp": 195,
+        "attack": 0,
+        "defense": 6,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.4,
+        "mpRegenFlat": 0.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 5,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 484,
+        "flatMp": 330,
+        "attack": 0,
+        "defense": 11,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.7,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 6,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 550,
+        "flatMp": 375,
+        "attack": 0,
+        "defense": 12,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 11,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 880,
+        "flatMp": 600,
+        "attack": 0,
+        "defense": 20,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": null,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 190,
+        "flatMp": 150,
+        "attack": 15,
+        "defense": 4,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 1,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 190,
+        "flatMp": 150,
+        "attack": 15,
+        "defense": 4,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 2,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 247,
+        "flatMp": 195,
+        "attack": 19,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.4,
+        "mpRegenFlat": 0.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 5,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 418,
+        "flatMp": 330,
+        "attack": 33,
+        "defense": 8,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.7,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 6,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 475,
+        "flatMp": 375,
+        "attack": 37,
+        "defense": 10,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 11,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 760,
+        "flatMp": 600,
+        "attack": 60,
+        "defense": 16,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": null,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 180,
+        "flatMp": 380,
+        "attack": 12,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.25,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 1,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 180,
+        "flatMp": 380,
+        "attack": 12,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 2,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 234,
+        "flatMp": 494,
+        "attack": 15,
+        "defense": 6,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 5,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 396,
+        "flatMp": 836,
+        "attack": 26,
+        "defense": 11,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.6,
+        "mpRegenFlat": 0.9,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 6,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 450,
+        "flatMp": 950,
+        "attack": 30,
+        "defense": 12,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.6,
+        "mpRegenFlat": 1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 11,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 720,
+        "flatMp": 1520,
+        "attack": 48,
+        "defense": 20,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 1.6,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": null,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 230,
+        "flatMp": 260,
+        "attack": 10,
+        "defense": 9,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.4,
+        "mpRegenFlat": 0.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 1,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 230,
+        "flatMp": 260,
+        "attack": 10,
+        "defense": 9,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.4,
+        "mpRegenFlat": 0.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 2,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 299,
+        "flatMp": 338,
+        "attack": 13,
+        "defense": 11,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 5,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 506,
+        "flatMp": 572,
+        "attack": 22,
+        "defense": 19,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.9,
+        "mpRegenFlat": 0.7,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 6,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 575,
+        "flatMp": 650,
+        "attack": 25,
+        "defense": 22,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 11,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 920,
+        "flatMp": 1040,
+        "attack": 40,
+        "defense": 36,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 1.2,
+        "classSkillBonus": 0
+      }
+    }
+  ],
+  "applyTransformBossStats": [
+    {
+      "monster": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 250,
+        "attack": 28,
+        "defense": 8,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc"
+      },
+      "value": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 1250,
+        "attack": 84,
+        "defense": 24,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc",
+        "attack_min": 66,
+        "attack_max": 99
+      }
+    },
+    {
+      "monster": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 900,
+        "attack": 55,
+        "attack_min": 40,
+        "attack_max": 70,
+        "defense": 24,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      },
+      "value": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 4500,
+        "attack": 165,
+        "attack_min": 120,
+        "attack_max": 210,
+        "defense": 72,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      }
+    },
+    {
+      "monster": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 1,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak"
+      },
+      "value": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 5,
+        "attack": 3,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak",
+        "attack_min": 1,
+        "attack_max": 3
+      }
+    }
+  ],
+  "applyTransformTierStats": [
+    {
+      "monster": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 250,
+        "attack": 28,
+        "defense": 8,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc"
+      },
+      "tier": "Normal",
+      "value": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 250,
+        "attack": 28,
+        "defense": 8,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc",
+        "attack_min": 22,
+        "attack_max": 33
+      }
+    },
+    {
+      "monster": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 250,
+        "attack": 28,
+        "defense": 8,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc"
+      },
+      "tier": "Strong",
+      "value": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 500,
+        "attack": 42,
+        "defense": 10,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc",
+        "attack_min": 33,
+        "attack_max": 49
+      }
+    },
+    {
+      "monster": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 250,
+        "attack": 28,
+        "defense": 8,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc"
+      },
+      "tier": "Epic",
+      "value": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 1000,
+        "attack": 70,
+        "defense": 14,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc",
+        "attack_min": 55,
+        "attack_max": 82
+      }
+    },
+    {
+      "monster": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 250,
+        "attack": 28,
+        "defense": 8,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc"
+      },
+      "tier": "Boss",
+      "value": {
+        "id": "orc",
+        "name_pl": "Ork",
+        "name_en": "Orc",
+        "level": 20,
+        "hp": 1250,
+        "attack": 84,
+        "defense": 24,
+        "speed": 2,
+        "xp": 120,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "orc",
+        "attack_min": 66,
+        "attack_max": 99
+      }
+    },
+    {
+      "monster": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 900,
+        "attack": 55,
+        "attack_min": 40,
+        "attack_max": 70,
+        "defense": 24,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      },
+      "tier": "Normal",
+      "value": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 900,
+        "attack": 55,
+        "attack_min": 40,
+        "attack_max": 70,
+        "defense": 24,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      }
+    },
+    {
+      "monster": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 900,
+        "attack": 55,
+        "attack_min": 40,
+        "attack_max": 70,
+        "defense": 24,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      },
+      "tier": "Strong",
+      "value": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 1800,
+        "attack": 82,
+        "attack_min": 60,
+        "attack_max": 105,
+        "defense": 31,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      }
+    },
+    {
+      "monster": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 900,
+        "attack": 55,
+        "attack_min": 40,
+        "attack_max": 70,
+        "defense": 24,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      },
+      "tier": "Epic",
+      "value": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 3600,
+        "attack": 137,
+        "attack_min": 100,
+        "attack_max": 175,
+        "defense": 43,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      }
+    },
+    {
+      "monster": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 900,
+        "attack": 55,
+        "attack_min": 40,
+        "attack_max": 70,
+        "defense": 24,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      },
+      "tier": "Boss",
+      "value": {
+        "id": "drake",
+        "name_pl": "Smok",
+        "name_en": "Drake",
+        "level": 60,
+        "hp": 4500,
+        "attack": 165,
+        "attack_min": 120,
+        "attack_max": 210,
+        "defense": 72,
+        "speed": 3,
+        "xp": 800,
+        "gold": [
+          200,
+          400
+        ],
+        "dropTable": [],
+        "sprite": "drake"
+      }
+    },
+    {
+      "monster": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 1,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak"
+      },
+      "tier": "Normal",
+      "value": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 1,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak",
+        "attack_min": 1,
+        "attack_max": 1
+      }
+    },
+    {
+      "monster": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 1,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak"
+      },
+      "tier": "Strong",
+      "value": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 2,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak",
+        "attack_min": 1,
+        "attack_max": 1
+      }
+    },
+    {
+      "monster": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 1,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak"
+      },
+      "tier": "Epic",
+      "value": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 4,
+        "attack": 2,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak",
+        "attack_min": 1,
+        "attack_max": 2
+      }
+    },
+    {
+      "monster": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 1,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak"
+      },
+      "tier": "Boss",
+      "value": {
+        "id": "weak",
+        "name_pl": "Słaby",
+        "name_en": "Weak",
+        "level": 1,
+        "hp": 5,
+        "attack": 3,
+        "defense": 0,
+        "speed": 1,
+        "xp": 1,
+        "gold": [
+          0,
+          0
+        ],
+        "dropTable": [],
+        "sprite": "weak",
+        "attack_min": 1,
+        "attack_max": 3
+      }
+    }
+  ],
+  "resolveActiveOpponentSlot": [
+    {
+      "escorts": [
+        {
+          "currentHp": 10
+        },
+        {
+          "currentHp": 10
+        },
+        {
+          "currentHp": 10
+        }
+      ],
+      "value": 0
+    },
+    {
+      "escorts": [
+        {
+          "currentHp": 0
+        },
+        {
+          "currentHp": 10
+        },
+        {
+          "currentHp": 10
+        }
+      ],
+      "value": 1
+    },
+    {
+      "escorts": [
+        {
+          "currentHp": 0
+        },
+        {
+          "currentHp": 0
+        },
+        {
+          "currentHp": 10
+        }
+      ],
+      "value": 2
+    },
+    {
+      "escorts": [
+        {
+          "currentHp": 0
+        },
+        {
+          "currentHp": 0
+        },
+        {
+          "currentHp": 0
+        }
+      ],
+      "value": 3
+    },
+    {
+      "escorts": [
+        null,
+        {
+          "currentHp": 5
+        },
+        null
+      ],
+      "value": 1
+    },
+    {
+      "escorts": [
+        null,
+        null,
+        null
+      ],
+      "value": 3
+    },
+    {
+      "escorts": [
+        {
+          "currentHp": 0
+        },
+        null,
+        {
+          "currentHp": 3
+        }
+      ],
+      "value": 2
+    }
+  ],
+  "getHighestCompletedTransform": [
+    {
+      "ids": [],
+      "value": 0
+    },
+    {
+      "ids": [
+        1
+      ],
+      "value": 1
+    },
+    {
+      "ids": [
+        3,
+        1,
+        2
+      ],
+      "value": 3
+    },
+    {
+      "ids": [
+        11,
+        5
+      ],
+      "value": 11
+    },
+    {
+      "ids": [
+        7,
+        7,
+        7
+      ],
+      "value": 7
+    },
+    {
+      "ids": [
+        2,
+        9,
+        4
+      ],
+      "value": 9
+    }
+  ],
+  "getTransformById": [
+    {
+      "id": 0,
+      "value": null
+    },
+    {
+      "id": 1,
+      "value": {
+        "id": 1,
+        "level": 30,
+        "name_pl": "Transformacja I",
+        "name_en": "Transform I",
+        "color": "#e53935",
+        "gradientColors": null,
+        "monsterLevelRange": [
+          1,
+          30
+        ],
+        "avatarSuffix": "-1",
+        "rewards": {
+          "permanentBonuses": {
+            "hpPercent": 3,
+            "mpPercent": 3,
+            "hpRegen": 0.05,
+            "mpRegen": 0.05,
+            "attack": 2,
+            "defense": 2,
+            "classSkillBonus": 1
+          },
+          "premiumXpElixirCount": 5,
+          "hpPotionId": "hp_potion_sm",
+          "hpPotionCount": 50,
+          "mpPotionId": "mp_potion_sm",
+          "mpPotionCount": 50,
+          "spellChestLevel": 30,
+          "spellChestCount": 1,
+          "mythicStoneCount": 1
+        }
+      }
+    },
+    {
+      "id": 5,
+      "value": {
+        "id": 5,
+        "level": 200,
+        "name_pl": "Transformacja V",
+        "name_en": "Transform V",
+        "color": "#9c27b0",
+        "gradientColors": null,
+        "monsterLevelRange": [
+          151,
+          200
+        ],
+        "avatarSuffix": "-5",
+        "rewards": {
+          "permanentBonuses": {
+            "hpPercent": 3,
+            "mpPercent": 3,
+            "hpRegen": 0.05,
+            "mpRegen": 0.05,
+            "attack": 2,
+            "defense": 2,
+            "classSkillBonus": 1
+          },
+          "premiumXpElixirCount": 5,
+          "hpPotionId": "hp_potion_strong",
+          "hpPotionCount": 200,
+          "mpPotionId": "mp_potion_strong",
+          "mpPotionCount": 200,
+          "spellChestLevel": 200,
+          "spellChestCount": 1,
+          "mythicStoneCount": 1
+        }
+      }
+    },
+    {
+      "id": 8,
+      "value": {
+        "id": 8,
+        "level": 700,
+        "name_pl": "Transformacja VIII",
+        "name_en": "Transform VIII",
+        "color": null,
+        "gradientColors": [
+          "#ffc107",
+          "#212121"
+        ],
+        "monsterLevelRange": [
+          501,
+          700
+        ],
+        "avatarSuffix": "-8",
+        "rewards": {
+          "permanentBonuses": {
+            "hpPercent": 3,
+            "mpPercent": 3,
+            "hpRegen": 0.05,
+            "mpRegen": 0.05,
+            "attack": 2,
+            "defense": 2,
+            "classSkillBonus": 1
+          },
+          "premiumXpElixirCount": 5,
+          "hpPotionId": "hp_potion_super",
+          "hpPotionCount": 400,
+          "mpPotionId": "mp_potion_super",
+          "mpPotionCount": 400,
+          "spellChestLevel": 700,
+          "spellChestCount": 1,
+          "mythicStoneCount": 1
+        }
+      }
+    },
+    {
+      "id": 11,
+      "value": {
+        "id": 11,
+        "level": 1000,
+        "name_pl": "Transformacja XI",
+        "name_en": "Transform XI",
+        "color": null,
+        "gradientColors": [
+          "#212121",
+          "#ffc107"
+        ],
+        "monsterLevelRange": [
+          901,
+          1000
+        ],
+        "avatarSuffix": "-11",
+        "rewards": {
+          "permanentBonuses": {
+            "hpPercent": 3,
+            "mpPercent": 3,
+            "hpRegen": 0.05,
+            "mpRegen": 0.05,
+            "attack": 2,
+            "defense": 2,
+            "classSkillBonus": 1
+          },
+          "premiumXpElixirCount": 5,
+          "hpPotionId": "hp_potion_divine",
+          "hpPotionCount": 500,
+          "mpPotionId": "mp_potion_divine",
+          "mpPotionCount": 500,
+          "spellChestLevel": 1000,
+          "spellChestCount": 1,
+          "mythicStoneCount": 1
+        }
+      }
+    },
+    {
+      "id": 12,
+      "value": null
+    }
+  ],
+  "getTransformMonsterCount": [
+    {
+      "id": 0,
+      "value": 0
+    },
+    {
+      "id": 1,
+      "value": 30
+    },
+    {
+      "id": 2,
+      "value": 20
+    },
+    {
+      "id": 3,
+      "value": 50
+    },
+    {
+      "id": 4,
+      "value": 50
+    },
+    {
+      "id": 5,
+      "value": 50
+    },
+    {
+      "id": 6,
+      "value": 100
+    },
+    {
+      "id": 7,
+      "value": 200
+    },
+    {
+      "id": 8,
+      "value": 200
+    },
+    {
+      "id": 9,
+      "value": 100
+    },
+    {
+      "id": 10,
+      "value": 100
+    },
+    {
+      "id": 11,
+      "value": 100
+    },
+    {
+      "id": 12,
+      "value": 0
+    },
+    {
+      "id": 99,
+      "value": 0
+    }
+  ],
+  "generateTransformBossMonster": [
+    {
+      "level": 1,
+      "value": {
+        "id": "transform_boss_1",
+        "name_pl": "Szczur",
+        "name_en": "Rat",
+        "level": 1,
+        "hp": 125,
+        "attack": 9,
+        "attack_min": 7,
+        "attack_max": 10,
+        "defense": 0,
+        "speed": 2,
+        "xp": 17,
+        "gold": [
+          10,
+          20
+        ],
+        "dropTable": [],
+        "sprite": "rat"
+      }
+    },
+    {
+      "level": 2,
+      "value": {
+        "id": "transform_boss_2",
+        "name_pl": "Pająk Jaskiniowy",
+        "name_en": "Cave Spider",
+        "level": 2,
+        "hp": 233,
+        "attack": 10,
+        "attack_min": 8,
+        "attack_max": 12,
+        "defense": 0,
+        "speed": 2,
+        "xp": 35,
+        "gold": [
+          20,
+          40
+        ],
+        "dropTable": [],
+        "sprite": "spider"
+      }
+    },
+    {
+      "level": 15,
+      "value": {
+        "id": "transform_boss_15",
+        "name_pl": "Cyklop",
+        "name_en": "Cyclops",
+        "level": 15,
+        "hp": 1898,
+        "attack": 23,
+        "attack_min": 18,
+        "attack_max": 27,
+        "defense": 6,
+        "speed": 2,
+        "xp": 341,
+        "gold": [
+          150,
+          300
+        ],
+        "dropTable": [],
+        "sprite": "eye"
+      }
+    },
+    {
+      "level": 30,
+      "value": {
+        "id": "transform_boss_30",
+        "name_pl": "Diabelski Chochlik",
+        "name_en": "Demon Imp",
+        "level": 30,
+        "hp": 4034,
+        "attack": 38,
+        "attack_min": 30,
+        "attack_max": 45,
+        "defense": 12,
+        "speed": 2,
+        "xp": 778,
+        "gold": [
+          300,
+          600
+        ],
+        "dropTable": [],
+        "sprite": "smiling-face-with-horns"
+      }
+    },
+    {
+      "level": 31,
+      "value": {
+        "id": "transform_boss_31",
+        "name_pl": "Wojownik Gnoll",
+        "name_en": "Gnoll Warrior",
+        "level": 31,
+        "hp": 4181,
+        "attack": 39,
+        "attack_min": 31,
+        "attack_max": 46,
+        "defense": 12,
+        "speed": 2,
+        "xp": 810,
+        "gold": [
+          310,
+          620
+        ],
+        "dropTable": [],
+        "sprite": "dog"
+      }
+    },
+    {
+      "level": 40,
+      "value": {
+        "id": "transform_boss_40",
+        "name_pl": "Troll Bagienny",
+        "name_en": "Swamp Troll",
+        "level": 40,
+        "hp": 5525,
+        "attack": 48,
+        "attack_min": 38,
+        "attack_max": 57,
+        "defense": 16,
+        "speed": 2,
+        "xp": 1105,
+        "gold": [
+          400,
+          800
+        ],
+        "dropTable": [],
+        "sprite": "frog"
+      }
+    },
+    {
+      "level": 50,
+      "value": {
+        "id": "transform_boss_50",
+        "name_pl": "Wielki Demon",
+        "name_en": "Greater Demon",
+        "level": 50,
+        "hp": 7054,
+        "attack": 58,
+        "attack_min": 46,
+        "attack_max": 69,
+        "defense": 20,
+        "speed": 2,
+        "xp": 1457,
+        "gold": [
+          500,
+          1000
+        ],
+        "dropTable": [],
+        "sprite": "angry-face-with-horns"
+      }
+    },
+    {
+      "level": 51,
+      "value": {
+        "id": "transform_boss_51",
+        "name_pl": "Wielki Demon",
+        "name_en": "Greater Demon",
+        "level": 51,
+        "hp": 7208,
+        "attack": 59,
+        "attack_min": 47,
+        "attack_max": 70,
+        "defense": 20,
+        "speed": 2,
+        "xp": 1493,
+        "gold": [
+          510,
+          1020
+        ],
+        "dropTable": [],
+        "sprite": "angry-face-with-horns"
+      }
+    },
+    {
+      "level": 60,
+      "value": {
+        "id": "transform_boss_60",
+        "name_pl": "Tytan Lawy",
+        "name_en": "Lava Titan",
+        "level": 60,
+        "hp": 8614,
+        "attack": 68,
+        "attack_min": 54,
+        "attack_max": 81,
+        "defense": 24,
+        "speed": 2,
+        "xp": 1829,
+        "gold": [
+          600,
+          1200
+        ],
+        "dropTable": [],
+        "sprite": "volcano"
+      }
+    },
+    {
+      "level": 100,
+      "value": {
+        "id": "transform_boss_100",
+        "name_pl": "Piekielny Wódz",
+        "name_en": "Infernal Warlord",
+        "level": 100,
+        "hp": 15086,
+        "attack": 108,
+        "attack_min": 86,
+        "attack_max": 129,
+        "defense": 40,
+        "speed": 2,
+        "xp": 3500,
+        "gold": [
+          1000,
+          2000
+        ],
+        "dropTable": [],
+        "sprite": "trident-emblem"
+      }
+    },
+    {
+      "level": 101,
+      "value": {
+        "id": "transform_boss_101",
+        "name_pl": "Piekielny Wódz",
+        "name_en": "Infernal Warlord",
+        "level": 101,
+        "hp": 15252,
+        "attack": 109,
+        "attack_min": 87,
+        "attack_max": 130,
+        "defense": 40,
+        "speed": 2,
+        "xp": 3545,
+        "gold": [
+          1010,
+          2020
+        ],
+        "dropTable": [],
+        "sprite": "trident-emblem"
+      }
+    },
+    {
+      "level": 125,
+      "value": {
+        "id": "transform_boss_125",
+        "name_pl": "Smoczy Cień",
+        "name_en": "Shadow Dragon",
+        "level": 125,
+        "hp": 19275,
+        "attack": 133,
+        "attack_min": 106,
+        "attack_max": 159,
+        "defense": 50,
+        "speed": 2,
+        "xp": 4670,
+        "gold": [
+          1250,
+          2500
+        ],
+        "dropTable": [],
+        "sprite": "dragon"
+      }
+    },
+    {
+      "level": 150,
+      "value": {
+        "id": "transform_boss_150",
+        "name_pl": "Starszy Wampir",
+        "name_en": "Elder Vampire",
+        "level": 150,
+        "hp": 23549,
+        "attack": 158,
+        "attack_min": 126,
+        "attack_max": 189,
+        "defense": 60,
+        "speed": 2,
+        "xp": 5924,
+        "gold": [
+          1500,
+          3000
+        ],
+        "dropTable": [],
+        "sprite": "vampire"
+      }
+    },
+    {
+      "level": 151,
+      "value": {
+        "id": "transform_boss_151",
+        "name_pl": "Starszy Wampir",
+        "name_en": "Elder Vampire",
+        "level": 151,
+        "hp": 23721,
+        "attack": 159,
+        "attack_min": 127,
+        "attack_max": 190,
+        "defense": 60,
+        "speed": 2,
+        "xp": 5976,
+        "gold": [
+          1510,
+          3020
+        ],
+        "dropTable": [],
+        "sprite": "vampire"
+      }
+    },
+    {
+      "level": 200,
+      "value": {
+        "id": "transform_boss_200",
+        "name_pl": "Tytan Chaosu",
+        "name_en": "Chaos Titan",
+        "level": 200,
+        "hp": 32304,
+        "attack": 208,
+        "attack_min": 166,
+        "attack_max": 249,
+        "defense": 80,
+        "speed": 2,
+        "xp": 8656,
+        "gold": [
+          2000,
+          4000
+        ],
+        "dropTable": [],
+        "sprite": "tornado"
+      }
+    },
+    {
+      "level": 201,
+      "value": {
+        "id": "transform_boss_201",
+        "name_pl": "Tytan Chaosu",
+        "name_en": "Chaos Titan",
+        "level": 201,
+        "hp": 32481,
+        "attack": 209,
+        "attack_min": 167,
+        "attack_max": 250,
+        "defense": 80,
+        "speed": 2,
+        "xp": 8714,
+        "gold": [
+          2010,
+          4020
+        ],
+        "dropTable": [],
+        "sprite": "tornado"
+      }
+    },
+    {
+      "level": 250,
+      "value": {
+        "id": "transform_boss_250",
+        "name_pl": "Prawieczny Wąż",
+        "name_en": "Primordial Serpent",
+        "level": 250,
+        "hp": 41283,
+        "attack": 258,
+        "attack_min": 206,
+        "attack_max": 309,
+        "defense": 100,
+        "speed": 2,
+        "xp": 11655,
+        "gold": [
+          2500,
+          5000
+        ],
+        "dropTable": [],
+        "sprite": "snake"
+      }
+    },
+    {
+      "level": 300,
+      "value": {
+        "id": "transform_boss_300",
+        "name_pl": "Rycerz Śmierci",
+        "name_en": "Death Knight",
+        "level": 300,
+        "hp": 50444,
+        "attack": 308,
+        "attack_min": 246,
+        "attack_max": 369,
+        "defense": 120,
+        "speed": 2,
+        "xp": 14892,
+        "gold": [
+          3000,
+          6000
+        ],
+        "dropTable": [],
+        "sprite": "coffin"
+      }
+    },
+    {
+      "level": 301,
+      "value": {
+        "id": "transform_boss_301",
+        "name_pl": "Rycerz Śmierci",
+        "name_en": "Death Knight",
+        "level": 301,
+        "hp": 50629,
+        "attack": 309,
+        "attack_min": 247,
+        "attack_max": 370,
+        "defense": 120,
+        "speed": 2,
+        "xp": 14959,
+        "gold": [
+          3010,
+          6020
+        ],
+        "dropTable": [],
+        "sprite": "coffin"
+      }
+    },
+    {
+      "level": 400,
+      "value": {
+        "id": "transform_boss_400",
+        "name_pl": "Pan Otchłani",
+        "name_en": "Abyss Lord",
+        "level": 400,
+        "hp": 69211,
+        "attack": 408,
+        "attack_min": 326,
+        "attack_max": 489,
+        "defense": 160,
+        "speed": 2,
+        "xp": 22000,
+        "gold": [
+          4000,
+          8000
+        ],
+        "dropTable": [],
+        "sprite": "crystal-ball"
+      }
+    },
+    {
+      "level": 500,
+      "value": {
+        "id": "transform_boss_500",
+        "name_pl": "Niebiański Niszczyciel",
+        "name_en": "Celestial Destroyer",
+        "level": 500,
+        "hp": 88458,
+        "attack": 508,
+        "attack_min": 406,
+        "attack_max": 609,
+        "defense": 200,
+        "speed": 2,
+        "xp": 29860,
+        "gold": [
+          5000,
+          10000
+        ],
+        "dropTable": [],
+        "sprite": "star"
+      }
+    },
+    {
+      "level": 501,
+      "value": {
+        "id": "transform_boss_501",
+        "name_pl": "Niebiański Niszczyciel",
+        "name_en": "Celestial Destroyer",
+        "level": 501,
+        "hp": 88652,
+        "attack": 509,
+        "attack_min": 407,
+        "attack_max": 610,
+        "defense": 200,
+        "speed": 2,
+        "xp": 29942,
+        "gold": [
+          5010,
+          10020
+        ],
+        "dropTable": [],
+        "sprite": "star"
+      }
+    },
+    {
+      "level": 700,
+      "value": {
+        "id": "transform_boss_700",
+        "name_pl": "Pożeracz Czasu",
+        "name_en": "Time Devourer",
+        "level": 700,
+        "hp": 128065,
+        "attack": 708,
+        "attack_min": 566,
+        "attack_max": 849,
+        "defense": 280,
+        "speed": 2,
+        "xp": 47540,
+        "gold": [
+          7000,
+          14000
+        ],
+        "dropTable": [],
+        "sprite": "hourglass-not-done"
+      }
+    },
+    {
+      "level": 701,
+      "value": {
+        "id": "transform_boss_701",
+        "name_pl": "Pożeracz Czasu",
+        "name_en": "Time Devourer",
+        "level": 701,
+        "hp": 128267,
+        "attack": 709,
+        "attack_min": 567,
+        "attack_max": 850,
+        "defense": 280,
+        "speed": 2,
+        "xp": 47634,
+        "gold": [
+          7010,
+          14020
+        ],
+        "dropTable": [],
+        "sprite": "hourglass-not-done"
+      }
+    },
+    {
+      "level": 800,
+      "value": {
+        "id": "transform_boss_800",
+        "name_pl": "Potomek Starożytnego Boga",
+        "name_en": "Ancient God Spawn",
+        "level": 800,
+        "hp": 148323,
+        "attack": 808,
+        "attack_min": 646,
+        "attack_max": 969,
+        "defense": 320,
+        "speed": 2,
+        "xp": 57254,
+        "gold": [
+          8000,
+          16000
+        ],
+        "dropTable": [],
+        "sprite": "glowing-star"
+      }
+    },
+    {
+      "level": 801,
+      "value": {
+        "id": "transform_boss_801",
+        "name_pl": "Potomek Starożytnego Boga",
+        "name_en": "Ancient God Spawn",
+        "level": 801,
+        "hp": 148527,
+        "attack": 809,
+        "attack_min": 647,
+        "attack_max": 970,
+        "defense": 320,
+        "speed": 2,
+        "xp": 57354,
+        "gold": [
+          8010,
+          16020
+        ],
+        "dropTable": [],
+        "sprite": "glowing-star"
+      }
+    },
+    {
+      "level": 900,
+      "value": {
+        "id": "transform_boss_900",
+        "name_pl": "Wcielenie Śmierci",
+        "name_en": "Death Incarnate",
+        "level": 900,
+        "hp": 168836,
+        "attack": 908,
+        "attack_min": 726,
+        "attack_max": 1089,
+        "defense": 360,
+        "speed": 2,
+        "xp": 67500,
+        "gold": [
+          9000,
+          18000
+        ],
+        "dropTable": [],
+        "sprite": "skull-and-crossbones"
+      }
+    },
+    {
+      "level": 901,
+      "value": {
+        "id": "transform_boss_901",
+        "name_pl": "Wcielenie Śmierci",
+        "name_en": "Death Incarnate",
+        "level": 901,
+        "hp": 591651,
+        "attack": 909,
+        "attack_min": 727,
+        "attack_max": 1090,
+        "defense": 360,
+        "speed": 2,
+        "xp": 67605,
+        "gold": [
+          9010,
+          18020
+        ],
+        "dropTable": [],
+        "sprite": "skull-and-crossbones"
+      }
+    },
+    {
+      "level": 950,
+      "value": {
+        "id": "transform_boss_950",
+        "name_pl": "Zwiastun Apokalipsy",
+        "name_en": "Apocalypse Herald",
+        "level": 950,
+        "hp": 627133,
+        "attack": 958,
+        "attack_min": 766,
+        "attack_max": 1149,
+        "defense": 380,
+        "speed": 2,
+        "xp": 72811,
+        "gold": [
+          9500,
+          19000
+        ],
+        "dropTable": [],
+        "sprite": "shooting-star"
+      }
+    },
+    {
+      "level": 1000,
+      "value": {
+        "id": "transform_boss_1000",
+        "name_pl": "Koniec Świata",
+        "name_en": "World Ender",
+        "level": 1000,
+        "hp": 663529,
+        "attack": 1008,
+        "attack_min": 806,
+        "attack_max": 1209,
+        "defense": 400,
+        "speed": 2,
+        "xp": 78245,
+        "gold": [
+          10000,
+          20000
+        ],
+        "dropTable": [],
+        "sprite": "new-moon"
+      }
+    }
+  ],
+  "getTransformBonuses": [
+    {
+      "cls": "Knight",
+      "id": 0,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 1,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 420,
+        "flatMp": 70,
+        "attack": 9,
+        "defense": 16,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 6,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 1050,
+        "flatMp": 175,
+        "attack": 22,
+        "defense": 40,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.3,
+        "mpRegenFlat": 0.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 11,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 1680,
+        "flatMp": 280,
+        "attack": 36,
+        "defense": 64,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "id": 12,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 0,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 1,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 150,
+        "flatMp": 400,
+        "attack": 13,
+        "defense": 3,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.2,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 6,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 375,
+        "flatMp": 1000,
+        "attack": 32,
+        "defense": 7,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 1.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 11,
+      "value": {
+        "dmgPercent": 8,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 600,
+        "flatMp": 1600,
+        "attack": 52,
+        "defense": 12,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "id": 12,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 0,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 1,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 220,
+        "flatMp": 380,
+        "attack": 10,
+        "defense": 10,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 6,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 550,
+        "flatMp": 950,
+        "attack": 25,
+        "defense": 25,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.3,
+        "mpRegenFlat": 1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 11,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 880,
+        "flatMp": 1520,
+        "attack": 40,
+        "defense": 40,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 1.6,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "id": 12,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 0,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 1,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 220,
+        "flatMp": 150,
+        "attack": 0,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 6,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 550,
+        "flatMp": 375,
+        "attack": 0,
+        "defense": 12,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 11,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 7,
+        "flatHp": 880,
+        "flatMp": 600,
+        "attack": 0,
+        "defense": 20,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "id": 12,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 0,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 1,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 190,
+        "flatMp": 150,
+        "attack": 15,
+        "defense": 4,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 6,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 475,
+        "flatMp": 375,
+        "attack": 37,
+        "defense": 10,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 11,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 760,
+        "flatMp": 600,
+        "attack": 60,
+        "defense": 16,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "id": 12,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 0,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 1,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 180,
+        "flatMp": 380,
+        "attack": 12,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 6,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 450,
+        "flatMp": 950,
+        "attack": 30,
+        "defense": 12,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.6,
+        "mpRegenFlat": 1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 11,
+      "value": {
+        "dmgPercent": 7,
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "atkPercent": 0,
+        "flatHp": 720,
+        "flatMp": 1520,
+        "attack": 48,
+        "defense": 20,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 1.6,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "id": 12,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 0,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 1,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 230,
+        "flatMp": 260,
+        "attack": 10,
+        "defense": 9,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.4,
+        "mpRegenFlat": 0.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 6,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 575,
+        "flatMp": 650,
+        "attack": 25,
+        "defense": 22,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 11,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 920,
+        "flatMp": 1040,
+        "attack": 40,
+        "defense": 36,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 1.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "id": 12,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    }
+  ],
+  "getTransformBonusesNoClass": [
+    {
+      "id": 1,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "id": 6,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "id": 12,
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    }
+  ],
+  "getCumulativeTransformBonuses": [
+    {
+      "cls": "Knight",
+      "ids": [],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "dmgPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 420,
+        "flatMp": 70,
+        "attack": 9,
+        "defense": 16,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hpPercent": 12,
+        "mpPercent": 3,
+        "defPercent": 9,
+        "dmgPercent": 9,
+        "atkPercent": 0,
+        "flatHp": 1638,
+        "flatMp": 273,
+        "attack": 34,
+        "defense": 61,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hpPercent": 16,
+        "mpPercent": 4,
+        "defPercent": 12,
+        "dmgPercent": 12,
+        "atkPercent": 0,
+        "flatHp": 3318,
+        "flatMp": 553,
+        "attack": 70,
+        "defense": 125,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 4,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        5,
+        5
+      ],
+      "value": {
+        "hpPercent": 8,
+        "mpPercent": 2,
+        "defPercent": 6,
+        "dmgPercent": 6,
+        "atkPercent": 0,
+        "flatHp": 1848,
+        "flatMp": 308,
+        "attack": 38,
+        "defense": 70,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2.2,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1,
+        99,
+        3
+      ],
+      "value": {
+        "hpPercent": 8,
+        "mpPercent": 2,
+        "defPercent": 6,
+        "dmgPercent": 6,
+        "atkPercent": 0,
+        "flatHp": 1092,
+        "flatMp": 182,
+        "attack": 23,
+        "defense": 41,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.3,
+        "mpRegenFlat": 0.30000000000000004,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        11
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "dmgPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 1680,
+        "flatMp": 280,
+        "attack": 36,
+        "defense": 64,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1
+      ],
+      "value": {
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "dmgPercent": 8,
+        "atkPercent": 0,
+        "flatHp": 150,
+        "flatMp": 400,
+        "attack": 13,
+        "defense": 3,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.2,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hpPercent": 6,
+        "mpPercent": 9,
+        "defPercent": 3,
+        "dmgPercent": 24,
+        "atkPercent": 0,
+        "flatHp": 585,
+        "flatMp": 1560,
+        "attack": 49,
+        "defense": 10,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hpPercent": 8,
+        "mpPercent": 12,
+        "defPercent": 4,
+        "dmgPercent": 32,
+        "atkPercent": 0,
+        "flatHp": 1185,
+        "flatMp": 3160,
+        "attack": 101,
+        "defense": 22,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        5,
+        5
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 6,
+        "defPercent": 2,
+        "dmgPercent": 16,
+        "atkPercent": 0,
+        "flatHp": 660,
+        "flatMp": 1760,
+        "attack": 56,
+        "defense": 12,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        99,
+        3
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 6,
+        "defPercent": 2,
+        "dmgPercent": 16,
+        "atkPercent": 0,
+        "flatHp": 390,
+        "flatMp": 1040,
+        "attack": 33,
+        "defense": 7,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 1.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        11
+      ],
+      "value": {
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "dmgPercent": 8,
+        "atkPercent": 0,
+        "flatHp": 600,
+        "flatMp": 1600,
+        "attack": 52,
+        "defense": 12,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        1
+      ],
+      "value": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "dmgPercent": 5,
+        "atkPercent": 0,
+        "flatHp": 220,
+        "flatMp": 380,
+        "attack": 10,
+        "defense": 10,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hpPercent": 9,
+        "mpPercent": 9,
+        "defPercent": 6,
+        "dmgPercent": 15,
+        "atkPercent": 0,
+        "flatHp": 858,
+        "flatMp": 1482,
+        "attack": 39,
+        "defense": 39,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 1.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hpPercent": 12,
+        "mpPercent": 12,
+        "defPercent": 8,
+        "dmgPercent": 20,
+        "atkPercent": 0,
+        "flatHp": 1738,
+        "flatMp": 3002,
+        "attack": 79,
+        "defense": 79,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 4,
+        "mpRegenFlat": 3.1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        5,
+        5
+      ],
+      "value": {
+        "hpPercent": 6,
+        "mpPercent": 6,
+        "defPercent": 4,
+        "dmgPercent": 10,
+        "atkPercent": 0,
+        "flatHp": 968,
+        "flatMp": 1672,
+        "attack": 44,
+        "defense": 44,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2.2,
+        "mpRegenFlat": 1.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        1,
+        99,
+        3
+      ],
+      "value": {
+        "hpPercent": 6,
+        "mpPercent": 6,
+        "defPercent": 4,
+        "dmgPercent": 10,
+        "atkPercent": 0,
+        "flatHp": 572,
+        "flatMp": 988,
+        "attack": 26,
+        "defense": 26,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.3,
+        "mpRegenFlat": 1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        11
+      ],
+      "value": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "dmgPercent": 5,
+        "atkPercent": 0,
+        "flatHp": 880,
+        "flatMp": 1520,
+        "attack": 40,
+        "defense": 40,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 1.6,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1
+      ],
+      "value": {
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "dmgPercent": 7,
+        "atkPercent": 7,
+        "flatHp": 220,
+        "flatMp": 150,
+        "attack": 0,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hpPercent": 6,
+        "mpPercent": 3,
+        "defPercent": 3,
+        "dmgPercent": 21,
+        "atkPercent": 21,
+        "flatHp": 858,
+        "flatMp": 585,
+        "attack": 0,
+        "defense": 19,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hpPercent": 8,
+        "mpPercent": 4,
+        "defPercent": 4,
+        "dmgPercent": 28,
+        "atkPercent": 28,
+        "flatHp": 1738,
+        "flatMp": 1185,
+        "attack": 0,
+        "defense": 39,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2.4,
+        "mpRegenFlat": 1.6,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        5,
+        5
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 2,
+        "defPercent": 2,
+        "dmgPercent": 14,
+        "atkPercent": 14,
+        "flatHp": 968,
+        "flatMp": 660,
+        "attack": 0,
+        "defense": 22,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.4,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        99,
+        3
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 2,
+        "defPercent": 2,
+        "dmgPercent": 14,
+        "atkPercent": 14,
+        "flatHp": 572,
+        "flatMp": 390,
+        "attack": 0,
+        "defense": 13,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        11
+      ],
+      "value": {
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "dmgPercent": 7,
+        "atkPercent": 7,
+        "flatHp": 880,
+        "flatMp": 600,
+        "attack": 0,
+        "defense": 20,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1
+      ],
+      "value": {
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "dmgPercent": 7,
+        "atkPercent": 0,
+        "flatHp": 190,
+        "flatMp": 150,
+        "attack": 15,
+        "defense": 4,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hpPercent": 6,
+        "mpPercent": 3,
+        "defPercent": 3,
+        "dmgPercent": 21,
+        "atkPercent": 0,
+        "flatHp": 741,
+        "flatMp": 585,
+        "attack": 58,
+        "defense": 15,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hpPercent": 8,
+        "mpPercent": 4,
+        "defPercent": 4,
+        "dmgPercent": 28,
+        "atkPercent": 0,
+        "flatHp": 1501,
+        "flatMp": 1185,
+        "attack": 118,
+        "defense": 31,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2.4,
+        "mpRegenFlat": 1.6,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        5,
+        5
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 2,
+        "defPercent": 2,
+        "dmgPercent": 14,
+        "atkPercent": 0,
+        "flatHp": 836,
+        "flatMp": 660,
+        "attack": 66,
+        "defense": 16,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.4,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        99,
+        3
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 2,
+        "defPercent": 2,
+        "dmgPercent": 14,
+        "atkPercent": 0,
+        "flatHp": 494,
+        "flatMp": 390,
+        "attack": 39,
+        "defense": 10,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 0.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        11
+      ],
+      "value": {
+        "hpPercent": 2,
+        "mpPercent": 1,
+        "defPercent": 1,
+        "dmgPercent": 7,
+        "atkPercent": 0,
+        "flatHp": 760,
+        "flatMp": 600,
+        "attack": 60,
+        "defense": 16,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        1
+      ],
+      "value": {
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "dmgPercent": 7,
+        "atkPercent": 0,
+        "flatHp": 180,
+        "flatMp": 380,
+        "attack": 12,
+        "defense": 5,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.3,
+        "mpRegenFlat": 0.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hpPercent": 6,
+        "mpPercent": 9,
+        "defPercent": 3,
+        "dmgPercent": 21,
+        "atkPercent": 0,
+        "flatHp": 702,
+        "flatMp": 1482,
+        "attack": 46,
+        "defense": 19,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 1.5,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hpPercent": 8,
+        "mpPercent": 12,
+        "defPercent": 4,
+        "dmgPercent": 28,
+        "atkPercent": 0,
+        "flatHp": 1422,
+        "flatMp": 3002,
+        "attack": 94,
+        "defense": 39,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 2,
+        "mpRegenFlat": 3.1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        5,
+        5
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 6,
+        "defPercent": 2,
+        "dmgPercent": 14,
+        "atkPercent": 0,
+        "flatHp": 792,
+        "flatMp": 1672,
+        "attack": 52,
+        "defense": 22,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.2,
+        "mpRegenFlat": 1.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        1,
+        99,
+        3
+      ],
+      "value": {
+        "hpPercent": 4,
+        "mpPercent": 6,
+        "defPercent": 2,
+        "dmgPercent": 14,
+        "atkPercent": 0,
+        "flatHp": 468,
+        "flatMp": 988,
+        "attack": 31,
+        "defense": 13,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.7,
+        "mpRegenFlat": 1,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        11
+      ],
+      "value": {
+        "hpPercent": 2,
+        "mpPercent": 3,
+        "defPercent": 1,
+        "dmgPercent": 7,
+        "atkPercent": 0,
+        "flatHp": 720,
+        "flatMp": 1520,
+        "attack": 48,
+        "defense": 20,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 1.6,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        1
+      ],
+      "value": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "dmgPercent": 5,
+        "atkPercent": 0,
+        "flatHp": 230,
+        "flatMp": 260,
+        "attack": 10,
+        "defense": 9,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0.4,
+        "mpRegenFlat": 0.3,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hpPercent": 9,
+        "mpPercent": 9,
+        "defPercent": 6,
+        "dmgPercent": 15,
+        "atkPercent": 0,
+        "flatHp": 897,
+        "flatMp": 1014,
+        "attack": 39,
+        "defense": 34,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.5,
+        "mpRegenFlat": 1.2,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hpPercent": 12,
+        "mpPercent": 12,
+        "defPercent": 8,
+        "dmgPercent": 20,
+        "atkPercent": 0,
+        "flatHp": 1817,
+        "flatMp": 2054,
+        "attack": 79,
+        "defense": 70,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 3.1,
+        "mpRegenFlat": 2.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        5,
+        5
+      ],
+      "value": {
+        "hpPercent": 6,
+        "mpPercent": 6,
+        "defPercent": 4,
+        "dmgPercent": 10,
+        "atkPercent": 0,
+        "flatHp": 1012,
+        "flatMp": 1144,
+        "attack": 44,
+        "defense": 38,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.8,
+        "mpRegenFlat": 1.4,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        1,
+        99,
+        3
+      ],
+      "value": {
+        "hpPercent": 6,
+        "mpPercent": 6,
+        "defPercent": 4,
+        "dmgPercent": 10,
+        "atkPercent": 0,
+        "flatHp": 598,
+        "flatMp": 676,
+        "attack": 26,
+        "defense": 23,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 0.8,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        11
+      ],
+      "value": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "dmgPercent": 5,
+        "atkPercent": 0,
+        "flatHp": 920,
+        "flatMp": 1040,
+        "attack": 40,
+        "defense": 36,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 1.2,
+        "classSkillBonus": 0
+      }
+    }
+  ],
+  "getCumulativeTransformBonusesNoClass": [
+    {
+      "ids": [],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "ids": [
+        1
+      ],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "ids": [
+        5,
+        5
+      ],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "ids": [
+        1,
+        99,
+        3
+      ],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    },
+    {
+      "ids": [
+        11
+      ],
+      "value": {
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "dmgPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "attack": 0,
+        "defense": 0,
+        "hpRegen": 0,
+        "mpRegen": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "classSkillBonus": 0
+      }
+    }
+  ],
+  "isLevelSufficient": [
+    {
+      "level": 1,
+      "id": 1,
+      "value": false
+    },
+    {
+      "level": 29,
+      "id": 1,
+      "value": false
+    },
+    {
+      "level": 30,
+      "id": 1,
+      "value": true
+    },
+    {
+      "level": 50,
+      "id": 2,
+      "value": true
+    },
+    {
+      "level": 49,
+      "id": 2,
+      "value": false
+    },
+    {
+      "level": 100,
+      "id": 3,
+      "value": true
+    },
+    {
+      "level": 999,
+      "id": 11,
+      "value": false
+    },
+    {
+      "level": 1000,
+      "id": 11,
+      "value": true
+    },
+    {
+      "level": 1000,
+      "id": 12,
+      "value": false
+    }
+  ],
+  "getNextAvailableTransform": [
+    {
+      "ids": [],
+      "level": 1,
+      "value": null
+    },
+    {
+      "ids": [],
+      "level": 29,
+      "value": null
+    },
+    {
+      "ids": [],
+      "level": 30,
+      "value": {
+        "id": 1,
+        "level": 30,
+        "name_pl": "Transformacja I",
+        "name_en": "Transform I",
+        "color": "#e53935",
+        "gradientColors": null,
+        "monsterLevelRange": [
+          1,
+          30
+        ],
+        "avatarSuffix": "-1",
+        "rewards": {
+          "permanentBonuses": {
+            "hpPercent": 3,
+            "mpPercent": 3,
+            "hpRegen": 0.05,
+            "mpRegen": 0.05,
+            "attack": 2,
+            "defense": 2,
+            "classSkillBonus": 1
+          },
+          "premiumXpElixirCount": 5,
+          "hpPotionId": "hp_potion_sm",
+          "hpPotionCount": 50,
+          "mpPotionId": "mp_potion_sm",
+          "mpPotionCount": 50,
+          "spellChestLevel": 30,
+          "spellChestCount": 1,
+          "mythicStoneCount": 1
+        }
+      }
+    },
+    {
+      "ids": [
+        1
+      ],
+      "level": 49,
+      "value": null
+    },
+    {
+      "ids": [
+        1
+      ],
+      "level": 50,
+      "value": {
+        "id": 2,
+        "level": 50,
+        "name_pl": "Transformacja II",
+        "name_en": "Transform II",
+        "color": "#ff9800",
+        "gradientColors": null,
+        "monsterLevelRange": [
+          31,
+          50
+        ],
+        "avatarSuffix": "-2",
+        "rewards": {
+          "permanentBonuses": {
+            "hpPercent": 3,
+            "mpPercent": 3,
+            "hpRegen": 0.05,
+            "mpRegen": 0.05,
+            "attack": 2,
+            "defense": 2,
+            "classSkillBonus": 1
+          },
+          "premiumXpElixirCount": 5,
+          "hpPotionId": "hp_potion_sm",
+          "hpPotionCount": 100,
+          "mpPotionId": "mp_potion_sm",
+          "mpPotionCount": 100,
+          "spellChestLevel": 50,
+          "spellChestCount": 1,
+          "mythicStoneCount": 1
+        }
+      }
+    },
+    {
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "level": 150,
+      "value": {
+        "id": 4,
+        "level": 150,
+        "name_pl": "Transformacja IV",
+        "name_en": "Transform IV",
+        "color": "#8bc34a",
+        "gradientColors": null,
+        "monsterLevelRange": [
+          101,
+          150
+        ],
+        "avatarSuffix": "-4",
+        "rewards": {
+          "permanentBonuses": {
+            "hpPercent": 3,
+            "mpPercent": 3,
+            "hpRegen": 0.05,
+            "mpRegen": 0.05,
+            "attack": 2,
+            "defense": 2,
+            "classSkillBonus": 1
+          },
+          "premiumXpElixirCount": 5,
+          "hpPotionId": "hp_potion_md",
+          "hpPotionCount": 200,
+          "mpPotionId": "mp_potion_md",
+          "mpPotionCount": 200,
+          "spellChestLevel": 150,
+          "spellChestCount": 1,
+          "mythicStoneCount": 1
+        }
+      }
+    },
+    {
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "level": 1000,
+      "value": {
+        "id": 11,
+        "level": 1000,
+        "name_pl": "Transformacja XI",
+        "name_en": "Transform XI",
+        "color": null,
+        "gradientColors": [
+          "#212121",
+          "#ffc107"
+        ],
+        "monsterLevelRange": [
+          901,
+          1000
+        ],
+        "avatarSuffix": "-11",
+        "rewards": {
+          "permanentBonuses": {
+            "hpPercent": 3,
+            "mpPercent": 3,
+            "hpRegen": 0.05,
+            "mpRegen": 0.05,
+            "attack": 2,
+            "defense": 2,
+            "classSkillBonus": 1
+          },
+          "premiumXpElixirCount": 5,
+          "hpPotionId": "hp_potion_divine",
+          "hpPotionCount": 500,
+          "mpPotionId": "mp_potion_divine",
+          "mpPotionCount": 500,
+          "spellChestLevel": 1000,
+          "spellChestCount": 1,
+          "mythicStoneCount": 1
+        }
+      }
+    },
+    {
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "level": 1000,
+      "value": null
+    }
+  ],
+  "getActiveAvatar": [
+    {
+      "cls": "Knight",
+      "ids": [],
+      "value": null
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1
+      ],
+      "value": "knight-1.png"
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": "knight-3.png"
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        10,
+        11
+      ],
+      "value": "knight-11.png"
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        99
+      ],
+      "value": null
+    },
+    {
+      "cls": "Mage",
+      "ids": [],
+      "value": null
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1
+      ],
+      "value": "mage-1.png"
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": "mage-3.png"
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        10,
+        11
+      ],
+      "value": "mage-11.png"
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        99
+      ],
+      "value": null
+    },
+    {
+      "cls": "Cleric",
+      "ids": [],
+      "value": null
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        1
+      ],
+      "value": "cleric-1.png"
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": "cleric-3.png"
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        10,
+        11
+      ],
+      "value": "cleric-11.png"
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        99
+      ],
+      "value": null
+    },
+    {
+      "cls": "Archer",
+      "ids": [],
+      "value": null
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1
+      ],
+      "value": "archer-1.png"
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": "archer-3.png"
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        10,
+        11
+      ],
+      "value": "archer-11.png"
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        99
+      ],
+      "value": null
+    },
+    {
+      "cls": "Rogue",
+      "ids": [],
+      "value": null
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1
+      ],
+      "value": "rogue-1.png"
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": "rogue-3.png"
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        10,
+        11
+      ],
+      "value": "rogue-11.png"
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        99
+      ],
+      "value": null
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [],
+      "value": null
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        1
+      ],
+      "value": "necromancer-1.png"
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": "necromancer-3.png"
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        10,
+        11
+      ],
+      "value": "necromancer-11.png"
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        99
+      ],
+      "value": null
+    },
+    {
+      "cls": "Bard",
+      "ids": [],
+      "value": null
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        1
+      ],
+      "value": "bard-1.png"
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": "bard-3.png"
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        10,
+        11
+      ],
+      "value": "bard-11.png"
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        99
+      ],
+      "value": null
+    }
+  ],
+  "calculateTransformRewardsDeterministic": [
+    {
+      "id": 1,
+      "cls": "Knight",
+      "value": {
+        "consumables": [
+          {
+            "id": "premium_xp_elixir",
+            "count": 5
+          },
+          {
+            "id": "hp_potion_sm",
+            "count": 50
+          },
+          {
+            "id": "mp_potion_sm",
+            "count": 50
+          },
+          {
+            "id": "spell_chest_30",
+            "count": 1
+          },
+          {
+            "id": "mythic_stone",
+            "count": 1
+          }
+        ],
+        "permanentBonuses": {
+          "dmgPercent": 3,
+          "hpPercent": 4,
+          "mpPercent": 1,
+          "defPercent": 3,
+          "atkPercent": 0,
+          "flatHp": 420,
+          "flatMp": 70,
+          "attack": 9,
+          "defense": 16,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 0.5,
+          "mpRegenFlat": 0.1,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "cls": "Mage",
+      "value": {
+        "consumables": [
+          {
+            "id": "premium_xp_elixir",
+            "count": 5
+          },
+          {
+            "id": "hp_potion_sm",
+            "count": 100
+          },
+          {
+            "id": "mp_potion_sm",
+            "count": 100
+          },
+          {
+            "id": "spell_chest_50",
+            "count": 1
+          },
+          {
+            "id": "mythic_stone",
+            "count": 1
+          }
+        ],
+        "permanentBonuses": {
+          "dmgPercent": 8,
+          "hpPercent": 2,
+          "mpPercent": 3,
+          "defPercent": 1,
+          "atkPercent": 0,
+          "flatHp": 195,
+          "flatMp": 520,
+          "attack": 16,
+          "defense": 3,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 0.3,
+          "mpRegenFlat": 0.7,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 5,
+      "cls": "Archer",
+      "value": {
+        "consumables": [
+          {
+            "id": "premium_xp_elixir",
+            "count": 5
+          },
+          {
+            "id": "hp_potion_strong",
+            "count": 200
+          },
+          {
+            "id": "mp_potion_strong",
+            "count": 200
+          },
+          {
+            "id": "spell_chest_300",
+            "count": 1
+          },
+          {
+            "id": "mythic_stone",
+            "count": 1
+          }
+        ],
+        "permanentBonuses": {
+          "dmgPercent": 7,
+          "hpPercent": 2,
+          "mpPercent": 1,
+          "defPercent": 1,
+          "atkPercent": 7,
+          "flatHp": 484,
+          "flatMp": 330,
+          "attack": 0,
+          "defense": 11,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 0.7,
+          "mpRegenFlat": 0.4,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 7,
+      "cls": "Cleric",
+      "value": {
+        "consumables": [
+          {
+            "id": "premium_xp_elixir",
+            "count": 5
+          },
+          {
+            "id": "hp_potion_great",
+            "count": 300
+          },
+          {
+            "id": "mp_potion_great",
+            "count": 300
+          },
+          {
+            "id": "spell_chest_600",
+            "count": 1
+          },
+          {
+            "id": "mythic_stone",
+            "count": 1
+          }
+        ],
+        "permanentBonuses": {
+          "dmgPercent": 5,
+          "hpPercent": 3,
+          "mpPercent": 3,
+          "defPercent": 2,
+          "atkPercent": 0,
+          "flatHp": 616,
+          "flatMp": 1064,
+          "attack": 28,
+          "defense": 28,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 1.4,
+          "mpRegenFlat": 1.1,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 8,
+      "cls": "Rogue",
+      "value": {
+        "consumables": [
+          {
+            "id": "premium_xp_elixir",
+            "count": 5
+          },
+          {
+            "id": "hp_potion_super",
+            "count": 400
+          },
+          {
+            "id": "mp_potion_super",
+            "count": 400
+          },
+          {
+            "id": "spell_chest_800",
+            "count": 1
+          },
+          {
+            "id": "mythic_stone",
+            "count": 1
+          }
+        ],
+        "permanentBonuses": {
+          "dmgPercent": 7,
+          "hpPercent": 2,
+          "mpPercent": 1,
+          "defPercent": 1,
+          "atkPercent": 0,
+          "flatHp": 589,
+          "flatMp": 465,
+          "attack": 46,
+          "defense": 12,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 0.9,
+          "mpRegenFlat": 0.6,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 10,
+      "cls": "Necromancer",
+      "value": {
+        "consumables": [
+          {
+            "id": "premium_xp_elixir",
+            "count": 5
+          },
+          {
+            "id": "hp_potion_ultimate",
+            "count": 500
+          },
+          {
+            "id": "mp_potion_ultimate",
+            "count": 500
+          },
+          {
+            "id": "spell_chest_1000",
+            "count": 1
+          },
+          {
+            "id": "mythic_stone",
+            "count": 1
+          }
+        ],
+        "permanentBonuses": {
+          "dmgPercent": 7,
+          "hpPercent": 2,
+          "mpPercent": 3,
+          "defPercent": 1,
+          "atkPercent": 0,
+          "flatHp": 666,
+          "flatMp": 1406,
+          "attack": 44,
+          "defense": 18,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 0.9,
+          "mpRegenFlat": 1.5,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 11,
+      "cls": "Bard",
+      "value": {
+        "consumables": [
+          {
+            "id": "premium_xp_elixir",
+            "count": 5
+          },
+          {
+            "id": "hp_potion_divine",
+            "count": 500
+          },
+          {
+            "id": "mp_potion_divine",
+            "count": 500
+          },
+          {
+            "id": "spell_chest_1000",
+            "count": 1
+          },
+          {
+            "id": "mythic_stone",
+            "count": 1
+          }
+        ],
+        "permanentBonuses": {
+          "dmgPercent": 5,
+          "hpPercent": 3,
+          "mpPercent": 3,
+          "defPercent": 2,
+          "atkPercent": 0,
+          "flatHp": 920,
+          "flatMp": 1040,
+          "attack": 40,
+          "defense": 36,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 1.6,
+          "mpRegenFlat": 1.2,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 3,
+      "cls": "Mage",
+      "value": {
+        "consumables": [
+          {
+            "id": "premium_xp_elixir",
+            "count": 5
+          },
+          {
+            "id": "hp_potion_md",
+            "count": 100
+          },
+          {
+            "id": "mp_potion_md",
+            "count": 100
+          },
+          {
+            "id": "spell_chest_100",
+            "count": 1
+          },
+          {
+            "id": "mythic_stone",
+            "count": 1
+          }
+        ],
+        "permanentBonuses": {
+          "dmgPercent": 8,
+          "hpPercent": 2,
+          "mpPercent": 3,
+          "defPercent": 1,
+          "atkPercent": 0,
+          "flatHp": 240,
+          "flatMp": 640,
+          "attack": 20,
+          "defense": 4,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 0.3,
+          "mpRegenFlat": 0.8,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 0,
+      "cls": "Knight",
+      "value": {
+        "consumables": [],
+        "permanentBonuses": {
+          "hpPercent": 0,
+          "mpPercent": 0,
+          "defPercent": 0,
+          "dmgPercent": 0,
+          "atkPercent": 0,
+          "flatHp": 0,
+          "flatMp": 0,
+          "attack": 0,
+          "defense": 0,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 0,
+          "mpRegenFlat": 0,
+          "classSkillBonus": 0
+        }
+      }
+    },
+    {
+      "id": 12,
+      "cls": "Mage",
+      "value": {
+        "consumables": [],
+        "permanentBonuses": {
+          "hpPercent": 0,
+          "mpPercent": 0,
+          "defPercent": 0,
+          "dmgPercent": 0,
+          "atkPercent": 0,
+          "flatHp": 0,
+          "flatMp": 0,
+          "attack": 0,
+          "defense": 0,
+          "hpRegen": 0,
+          "mpRegen": 0,
+          "hpRegenFlat": 0,
+          "mpRegenFlat": 0,
+          "classSkillBonus": 0
+        }
+      }
+    }
+  ],
+  "getTransformDmgMultiplier": [
+    {
+      "cls": null,
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": 1
+    },
+    {
+      "cls": "Knight",
+      "ids": [],
+      "value": 1
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1
+      ],
+      "value": 1.03
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": 1.24
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": 1.32
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "value": 1.77
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        3,
+        3,
+        5
+      ],
+      "value": 1.15
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        99,
+        5
+      ],
+      "value": 1.1400000000000001
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        11
+      ],
+      "value": 1.05
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        2,
+        4,
+        6
+      ],
+      "value": 1.21
+    }
+  ],
+  "transformFlatBonuses": [
+    {
+      "cls": null,
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "flatHp": 0,
+        "flatMp": 0,
+        "flatAttack": 0,
+        "flatDefense": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [],
+      "value": {
+        "flatHp": 0,
+        "flatMp": 0,
+        "flatAttack": 0,
+        "flatDefense": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1
+      ],
+      "value": {
+        "flatHp": 420,
+        "flatMp": 70,
+        "flatAttack": 9,
+        "flatDefense": 16,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.1
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "flatHp": 585,
+        "flatMp": 1560,
+        "flatAttack": 49,
+        "flatDefense": 10,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "flatHp": 1185,
+        "flatMp": 3160,
+        "flatAttack": 101,
+        "flatDefense": 22,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 4
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "value": {
+        "flatHp": 6049,
+        "flatMp": 4125,
+        "flatAttack": 0,
+        "flatDefense": 135,
+        "hpRegenFlat": 8.299999999999999,
+        "mpRegenFlat": 5.5
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        3,
+        3,
+        5
+      ],
+      "value": {
+        "flatHp": 1188,
+        "flatMp": 2052,
+        "flatAttack": 54,
+        "flatDefense": 54,
+        "hpRegenFlat": 2.7,
+        "mpRegenFlat": 2.1
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        99,
+        5
+      ],
+      "value": {
+        "flatHp": 608,
+        "flatMp": 480,
+        "flatAttack": 48,
+        "flatDefense": 12,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 0.6000000000000001
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        11
+      ],
+      "value": {
+        "flatHp": 920,
+        "flatMp": 1040,
+        "flatAttack": 40,
+        "flatDefense": 36,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 1.2
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        2,
+        4,
+        6
+      ],
+      "value": {
+        "flatHp": 1026,
+        "flatMp": 2166,
+        "flatAttack": 67,
+        "flatDefense": 27,
+        "hpRegenFlat": 1.4,
+        "mpRegenFlat": 2.3
+      }
+    }
+  ],
+  "transformPctMultipliers": [
+    {
+      "cls": null,
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hp": 1,
+        "mp": 1,
+        "def": 1,
+        "atk": 1
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [],
+      "value": {
+        "hp": 1,
+        "mp": 1,
+        "def": 1,
+        "atk": 1
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1
+      ],
+      "value": {
+        "hp": 1.04,
+        "mp": 1.01,
+        "def": 1.03,
+        "atk": 1
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "hp": 1.06,
+        "mp": 1.09,
+        "def": 1.03,
+        "atk": 1
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "hp": 1.08,
+        "mp": 1.12,
+        "def": 1.04,
+        "atk": 1
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "value": {
+        "hp": 1.22,
+        "mp": 1.11,
+        "def": 1.11,
+        "atk": 1.77
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        3,
+        3,
+        5
+      ],
+      "value": {
+        "hp": 1.09,
+        "mp": 1.09,
+        "def": 1.06,
+        "atk": 1
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        99,
+        5
+      ],
+      "value": {
+        "hp": 1.04,
+        "mp": 1.02,
+        "def": 1.02,
+        "atk": 1
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        11
+      ],
+      "value": {
+        "hp": 1.03,
+        "mp": 1.03,
+        "def": 1.02,
+        "atk": 1
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        2,
+        4,
+        6
+      ],
+      "value": {
+        "hp": 1.06,
+        "mp": 1.09,
+        "def": 1.03,
+        "atk": 1
+      }
+    }
+  ],
+  "getLiveTransformBreakdown": [
+    {
+      "cls": null,
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "dmgPercent": 0,
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "flatAttack": 0,
+        "flatDefense": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "active": false,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [],
+      "value": {
+        "dmgPercent": 0,
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "flatAttack": 0,
+        "flatDefense": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "active": false,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1
+      ],
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 420,
+        "flatMp": 70,
+        "flatAttack": 9,
+        "flatDefense": 16,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.1,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "value": {
+        "dmgPercent": 24,
+        "hpPercent": 6,
+        "mpPercent": 9,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 585,
+        "flatMp": 1560,
+        "flatAttack": 49,
+        "flatDefense": 10,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "value": {
+        "dmgPercent": 32,
+        "hpPercent": 8,
+        "mpPercent": 12,
+        "defPercent": 4,
+        "atkPercent": 0,
+        "flatHp": 1185,
+        "flatMp": 3160,
+        "flatAttack": 101,
+        "flatDefense": 22,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 4,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "value": {
+        "dmgPercent": 77,
+        "hpPercent": 22,
+        "mpPercent": 11,
+        "defPercent": 11,
+        "atkPercent": 77,
+        "flatHp": 6049,
+        "flatMp": 4125,
+        "flatAttack": 0,
+        "flatDefense": 135,
+        "hpRegenFlat": 8.299999999999999,
+        "mpRegenFlat": 5.5,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        3,
+        3,
+        5
+      ],
+      "value": {
+        "dmgPercent": 15,
+        "hpPercent": 9,
+        "mpPercent": 9,
+        "defPercent": 6,
+        "atkPercent": 0,
+        "flatHp": 1188,
+        "flatMp": 2052,
+        "flatAttack": 54,
+        "flatDefense": 54,
+        "hpRegenFlat": 2.7,
+        "mpRegenFlat": 2.1,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        99,
+        5
+      ],
+      "value": {
+        "dmgPercent": 14,
+        "hpPercent": 4,
+        "mpPercent": 2,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 608,
+        "flatMp": 480,
+        "flatAttack": 48,
+        "flatDefense": 12,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 0.6000000000000001,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        11
+      ],
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 920,
+        "flatMp": 1040,
+        "flatAttack": 40,
+        "flatDefense": 36,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 1.2,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        2,
+        4,
+        6
+      ],
+      "value": {
+        "dmgPercent": 21,
+        "hpPercent": 6,
+        "mpPercent": 9,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 1026,
+        "flatMp": 2166,
+        "flatAttack": 67,
+        "flatDefense": 27,
+        "hpRegenFlat": 1.4,
+        "mpRegenFlat": 2.3,
+        "active": true,
+        "baked": false
+      }
+    }
+  ],
+  "getDisplayTransformBreakdown": [
+    {
+      "cls": null,
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 0,
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "flatAttack": 0,
+        "flatDefense": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "active": false,
+        "baked": false
+      }
+    },
+    {
+      "cls": null,
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 0,
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "flatAttack": 0,
+        "flatDefense": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "active": false,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [],
+      "baked": false,
+      "value": {
+        "dmgPercent": 0,
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "flatAttack": 0,
+        "flatDefense": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "active": false,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [],
+      "baked": true,
+      "value": {
+        "dmgPercent": 0,
+        "hpPercent": 0,
+        "mpPercent": 0,
+        "defPercent": 0,
+        "atkPercent": 0,
+        "flatHp": 0,
+        "flatMp": 0,
+        "flatAttack": 0,
+        "flatDefense": 0,
+        "hpRegenFlat": 0,
+        "mpRegenFlat": 0,
+        "active": false,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 420,
+        "flatMp": 70,
+        "flatAttack": 9,
+        "flatDefense": 16,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.1,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Knight",
+      "ids": [
+        1
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 3,
+        "hpPercent": 4,
+        "mpPercent": 1,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 420,
+        "flatMp": 70,
+        "flatAttack": 9,
+        "flatDefense": 16,
+        "hpRegenFlat": 0.5,
+        "mpRegenFlat": 0.1,
+        "active": true,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 24,
+        "hpPercent": 6,
+        "mpPercent": 9,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 585,
+        "flatMp": 1560,
+        "flatAttack": 49,
+        "flatDefense": 10,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 24,
+        "hpPercent": 6,
+        "mpPercent": 9,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 585,
+        "flatMp": 1560,
+        "flatAttack": 49,
+        "flatDefense": 10,
+        "hpRegenFlat": 0.8,
+        "mpRegenFlat": 2,
+        "active": true,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 32,
+        "hpPercent": 8,
+        "mpPercent": 12,
+        "defPercent": 4,
+        "atkPercent": 0,
+        "flatHp": 1185,
+        "flatMp": 3160,
+        "flatAttack": 101,
+        "flatDefense": 22,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 4,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Mage",
+      "ids": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 32,
+        "hpPercent": 8,
+        "mpPercent": 12,
+        "defPercent": 4,
+        "atkPercent": 0,
+        "flatHp": 1185,
+        "flatMp": 3160,
+        "flatAttack": 101,
+        "flatDefense": 22,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 4,
+        "active": true,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 77,
+        "hpPercent": 22,
+        "mpPercent": 11,
+        "defPercent": 11,
+        "atkPercent": 77,
+        "flatHp": 6049,
+        "flatMp": 4125,
+        "flatAttack": 0,
+        "flatDefense": 135,
+        "hpRegenFlat": 8.299999999999999,
+        "mpRegenFlat": 5.5,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Archer",
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 77,
+        "hpPercent": 22,
+        "mpPercent": 11,
+        "defPercent": 11,
+        "atkPercent": 77,
+        "flatHp": 6049,
+        "flatMp": 4125,
+        "flatAttack": 0,
+        "flatDefense": 135,
+        "hpRegenFlat": 8.299999999999999,
+        "mpRegenFlat": 5.5,
+        "active": true,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        3,
+        3,
+        5
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 15,
+        "hpPercent": 9,
+        "mpPercent": 9,
+        "defPercent": 6,
+        "atkPercent": 0,
+        "flatHp": 1188,
+        "flatMp": 2052,
+        "flatAttack": 54,
+        "flatDefense": 54,
+        "hpRegenFlat": 2.7,
+        "mpRegenFlat": 2.1,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Cleric",
+      "ids": [
+        3,
+        3,
+        5
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 15,
+        "hpPercent": 9,
+        "mpPercent": 9,
+        "defPercent": 6,
+        "atkPercent": 0,
+        "flatHp": 1188,
+        "flatMp": 2052,
+        "flatAttack": 54,
+        "flatDefense": 54,
+        "hpRegenFlat": 2.7,
+        "mpRegenFlat": 2.1,
+        "active": true,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        99,
+        5
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 14,
+        "hpPercent": 4,
+        "mpPercent": 2,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 608,
+        "flatMp": 480,
+        "flatAttack": 48,
+        "flatDefense": 12,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 0.6000000000000001,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Rogue",
+      "ids": [
+        1,
+        99,
+        5
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 14,
+        "hpPercent": 4,
+        "mpPercent": 2,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 608,
+        "flatMp": 480,
+        "flatAttack": 48,
+        "flatDefense": 12,
+        "hpRegenFlat": 1,
+        "mpRegenFlat": 0.6000000000000001,
+        "active": true,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        11
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 920,
+        "flatMp": 1040,
+        "flatAttack": 40,
+        "flatDefense": 36,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 1.2,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Bard",
+      "ids": [
+        11
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 5,
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "defPercent": 2,
+        "atkPercent": 0,
+        "flatHp": 920,
+        "flatMp": 1040,
+        "flatAttack": 40,
+        "flatDefense": 36,
+        "hpRegenFlat": 1.6,
+        "mpRegenFlat": 1.2,
+        "active": true,
+        "baked": true
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        2,
+        4,
+        6
+      ],
+      "baked": false,
+      "value": {
+        "dmgPercent": 21,
+        "hpPercent": 6,
+        "mpPercent": 9,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 1026,
+        "flatMp": 2166,
+        "flatAttack": 67,
+        "flatDefense": 27,
+        "hpRegenFlat": 1.4,
+        "mpRegenFlat": 2.3,
+        "active": true,
+        "baked": false
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "ids": [
+        2,
+        4,
+        6
+      ],
+      "baked": true,
+      "value": {
+        "dmgPercent": 21,
+        "hpPercent": 6,
+        "mpPercent": 9,
+        "defPercent": 3,
+        "atkPercent": 0,
+        "flatHp": 1026,
+        "flatMp": 2166,
+        "flatAttack": 67,
+        "flatDefense": 27,
+        "hpRegenFlat": 1.4,
+        "mpRegenFlat": 2.3,
+        "active": true,
+        "baked": true
+      }
+    }
+  ]
+}

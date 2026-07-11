@@ -1,0 +1,512 @@
+{
+  "system": "combatElixirs",
+  "note": "Generowane z src/systems/combatElixirs.ts. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "getters": [
+    {
+      "active": [],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "atk_dmg_25"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1.25,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "atk_dmg_50"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1.5,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "atk_dmg_100"
+      ],
+      "result": {
+        "atkDamageMultiplier": 2,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "atk_dmg_50",
+        "atk_dmg_25"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1.5,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "atk_dmg_100",
+        "atk_dmg_50",
+        "atk_dmg_25"
+      ],
+      "result": {
+        "atkDamageMultiplier": 2,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "spell_dmg_25"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1.25,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "spell_dmg_50"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1.5,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "spell_dmg_100"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 2,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "spell_dmg_100",
+        "spell_dmg_50",
+        "spell_dmg_25"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 2,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "atk_dmg_100",
+        "spell_dmg_50"
+      ],
+      "result": {
+        "atkDamageMultiplier": 2,
+        "spellDamageMultiplier": 1.5,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "hp_boost_500"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 500,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "mp_boost_500"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 500,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "atk_boost_50"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 50,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "def_boost_50"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 50,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "hp_pct_25"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1.25,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "mp_pct_25"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1.25,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "attack_speed"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1.2
+      }
+    },
+    {
+      "active": [
+        "xp_boost"
+      ],
+      "result": {
+        "atkDamageMultiplier": 1,
+        "spellDamageMultiplier": 1,
+        "hpBonus": 0,
+        "mpBonus": 0,
+        "hpPctMultiplier": 1,
+        "mpPctMultiplier": 1,
+        "atkBonus": 0,
+        "defBonus": 0,
+        "attackSpeedMultiplier": 1
+      }
+    },
+    {
+      "active": [
+        "atk_dmg_100",
+        "spell_dmg_100",
+        "hp_boost_500",
+        "mp_boost_500",
+        "atk_boost_50",
+        "def_boost_50",
+        "hp_pct_25",
+        "mp_pct_25",
+        "attack_speed"
+      ],
+      "result": {
+        "atkDamageMultiplier": 2,
+        "spellDamageMultiplier": 2,
+        "hpBonus": 500,
+        "mpBonus": 500,
+        "hpPctMultiplier": 1.25,
+        "mpPctMultiplier": 1.25,
+        "atkBonus": 50,
+        "defBonus": 50,
+        "attackSpeedMultiplier": 1.2
+      }
+    }
+  ],
+  "tick": [
+    {
+      "input": {},
+      "ms": 1000,
+      "result": {}
+    },
+    {
+      "input": {
+        "atk_boost_50": 5000
+      },
+      "ms": 1000,
+      "result": {
+        "atk_boost_50": 4000
+      }
+    },
+    {
+      "input": {
+        "hp_boost_500": 5000,
+        "mp_boost_500": 5000,
+        "atk_boost_50": 5000,
+        "def_boost_50": 5000,
+        "hp_pct_25": 5000,
+        "mp_pct_25": 5000,
+        "attack_speed": 5000
+      },
+      "ms": 1000,
+      "result": {
+        "hp_boost_500": 4000,
+        "mp_boost_500": 4000,
+        "atk_boost_50": 4000,
+        "def_boost_50": 4000,
+        "hp_pct_25": 4000,
+        "mp_pct_25": 4000,
+        "attack_speed": 4000
+      }
+    },
+    {
+      "input": {
+        "atk_dmg_100": 5000,
+        "atk_dmg_50": 5000,
+        "atk_dmg_25": 5000
+      },
+      "ms": 1000,
+      "result": {
+        "atk_dmg_100": 4000,
+        "atk_dmg_50": 5000,
+        "atk_dmg_25": 5000
+      }
+    },
+    {
+      "input": {
+        "atk_dmg_50": 5000,
+        "atk_dmg_25": 5000
+      },
+      "ms": 1000,
+      "result": {
+        "atk_dmg_50": 4000,
+        "atk_dmg_25": 5000
+      }
+    },
+    {
+      "input": {
+        "atk_dmg_25": 5000
+      },
+      "ms": 1000,
+      "result": {
+        "atk_dmg_25": 4000
+      }
+    },
+    {
+      "input": {
+        "spell_dmg_100": 5000,
+        "spell_dmg_50": 5000,
+        "spell_dmg_25": 5000
+      },
+      "ms": 1000,
+      "result": {
+        "spell_dmg_100": 4000,
+        "spell_dmg_50": 5000,
+        "spell_dmg_25": 5000
+      }
+    },
+    {
+      "input": {
+        "atk_boost_50": 5000,
+        "atk_dmg_100": 5000,
+        "atk_dmg_50": 5000,
+        "spell_dmg_50": 5000,
+        "spell_dmg_25": 5000,
+        "attack_speed": 3000
+      },
+      "ms": 1000,
+      "result": {
+        "atk_boost_50": 4000,
+        "atk_dmg_100": 4000,
+        "atk_dmg_50": 5000,
+        "spell_dmg_50": 4000,
+        "spell_dmg_25": 5000,
+        "attack_speed": 2000
+      }
+    },
+    {
+      "input": {
+        "atk_boost_50": 5000,
+        "atk_dmg_100": 5000
+      },
+      "ms": 0,
+      "result": {
+        "atk_boost_50": 5000,
+        "atk_dmg_100": 5000
+      }
+    },
+    {
+      "input": {
+        "atk_boost_50": 1000
+      },
+      "ms": 1000,
+      "result": {}
+    },
+    {
+      "input": {
+        "atk_boost_50": 1000,
+        "atk_dmg_100": 2000,
+        "atk_dmg_50": 500
+      },
+      "ms": 5000,
+      "result": {
+        "atk_dmg_50": 500
+      }
+    },
+    {
+      "input": {
+        "atk_dmg_50": 1000,
+        "atk_dmg_25": 5000
+      },
+      "ms": 1000,
+      "result": {
+        "atk_dmg_25": 5000
+      }
+    },
+    {
+      "input": {
+        "xp_boost": 5000,
+        "atk_boost_50": 5000
+      },
+      "ms": 1000,
+      "result": {
+        "xp_boost": 5000,
+        "atk_boost_50": 4000
+      }
+    },
+    {
+      "input": {
+        "atk_boost_50": 5000
+      },
+      "ms": -500,
+      "result": {
+        "atk_boost_50": 5500
+      }
+    },
+    {
+      "input": {
+        "hp_boost_500": 1000,
+        "mp_boost_500": 1000,
+        "atk_boost_50": 1000,
+        "def_boost_50": 1000,
+        "hp_pct_25": 1000,
+        "mp_pct_25": 1000,
+        "attack_speed": 1000
+      },
+      "ms": 1000,
+      "result": {}
+    }
+  ]
+}

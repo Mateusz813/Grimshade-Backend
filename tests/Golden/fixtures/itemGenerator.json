@@ -1,0 +1,1451 @@
+{
+  "system": "itemGenerator",
+  "note": "Podzbiór portowalny (common = zero bonus-slotów = brak shuffle). uuid wycięty. NIE edytuj ręcznie.",
+  "generateWeapon": [
+    {
+      "type": "sword",
+      "lvl": 1,
+      "seed": 1,
+      "result": {
+        "itemId": "sword_lvl1_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 9,
+          "dmg_max": 16
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "sword",
+      "lvl": 50,
+      "seed": 1,
+      "result": {
+        "itemId": "sword_lvl50_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 98,
+          "dmg_max": 117
+        },
+        "itemLevel": 50,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "sword",
+      "lvl": 250,
+      "seed": 1,
+      "result": {
+        "itemId": "sword_lvl250_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 458,
+          "dmg_max": 531
+        },
+        "itemLevel": 250,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "staff",
+      "lvl": 1,
+      "seed": 1,
+      "result": {
+        "itemId": "staff_lvl1_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 6,
+          "dmg_max": 11
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "staff",
+      "lvl": 50,
+      "seed": 1,
+      "result": {
+        "itemId": "staff_lvl50_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 85,
+          "dmg_max": 102
+        },
+        "itemLevel": 50,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "staff",
+      "lvl": 250,
+      "seed": 1,
+      "result": {
+        "itemId": "staff_lvl250_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 405,
+          "dmg_max": 469
+        },
+        "itemLevel": 250,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "holy_wand",
+      "lvl": 1,
+      "seed": 1,
+      "result": {
+        "itemId": "holy_wand_lvl1_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 5,
+          "dmg_max": 10
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "holy_wand",
+      "lvl": 50,
+      "seed": 1,
+      "result": {
+        "itemId": "holy_wand_lvl50_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 74,
+          "dmg_max": 89
+        },
+        "itemLevel": 50,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "holy_wand",
+      "lvl": 250,
+      "seed": 1,
+      "result": {
+        "itemId": "holy_wand_lvl250_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 354,
+          "dmg_max": 411
+        },
+        "itemLevel": 250,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "bow",
+      "lvl": 1,
+      "seed": 1,
+      "result": {
+        "itemId": "bow_lvl1_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 8,
+          "dmg_max": 14
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "bow",
+      "lvl": 50,
+      "seed": 1,
+      "result": {
+        "itemId": "bow_lvl50_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 92,
+          "dmg_max": 110
+        },
+        "itemLevel": 50,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "bow",
+      "lvl": 250,
+      "seed": 1,
+      "result": {
+        "itemId": "bow_lvl250_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 432,
+          "dmg_max": 501
+        },
+        "itemLevel": 250,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "dagger",
+      "lvl": 1,
+      "seed": 1,
+      "result": {
+        "itemId": "dagger_lvl1_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 5,
+          "dmg_max": 9
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "dagger",
+      "lvl": 50,
+      "seed": 1,
+      "result": {
+        "itemId": "dagger_lvl50_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 59,
+          "dmg_max": 71
+        },
+        "itemLevel": 50,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "dagger",
+      "lvl": 250,
+      "seed": 1,
+      "result": {
+        "itemId": "dagger_lvl250_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 279,
+          "dmg_max": 324
+        },
+        "itemLevel": 250,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "dead_staff",
+      "lvl": 1,
+      "seed": 1,
+      "result": {
+        "itemId": "dead_staff_lvl1_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 6,
+          "dmg_max": 11
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "dead_staff",
+      "lvl": 50,
+      "seed": 1,
+      "result": {
+        "itemId": "dead_staff_lvl50_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 85,
+          "dmg_max": 102
+        },
+        "itemLevel": 50,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "dead_staff",
+      "lvl": 250,
+      "seed": 1,
+      "result": {
+        "itemId": "dead_staff_lvl250_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 405,
+          "dmg_max": 469
+        },
+        "itemLevel": 250,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "harp",
+      "lvl": 1,
+      "seed": 1,
+      "result": {
+        "itemId": "harp_lvl1_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 5,
+          "dmg_max": 10
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "harp",
+      "lvl": 50,
+      "seed": 1,
+      "result": {
+        "itemId": "harp_lvl50_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 69,
+          "dmg_max": 83
+        },
+        "itemLevel": 50,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "harp",
+      "lvl": 250,
+      "seed": 1,
+      "result": {
+        "itemId": "harp_lvl250_common",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 329,
+          "dmg_max": 382
+        },
+        "itemLevel": 250,
+        "upgradeLevel": 0
+      }
+    }
+  ],
+  "generateOffhand": [
+    {
+      "type": "shield",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "shield_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 158
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "shield",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "shield_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 158
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "shield",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "shield_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 159
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "spellbook",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "spellbook_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 126
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "spellbook",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "spellbook_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 126
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "spellbook",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "spellbook_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 126
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "holy_cross",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "holy_cross_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 115
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "holy_cross",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "holy_cross_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 115
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "holy_cross",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "holy_cross_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 115
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "quiver",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "quiver_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 84
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "quiver",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "quiver_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 84
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "quiver",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "quiver_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 84
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "voodoo_doll",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "voodoo_doll_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 126
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "voodoo_doll",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "voodoo_doll_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 126
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "voodoo_doll",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "voodoo_doll_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 126
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "talisman",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "talisman_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 94
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "talisman",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "talisman_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 94
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "talisman",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "talisman_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 94
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    }
+  ],
+  "generateArmor": [
+    {
+      "prefix": "heavy",
+      "slot": "helmet",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "heavy_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 618
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "heavy",
+      "slot": "armor",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "heavy_armor_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 870
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "heavy",
+      "slot": "pants",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "heavy_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 678
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "heavy",
+      "slot": "boots",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "heavy_boots_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 492
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "heavy",
+      "slot": "shoulders",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "heavy_shoulders_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 618
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "heavy",
+      "slot": "gloves",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "heavy_gloves_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 82
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "magic",
+      "slot": "helmet",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "magic_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 426
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "magic",
+      "slot": "armor",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "magic_armor_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 552
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "magic",
+      "slot": "pants",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "magic_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 426
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "magic",
+      "slot": "boots",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "magic_boots_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 306
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "magic",
+      "slot": "shoulders",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "magic_shoulders_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 426
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "magic",
+      "slot": "gloves",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "magic_gloves_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 51
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "light",
+      "slot": "helmet",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "light_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 492
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "light",
+      "slot": "armor",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "light_armor_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 678
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "light",
+      "slot": "pants",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "light_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 492
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "light",
+      "slot": "boots",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "light_boots_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 366
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "light",
+      "slot": "shoulders",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "light_shoulders_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 492
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "prefix": "light",
+      "slot": "gloves",
+      "lvl": 100,
+      "seed": 7,
+      "result": {
+        "itemId": "light_gloves_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 61
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    }
+  ],
+  "generateAccessory": [
+    {
+      "type": "ring",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "ring_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 53
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "ring",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "ring_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 53
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "ring",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "ring_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "attack": 53
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "necklace",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "necklace_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 53
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "necklace",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "necklace_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 53
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "necklace",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "necklace_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 53
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "earrings",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "earrings_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 42
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "earrings",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "earrings_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 42
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "type": "earrings",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "earrings_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "defense": 43
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    }
+  ],
+  "generateRandomItemForClass": [
+    {
+      "cls": "Knight",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "heavy_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 630
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "heavy_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 702
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Knight",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "heavy_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 618
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "magic_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 438
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "magic_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 444
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "magic_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 426
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "magic_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 438
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "magic_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 444
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "magic_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 426
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "light_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 504
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "light_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 510
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "light_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 492
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "light_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 504
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "light_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 510
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "light_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 492
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "magic_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 438
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "magic_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 444
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "magic_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 426
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "lvl": 100,
+      "seed": 1,
+      "result": {
+        "itemId": "light_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 504
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "lvl": 100,
+      "seed": 42,
+      "result": {
+        "itemId": "light_pants_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 510
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "lvl": 100,
+      "seed": 777,
+      "result": {
+        "itemId": "light_helmet_lvl100_common",
+        "rarity": "common",
+        "bonuses": {
+          "hp": 492
+        },
+        "itemLevel": 100,
+        "upgradeLevel": 0
+      }
+    }
+  ],
+  "generateStarterWeapon": [
+    {
+      "cls": "Knight",
+      "result": {
+        "itemId": "starter_sword",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 8,
+          "dmg_max": 13
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Mage",
+      "result": {
+        "itemId": "starter_staff",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 5,
+          "dmg_max": 8
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Cleric",
+      "result": {
+        "itemId": "starter_holy_wand",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 4,
+          "dmg_max": 7
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Archer",
+      "result": {
+        "itemId": "starter_bow",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 8,
+          "dmg_max": 12
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Rogue",
+      "result": {
+        "itemId": "starter_dagger",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 4,
+          "dmg_max": 7
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Necromancer",
+      "result": {
+        "itemId": "starter_dead_staff",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 5,
+          "dmg_max": 8
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    },
+    {
+      "cls": "Bard",
+      "result": {
+        "itemId": "starter_harp",
+        "rarity": "common",
+        "bonuses": {
+          "dmg_min": 5,
+          "dmg_max": 8
+        },
+        "itemLevel": 1,
+        "upgradeLevel": 0
+      }
+    }
+  ],
+  "getItemDisplayInfo": [
+    {
+      "id": "sword_lvl50_common",
+      "result": {
+        "name_pl": "Miecz",
+        "name_en": "Sword",
+        "type": "sword",
+        "slot": "mainHand"
+      }
+    },
+    {
+      "id": "staff_lvl100_epic",
+      "result": {
+        "name_pl": "Kostur",
+        "name_en": "Staff",
+        "type": "staff",
+        "slot": "mainHand"
+      }
+    },
+    {
+      "id": "heavy_armor_lvl50_rare",
+      "result": {
+        "name_pl": "Ciezki Zbroja",
+        "name_en": "Heavy Armor",
+        "type": "heavy_armor",
+        "slot": "armor"
+      }
+    },
+    {
+      "id": "light_boots_lvl250_mythic",
+      "result": {
+        "name_pl": "Lekki Buty",
+        "name_en": "Light Boots",
+        "type": "light_boots",
+        "slot": "boots"
+      }
+    },
+    {
+      "id": "ring_lvl10_common",
+      "result": {
+        "name_pl": "Pierscien",
+        "name_en": "Ring",
+        "type": "ring",
+        "slot": "ring1"
+      }
+    },
+    {
+      "id": "necklace_lvl99_legendary",
+      "result": {
+        "name_pl": "Naszyjnik",
+        "name_en": "Necklace",
+        "type": "necklace",
+        "slot": "necklace"
+      }
+    },
+    {
+      "id": "shield_lvl20_common",
+      "result": {
+        "name_pl": "Tarcza",
+        "name_en": "Shield",
+        "type": "shield",
+        "slot": "offHand"
+      }
+    },
+    {
+      "id": "sword_of_beginnings",
+      "result": {
+        "name_pl": "Miecz Poczatku",
+        "name_en": "Sword of Beginnings",
+        "type": "sword",
+        "slot": "mainHand"
+      }
+    },
+    {
+      "id": "lute",
+      "result": {
+        "name_pl": "Lutnia",
+        "name_en": "Lute",
+        "type": "harp",
+        "slot": "mainHand"
+      }
+    },
+    {
+      "id": "nonsense_id",
+      "result": null
+    }
+  ]
+}

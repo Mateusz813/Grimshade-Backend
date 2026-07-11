@@ -1,0 +1,28 @@
+# ============================================================================
+# Grimshade Backend — obraz pod Render (i dowolny host "jeden Dockerfile = HTTP").
+# JEDEN kontener serwujący Laravel po HTTP (FrankenPHP = Caddy + PHP w jednym
+# binarze). W przeciwieństwie do produkcyjnego Dockerfile (php-fpm + osobny nginx),
+# tu nie ma drugiego kontenera — Render buduje i uruchamia dokładnie to.
+#
+# Render:
+#   - Build:  Dockerfile Path = Dockerfile.render
+#   - Port:   ustaw env PORT=8080 (albo zostaw — nasłuchujemy na 8080).
+#   - TLS/HTTPS załatwia proxy Rendera; my serwujemy czysty HTTP na :8080.
+# ============================================================================
+FROM dunglas/frankenphp:1-php8.3
+
+# Rozszerzenia PHP wymagane przez Laravel + Supabase Postgres.
+RUN install-php-extensions pdo_pgsql bcmath zip
+
+WORKDIR /app
+
+# Composer + kod, produkcyjny autoloader (bez dev-toolów).
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY . .
+RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction --prefer-dist \
+    && chown -R www-data:www-data storage bootstrap/cache
+
+# FrankenPHP (domyślny entrypoint obrazu) serwuje /app/public z dyrektywą php_server
+# (routing frameworkowy do index.php). SERVER_NAME=:8080 => HTTP na porcie 8080.
+ENV SERVER_NAME=:8080
+EXPOSE 8080

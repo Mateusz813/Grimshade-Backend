@@ -1,0 +1,803 @@
+{
+  "system": "levelSystem",
+  "note": "Generowane z src/systems/levelSystem.ts. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "xpToNextLevel": [
+    {
+      "level": 0,
+      "value": 300
+    },
+    {
+      "level": 1,
+      "value": 300
+    },
+    {
+      "level": 2,
+      "value": 848
+    },
+    {
+      "level": 3,
+      "value": 1558
+    },
+    {
+      "level": 5,
+      "value": 3354
+    },
+    {
+      "level": 10,
+      "value": 9486
+    },
+    {
+      "level": 25,
+      "value": 37500
+    },
+    {
+      "level": 50,
+      "value": 106066
+    },
+    {
+      "level": 99,
+      "value": 295511
+    },
+    {
+      "level": 100,
+      "value": 300000
+    },
+    {
+      "level": 101,
+      "value": 370275
+    },
+    {
+      "level": 150,
+      "value": 3813750
+    },
+    {
+      "level": 199,
+      "value": 7257225
+    },
+    {
+      "level": 200,
+      "value": 7327500
+    },
+    {
+      "level": 201,
+      "value": 7450237
+    },
+    {
+      "level": 300,
+      "value": 19601250
+    },
+    {
+      "level": 400,
+      "value": 31875000
+    },
+    {
+      "level": 500,
+      "value": 66277500
+    },
+    {
+      "level": 600,
+      "value": 100680000
+    },
+    {
+      "level": 700,
+      "value": 398715000
+    },
+    {
+      "level": 800,
+      "value": 696750000
+    },
+    {
+      "level": 900,
+      "value": 796950000
+    },
+    {
+      "level": 999,
+      "value": 896148000
+    },
+    {
+      "level": 1000,
+      "value": 897150000
+    },
+    {
+      "level": 1001,
+      "value": 986865000
+    },
+    {
+      "level": 1010,
+      "value": 2326976048
+    },
+    {
+      "level": 1050,
+      "value": 105317203661
+    },
+    {
+      "level": 1100,
+      "value": 12363276360671
+    }
+  ],
+  "totalXpForLevel": [
+    {
+      "level": 1,
+      "value": 0
+    },
+    {
+      "level": 2,
+      "value": 300
+    },
+    {
+      "level": 10,
+      "value": 33313
+    },
+    {
+      "level": 100,
+      "value": 11850321
+    },
+    {
+      "level": 101,
+      "value": 12150321
+    },
+    {
+      "level": 200,
+      "value": 389711571
+    },
+    {
+      "level": 500,
+      "value": 9188111521
+    },
+    {
+      "level": 1000,
+      "value": 256253550269
+    },
+    {
+      "level": 1001,
+      "value": 257150700269
+    }
+  ],
+  "statPointsForLevelUp": [
+    {
+      "class": "Knight",
+      "value": 2
+    },
+    {
+      "class": "Mage",
+      "value": 2
+    },
+    {
+      "class": "Cleric",
+      "value": 2
+    },
+    {
+      "class": "Archer",
+      "value": 2
+    },
+    {
+      "class": "Rogue",
+      "value": 2
+    },
+    {
+      "class": "Necromancer",
+      "value": 2
+    },
+    {
+      "class": "Bard",
+      "value": 2
+    },
+    {
+      "class": "Unknown",
+      "value": 2
+    },
+    {
+      "class": "",
+      "value": 2
+    }
+  ],
+  "processXpGain": [
+    {
+      "level": 1,
+      "xp": 0,
+      "gained": 299,
+      "result": {
+        "newLevel": 1,
+        "remainingXp": 299,
+        "levelsGained": 0,
+        "statPointsGained": 0
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gained": 300,
+      "result": {
+        "newLevel": 2,
+        "remainingXp": 0,
+        "levelsGained": 1,
+        "statPointsGained": 2
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gained": 1000,
+      "result": {
+        "newLevel": 2,
+        "remainingXp": 700,
+        "levelsGained": 1,
+        "statPointsGained": 2
+      }
+    },
+    {
+      "level": 5,
+      "xp": 299,
+      "gained": 1,
+      "result": {
+        "newLevel": 5,
+        "remainingXp": 300,
+        "levelsGained": 0,
+        "statPointsGained": 0
+      }
+    },
+    {
+      "level": 10,
+      "xp": 0,
+      "gained": 100000,
+      "result": {
+        "newLevel": 17,
+        "remainingXp": 697,
+        "levelsGained": 7,
+        "statPointsGained": 14
+      }
+    },
+    {
+      "level": 50,
+      "xp": 100,
+      "gained": 50000,
+      "result": {
+        "newLevel": 50,
+        "remainingXp": 50100,
+        "levelsGained": 0,
+        "statPointsGained": 0
+      }
+    },
+    {
+      "level": 99,
+      "xp": 0,
+      "gained": 300000,
+      "result": {
+        "newLevel": 100,
+        "remainingXp": 4489,
+        "levelsGained": 1,
+        "statPointsGained": 2
+      }
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "gained": 600000,
+      "result": {
+        "newLevel": 101,
+        "remainingXp": 300000,
+        "levelsGained": 1,
+        "statPointsGained": 2
+      }
+    },
+    {
+      "level": 100,
+      "xp": 299999,
+      "gained": 1,
+      "result": {
+        "newLevel": 101,
+        "remainingXp": 0,
+        "levelsGained": 1,
+        "statPointsGained": 2
+      }
+    },
+    {
+      "level": 200,
+      "xp": 0,
+      "gained": 30000000,
+      "result": {
+        "newLevel": 203,
+        "remainingXp": 7649288,
+        "levelsGained": 3,
+        "statPointsGained": 6
+      }
+    },
+    {
+      "level": 999,
+      "xp": 0,
+      "gained": 900000000,
+      "result": {
+        "newLevel": 1000,
+        "remainingXp": 3852000,
+        "levelsGained": 1,
+        "statPointsGained": 2
+      }
+    },
+    {
+      "level": 1000,
+      "xp": 0,
+      "gained": 2000000000,
+      "result": {
+        "newLevel": 1002,
+        "remainingXp": 115985000,
+        "levelsGained": 2,
+        "statPointsGained": 4
+      }
+    },
+    {
+      "level": 1000,
+      "xp": 500000000,
+      "gained": 897150000,
+      "result": {
+        "newLevel": 1001,
+        "remainingXp": 500000000,
+        "levelsGained": 1,
+        "statPointsGained": 2
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gained": 0,
+      "result": {
+        "newLevel": 1,
+        "remainingXp": 0,
+        "levelsGained": 0,
+        "statPointsGained": 0
+      }
+    }
+  ],
+  "getDeathLossLevels": [
+    {
+      "level": 1,
+      "value": 0.2
+    },
+    {
+      "level": 20,
+      "value": 0.2
+    },
+    {
+      "level": 41,
+      "value": 0.41
+    },
+    {
+      "level": 50,
+      "value": 0.5
+    },
+    {
+      "level": 51,
+      "value": 0.51
+    },
+    {
+      "level": 100,
+      "value": 1
+    },
+    {
+      "level": 200,
+      "value": 2
+    },
+    {
+      "level": 500,
+      "value": 5
+    },
+    {
+      "level": 1000,
+      "value": 10
+    },
+    {
+      "level": 1100,
+      "value": 11
+    }
+  ],
+  "getFleeLossLevels": [
+    {
+      "level": 1,
+      "value": 0.020000000000000004
+    },
+    {
+      "level": 20,
+      "value": 0.020000000000000004
+    },
+    {
+      "level": 41,
+      "value": 0.041
+    },
+    {
+      "level": 50,
+      "value": 0.05
+    },
+    {
+      "level": 51,
+      "value": 0.051000000000000004
+    },
+    {
+      "level": 100,
+      "value": 0.1
+    },
+    {
+      "level": 200,
+      "value": 0.2
+    },
+    {
+      "level": 500,
+      "value": 0.5
+    },
+    {
+      "level": 1000,
+      "value": 1
+    },
+    {
+      "level": 1100,
+      "value": 1.1
+    }
+  ],
+  "losesItemsOnDeath": [
+    {
+      "level": 1,
+      "value": false
+    },
+    {
+      "level": 20,
+      "value": false
+    },
+    {
+      "level": 41,
+      "value": false
+    },
+    {
+      "level": 50,
+      "value": false
+    },
+    {
+      "level": 51,
+      "value": true
+    },
+    {
+      "level": 100,
+      "value": true
+    },
+    {
+      "level": 200,
+      "value": true
+    },
+    {
+      "level": 500,
+      "value": true
+    },
+    {
+      "level": 1000,
+      "value": true
+    },
+    {
+      "level": 1100,
+      "value": true
+    }
+  ],
+  "applyDeathPenalty": [
+    {
+      "level": 1,
+      "xp": 0,
+      "result": {
+        "newLevel": 1,
+        "newXp": 0,
+        "xpPercent": 0,
+        "levelsLost": 0,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 1,
+      "xp": 150,
+      "result": {
+        "newLevel": 1,
+        "newXp": 90,
+        "xpPercent": 30,
+        "levelsLost": 0,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 41,
+      "xp": 0,
+      "result": {
+        "newLevel": 40,
+        "newXp": 44777,
+        "xpPercent": 59,
+        "levelsLost": 1,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 50,
+      "xp": 3000,
+      "result": {
+        "newLevel": 49,
+        "newXp": 54360,
+        "xpPercent": 53,
+        "levelsLost": 1,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 51,
+      "xp": 0,
+      "result": {
+        "newLevel": 50,
+        "newXp": 51972,
+        "xpPercent": 49,
+        "levelsLost": 1,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "result": {
+        "newLevel": 99,
+        "newXp": 0,
+        "xpPercent": 0,
+        "levelsLost": 1,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 100,
+      "xp": 150000,
+      "result": {
+        "newLevel": 99,
+        "newXp": 147756,
+        "xpPercent": 50,
+        "levelsLost": 1,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 200,
+      "xp": 0,
+      "result": {
+        "newLevel": 198,
+        "newXp": 0,
+        "xpPercent": 0,
+        "levelsLost": 2,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 500,
+      "xp": 1000,
+      "result": {
+        "newLevel": 495,
+        "newXp": 974,
+        "xpPercent": 0,
+        "levelsLost": 5,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 1000,
+      "xp": 0,
+      "result": {
+        "newLevel": 990,
+        "newXp": 0,
+        "xpPercent": 0,
+        "levelsLost": 10,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 1000,
+      "xp": 400000000,
+      "result": {
+        "newLevel": 990,
+        "newXp": 395532520,
+        "xpPercent": 45,
+        "levelsLost": 10,
+        "skillXpLossPercent": 25
+      }
+    },
+    {
+      "level": 1100,
+      "xp": 12000000000,
+      "result": {
+        "newLevel": 1089,
+        "newXp": 4205926794,
+        "xpPercent": 0,
+        "levelsLost": 11,
+        "skillXpLossPercent": 25
+      }
+    }
+  ],
+  "applyFleePenalty": [
+    {
+      "level": 1,
+      "xp": 0,
+      "result": {
+        "newLevel": 1,
+        "newXp": 0,
+        "xpPercent": 0,
+        "levelsLost": 0,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 1,
+      "xp": 150,
+      "result": {
+        "newLevel": 1,
+        "newXp": 144,
+        "xpPercent": 48,
+        "levelsLost": 0,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 41,
+      "xp": 0,
+      "result": {
+        "newLevel": 40,
+        "newXp": 72782,
+        "xpPercent": 96,
+        "levelsLost": 1,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 50,
+      "xp": 3000,
+      "result": {
+        "newLevel": 49,
+        "newXp": 100665,
+        "xpPercent": 98,
+        "levelsLost": 1,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 51,
+      "xp": 0,
+      "result": {
+        "newLevel": 50,
+        "newXp": 100657,
+        "xpPercent": 95,
+        "levelsLost": 1,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "result": {
+        "newLevel": 99,
+        "newXp": 265960,
+        "xpPercent": 90,
+        "levelsLost": 1,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 100,
+      "xp": 150000,
+      "result": {
+        "newLevel": 100,
+        "newXp": 120000,
+        "xpPercent": 40,
+        "levelsLost": 0,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 200,
+      "xp": 0,
+      "result": {
+        "newLevel": 199,
+        "newXp": 5805780,
+        "xpPercent": 80,
+        "levelsLost": 1,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 500,
+      "xp": 1000,
+      "result": {
+        "newLevel": 499,
+        "newXp": 32967732,
+        "xpPercent": 50,
+        "levelsLost": 1,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 1000,
+      "xp": 0,
+      "result": {
+        "newLevel": 999,
+        "newXp": 0,
+        "xpPercent": 0,
+        "levelsLost": 1,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 1000,
+      "xp": 400000000,
+      "result": {
+        "newLevel": 999,
+        "newXp": 399553252,
+        "xpPercent": 45,
+        "levelsLost": 1,
+        "skillXpLossPercent": 2.5
+      }
+    },
+    {
+      "level": 1100,
+      "xp": 12000000000,
+      "result": {
+        "newLevel": 1098,
+        "newXp": 9205742747608,
+        "xpPercent": 90,
+        "levelsLost": 2,
+        "skillXpLossPercent": 2.5
+      }
+    }
+  ],
+  "applyDeathXpPenalty": [
+    {
+      "xp": 1000,
+      "level": 1,
+      "value": 970
+    },
+    {
+      "xp": 300000,
+      "level": 100,
+      "value": 270000
+    },
+    {
+      "xp": 0,
+      "level": 50,
+      "value": 0
+    },
+    {
+      "xp": 5000,
+      "level": 10,
+      "value": 4052
+    },
+    {
+      "xp": 250,
+      "level": 5,
+      "value": 0
+    }
+  ],
+  "xpProgress": [
+    {
+      "xp": 0,
+      "level": 1,
+      "value": 0
+    },
+    {
+      "xp": 150,
+      "level": 1,
+      "value": 0.5
+    },
+    {
+      "xp": 300,
+      "level": 1,
+      "value": 1
+    },
+    {
+      "xp": 150000,
+      "level": 100,
+      "value": 0.5
+    },
+    {
+      "xp": 450000000,
+      "level": 1000,
+      "value": 0.5015883631499749
+    },
+    {
+      "xp": 0,
+      "level": 0,
+      "value": 0
+    }
+  ]
+}

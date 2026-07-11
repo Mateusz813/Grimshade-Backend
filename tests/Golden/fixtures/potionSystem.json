@@ -1,0 +1,1095 @@
+{
+  "system": "potionSystem",
+  "note": "Generowane z src/systems/potionSystem.ts + potionConversion.ts + potionGating.ts. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "pctPotionMinLevel": 100,
+  "getPotionMinLevel": [
+    {
+      "id": "hp_potion_sm",
+      "value": 1
+    },
+    {
+      "id": "hp_potion_md",
+      "value": 20
+    },
+    {
+      "id": "hp_potion_lg",
+      "value": 50
+    },
+    {
+      "id": "hp_potion_mega",
+      "value": 100
+    },
+    {
+      "id": "hp_potion_great",
+      "value": 200
+    },
+    {
+      "id": "hp_potion_super",
+      "value": 350
+    },
+    {
+      "id": "hp_potion_ultimate",
+      "value": 500
+    },
+    {
+      "id": "hp_potion_divine",
+      "value": 700
+    },
+    {
+      "id": "mp_potion_sm",
+      "value": 1
+    },
+    {
+      "id": "mp_potion_md",
+      "value": 20
+    },
+    {
+      "id": "mp_potion_lg",
+      "value": 50
+    },
+    {
+      "id": "mp_potion_mega",
+      "value": 100
+    },
+    {
+      "id": "mp_potion_great",
+      "value": 200
+    },
+    {
+      "id": "mp_potion_super",
+      "value": 350
+    },
+    {
+      "id": "mp_potion_ultimate",
+      "value": 500
+    },
+    {
+      "id": "mp_potion_divine",
+      "value": 700
+    },
+    {
+      "id": "xp_boost",
+      "value": 1
+    },
+    {
+      "id": "stat_reset",
+      "value": 1
+    },
+    {
+      "id": "hp_potion_weird",
+      "value": 1
+    },
+    {
+      "id": "hp_potionx",
+      "value": 1
+    },
+    {
+      "id": "HP_POTION_sm",
+      "value": 1
+    },
+    {
+      "id": "unknown",
+      "value": 1
+    },
+    {
+      "id": "",
+      "value": 1
+    }
+  ],
+  "canUsePotionAtLevel": [
+    {
+      "id": "hp_potion_sm",
+      "level": 0,
+      "value": false
+    },
+    {
+      "id": "hp_potion_sm",
+      "level": 1,
+      "value": true
+    },
+    {
+      "id": "hp_potion_great",
+      "level": 199,
+      "value": false
+    },
+    {
+      "id": "hp_potion_great",
+      "level": 200,
+      "value": true
+    },
+    {
+      "id": "hp_potion_great",
+      "level": 201,
+      "value": true
+    },
+    {
+      "id": "hp_potion_divine",
+      "level": 699,
+      "value": false
+    },
+    {
+      "id": "hp_potion_divine",
+      "level": 700,
+      "value": true
+    },
+    {
+      "id": "mp_potion_lg",
+      "level": 49,
+      "value": false
+    },
+    {
+      "id": "mp_potion_lg",
+      "level": 50,
+      "value": true
+    },
+    {
+      "id": "xp_boost",
+      "level": 0,
+      "value": false
+    },
+    {
+      "id": "xp_boost",
+      "level": 1,
+      "value": true
+    },
+    {
+      "id": "unknown",
+      "level": 1,
+      "value": true
+    },
+    {
+      "id": "",
+      "level": 1,
+      "value": true
+    }
+  ],
+  "isHpMpPotionId": [
+    {
+      "id": "hp_potion_sm",
+      "value": true
+    },
+    {
+      "id": "mp_potion_divine",
+      "value": true
+    },
+    {
+      "id": "xp_boost",
+      "value": false
+    },
+    {
+      "id": "hp_potionx",
+      "value": false
+    },
+    {
+      "id": "HP_POTION_sm",
+      "value": false
+    },
+    {
+      "id": "",
+      "value": false
+    }
+  ],
+  "isPctPotion": [
+    {
+      "effect": "heal_hp_50",
+      "value": false
+    },
+    {
+      "effect": "heal_hp_150",
+      "value": false
+    },
+    {
+      "effect": "heal_hp_400",
+      "value": false
+    },
+    {
+      "effect": "heal_hp_1000",
+      "value": false
+    },
+    {
+      "effect": "heal_hp_pct_20",
+      "value": true
+    },
+    {
+      "effect": "heal_hp_pct_35",
+      "value": true
+    },
+    {
+      "effect": "heal_hp_pct_50",
+      "value": true
+    },
+    {
+      "effect": "heal_hp_pct_100",
+      "value": true
+    },
+    {
+      "effect": "heal_mp_30",
+      "value": false
+    },
+    {
+      "effect": "heal_mp_100",
+      "value": false
+    },
+    {
+      "effect": "heal_mp_300",
+      "value": false
+    },
+    {
+      "effect": "heal_mp_1000",
+      "value": false
+    },
+    {
+      "effect": "heal_mp_pct_20",
+      "value": true
+    },
+    {
+      "effect": "heal_mp_pct_35",
+      "value": true
+    },
+    {
+      "effect": "heal_mp_pct_50",
+      "value": true
+    },
+    {
+      "effect": "heal_mp_pct_100",
+      "value": true
+    },
+    {
+      "effect": "_pct_",
+      "value": true
+    },
+    {
+      "effect": "xp_boost_1h",
+      "value": false
+    },
+    {
+      "effect": "heal_hp_",
+      "value": false
+    },
+    {
+      "effect": "heal_hp_pct_",
+      "value": true
+    },
+    {
+      "effect": "",
+      "value": false
+    }
+  ],
+  "isPctPotionId": [
+    {
+      "id": "hp_potion_sm",
+      "value": false
+    },
+    {
+      "id": "hp_potion_md",
+      "value": false
+    },
+    {
+      "id": "hp_potion_lg",
+      "value": false
+    },
+    {
+      "id": "hp_potion_mega",
+      "value": false
+    },
+    {
+      "id": "hp_potion_great",
+      "value": true
+    },
+    {
+      "id": "hp_potion_super",
+      "value": true
+    },
+    {
+      "id": "hp_potion_ultimate",
+      "value": true
+    },
+    {
+      "id": "hp_potion_divine",
+      "value": true
+    },
+    {
+      "id": "mp_potion_sm",
+      "value": false
+    },
+    {
+      "id": "mp_potion_md",
+      "value": false
+    },
+    {
+      "id": "mp_potion_lg",
+      "value": false
+    },
+    {
+      "id": "mp_potion_mega",
+      "value": false
+    },
+    {
+      "id": "mp_potion_great",
+      "value": true
+    },
+    {
+      "id": "mp_potion_super",
+      "value": true
+    },
+    {
+      "id": "mp_potion_ultimate",
+      "value": true
+    },
+    {
+      "id": "mp_potion_divine",
+      "value": true
+    },
+    {
+      "id": "xp_boost",
+      "value": false
+    },
+    {
+      "id": "stat_reset",
+      "value": false
+    },
+    {
+      "id": "hp_potion_weird",
+      "value": false
+    },
+    {
+      "id": "hp_potionx",
+      "value": false
+    },
+    {
+      "id": "HP_POTION_sm",
+      "value": false
+    },
+    {
+      "id": "unknown",
+      "value": false
+    },
+    {
+      "id": "",
+      "value": false
+    }
+  ],
+  "isFlatPotionId": [
+    {
+      "id": "hp_potion_sm",
+      "value": true
+    },
+    {
+      "id": "hp_potion_md",
+      "value": true
+    },
+    {
+      "id": "hp_potion_lg",
+      "value": true
+    },
+    {
+      "id": "hp_potion_mega",
+      "value": false
+    },
+    {
+      "id": "hp_potion_great",
+      "value": false
+    },
+    {
+      "id": "hp_potion_super",
+      "value": false
+    },
+    {
+      "id": "hp_potion_ultimate",
+      "value": false
+    },
+    {
+      "id": "hp_potion_divine",
+      "value": false
+    },
+    {
+      "id": "mp_potion_sm",
+      "value": true
+    },
+    {
+      "id": "mp_potion_md",
+      "value": true
+    },
+    {
+      "id": "mp_potion_lg",
+      "value": true
+    },
+    {
+      "id": "mp_potion_mega",
+      "value": false
+    },
+    {
+      "id": "mp_potion_great",
+      "value": false
+    },
+    {
+      "id": "mp_potion_super",
+      "value": false
+    },
+    {
+      "id": "mp_potion_ultimate",
+      "value": false
+    },
+    {
+      "id": "mp_potion_divine",
+      "value": false
+    },
+    {
+      "id": "xp_boost",
+      "value": false
+    },
+    {
+      "id": "stat_reset",
+      "value": false
+    },
+    {
+      "id": "hp_potion_weird",
+      "value": false
+    },
+    {
+      "id": "hp_potionx",
+      "value": false
+    },
+    {
+      "id": "HP_POTION_sm",
+      "value": false
+    },
+    {
+      "id": "unknown",
+      "value": false
+    },
+    {
+      "id": "",
+      "value": false
+    }
+  ],
+  "getPotionCooldownMs": [
+    {
+      "id": "hp_potion_sm",
+      "value": 1000
+    },
+    {
+      "id": "hp_potion_md",
+      "value": 1000
+    },
+    {
+      "id": "hp_potion_lg",
+      "value": 1000
+    },
+    {
+      "id": "hp_potion_mega",
+      "value": 1000
+    },
+    {
+      "id": "hp_potion_great",
+      "value": 500
+    },
+    {
+      "id": "hp_potion_super",
+      "value": 500
+    },
+    {
+      "id": "hp_potion_ultimate",
+      "value": 500
+    },
+    {
+      "id": "hp_potion_divine",
+      "value": 500
+    },
+    {
+      "id": "mp_potion_sm",
+      "value": 1000
+    },
+    {
+      "id": "mp_potion_md",
+      "value": 1000
+    },
+    {
+      "id": "mp_potion_lg",
+      "value": 1000
+    },
+    {
+      "id": "mp_potion_mega",
+      "value": 1000
+    },
+    {
+      "id": "mp_potion_great",
+      "value": 500
+    },
+    {
+      "id": "mp_potion_super",
+      "value": 500
+    },
+    {
+      "id": "mp_potion_ultimate",
+      "value": 500
+    },
+    {
+      "id": "mp_potion_divine",
+      "value": 500
+    },
+    {
+      "id": "xp_boost",
+      "value": 1000
+    },
+    {
+      "id": "unknown",
+      "value": 1000
+    }
+  ],
+  "getPotionLabel": [
+    {
+      "effect": "heal_hp_50",
+      "value": "+50 HP"
+    },
+    {
+      "effect": "heal_hp_150",
+      "value": "+150 HP"
+    },
+    {
+      "effect": "heal_hp_400",
+      "value": "+400 HP"
+    },
+    {
+      "effect": "heal_hp_1000",
+      "value": "+1000 HP"
+    },
+    {
+      "effect": "heal_hp_pct_20",
+      "value": "+20% HP"
+    },
+    {
+      "effect": "heal_hp_pct_35",
+      "value": "+35% HP"
+    },
+    {
+      "effect": "heal_hp_pct_50",
+      "value": "+50% HP"
+    },
+    {
+      "effect": "heal_hp_pct_100",
+      "value": "+100% HP"
+    },
+    {
+      "effect": "heal_mp_30",
+      "value": "+30 MP"
+    },
+    {
+      "effect": "heal_mp_100",
+      "value": "+100 MP"
+    },
+    {
+      "effect": "heal_mp_300",
+      "value": "+300 MP"
+    },
+    {
+      "effect": "heal_mp_1000",
+      "value": "+1000 MP"
+    },
+    {
+      "effect": "heal_mp_pct_20",
+      "value": "+20% MP"
+    },
+    {
+      "effect": "heal_mp_pct_35",
+      "value": "+35% MP"
+    },
+    {
+      "effect": "heal_mp_pct_50",
+      "value": "+50% MP"
+    },
+    {
+      "effect": "heal_mp_pct_100",
+      "value": "+100% MP"
+    },
+    {
+      "effect": "_pct_",
+      "value": "_pct_"
+    },
+    {
+      "effect": "xp_boost_1h",
+      "value": "xp_boost_1h"
+    },
+    {
+      "effect": "heal_hp_",
+      "value": "heal_hp_"
+    },
+    {
+      "effect": "heal_hp_pct_",
+      "value": "heal_hp_pct_"
+    },
+    {
+      "effect": "",
+      "value": ""
+    }
+  ],
+  "pools": {
+    "allHp": [
+      "hp_potion_sm",
+      "hp_potion_md",
+      "hp_potion_lg",
+      "hp_potion_mega",
+      "hp_potion_great",
+      "hp_potion_super",
+      "hp_potion_ultimate",
+      "hp_potion_divine"
+    ],
+    "allMp": [
+      "mp_potion_sm",
+      "mp_potion_md",
+      "mp_potion_lg",
+      "mp_potion_mega",
+      "mp_potion_great",
+      "mp_potion_super",
+      "mp_potion_ultimate",
+      "mp_potion_divine"
+    ],
+    "flatHp": [
+      "hp_potion_sm",
+      "hp_potion_md",
+      "hp_potion_lg",
+      "hp_potion_mega"
+    ],
+    "flatMp": [
+      "mp_potion_sm",
+      "mp_potion_md",
+      "mp_potion_lg",
+      "mp_potion_mega"
+    ],
+    "pctHp": [
+      "hp_potion_great",
+      "hp_potion_super",
+      "hp_potion_ultimate",
+      "hp_potion_divine"
+    ],
+    "pctMp": [
+      "mp_potion_great",
+      "mp_potion_super",
+      "mp_potion_ultimate",
+      "mp_potion_divine"
+    ],
+    "empty": []
+  },
+  "getBestPotion": [
+    {
+      "pool": "allHp",
+      "consumables": {},
+      "level": null,
+      "resultId": "hp_potion_divine"
+    },
+    {
+      "pool": "allHp",
+      "consumables": {},
+      "level": 1,
+      "resultId": "hp_potion_sm"
+    },
+    {
+      "pool": "allHp",
+      "consumables": {
+        "hp_potion_md": 2
+      },
+      "level": 1,
+      "resultId": "hp_potion_sm"
+    },
+    {
+      "pool": "allHp",
+      "consumables": {
+        "hp_potion_md": 2
+      },
+      "level": 20,
+      "resultId": "hp_potion_md"
+    },
+    {
+      "pool": "allHp",
+      "consumables": {
+        "hp_potion_divine": 1
+      },
+      "level": 700,
+      "resultId": "hp_potion_divine"
+    },
+    {
+      "pool": "allHp",
+      "consumables": {
+        "hp_potion_divine": 1
+      },
+      "level": 699,
+      "resultId": "hp_potion_ultimate"
+    },
+    {
+      "pool": "flatHp",
+      "consumables": {
+        "hp_potion_mega": 0
+      },
+      "level": 100,
+      "resultId": "hp_potion_mega"
+    },
+    {
+      "pool": "pctMp",
+      "consumables": {
+        "mp_potion_great": 5
+      },
+      "level": 200,
+      "resultId": "mp_potion_great"
+    },
+    {
+      "pool": "allHp",
+      "consumables": {
+        "hp_potion_sm": -3
+      },
+      "level": 50,
+      "resultId": "hp_potion_lg"
+    },
+    {
+      "pool": "flatMp",
+      "consumables": {},
+      "level": 1000,
+      "resultId": "mp_potion_mega"
+    },
+    {
+      "pool": "empty",
+      "consumables": {},
+      "level": 1,
+      "resultId": null
+    }
+  ],
+  "resolveAutoPotionElixir": [
+    {
+      "preferredId": "hp_potion_great",
+      "hpOrMp": "hp",
+      "slotKind": "pct",
+      "consumables": {
+        "hp_potion_great": 3
+      },
+      "level": 200,
+      "resultId": "hp_potion_great"
+    },
+    {
+      "preferredId": "hp_potion_great",
+      "hpOrMp": "hp",
+      "slotKind": "pct",
+      "consumables": {
+        "hp_potion_great": 3
+      },
+      "level": 199,
+      "resultId": null
+    },
+    {
+      "preferredId": null,
+      "hpOrMp": "hp",
+      "slotKind": "flat",
+      "consumables": {
+        "hp_potion_lg": 5
+      },
+      "level": 50,
+      "resultId": "hp_potion_lg"
+    },
+    {
+      "preferredId": "mp_potion_divine",
+      "hpOrMp": "mp",
+      "slotKind": "pct",
+      "consumables": {
+        "mp_potion_super": 2
+      },
+      "level": 700,
+      "resultId": "mp_potion_super"
+    },
+    {
+      "preferredId": "nonexistent_id",
+      "hpOrMp": "hp",
+      "slotKind": "flat",
+      "consumables": {
+        "hp_potion_sm": 1
+      },
+      "level": 1,
+      "resultId": "hp_potion_sm"
+    },
+    {
+      "preferredId": "xp_boost",
+      "hpOrMp": "hp",
+      "slotKind": "flat",
+      "consumables": {
+        "xp_boost": 5
+      },
+      "level": 1,
+      "resultId": "xp_boost"
+    },
+    {
+      "preferredId": null,
+      "hpOrMp": "mp",
+      "slotKind": "flat",
+      "consumables": {},
+      "level": 100,
+      "resultId": null
+    },
+    {
+      "preferredId": "hp_potion_divine",
+      "hpOrMp": "hp",
+      "slotKind": "pct",
+      "consumables": {
+        "hp_potion_divine": 1
+      },
+      "level": null,
+      "resultId": "hp_potion_divine"
+    },
+    {
+      "preferredId": "",
+      "hpOrMp": "hp",
+      "slotKind": "flat",
+      "consumables": {
+        "hp_potion_sm": 2
+      },
+      "level": 1,
+      "resultId": "hp_potion_sm"
+    }
+  ],
+  "potionConversions": [
+    {
+      "tier": 1,
+      "family": "hp",
+      "inputId": "hp_potion_sm",
+      "inputCount": 5,
+      "outputId": "hp_potion_md",
+      "outputMinLevel": 20
+    },
+    {
+      "tier": 2,
+      "family": "hp",
+      "inputId": "hp_potion_md",
+      "inputCount": 4,
+      "outputId": "hp_potion_lg",
+      "outputMinLevel": 50
+    },
+    {
+      "tier": 7,
+      "family": "hp",
+      "inputId": "hp_potion_lg",
+      "inputCount": 25,
+      "outputId": "hp_potion_mega",
+      "outputMinLevel": 100
+    },
+    {
+      "tier": 3,
+      "family": "hp",
+      "inputId": "hp_potion_lg",
+      "inputCount": 334,
+      "outputId": "hp_potion_great",
+      "outputMinLevel": 200
+    },
+    {
+      "tier": 4,
+      "family": "hp",
+      "inputId": "hp_potion_great",
+      "inputCount": 2,
+      "outputId": "hp_potion_super",
+      "outputMinLevel": 350
+    },
+    {
+      "tier": 5,
+      "family": "hp",
+      "inputId": "hp_potion_super",
+      "inputCount": 2,
+      "outputId": "hp_potion_ultimate",
+      "outputMinLevel": 500
+    },
+    {
+      "tier": 6,
+      "family": "hp",
+      "inputId": "hp_potion_ultimate",
+      "inputCount": 2,
+      "outputId": "hp_potion_divine",
+      "outputMinLevel": 700
+    },
+    {
+      "tier": 1,
+      "family": "mp",
+      "inputId": "mp_potion_sm",
+      "inputCount": 5,
+      "outputId": "mp_potion_md",
+      "outputMinLevel": 20
+    },
+    {
+      "tier": 2,
+      "family": "mp",
+      "inputId": "mp_potion_md",
+      "inputCount": 4,
+      "outputId": "mp_potion_lg",
+      "outputMinLevel": 50
+    },
+    {
+      "tier": 7,
+      "family": "mp",
+      "inputId": "mp_potion_lg",
+      "inputCount": 25,
+      "outputId": "mp_potion_mega",
+      "outputMinLevel": 100
+    },
+    {
+      "tier": 3,
+      "family": "mp",
+      "inputId": "mp_potion_lg",
+      "inputCount": 334,
+      "outputId": "mp_potion_great",
+      "outputMinLevel": 200
+    },
+    {
+      "tier": 4,
+      "family": "mp",
+      "inputId": "mp_potion_great",
+      "inputCount": 2,
+      "outputId": "mp_potion_super",
+      "outputMinLevel": 350
+    },
+    {
+      "tier": 5,
+      "family": "mp",
+      "inputId": "mp_potion_super",
+      "inputCount": 2,
+      "outputId": "mp_potion_ultimate",
+      "outputMinLevel": 500
+    },
+    {
+      "tier": 6,
+      "family": "mp",
+      "inputId": "mp_potion_ultimate",
+      "inputCount": 2,
+      "outputId": "mp_potion_divine",
+      "outputMinLevel": 700
+    }
+  ],
+  "getMaxConversions": [
+    {
+      "outputId": "hp_potion_md",
+      "inputCount": 5,
+      "ownedInput": 0,
+      "value": 0
+    },
+    {
+      "outputId": "hp_potion_md",
+      "inputCount": 5,
+      "ownedInput": 4,
+      "value": 0
+    },
+    {
+      "outputId": "hp_potion_md",
+      "inputCount": 5,
+      "ownedInput": 5,
+      "value": 1
+    },
+    {
+      "outputId": "hp_potion_md",
+      "inputCount": 5,
+      "ownedInput": 12,
+      "value": 2
+    },
+    {
+      "outputId": "hp_potion_great",
+      "inputCount": 334,
+      "ownedInput": 333,
+      "value": 0
+    },
+    {
+      "outputId": "hp_potion_great",
+      "inputCount": 334,
+      "ownedInput": 334,
+      "value": 1
+    },
+    {
+      "outputId": "hp_potion_great",
+      "inputCount": 334,
+      "ownedInput": 700,
+      "value": 2
+    },
+    {
+      "outputId": "hp_potion_super",
+      "inputCount": 2,
+      "ownedInput": 5,
+      "value": 2
+    },
+    {
+      "outputId": "hp_potion_mega",
+      "inputCount": 25,
+      "ownedInput": 100,
+      "value": 4
+    },
+    {
+      "outputId": "hp_potion_md",
+      "inputCount": 5,
+      "ownedInput": -10,
+      "value": -2
+    }
+  ],
+  "checkConversionAvailability": [
+    {
+      "outputId": "hp_potion_great",
+      "inputCount": 334,
+      "ownedInput": 334,
+      "level": 200,
+      "result": {
+        "canConvert": true,
+        "maxBatches": 1,
+        "levelLocked": false,
+        "requiredLevel": 200
+      }
+    },
+    {
+      "outputId": "hp_potion_great",
+      "inputCount": 334,
+      "ownedInput": 334,
+      "level": 199,
+      "result": {
+        "canConvert": false,
+        "maxBatches": 1,
+        "levelLocked": true,
+        "requiredLevel": 200
+      }
+    },
+    {
+      "outputId": "hp_potion_md",
+      "inputCount": 5,
+      "ownedInput": 4,
+      "level": 20,
+      "result": {
+        "canConvert": false,
+        "maxBatches": 0,
+        "levelLocked": false,
+        "requiredLevel": 20
+      }
+    },
+    {
+      "outputId": "hp_potion_divine",
+      "inputCount": 2,
+      "ownedInput": 10,
+      "level": 700,
+      "result": {
+        "canConvert": true,
+        "maxBatches": 5,
+        "levelLocked": false,
+        "requiredLevel": 700
+      }
+    },
+    {
+      "outputId": "hp_potion_mega",
+      "inputCount": 25,
+      "ownedInput": 100,
+      "level": null,
+      "result": {
+        "canConvert": true,
+        "maxBatches": 4,
+        "levelLocked": false,
+        "requiredLevel": 100
+      }
+    },
+    {
+      "outputId": "hp_potion_super",
+      "inputCount": 2,
+      "ownedInput": 0,
+      "level": 350,
+      "result": {
+        "canConvert": false,
+        "maxBatches": 0,
+        "levelLocked": false,
+        "requiredLevel": 350
+      }
+    }
+  ]
+}

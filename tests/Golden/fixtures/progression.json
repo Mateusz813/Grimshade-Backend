@@ -1,0 +1,102 @@
+{
+  "system": "progression",
+  "note": "Generowane z src/systems/progression.ts (podzbiór autorytatywny getMonsterUnlockStatus). NIE edytuj ręcznie.",
+  "getUnlockState": [
+    {
+      "label": "first-ok",
+      "monsterId": "rat",
+      "characterLevel": 5,
+      "masteries": {},
+      "result": {
+        "unlocked": true,
+        "lockKind": null,
+        "requiredMonsterId": null
+      }
+    },
+    {
+      "label": "level-gate",
+      "monsterId": "bear",
+      "characterLevel": 5,
+      "masteries": {},
+      "result": {
+        "unlocked": false,
+        "lockKind": "level",
+        "requiredMonsterId": null
+      }
+    },
+    {
+      "label": "mastery-locked",
+      "monsterId": "wolf",
+      "characterLevel": 10,
+      "masteries": {},
+      "result": {
+        "unlocked": false,
+        "lockKind": "mastery",
+        "requiredMonsterId": "rat"
+      }
+    },
+    {
+      "label": "mastery-locked-0",
+      "monsterId": "wolf",
+      "characterLevel": 10,
+      "masteries": {
+        "rat": {
+          "level": 0
+        }
+      },
+      "result": {
+        "unlocked": false,
+        "lockKind": "mastery",
+        "requiredMonsterId": "rat"
+      }
+    },
+    {
+      "label": "mastery-unlocked",
+      "monsterId": "wolf",
+      "characterLevel": 10,
+      "masteries": {
+        "rat": {
+          "level": 1
+        }
+      },
+      "result": {
+        "unlocked": true,
+        "lockKind": null,
+        "requiredMonsterId": null
+      }
+    },
+    {
+      "label": "bear-mastery-locked",
+      "monsterId": "bear",
+      "characterLevel": 10,
+      "masteries": {
+        "rat": {
+          "level": 5
+        }
+      },
+      "result": {
+        "unlocked": false,
+        "lockKind": "mastery",
+        "requiredMonsterId": "wolf"
+      }
+    },
+    {
+      "label": "bear-unlocked",
+      "monsterId": "bear",
+      "characterLevel": 10,
+      "masteries": {
+        "rat": {
+          "level": 5
+        },
+        "wolf": {
+          "level": 3
+        }
+      },
+      "result": {
+        "unlocked": true,
+        "lockKind": null,
+        "requiredMonsterId": null
+      }
+    }
+  ]
+}

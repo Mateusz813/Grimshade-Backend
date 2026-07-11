@@ -1,0 +1,321 @@
+[
+  {
+    "id": 1,
+    "level": 30,
+    "name_pl": "Transformacja I",
+    "name_en": "Transform I",
+    "color": "#e53935",
+    "gradientColors": null,
+    "monsterLevelRange": [1, 30],
+    "avatarSuffix": "-1",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_sm",
+      "hpPotionCount": 50,
+      "mpPotionId": "mp_potion_sm",
+      "mpPotionCount": 50,
+      "spellChestLevel": 30,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 2,
+    "level": 50,
+    "name_pl": "Transformacja II",
+    "name_en": "Transform II",
+    "color": "#ff9800",
+    "gradientColors": null,
+    "monsterLevelRange": [31, 50],
+    "avatarSuffix": "-2",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_sm",
+      "hpPotionCount": 100,
+      "mpPotionId": "mp_potion_sm",
+      "mpPotionCount": 100,
+      "spellChestLevel": 50,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 3,
+    "level": 100,
+    "name_pl": "Transformacja III",
+    "name_en": "Transform III",
+    "color": "#4caf50",
+    "gradientColors": null,
+    "monsterLevelRange": [51, 100],
+    "avatarSuffix": "-3",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_md",
+      "hpPotionCount": 100,
+      "mpPotionId": "mp_potion_md",
+      "mpPotionCount": 100,
+      "spellChestLevel": 100,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 4,
+    "level": 150,
+    "name_pl": "Transformacja IV",
+    "name_en": "Transform IV",
+    "color": "#8bc34a",
+    "gradientColors": null,
+    "monsterLevelRange": [101, 150],
+    "avatarSuffix": "-4",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_md",
+      "hpPotionCount": 200,
+      "mpPotionId": "mp_potion_md",
+      "mpPotionCount": 200,
+      "spellChestLevel": 150,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 5,
+    "level": 200,
+    "name_pl": "Transformacja V",
+    "name_en": "Transform V",
+    "color": "#9c27b0",
+    "gradientColors": null,
+    "monsterLevelRange": [151, 200],
+    "avatarSuffix": "-5",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_strong",
+      "hpPotionCount": 200,
+      "mpPotionId": "mp_potion_strong",
+      "mpPotionCount": 200,
+      "spellChestLevel": 200,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 6,
+    "level": 300,
+    "name_pl": "Transformacja VI",
+    "name_en": "Transform VI",
+    "color": "#5c6bc0",
+    "gradientColors": null,
+    "monsterLevelRange": [201, 300],
+    "avatarSuffix": "-6",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_strong",
+      "hpPotionCount": 300,
+      "mpPotionId": "mp_potion_strong",
+      "mpPotionCount": 300,
+      "spellChestLevel": 300,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 7,
+    "level": 500,
+    "name_pl": "Transformacja VII",
+    "name_en": "Transform VII",
+    "color": "#212121",
+    "gradientColors": null,
+    "monsterLevelRange": [301, 500],
+    "avatarSuffix": "-7",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_great",
+      "hpPotionCount": 300,
+      "mpPotionId": "mp_potion_great",
+      "mpPotionCount": 300,
+      "spellChestLevel": 500,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 8,
+    "level": 700,
+    "name_pl": "Transformacja VIII",
+    "name_en": "Transform VIII",
+    "color": null,
+    "gradientColors": ["#ffc107", "#212121"],
+    "monsterLevelRange": [501, 700],
+    "avatarSuffix": "-8",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_super",
+      "hpPotionCount": 400,
+      "mpPotionId": "mp_potion_super",
+      "mpPotionCount": 400,
+      "spellChestLevel": 700,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 9,
+    "level": 800,
+    "name_pl": "Transformacja IX",
+    "name_en": "Transform IX",
+    "color": "#2196f3",
+    "gradientColors": null,
+    "monsterLevelRange": [701, 800],
+    "avatarSuffix": "-9",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_ultimate",
+      "hpPotionCount": 500,
+      "mpPotionId": "mp_potion_ultimate",
+      "mpPotionCount": 500,
+      "spellChestLevel": 800,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 10,
+    "level": 900,
+    "name_pl": "Transformacja X",
+    "name_en": "Transform X",
+    "color": "#ffffff",
+    "gradientColors": null,
+    "monsterLevelRange": [801, 900],
+    "avatarSuffix": "-10",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_ultimate",
+      "hpPotionCount": 500,
+      "mpPotionId": "mp_potion_ultimate",
+      "mpPotionCount": 500,
+      "spellChestLevel": 900,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  },
+  {
+    "id": 11,
+    "level": 1000,
+    "name_pl": "Transformacja XI",
+    "name_en": "Transform XI",
+    "color": null,
+    "gradientColors": ["#212121", "#ffc107"],
+    "monsterLevelRange": [901, 1000],
+    "avatarSuffix": "-11",
+    "rewards": {
+      "permanentBonuses": {
+        "hpPercent": 3,
+        "mpPercent": 3,
+        "hpRegen": 0.05,
+        "mpRegen": 0.05,
+        "attack": 2,
+        "defense": 2,
+        "classSkillBonus": 1
+      },
+      "premiumXpElixirCount": 5,
+      "hpPotionId": "hp_potion_divine",
+      "hpPotionCount": 500,
+      "mpPotionId": "mp_potion_divine",
+      "mpPotionCount": 500,
+      "spellChestLevel": 1000,
+      "spellChestCount": 1,
+      "mythicStoneCount": 1
+    }
+  }
+]

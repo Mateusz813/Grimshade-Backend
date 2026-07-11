@@ -1,0 +1,5402 @@
+[
+  {
+    "id": "rat_10",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 10,
+    "rewardGold": 50,
+    "rewardXp": 100
+  },
+  {
+    "id": "rat_50",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 50,
+    "rewardGold": 300,
+    "rewardXp": 500
+  },
+  {
+    "id": "rat_100",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 100,
+    "rewardGold": 700,
+    "rewardXp": 1200
+  },
+  {
+    "id": "rat_200",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 200,
+    "rewardGold": 1500,
+    "rewardXp": 2500
+  },
+  {
+    "id": "rat_500",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 500,
+    "rewardGold": 4000,
+    "rewardXp": 7000
+  },
+  {
+    "id": "rat_1000",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 1000,
+    "rewardGold": 10000,
+    "rewardXp": 20000
+  },
+  {
+    "id": "cave_spider_10",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 10,
+    "rewardGold": 100,
+    "rewardXp": 200
+  },
+  {
+    "id": "cave_spider_50",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 50,
+    "rewardGold": 600,
+    "rewardXp": 1000
+  },
+  {
+    "id": "cave_spider_100",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 100,
+    "rewardGold": 1400,
+    "rewardXp": 2400
+  },
+  {
+    "id": "cave_spider_200",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 200,
+    "rewardGold": 3000,
+    "rewardXp": 5000
+  },
+  {
+    "id": "cave_spider_500",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 500,
+    "rewardGold": 8000,
+    "rewardXp": 14000
+  },
+  {
+    "id": "cave_spider_1000",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 1000,
+    "rewardGold": 20000,
+    "rewardXp": 40000
+  },
+  {
+    "id": "goblin_10",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 10,
+    "rewardGold": 150,
+    "rewardXp": 300
+  },
+  {
+    "id": "goblin_50",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 50,
+    "rewardGold": 900,
+    "rewardXp": 1500
+  },
+  {
+    "id": "goblin_100",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 100,
+    "rewardGold": 2100,
+    "rewardXp": 3600
+  },
+  {
+    "id": "goblin_200",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 200,
+    "rewardGold": 4500,
+    "rewardXp": 7500
+  },
+  {
+    "id": "goblin_500",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 500,
+    "rewardGold": 12000,
+    "rewardXp": 21000
+  },
+  {
+    "id": "goblin_1000",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 1000,
+    "rewardGold": 30000,
+    "rewardXp": 60000
+  },
+  {
+    "id": "skeleton_10",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 10,
+    "rewardGold": 200,
+    "rewardXp": 400
+  },
+  {
+    "id": "skeleton_50",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 50,
+    "rewardGold": 1200,
+    "rewardXp": 2000
+  },
+  {
+    "id": "skeleton_100",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 100,
+    "rewardGold": 2800,
+    "rewardXp": 4800
+  },
+  {
+    "id": "skeleton_200",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 200,
+    "rewardGold": 6000,
+    "rewardXp": 10000
+  },
+  {
+    "id": "skeleton_500",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 500,
+    "rewardGold": 16000,
+    "rewardXp": 28000
+  },
+  {
+    "id": "skeleton_1000",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 1000,
+    "rewardGold": 40000,
+    "rewardXp": 80000
+  },
+  {
+    "id": "orc_10",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 10,
+    "rewardGold": 250,
+    "rewardXp": 500
+  },
+  {
+    "id": "orc_50",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 50,
+    "rewardGold": 1500,
+    "rewardXp": 2500
+  },
+  {
+    "id": "orc_100",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 100,
+    "rewardGold": 3500,
+    "rewardXp": 6000
+  },
+  {
+    "id": "orc_200",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 200,
+    "rewardGold": 7500,
+    "rewardXp": 12500
+  },
+  {
+    "id": "orc_500",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 500,
+    "rewardGold": 20000,
+    "rewardXp": 35000
+  },
+  {
+    "id": "orc_1000",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 1000,
+    "rewardGold": 50000,
+    "rewardXp": 100000
+  },
+  {
+    "id": "zombie_10",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 10,
+    "rewardGold": 300,
+    "rewardXp": 600
+  },
+  {
+    "id": "zombie_50",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 50,
+    "rewardGold": 1800,
+    "rewardXp": 3000
+  },
+  {
+    "id": "zombie_100",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 100,
+    "rewardGold": 4200,
+    "rewardXp": 7200
+  },
+  {
+    "id": "zombie_200",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 200,
+    "rewardGold": 9000,
+    "rewardXp": 15000
+  },
+  {
+    "id": "zombie_500",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 500,
+    "rewardGold": 24000,
+    "rewardXp": 42000
+  },
+  {
+    "id": "zombie_1000",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 1000,
+    "rewardGold": 60000,
+    "rewardXp": 120000
+  },
+  {
+    "id": "cave_bear_10",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 10,
+    "rewardGold": 350,
+    "rewardXp": 700
+  },
+  {
+    "id": "cave_bear_50",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 50,
+    "rewardGold": 2100,
+    "rewardXp": 3500
+  },
+  {
+    "id": "cave_bear_100",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 100,
+    "rewardGold": 4900,
+    "rewardXp": 8400
+  },
+  {
+    "id": "cave_bear_200",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 200,
+    "rewardGold": 10500,
+    "rewardXp": 17500
+  },
+  {
+    "id": "cave_bear_500",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 500,
+    "rewardGold": 28000,
+    "rewardXp": 49000
+  },
+  {
+    "id": "cave_bear_1000",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 1000,
+    "rewardGold": 70000,
+    "rewardXp": 140000
+  },
+  {
+    "id": "troll_10",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 10,
+    "rewardGold": 400,
+    "rewardXp": 800
+  },
+  {
+    "id": "troll_50",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 50,
+    "rewardGold": 2400,
+    "rewardXp": 4000
+  },
+  {
+    "id": "troll_100",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 100,
+    "rewardGold": 5600,
+    "rewardXp": 9600
+  },
+  {
+    "id": "troll_200",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 200,
+    "rewardGold": 12000,
+    "rewardXp": 20000
+  },
+  {
+    "id": "troll_500",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 500,
+    "rewardGold": 32000,
+    "rewardXp": 56000
+  },
+  {
+    "id": "troll_1000",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 1000,
+    "rewardGold": 80000,
+    "rewardXp": 160000
+  },
+  {
+    "id": "giant_ant_10",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 10,
+    "rewardGold": 450,
+    "rewardXp": 900
+  },
+  {
+    "id": "giant_ant_50",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 50,
+    "rewardGold": 2700,
+    "rewardXp": 4500
+  },
+  {
+    "id": "giant_ant_100",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 100,
+    "rewardGold": 6300,
+    "rewardXp": 10800
+  },
+  {
+    "id": "giant_ant_200",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 200,
+    "rewardGold": 13500,
+    "rewardXp": 22500
+  },
+  {
+    "id": "giant_ant_500",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 500,
+    "rewardGold": 36000,
+    "rewardXp": 63000
+  },
+  {
+    "id": "giant_ant_1000",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 1000,
+    "rewardGold": 90000,
+    "rewardXp": 180000
+  },
+  {
+    "id": "dark_elf_10",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 10,
+    "rewardGold": 500,
+    "rewardXp": 1000
+  },
+  {
+    "id": "dark_elf_50",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 50,
+    "rewardGold": 3000,
+    "rewardXp": 5000
+  },
+  {
+    "id": "dark_elf_100",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 100,
+    "rewardGold": 7000,
+    "rewardXp": 12000
+  },
+  {
+    "id": "dark_elf_200",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 200,
+    "rewardGold": 15000,
+    "rewardXp": 25000
+  },
+  {
+    "id": "dark_elf_500",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 500,
+    "rewardGold": 40000,
+    "rewardXp": 70000
+  },
+  {
+    "id": "dark_elf_1000",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 1000,
+    "rewardGold": 100000,
+    "rewardXp": 200000
+  },
+  {
+    "id": "bandit_10",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 10,
+    "rewardGold": 550,
+    "rewardXp": 1100
+  },
+  {
+    "id": "bandit_50",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 50,
+    "rewardGold": 3300,
+    "rewardXp": 5500
+  },
+  {
+    "id": "bandit_100",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 100,
+    "rewardGold": 7700,
+    "rewardXp": 13200
+  },
+  {
+    "id": "bandit_200",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 200,
+    "rewardGold": 16500,
+    "rewardXp": 27500
+  },
+  {
+    "id": "bandit_500",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 500,
+    "rewardGold": 44000,
+    "rewardXp": 77000
+  },
+  {
+    "id": "bandit_1000",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 1000,
+    "rewardGold": 110000,
+    "rewardXp": 220000
+  },
+  {
+    "id": "lizardman_10",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 10,
+    "rewardGold": 600,
+    "rewardXp": 1200
+  },
+  {
+    "id": "lizardman_50",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 50,
+    "rewardGold": 3600,
+    "rewardXp": 6000
+  },
+  {
+    "id": "lizardman_100",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 100,
+    "rewardGold": 8400,
+    "rewardXp": 14400
+  },
+  {
+    "id": "lizardman_200",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 200,
+    "rewardGold": 18000,
+    "rewardXp": 30000
+  },
+  {
+    "id": "lizardman_500",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 500,
+    "rewardGold": 48000,
+    "rewardXp": 84000
+  },
+  {
+    "id": "lizardman_1000",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 1000,
+    "rewardGold": 120000,
+    "rewardXp": 240000
+  },
+  {
+    "id": "harpy_10",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 10,
+    "rewardGold": 650,
+    "rewardXp": 1300
+  },
+  {
+    "id": "harpy_50",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 50,
+    "rewardGold": 3900,
+    "rewardXp": 6500
+  },
+  {
+    "id": "harpy_100",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 100,
+    "rewardGold": 9100,
+    "rewardXp": 15600
+  },
+  {
+    "id": "harpy_200",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 200,
+    "rewardGold": 19500,
+    "rewardXp": 32500
+  },
+  {
+    "id": "harpy_500",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 500,
+    "rewardGold": 52000,
+    "rewardXp": 91000
+  },
+  {
+    "id": "harpy_1000",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 1000,
+    "rewardGold": 130000,
+    "rewardXp": 260000
+  },
+  {
+    "id": "vampire_10",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 10,
+    "rewardGold": 700,
+    "rewardXp": 1400
+  },
+  {
+    "id": "vampire_50",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 50,
+    "rewardGold": 4200,
+    "rewardXp": 7000
+  },
+  {
+    "id": "vampire_100",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 100,
+    "rewardGold": 9800,
+    "rewardXp": 16800
+  },
+  {
+    "id": "vampire_200",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 200,
+    "rewardGold": 21000,
+    "rewardXp": 35000
+  },
+  {
+    "id": "vampire_500",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 500,
+    "rewardGold": 56000,
+    "rewardXp": 98000
+  },
+  {
+    "id": "vampire_1000",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 1000,
+    "rewardGold": 140000,
+    "rewardXp": 280000
+  },
+  {
+    "id": "cyclops_10",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 10,
+    "rewardGold": 750,
+    "rewardXp": 1500
+  },
+  {
+    "id": "cyclops_50",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 50,
+    "rewardGold": 4500,
+    "rewardXp": 7500
+  },
+  {
+    "id": "cyclops_100",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 100,
+    "rewardGold": 10500,
+    "rewardXp": 18000
+  },
+  {
+    "id": "cyclops_200",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 200,
+    "rewardGold": 22500,
+    "rewardXp": 37500
+  },
+  {
+    "id": "cyclops_500",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 500,
+    "rewardGold": 60000,
+    "rewardXp": 105000
+  },
+  {
+    "id": "cyclops_1000",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 1000,
+    "rewardGold": 150000,
+    "rewardXp": 300000
+  },
+  {
+    "id": "werewolf_10",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 10,
+    "rewardGold": 800,
+    "rewardXp": 1600
+  },
+  {
+    "id": "werewolf_50",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 50,
+    "rewardGold": 4800,
+    "rewardXp": 8000
+  },
+  {
+    "id": "werewolf_100",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 100,
+    "rewardGold": 11200,
+    "rewardXp": 19200
+  },
+  {
+    "id": "werewolf_200",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 200,
+    "rewardGold": 24000,
+    "rewardXp": 40000
+  },
+  {
+    "id": "werewolf_500",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 500,
+    "rewardGold": 64000,
+    "rewardXp": 112000
+  },
+  {
+    "id": "werewolf_1000",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 1000,
+    "rewardGold": 160000,
+    "rewardXp": 320000
+  },
+  {
+    "id": "sea_serpent_10",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 10,
+    "rewardGold": 850,
+    "rewardXp": 1700
+  },
+  {
+    "id": "sea_serpent_50",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 50,
+    "rewardGold": 5100,
+    "rewardXp": 8500
+  },
+  {
+    "id": "sea_serpent_100",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 100,
+    "rewardGold": 11900,
+    "rewardXp": 20400
+  },
+  {
+    "id": "sea_serpent_200",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 200,
+    "rewardGold": 25500,
+    "rewardXp": 42500
+  },
+  {
+    "id": "sea_serpent_500",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 500,
+    "rewardGold": 68000,
+    "rewardXp": 119000
+  },
+  {
+    "id": "sea_serpent_1000",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 1000,
+    "rewardGold": 170000,
+    "rewardXp": 340000
+  },
+  {
+    "id": "earth_elemental_10",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 10,
+    "rewardGold": 900,
+    "rewardXp": 1800
+  },
+  {
+    "id": "earth_elemental_50",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 50,
+    "rewardGold": 5400,
+    "rewardXp": 9000
+  },
+  {
+    "id": "earth_elemental_100",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 100,
+    "rewardGold": 12600,
+    "rewardXp": 21600
+  },
+  {
+    "id": "earth_elemental_200",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 200,
+    "rewardGold": 27000,
+    "rewardXp": 45000
+  },
+  {
+    "id": "earth_elemental_500",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 500,
+    "rewardGold": 72000,
+    "rewardXp": 126000
+  },
+  {
+    "id": "earth_elemental_1000",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 1000,
+    "rewardGold": 180000,
+    "rewardXp": 360000
+  },
+  {
+    "id": "witch_10",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 10,
+    "rewardGold": 950,
+    "rewardXp": 1900
+  },
+  {
+    "id": "witch_50",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 50,
+    "rewardGold": 5700,
+    "rewardXp": 9500
+  },
+  {
+    "id": "witch_100",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 100,
+    "rewardGold": 13300,
+    "rewardXp": 22800
+  },
+  {
+    "id": "witch_200",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 200,
+    "rewardGold": 28500,
+    "rewardXp": 47500
+  },
+  {
+    "id": "witch_500",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 500,
+    "rewardGold": 76000,
+    "rewardXp": 133000
+  },
+  {
+    "id": "witch_1000",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 1000,
+    "rewardGold": 190000,
+    "rewardXp": 380000
+  },
+  {
+    "id": "dark_mage_10",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 10,
+    "rewardGold": 1000,
+    "rewardXp": 2000
+  },
+  {
+    "id": "dark_mage_50",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 50,
+    "rewardGold": 6000,
+    "rewardXp": 10000
+  },
+  {
+    "id": "dark_mage_100",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 100,
+    "rewardGold": 14000,
+    "rewardXp": 24000
+  },
+  {
+    "id": "dark_mage_200",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 200,
+    "rewardGold": 30000,
+    "rewardXp": 50000
+  },
+  {
+    "id": "dark_mage_500",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 500,
+    "rewardGold": 80000,
+    "rewardXp": 140000
+  },
+  {
+    "id": "dark_mage_1000",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 1000,
+    "rewardGold": 200000,
+    "rewardXp": 400000
+  },
+  {
+    "id": "stone_golem_10",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 10,
+    "rewardGold": 1050,
+    "rewardXp": 2100
+  },
+  {
+    "id": "stone_golem_50",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 50,
+    "rewardGold": 6300,
+    "rewardXp": 10500
+  },
+  {
+    "id": "stone_golem_100",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 100,
+    "rewardGold": 14700,
+    "rewardXp": 25200
+  },
+  {
+    "id": "stone_golem_200",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 200,
+    "rewardGold": 31500,
+    "rewardXp": 52500
+  },
+  {
+    "id": "stone_golem_500",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 500,
+    "rewardGold": 84000,
+    "rewardXp": 147000
+  },
+  {
+    "id": "stone_golem_1000",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 1000,
+    "rewardGold": 210000,
+    "rewardXp": 420000
+  },
+  {
+    "id": "minotaur_10",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 10,
+    "rewardGold": 1100,
+    "rewardXp": 2200
+  },
+  {
+    "id": "minotaur_50",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 50,
+    "rewardGold": 6600,
+    "rewardXp": 11000
+  },
+  {
+    "id": "minotaur_100",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 100,
+    "rewardGold": 15400,
+    "rewardXp": 26400
+  },
+  {
+    "id": "minotaur_200",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 200,
+    "rewardGold": 33000,
+    "rewardXp": 55000
+  },
+  {
+    "id": "minotaur_500",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 500,
+    "rewardGold": 88000,
+    "rewardXp": 154000
+  },
+  {
+    "id": "minotaur_1000",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 1000,
+    "rewardGold": 220000,
+    "rewardXp": 440000
+  },
+  {
+    "id": "wyvern_10",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 10,
+    "rewardGold": 1150,
+    "rewardXp": 2300
+  },
+  {
+    "id": "wyvern_50",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 50,
+    "rewardGold": 6900,
+    "rewardXp": 11500
+  },
+  {
+    "id": "wyvern_100",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 100,
+    "rewardGold": 16100,
+    "rewardXp": 27600
+  },
+  {
+    "id": "wyvern_200",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 200,
+    "rewardGold": 34500,
+    "rewardXp": 57500
+  },
+  {
+    "id": "wyvern_500",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 500,
+    "rewardGold": 92000,
+    "rewardXp": 161000
+  },
+  {
+    "id": "wyvern_1000",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 1000,
+    "rewardGold": 230000,
+    "rewardXp": 460000
+  },
+  {
+    "id": "fire_salamander_10",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 10,
+    "rewardGold": 1200,
+    "rewardXp": 2400
+  },
+  {
+    "id": "fire_salamander_50",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 50,
+    "rewardGold": 7200,
+    "rewardXp": 12000
+  },
+  {
+    "id": "fire_salamander_100",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 100,
+    "rewardGold": 16800,
+    "rewardXp": 28800
+  },
+  {
+    "id": "fire_salamander_200",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 200,
+    "rewardGold": 36000,
+    "rewardXp": 60000
+  },
+  {
+    "id": "fire_salamander_500",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 500,
+    "rewardGold": 96000,
+    "rewardXp": 168000
+  },
+  {
+    "id": "fire_salamander_1000",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 1000,
+    "rewardGold": 240000,
+    "rewardXp": 480000
+  },
+  {
+    "id": "necromancer_minion_10",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 10,
+    "rewardGold": 1250,
+    "rewardXp": 2500
+  },
+  {
+    "id": "necromancer_minion_50",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 50,
+    "rewardGold": 7500,
+    "rewardXp": 12500
+  },
+  {
+    "id": "necromancer_minion_100",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 100,
+    "rewardGold": 17500,
+    "rewardXp": 30000
+  },
+  {
+    "id": "necromancer_minion_200",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 200,
+    "rewardGold": 37500,
+    "rewardXp": 62500
+  },
+  {
+    "id": "necromancer_minion_500",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 500,
+    "rewardGold": 100000,
+    "rewardXp": 175000
+  },
+  {
+    "id": "necromancer_minion_1000",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 1000,
+    "rewardGold": 250000,
+    "rewardXp": 500000
+  },
+  {
+    "id": "ice_golem_10",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 10,
+    "rewardGold": 1300,
+    "rewardXp": 2600
+  },
+  {
+    "id": "ice_golem_50",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 50,
+    "rewardGold": 7800,
+    "rewardXp": 13000
+  },
+  {
+    "id": "ice_golem_100",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 100,
+    "rewardGold": 18200,
+    "rewardXp": 31200
+  },
+  {
+    "id": "ice_golem_200",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 200,
+    "rewardGold": 39000,
+    "rewardXp": 65000
+  },
+  {
+    "id": "ice_golem_500",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 500,
+    "rewardGold": 104000,
+    "rewardXp": 182000
+  },
+  {
+    "id": "ice_golem_1000",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 1000,
+    "rewardGold": 260000,
+    "rewardXp": 520000
+  },
+  {
+    "id": "thunder_bird_10",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 10,
+    "rewardGold": 1350,
+    "rewardXp": 2700
+  },
+  {
+    "id": "thunder_bird_50",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 50,
+    "rewardGold": 8100,
+    "rewardXp": 13500
+  },
+  {
+    "id": "thunder_bird_100",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 100,
+    "rewardGold": 18900,
+    "rewardXp": 32400
+  },
+  {
+    "id": "thunder_bird_200",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 200,
+    "rewardGold": 40500,
+    "rewardXp": 67500
+  },
+  {
+    "id": "thunder_bird_500",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 500,
+    "rewardGold": 108000,
+    "rewardXp": 189000
+  },
+  {
+    "id": "thunder_bird_1000",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 1000,
+    "rewardGold": 270000,
+    "rewardXp": 540000
+  },
+  {
+    "id": "shadow_assassin_10",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 10,
+    "rewardGold": 1400,
+    "rewardXp": 2800
+  },
+  {
+    "id": "shadow_assassin_50",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 50,
+    "rewardGold": 8400,
+    "rewardXp": 14000
+  },
+  {
+    "id": "shadow_assassin_100",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 100,
+    "rewardGold": 19600,
+    "rewardXp": 33600
+  },
+  {
+    "id": "shadow_assassin_200",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 200,
+    "rewardGold": 42000,
+    "rewardXp": 70000
+  },
+  {
+    "id": "shadow_assassin_500",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 500,
+    "rewardGold": 112000,
+    "rewardXp": 196000
+  },
+  {
+    "id": "shadow_assassin_1000",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 1000,
+    "rewardGold": 280000,
+    "rewardXp": 560000
+  },
+  {
+    "id": "medusa_10",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 10,
+    "rewardGold": 1450,
+    "rewardXp": 2900
+  },
+  {
+    "id": "medusa_50",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 50,
+    "rewardGold": 8700,
+    "rewardXp": 14500
+  },
+  {
+    "id": "medusa_100",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 100,
+    "rewardGold": 20300,
+    "rewardXp": 34800
+  },
+  {
+    "id": "medusa_200",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 200,
+    "rewardGold": 43500,
+    "rewardXp": 72500
+  },
+  {
+    "id": "medusa_500",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 500,
+    "rewardGold": 116000,
+    "rewardXp": 203000
+  },
+  {
+    "id": "medusa_1000",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 1000,
+    "rewardGold": 290000,
+    "rewardXp": 580000
+  },
+  {
+    "id": "demon_imp_10",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 10,
+    "rewardGold": 1500,
+    "rewardXp": 3000
+  },
+  {
+    "id": "demon_imp_50",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 50,
+    "rewardGold": 9000,
+    "rewardXp": 15000
+  },
+  {
+    "id": "demon_imp_100",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 100,
+    "rewardGold": 21000,
+    "rewardXp": 36000
+  },
+  {
+    "id": "demon_imp_200",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 200,
+    "rewardGold": 45000,
+    "rewardXp": 75000
+  },
+  {
+    "id": "demon_imp_500",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 500,
+    "rewardGold": 120000,
+    "rewardXp": 210000
+  },
+  {
+    "id": "demon_imp_1000",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 1000,
+    "rewardGold": 300000,
+    "rewardXp": 600000
+  },
+  {
+    "id": "gnoll_warrior_10",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 10,
+    "rewardGold": 1550,
+    "rewardXp": 3100
+  },
+  {
+    "id": "gnoll_warrior_50",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 50,
+    "rewardGold": 9300,
+    "rewardXp": 15500
+  },
+  {
+    "id": "gnoll_warrior_100",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 100,
+    "rewardGold": 21700,
+    "rewardXp": 37200
+  },
+  {
+    "id": "gnoll_warrior_200",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 200,
+    "rewardGold": 46500,
+    "rewardXp": 77500
+  },
+  {
+    "id": "gnoll_warrior_500",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 500,
+    "rewardGold": 124000,
+    "rewardXp": 217000
+  },
+  {
+    "id": "gnoll_warrior_1000",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 1000,
+    "rewardGold": 310000,
+    "rewardXp": 620000
+  },
+  {
+    "id": "orc_warlord_10",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 10,
+    "rewardGold": 1750,
+    "rewardXp": 3500
+  },
+  {
+    "id": "orc_warlord_50",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 50,
+    "rewardGold": 10500,
+    "rewardXp": 17500
+  },
+  {
+    "id": "orc_warlord_100",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 100,
+    "rewardGold": 24500,
+    "rewardXp": 42000
+  },
+  {
+    "id": "orc_warlord_200",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 200,
+    "rewardGold": 52500,
+    "rewardXp": 87500
+  },
+  {
+    "id": "orc_warlord_500",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 500,
+    "rewardGold": 140000,
+    "rewardXp": 245000
+  },
+  {
+    "id": "orc_warlord_1000",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 1000,
+    "rewardGold": 350000,
+    "rewardXp": 700000
+  },
+  {
+    "id": "swamp_troll_10",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 10,
+    "rewardGold": 2000,
+    "rewardXp": 4000
+  },
+  {
+    "id": "swamp_troll_50",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 50,
+    "rewardGold": 12000,
+    "rewardXp": 20000
+  },
+  {
+    "id": "swamp_troll_100",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 100,
+    "rewardGold": 28000,
+    "rewardXp": 48000
+  },
+  {
+    "id": "swamp_troll_200",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 200,
+    "rewardGold": 60000,
+    "rewardXp": 100000
+  },
+  {
+    "id": "swamp_troll_500",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 500,
+    "rewardGold": 160000,
+    "rewardXp": 280000
+  },
+  {
+    "id": "swamp_troll_1000",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 1000,
+    "rewardGold": 400000,
+    "rewardXp": 800000
+  },
+  {
+    "id": "dark_knight_10",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 10,
+    "rewardGold": 2250,
+    "rewardXp": 4500
+  },
+  {
+    "id": "dark_knight_50",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 50,
+    "rewardGold": 13500,
+    "rewardXp": 22500
+  },
+  {
+    "id": "dark_knight_100",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 100,
+    "rewardGold": 31500,
+    "rewardXp": 54000
+  },
+  {
+    "id": "dark_knight_200",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 200,
+    "rewardGold": 67500,
+    "rewardXp": 112500
+  },
+  {
+    "id": "dark_knight_500",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 500,
+    "rewardGold": 180000,
+    "rewardXp": 315000
+  },
+  {
+    "id": "dark_knight_1000",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 1000,
+    "rewardGold": 450000,
+    "rewardXp": 900000
+  },
+  {
+    "id": "greater_demon_10",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 10,
+    "rewardGold": 2500,
+    "rewardXp": 5000
+  },
+  {
+    "id": "greater_demon_50",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 50,
+    "rewardGold": 15000,
+    "rewardXp": 25000
+  },
+  {
+    "id": "greater_demon_100",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 100,
+    "rewardGold": 35000,
+    "rewardXp": 60000
+  },
+  {
+    "id": "greater_demon_200",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 200,
+    "rewardGold": 75000,
+    "rewardXp": 125000
+  },
+  {
+    "id": "greater_demon_500",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 500,
+    "rewardGold": 200000,
+    "rewardXp": 350000
+  },
+  {
+    "id": "greater_demon_1000",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 1000,
+    "rewardGold": 500000,
+    "rewardXp": 1000000
+  },
+  {
+    "id": "lava_titan_10",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 10,
+    "rewardGold": 3000,
+    "rewardXp": 6000
+  },
+  {
+    "id": "lava_titan_50",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 50,
+    "rewardGold": 18000,
+    "rewardXp": 30000
+  },
+  {
+    "id": "lava_titan_100",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 100,
+    "rewardGold": 42000,
+    "rewardXp": 72000
+  },
+  {
+    "id": "lava_titan_200",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 200,
+    "rewardGold": 90000,
+    "rewardXp": 150000
+  },
+  {
+    "id": "lava_titan_500",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 500,
+    "rewardGold": 240000,
+    "rewardXp": 420000
+  },
+  {
+    "id": "lava_titan_1000",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 1000,
+    "rewardGold": 600000,
+    "rewardXp": 1200000
+  },
+  {
+    "id": "frost_wyrm_10",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 10,
+    "rewardGold": 3500,
+    "rewardXp": 7000
+  },
+  {
+    "id": "frost_wyrm_50",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 50,
+    "rewardGold": 21000,
+    "rewardXp": 35000
+  },
+  {
+    "id": "frost_wyrm_100",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 100,
+    "rewardGold": 49000,
+    "rewardXp": 84000
+  },
+  {
+    "id": "frost_wyrm_200",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 200,
+    "rewardGold": 105000,
+    "rewardXp": 175000
+  },
+  {
+    "id": "frost_wyrm_500",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 500,
+    "rewardGold": 280000,
+    "rewardXp": 490000
+  },
+  {
+    "id": "frost_wyrm_1000",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 1000,
+    "rewardGold": 700000,
+    "rewardXp": 1400000
+  },
+  {
+    "id": "abyssal_horror_10",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 10,
+    "rewardGold": 4000,
+    "rewardXp": 8000
+  },
+  {
+    "id": "abyssal_horror_50",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 50,
+    "rewardGold": 24000,
+    "rewardXp": 40000
+  },
+  {
+    "id": "abyssal_horror_100",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 100,
+    "rewardGold": 56000,
+    "rewardXp": 96000
+  },
+  {
+    "id": "abyssal_horror_200",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 200,
+    "rewardGold": 120000,
+    "rewardXp": 200000
+  },
+  {
+    "id": "abyssal_horror_500",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 500,
+    "rewardGold": 320000,
+    "rewardXp": 560000
+  },
+  {
+    "id": "abyssal_horror_1000",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 1000,
+    "rewardGold": 800000,
+    "rewardXp": 1600000
+  },
+  {
+    "id": "undead_overlord_10",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 10,
+    "rewardGold": 4500,
+    "rewardXp": 9000
+  },
+  {
+    "id": "undead_overlord_50",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 50,
+    "rewardGold": 27000,
+    "rewardXp": 45000
+  },
+  {
+    "id": "undead_overlord_100",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 100,
+    "rewardGold": 63000,
+    "rewardXp": 108000
+  },
+  {
+    "id": "undead_overlord_200",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 200,
+    "rewardGold": 135000,
+    "rewardXp": 225000
+  },
+  {
+    "id": "undead_overlord_500",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 500,
+    "rewardGold": 360000,
+    "rewardXp": 630000
+  },
+  {
+    "id": "undead_overlord_1000",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 1000,
+    "rewardGold": 900000,
+    "rewardXp": 1800000
+  },
+  {
+    "id": "infernal_warlord_10",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 10,
+    "rewardGold": 5000,
+    "rewardXp": 10000
+  },
+  {
+    "id": "infernal_warlord_50",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 50,
+    "rewardGold": 30000,
+    "rewardXp": 50000
+  },
+  {
+    "id": "infernal_warlord_100",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 100,
+    "rewardGold": 70000,
+    "rewardXp": 120000
+  },
+  {
+    "id": "infernal_warlord_200",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 200,
+    "rewardGold": 150000,
+    "rewardXp": 250000
+  },
+  {
+    "id": "infernal_warlord_500",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 500,
+    "rewardGold": 400000,
+    "rewardXp": 700000
+  },
+  {
+    "id": "infernal_warlord_1000",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 1000,
+    "rewardGold": 1000000,
+    "rewardXp": 2000000
+  },
+  {
+    "id": "shadow_dragon_10",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 10,
+    "rewardGold": 6250,
+    "rewardXp": 12500
+  },
+  {
+    "id": "shadow_dragon_50",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 50,
+    "rewardGold": 37500,
+    "rewardXp": 62500
+  },
+  {
+    "id": "shadow_dragon_100",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 100,
+    "rewardGold": 87500,
+    "rewardXp": 150000
+  },
+  {
+    "id": "shadow_dragon_200",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 200,
+    "rewardGold": 187500,
+    "rewardXp": 312500
+  },
+  {
+    "id": "shadow_dragon_500",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 500,
+    "rewardGold": 500000,
+    "rewardXp": 875000
+  },
+  {
+    "id": "shadow_dragon_1000",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 1000,
+    "rewardGold": 1250000,
+    "rewardXp": 2500000
+  },
+  {
+    "id": "elder_vampire_10",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 10,
+    "rewardGold": 7500,
+    "rewardXp": 15000
+  },
+  {
+    "id": "elder_vampire_50",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 50,
+    "rewardGold": 45000,
+    "rewardXp": 75000
+  },
+  {
+    "id": "elder_vampire_100",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 100,
+    "rewardGold": 105000,
+    "rewardXp": 180000
+  },
+  {
+    "id": "elder_vampire_200",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 200,
+    "rewardGold": 225000,
+    "rewardXp": 375000
+  },
+  {
+    "id": "elder_vampire_500",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 500,
+    "rewardGold": 600000,
+    "rewardXp": 1050000
+  },
+  {
+    "id": "elder_vampire_1000",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 1000,
+    "rewardGold": 1500000,
+    "rewardXp": 3000000
+  },
+  {
+    "id": "void_behemoth_10",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 10,
+    "rewardGold": 8750,
+    "rewardXp": 17500
+  },
+  {
+    "id": "void_behemoth_50",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 50,
+    "rewardGold": 52500,
+    "rewardXp": 87500
+  },
+  {
+    "id": "void_behemoth_100",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 100,
+    "rewardGold": 122500,
+    "rewardXp": 210000
+  },
+  {
+    "id": "void_behemoth_200",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 200,
+    "rewardGold": 262500,
+    "rewardXp": 437500
+  },
+  {
+    "id": "void_behemoth_500",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 500,
+    "rewardGold": 700000,
+    "rewardXp": 1225000
+  },
+  {
+    "id": "void_behemoth_1000",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 1000,
+    "rewardGold": 1750000,
+    "rewardXp": 3500000
+  },
+  {
+    "id": "chaos_titan_10",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 10,
+    "rewardGold": 10000,
+    "rewardXp": 20000
+  },
+  {
+    "id": "chaos_titan_50",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 50,
+    "rewardGold": 60000,
+    "rewardXp": 100000
+  },
+  {
+    "id": "chaos_titan_100",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 100,
+    "rewardGold": 140000,
+    "rewardXp": 240000
+  },
+  {
+    "id": "chaos_titan_200",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 200,
+    "rewardGold": 300000,
+    "rewardXp": 500000
+  },
+  {
+    "id": "chaos_titan_500",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 500,
+    "rewardGold": 800000,
+    "rewardXp": 1400000
+  },
+  {
+    "id": "chaos_titan_1000",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 1000,
+    "rewardGold": 2000000,
+    "rewardXp": 4000000
+  },
+  {
+    "id": "primordial_serpent_10",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 10,
+    "rewardGold": 12500,
+    "rewardXp": 25000
+  },
+  {
+    "id": "primordial_serpent_50",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 50,
+    "rewardGold": 75000,
+    "rewardXp": 125000
+  },
+  {
+    "id": "primordial_serpent_100",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 100,
+    "rewardGold": 175000,
+    "rewardXp": 300000
+  },
+  {
+    "id": "primordial_serpent_200",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 200,
+    "rewardGold": 375000,
+    "rewardXp": 625000
+  },
+  {
+    "id": "primordial_serpent_500",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 500,
+    "rewardGold": 1000000,
+    "rewardXp": 1750000
+  },
+  {
+    "id": "primordial_serpent_1000",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 1000,
+    "rewardGold": 2500000,
+    "rewardXp": 5000000
+  },
+  {
+    "id": "death_knight_10",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 10,
+    "rewardGold": 15000,
+    "rewardXp": 30000
+  },
+  {
+    "id": "death_knight_50",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 50,
+    "rewardGold": 90000,
+    "rewardXp": 150000
+  },
+  {
+    "id": "death_knight_100",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 100,
+    "rewardGold": 210000,
+    "rewardXp": 360000
+  },
+  {
+    "id": "death_knight_200",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 200,
+    "rewardGold": 450000,
+    "rewardXp": 750000
+  },
+  {
+    "id": "death_knight_500",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 500,
+    "rewardGold": 1200000,
+    "rewardXp": 2100000
+  },
+  {
+    "id": "death_knight_1000",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 1000,
+    "rewardGold": 3000000,
+    "rewardXp": 6000000
+  },
+  {
+    "id": "elder_lich_10",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 10,
+    "rewardGold": 17500,
+    "rewardXp": 35000
+  },
+  {
+    "id": "elder_lich_50",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 50,
+    "rewardGold": 105000,
+    "rewardXp": 175000
+  },
+  {
+    "id": "elder_lich_100",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 100,
+    "rewardGold": 245000,
+    "rewardXp": 420000
+  },
+  {
+    "id": "elder_lich_200",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 200,
+    "rewardGold": 525000,
+    "rewardXp": 875000
+  },
+  {
+    "id": "elder_lich_500",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 500,
+    "rewardGold": 1400000,
+    "rewardXp": 2450000
+  },
+  {
+    "id": "elder_lich_1000",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 1000,
+    "rewardGold": 3500000,
+    "rewardXp": 7000000
+  },
+  {
+    "id": "abyss_lord_10",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 10,
+    "rewardGold": 20000,
+    "rewardXp": 40000
+  },
+  {
+    "id": "abyss_lord_50",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 50,
+    "rewardGold": 120000,
+    "rewardXp": 200000
+  },
+  {
+    "id": "abyss_lord_100",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 100,
+    "rewardGold": 280000,
+    "rewardXp": 480000
+  },
+  {
+    "id": "abyss_lord_200",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 200,
+    "rewardGold": 600000,
+    "rewardXp": 1000000
+  },
+  {
+    "id": "abyss_lord_500",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 500,
+    "rewardGold": 1600000,
+    "rewardXp": 2800000
+  },
+  {
+    "id": "abyss_lord_1000",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 1000,
+    "rewardGold": 4000000,
+    "rewardXp": 8000000
+  },
+  {
+    "id": "demon_overlord_10",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 10,
+    "rewardGold": 22500,
+    "rewardXp": 45000
+  },
+  {
+    "id": "demon_overlord_50",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 50,
+    "rewardGold": 135000,
+    "rewardXp": 225000
+  },
+  {
+    "id": "demon_overlord_100",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 100,
+    "rewardGold": 315000,
+    "rewardXp": 540000
+  },
+  {
+    "id": "demon_overlord_200",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 200,
+    "rewardGold": 675000,
+    "rewardXp": 1125000
+  },
+  {
+    "id": "demon_overlord_500",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 500,
+    "rewardGold": 1800000,
+    "rewardXp": 3150000
+  },
+  {
+    "id": "demon_overlord_1000",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 1000,
+    "rewardGold": 4500000,
+    "rewardXp": 9000000
+  },
+  {
+    "id": "celestial_destroyer_10",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 10,
+    "rewardGold": 25000,
+    "rewardXp": 50000
+  },
+  {
+    "id": "celestial_destroyer_50",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 50,
+    "rewardGold": 150000,
+    "rewardXp": 250000
+  },
+  {
+    "id": "celestial_destroyer_100",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 100,
+    "rewardGold": 350000,
+    "rewardXp": 600000
+  },
+  {
+    "id": "celestial_destroyer_200",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 200,
+    "rewardGold": 750000,
+    "rewardXp": 1250000
+  },
+  {
+    "id": "celestial_destroyer_500",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 500,
+    "rewardGold": 2000000,
+    "rewardXp": 3500000
+  },
+  {
+    "id": "celestial_destroyer_1000",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 1000,
+    "rewardGold": 5000000,
+    "rewardXp": 10000000
+  },
+  {
+    "id": "world_serpent_10",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 10,
+    "rewardGold": 27500,
+    "rewardXp": 55000
+  },
+  {
+    "id": "world_serpent_50",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 50,
+    "rewardGold": 165000,
+    "rewardXp": 275000
+  },
+  {
+    "id": "world_serpent_100",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 100,
+    "rewardGold": 385000,
+    "rewardXp": 660000
+  },
+  {
+    "id": "world_serpent_200",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 200,
+    "rewardGold": 825000,
+    "rewardXp": 1375000
+  },
+  {
+    "id": "world_serpent_500",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 500,
+    "rewardGold": 2200000,
+    "rewardXp": 3850000
+  },
+  {
+    "id": "world_serpent_1000",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 1000,
+    "rewardGold": 5500000,
+    "rewardXp": 11000000
+  },
+  {
+    "id": "storm_titan_10",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 10,
+    "rewardGold": 30000,
+    "rewardXp": 60000
+  },
+  {
+    "id": "storm_titan_50",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 50,
+    "rewardGold": 180000,
+    "rewardXp": 300000
+  },
+  {
+    "id": "storm_titan_100",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 100,
+    "rewardGold": 420000,
+    "rewardXp": 720000
+  },
+  {
+    "id": "storm_titan_200",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 200,
+    "rewardGold": 900000,
+    "rewardXp": 1500000
+  },
+  {
+    "id": "storm_titan_500",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 500,
+    "rewardGold": 2400000,
+    "rewardXp": 4200000
+  },
+  {
+    "id": "storm_titan_1000",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 1000,
+    "rewardGold": 6000000,
+    "rewardXp": 12000000
+  },
+  {
+    "id": "void_emperor_10",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 10,
+    "rewardGold": 32500,
+    "rewardXp": 65000
+  },
+  {
+    "id": "void_emperor_50",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 50,
+    "rewardGold": 195000,
+    "rewardXp": 325000
+  },
+  {
+    "id": "void_emperor_100",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 100,
+    "rewardGold": 455000,
+    "rewardXp": 780000
+  },
+  {
+    "id": "void_emperor_200",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 200,
+    "rewardGold": 975000,
+    "rewardXp": 1625000
+  },
+  {
+    "id": "void_emperor_500",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 500,
+    "rewardGold": 2600000,
+    "rewardXp": 4550000
+  },
+  {
+    "id": "void_emperor_1000",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 1000,
+    "rewardGold": 6500000,
+    "rewardXp": 13000000
+  },
+  {
+    "id": "time_devourer_10",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 10,
+    "rewardGold": 35000,
+    "rewardXp": 70000
+  },
+  {
+    "id": "time_devourer_50",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 50,
+    "rewardGold": 210000,
+    "rewardXp": 350000
+  },
+  {
+    "id": "time_devourer_100",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 100,
+    "rewardGold": 490000,
+    "rewardXp": 840000
+  },
+  {
+    "id": "time_devourer_200",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 200,
+    "rewardGold": 1050000,
+    "rewardXp": 1750000
+  },
+  {
+    "id": "time_devourer_500",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 500,
+    "rewardGold": 2800000,
+    "rewardXp": 4900000
+  },
+  {
+    "id": "time_devourer_1000",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 1000,
+    "rewardGold": 7000000,
+    "rewardXp": 14000000
+  },
+  {
+    "id": "reality_breaker_10",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 10,
+    "rewardGold": 37500,
+    "rewardXp": 75000
+  },
+  {
+    "id": "reality_breaker_50",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 50,
+    "rewardGold": 225000,
+    "rewardXp": 375000
+  },
+  {
+    "id": "reality_breaker_100",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 100,
+    "rewardGold": 525000,
+    "rewardXp": 900000
+  },
+  {
+    "id": "reality_breaker_200",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 200,
+    "rewardGold": 1125000,
+    "rewardXp": 1875000
+  },
+  {
+    "id": "reality_breaker_500",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 500,
+    "rewardGold": 3000000,
+    "rewardXp": 5250000
+  },
+  {
+    "id": "reality_breaker_1000",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 1000,
+    "rewardGold": 7500000,
+    "rewardXp": 15000000
+  },
+  {
+    "id": "ancient_god_spawn_10",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 10,
+    "rewardGold": 40000,
+    "rewardXp": 80000
+  },
+  {
+    "id": "ancient_god_spawn_50",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 50,
+    "rewardGold": 240000,
+    "rewardXp": 400000
+  },
+  {
+    "id": "ancient_god_spawn_100",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 100,
+    "rewardGold": 560000,
+    "rewardXp": 960000
+  },
+  {
+    "id": "ancient_god_spawn_200",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 200,
+    "rewardGold": 1200000,
+    "rewardXp": 2000000
+  },
+  {
+    "id": "ancient_god_spawn_500",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 500,
+    "rewardGold": 3200000,
+    "rewardXp": 5600000
+  },
+  {
+    "id": "ancient_god_spawn_1000",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 1000,
+    "rewardGold": 8000000,
+    "rewardXp": 16000000
+  },
+  {
+    "id": "omega_destroyer_10",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 10,
+    "rewardGold": 42500,
+    "rewardXp": 85000
+  },
+  {
+    "id": "omega_destroyer_50",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 50,
+    "rewardGold": 255000,
+    "rewardXp": 425000
+  },
+  {
+    "id": "omega_destroyer_100",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 100,
+    "rewardGold": 595000,
+    "rewardXp": 1020000
+  },
+  {
+    "id": "omega_destroyer_200",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 200,
+    "rewardGold": 1275000,
+    "rewardXp": 2125000
+  },
+  {
+    "id": "omega_destroyer_500",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 500,
+    "rewardGold": 3400000,
+    "rewardXp": 5950000
+  },
+  {
+    "id": "omega_destroyer_1000",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 1000,
+    "rewardGold": 8500000,
+    "rewardXp": 17000000
+  },
+  {
+    "id": "death_incarnate_10",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 10,
+    "rewardGold": 45000,
+    "rewardXp": 90000
+  },
+  {
+    "id": "death_incarnate_50",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 50,
+    "rewardGold": 270000,
+    "rewardXp": 450000
+  },
+  {
+    "id": "death_incarnate_100",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 100,
+    "rewardGold": 630000,
+    "rewardXp": 1080000
+  },
+  {
+    "id": "death_incarnate_200",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 200,
+    "rewardGold": 1350000,
+    "rewardXp": 2250000
+  },
+  {
+    "id": "death_incarnate_500",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 500,
+    "rewardGold": 3600000,
+    "rewardXp": 6300000
+  },
+  {
+    "id": "death_incarnate_1000",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 1000,
+    "rewardGold": 9000000,
+    "rewardXp": 18000000
+  },
+  {
+    "id": "apocalypse_herald_10",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 10,
+    "rewardGold": 47500,
+    "rewardXp": 95000
+  },
+  {
+    "id": "apocalypse_herald_50",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 50,
+    "rewardGold": 285000,
+    "rewardXp": 475000
+  },
+  {
+    "id": "apocalypse_herald_100",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 100,
+    "rewardGold": 665000,
+    "rewardXp": 1140000
+  },
+  {
+    "id": "apocalypse_herald_200",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 200,
+    "rewardGold": 1425000,
+    "rewardXp": 2375000
+  },
+  {
+    "id": "apocalypse_herald_500",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 500,
+    "rewardGold": 3800000,
+    "rewardXp": 6650000
+  },
+  {
+    "id": "apocalypse_herald_1000",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 1000,
+    "rewardGold": 9500000,
+    "rewardXp": 19000000
+  },
+  {
+    "id": "world_ender_10",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 10,
+    "rewardGold": 50000,
+    "rewardXp": 100000
+  },
+  {
+    "id": "world_ender_50",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 50,
+    "rewardGold": 300000,
+    "rewardXp": 500000
+  },
+  {
+    "id": "world_ender_100",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 100,
+    "rewardGold": 700000,
+    "rewardXp": 1200000
+  },
+  {
+    "id": "world_ender_200",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 200,
+    "rewardGold": 1500000,
+    "rewardXp": 2500000
+  },
+  {
+    "id": "world_ender_500",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 500,
+    "rewardGold": 4000000,
+    "rewardXp": 7000000
+  },
+  {
+    "id": "world_ender_1000",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 1000,
+    "rewardGold": 10000000,
+    "rewardXp": 20000000
+  },
+  {
+    "id": "rat_2500",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 2500,
+    "rewardGold": 35000,
+    "rewardXp": 75000
+  },
+  {
+    "id": "rat_5000",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 5000,
+    "rewardGold": 90000,
+    "rewardXp": 200000
+  },
+  {
+    "id": "rat_10000",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 10000,
+    "rewardGold": 250000,
+    "rewardXp": 550000
+  },
+  {
+    "id": "rat_100000",
+    "monsterId": "rat",
+    "monsterLevel": 1,
+    "monsterName": "Szczur",
+    "killCount": 100000,
+    "rewardGold": 2500000,
+    "rewardXp": 5500000
+  },
+  {
+    "id": "cave_spider_2500",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 2500,
+    "rewardGold": 70000,
+    "rewardXp": 150000
+  },
+  {
+    "id": "cave_spider_5000",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 5000,
+    "rewardGold": 180000,
+    "rewardXp": 400000
+  },
+  {
+    "id": "cave_spider_10000",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 10000,
+    "rewardGold": 500000,
+    "rewardXp": 1100000
+  },
+  {
+    "id": "cave_spider_100000",
+    "monsterId": "cave_spider",
+    "monsterLevel": 2,
+    "monsterName": "Pająk Jaskiniowy",
+    "killCount": 100000,
+    "rewardGold": 5000000,
+    "rewardXp": 11000000
+  },
+  {
+    "id": "goblin_2500",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 2500,
+    "rewardGold": 105000,
+    "rewardXp": 225000
+  },
+  {
+    "id": "goblin_5000",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 5000,
+    "rewardGold": 270000,
+    "rewardXp": 600000
+  },
+  {
+    "id": "goblin_10000",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 10000,
+    "rewardGold": 750000,
+    "rewardXp": 1650000
+  },
+  {
+    "id": "goblin_100000",
+    "monsterId": "goblin",
+    "monsterLevel": 3,
+    "monsterName": "Goblin",
+    "killCount": 100000,
+    "rewardGold": 7500000,
+    "rewardXp": 16500000
+  },
+  {
+    "id": "skeleton_2500",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 2500,
+    "rewardGold": 140000,
+    "rewardXp": 300000
+  },
+  {
+    "id": "skeleton_5000",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 5000,
+    "rewardGold": 360000,
+    "rewardXp": 800000
+  },
+  {
+    "id": "skeleton_10000",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 10000,
+    "rewardGold": 1000000,
+    "rewardXp": 2200000
+  },
+  {
+    "id": "skeleton_100000",
+    "monsterId": "skeleton",
+    "monsterLevel": 4,
+    "monsterName": "Szkielet",
+    "killCount": 100000,
+    "rewardGold": 10000000,
+    "rewardXp": 22000000
+  },
+  {
+    "id": "orc_2500",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 2500,
+    "rewardGold": 175000,
+    "rewardXp": 375000
+  },
+  {
+    "id": "orc_5000",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 5000,
+    "rewardGold": 450000,
+    "rewardXp": 1000000
+  },
+  {
+    "id": "orc_10000",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 10000,
+    "rewardGold": 1250000,
+    "rewardXp": 2750000
+  },
+  {
+    "id": "orc_100000",
+    "monsterId": "orc",
+    "monsterLevel": 5,
+    "monsterName": "Ork",
+    "killCount": 100000,
+    "rewardGold": 12500000,
+    "rewardXp": 27500000
+  },
+  {
+    "id": "zombie_2500",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 2500,
+    "rewardGold": 210000,
+    "rewardXp": 450000
+  },
+  {
+    "id": "zombie_5000",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 5000,
+    "rewardGold": 540000,
+    "rewardXp": 1200000
+  },
+  {
+    "id": "zombie_10000",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 10000,
+    "rewardGold": 1500000,
+    "rewardXp": 3300000
+  },
+  {
+    "id": "zombie_100000",
+    "monsterId": "zombie",
+    "monsterLevel": 6,
+    "monsterName": "Zombie",
+    "killCount": 100000,
+    "rewardGold": 15000000,
+    "rewardXp": 33000000
+  },
+  {
+    "id": "cave_bear_2500",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 2500,
+    "rewardGold": 245000,
+    "rewardXp": 525000
+  },
+  {
+    "id": "cave_bear_5000",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 5000,
+    "rewardGold": 630000,
+    "rewardXp": 1400000
+  },
+  {
+    "id": "cave_bear_10000",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 10000,
+    "rewardGold": 1750000,
+    "rewardXp": 3850000
+  },
+  {
+    "id": "cave_bear_100000",
+    "monsterId": "cave_bear",
+    "monsterLevel": 7,
+    "monsterName": "Niedźwiedź Jaskiniowy",
+    "killCount": 100000,
+    "rewardGold": 17500000,
+    "rewardXp": 38500000
+  },
+  {
+    "id": "troll_2500",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 2500,
+    "rewardGold": 280000,
+    "rewardXp": 600000
+  },
+  {
+    "id": "troll_5000",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 5000,
+    "rewardGold": 720000,
+    "rewardXp": 1600000
+  },
+  {
+    "id": "troll_10000",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 10000,
+    "rewardGold": 2000000,
+    "rewardXp": 4400000
+  },
+  {
+    "id": "troll_100000",
+    "monsterId": "troll",
+    "monsterLevel": 8,
+    "monsterName": "Troll",
+    "killCount": 100000,
+    "rewardGold": 20000000,
+    "rewardXp": 44000000
+  },
+  {
+    "id": "giant_ant_2500",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 2500,
+    "rewardGold": 315000,
+    "rewardXp": 675000
+  },
+  {
+    "id": "giant_ant_5000",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 5000,
+    "rewardGold": 810000,
+    "rewardXp": 1800000
+  },
+  {
+    "id": "giant_ant_10000",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 10000,
+    "rewardGold": 2250000,
+    "rewardXp": 4950000
+  },
+  {
+    "id": "giant_ant_100000",
+    "monsterId": "giant_ant",
+    "monsterLevel": 9,
+    "monsterName": "Gigantyczna Mrówka",
+    "killCount": 100000,
+    "rewardGold": 22500000,
+    "rewardXp": 49500000
+  },
+  {
+    "id": "dark_elf_2500",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 2500,
+    "rewardGold": 350000,
+    "rewardXp": 750000
+  },
+  {
+    "id": "dark_elf_5000",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 5000,
+    "rewardGold": 900000,
+    "rewardXp": 2000000
+  },
+  {
+    "id": "dark_elf_10000",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 10000,
+    "rewardGold": 2500000,
+    "rewardXp": 5500000
+  },
+  {
+    "id": "dark_elf_100000",
+    "monsterId": "dark_elf",
+    "monsterLevel": 10,
+    "monsterName": "Mroczny Elf",
+    "killCount": 100000,
+    "rewardGold": 25000000,
+    "rewardXp": 55000000
+  },
+  {
+    "id": "bandit_2500",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 2500,
+    "rewardGold": 385000,
+    "rewardXp": 825000
+  },
+  {
+    "id": "bandit_5000",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 5000,
+    "rewardGold": 990000,
+    "rewardXp": 2200000
+  },
+  {
+    "id": "bandit_10000",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 10000,
+    "rewardGold": 2750000,
+    "rewardXp": 6050000
+  },
+  {
+    "id": "bandit_100000",
+    "monsterId": "bandit",
+    "monsterLevel": 11,
+    "monsterName": "Bandyta",
+    "killCount": 100000,
+    "rewardGold": 27500000,
+    "rewardXp": 60500000
+  },
+  {
+    "id": "lizardman_2500",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 2500,
+    "rewardGold": 420000,
+    "rewardXp": 900000
+  },
+  {
+    "id": "lizardman_5000",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 5000,
+    "rewardGold": 1080000,
+    "rewardXp": 2400000
+  },
+  {
+    "id": "lizardman_10000",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 10000,
+    "rewardGold": 3000000,
+    "rewardXp": 6600000
+  },
+  {
+    "id": "lizardman_100000",
+    "monsterId": "lizardman",
+    "monsterLevel": 12,
+    "monsterName": "Człowiek-Jaszczur",
+    "killCount": 100000,
+    "rewardGold": 30000000,
+    "rewardXp": 66000000
+  },
+  {
+    "id": "harpy_2500",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 2500,
+    "rewardGold": 455000,
+    "rewardXp": 975000
+  },
+  {
+    "id": "harpy_5000",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 5000,
+    "rewardGold": 1170000,
+    "rewardXp": 2600000
+  },
+  {
+    "id": "harpy_10000",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 10000,
+    "rewardGold": 3250000,
+    "rewardXp": 7150000
+  },
+  {
+    "id": "harpy_100000",
+    "monsterId": "harpy",
+    "monsterLevel": 13,
+    "monsterName": "Harpija",
+    "killCount": 100000,
+    "rewardGold": 32500000,
+    "rewardXp": 71500000
+  },
+  {
+    "id": "vampire_2500",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 2500,
+    "rewardGold": 490000,
+    "rewardXp": 1050000
+  },
+  {
+    "id": "vampire_5000",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 5000,
+    "rewardGold": 1260000,
+    "rewardXp": 2800000
+  },
+  {
+    "id": "vampire_10000",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 10000,
+    "rewardGold": 3500000,
+    "rewardXp": 7700000
+  },
+  {
+    "id": "vampire_100000",
+    "monsterId": "vampire",
+    "monsterLevel": 14,
+    "monsterName": "Wampir",
+    "killCount": 100000,
+    "rewardGold": 35000000,
+    "rewardXp": 77000000
+  },
+  {
+    "id": "cyclops_2500",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 2500,
+    "rewardGold": 525000,
+    "rewardXp": 1125000
+  },
+  {
+    "id": "cyclops_5000",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 5000,
+    "rewardGold": 1350000,
+    "rewardXp": 3000000
+  },
+  {
+    "id": "cyclops_10000",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 10000,
+    "rewardGold": 3750000,
+    "rewardXp": 8250000
+  },
+  {
+    "id": "cyclops_100000",
+    "monsterId": "cyclops",
+    "monsterLevel": 15,
+    "monsterName": "Cyklop",
+    "killCount": 100000,
+    "rewardGold": 37500000,
+    "rewardXp": 82500000
+  },
+  {
+    "id": "werewolf_2500",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 2500,
+    "rewardGold": 560000,
+    "rewardXp": 1200000
+  },
+  {
+    "id": "werewolf_5000",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 5000,
+    "rewardGold": 1440000,
+    "rewardXp": 3200000
+  },
+  {
+    "id": "werewolf_10000",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 10000,
+    "rewardGold": 4000000,
+    "rewardXp": 8800000
+  },
+  {
+    "id": "werewolf_100000",
+    "monsterId": "werewolf",
+    "monsterLevel": 16,
+    "monsterName": "Wilkołak",
+    "killCount": 100000,
+    "rewardGold": 40000000,
+    "rewardXp": 88000000
+  },
+  {
+    "id": "sea_serpent_2500",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 2500,
+    "rewardGold": 595000,
+    "rewardXp": 1275000
+  },
+  {
+    "id": "sea_serpent_5000",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 5000,
+    "rewardGold": 1530000,
+    "rewardXp": 3400000
+  },
+  {
+    "id": "sea_serpent_10000",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 10000,
+    "rewardGold": 4250000,
+    "rewardXp": 9350000
+  },
+  {
+    "id": "sea_serpent_100000",
+    "monsterId": "sea_serpent",
+    "monsterLevel": 17,
+    "monsterName": "Morski Wąż",
+    "killCount": 100000,
+    "rewardGold": 42500000,
+    "rewardXp": 93500000
+  },
+  {
+    "id": "earth_elemental_2500",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 2500,
+    "rewardGold": 630000,
+    "rewardXp": 1350000
+  },
+  {
+    "id": "earth_elemental_5000",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 5000,
+    "rewardGold": 1620000,
+    "rewardXp": 3600000
+  },
+  {
+    "id": "earth_elemental_10000",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 10000,
+    "rewardGold": 4500000,
+    "rewardXp": 9900000
+  },
+  {
+    "id": "earth_elemental_100000",
+    "monsterId": "earth_elemental",
+    "monsterLevel": 18,
+    "monsterName": "Żywioł Ziemi",
+    "killCount": 100000,
+    "rewardGold": 45000000,
+    "rewardXp": 99000000
+  },
+  {
+    "id": "witch_2500",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 2500,
+    "rewardGold": 665000,
+    "rewardXp": 1425000
+  },
+  {
+    "id": "witch_5000",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 5000,
+    "rewardGold": 1710000,
+    "rewardXp": 3800000
+  },
+  {
+    "id": "witch_10000",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 10000,
+    "rewardGold": 4750000,
+    "rewardXp": 10450000
+  },
+  {
+    "id": "witch_100000",
+    "monsterId": "witch",
+    "monsterLevel": 19,
+    "monsterName": "Czarownica",
+    "killCount": 100000,
+    "rewardGold": 47500000,
+    "rewardXp": 104500000
+  },
+  {
+    "id": "dark_mage_2500",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 2500,
+    "rewardGold": 700000,
+    "rewardXp": 1500000
+  },
+  {
+    "id": "dark_mage_5000",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 5000,
+    "rewardGold": 1800000,
+    "rewardXp": 4000000
+  },
+  {
+    "id": "dark_mage_10000",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 10000,
+    "rewardGold": 5000000,
+    "rewardXp": 11000000
+  },
+  {
+    "id": "dark_mage_100000",
+    "monsterId": "dark_mage",
+    "monsterLevel": 20,
+    "monsterName": "Mroczny Mag",
+    "killCount": 100000,
+    "rewardGold": 50000000,
+    "rewardXp": 110000000
+  },
+  {
+    "id": "stone_golem_2500",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 2500,
+    "rewardGold": 735000,
+    "rewardXp": 1575000
+  },
+  {
+    "id": "stone_golem_5000",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 5000,
+    "rewardGold": 1890000,
+    "rewardXp": 4200000
+  },
+  {
+    "id": "stone_golem_10000",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 10000,
+    "rewardGold": 5250000,
+    "rewardXp": 11550000
+  },
+  {
+    "id": "stone_golem_100000",
+    "monsterId": "stone_golem",
+    "monsterLevel": 21,
+    "monsterName": "Kamienny Golem",
+    "killCount": 100000,
+    "rewardGold": 52500000,
+    "rewardXp": 115500000
+  },
+  {
+    "id": "minotaur_2500",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 2500,
+    "rewardGold": 770000,
+    "rewardXp": 1650000
+  },
+  {
+    "id": "minotaur_5000",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 5000,
+    "rewardGold": 1980000,
+    "rewardXp": 4400000
+  },
+  {
+    "id": "minotaur_10000",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 10000,
+    "rewardGold": 5500000,
+    "rewardXp": 12100000
+  },
+  {
+    "id": "minotaur_100000",
+    "monsterId": "minotaur",
+    "monsterLevel": 22,
+    "monsterName": "Minotaur",
+    "killCount": 100000,
+    "rewardGold": 55000000,
+    "rewardXp": 121000000
+  },
+  {
+    "id": "wyvern_2500",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 2500,
+    "rewardGold": 805000,
+    "rewardXp": 1725000
+  },
+  {
+    "id": "wyvern_5000",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 5000,
+    "rewardGold": 2070000,
+    "rewardXp": 4600000
+  },
+  {
+    "id": "wyvern_10000",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 10000,
+    "rewardGold": 5750000,
+    "rewardXp": 12650000
+  },
+  {
+    "id": "wyvern_100000",
+    "monsterId": "wyvern",
+    "monsterLevel": 23,
+    "monsterName": "Wywernia",
+    "killCount": 100000,
+    "rewardGold": 57500000,
+    "rewardXp": 126500000
+  },
+  {
+    "id": "fire_salamander_2500",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 2500,
+    "rewardGold": 840000,
+    "rewardXp": 1800000
+  },
+  {
+    "id": "fire_salamander_5000",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 5000,
+    "rewardGold": 2160000,
+    "rewardXp": 4800000
+  },
+  {
+    "id": "fire_salamander_10000",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 10000,
+    "rewardGold": 6000000,
+    "rewardXp": 13200000
+  },
+  {
+    "id": "fire_salamander_100000",
+    "monsterId": "fire_salamander",
+    "monsterLevel": 24,
+    "monsterName": "Ognista Salamandra",
+    "killCount": 100000,
+    "rewardGold": 60000000,
+    "rewardXp": 132000000
+  },
+  {
+    "id": "necromancer_minion_2500",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 2500,
+    "rewardGold": 875000,
+    "rewardXp": 1875000
+  },
+  {
+    "id": "necromancer_minion_5000",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 5000,
+    "rewardGold": 2250000,
+    "rewardXp": 5000000
+  },
+  {
+    "id": "necromancer_minion_10000",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 10000,
+    "rewardGold": 6250000,
+    "rewardXp": 13750000
+  },
+  {
+    "id": "necromancer_minion_100000",
+    "monsterId": "necromancer_minion",
+    "monsterLevel": 25,
+    "monsterName": "Sługa Nekromanty",
+    "killCount": 100000,
+    "rewardGold": 62500000,
+    "rewardXp": 137500000
+  },
+  {
+    "id": "ice_golem_2500",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 2500,
+    "rewardGold": 910000,
+    "rewardXp": 1950000
+  },
+  {
+    "id": "ice_golem_5000",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 5000,
+    "rewardGold": 2340000,
+    "rewardXp": 5200000
+  },
+  {
+    "id": "ice_golem_10000",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 10000,
+    "rewardGold": 6500000,
+    "rewardXp": 14300000
+  },
+  {
+    "id": "ice_golem_100000",
+    "monsterId": "ice_golem",
+    "monsterLevel": 26,
+    "monsterName": "Lodowy Golem",
+    "killCount": 100000,
+    "rewardGold": 65000000,
+    "rewardXp": 143000000
+  },
+  {
+    "id": "thunder_bird_2500",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 2500,
+    "rewardGold": 945000,
+    "rewardXp": 2025000
+  },
+  {
+    "id": "thunder_bird_5000",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 5000,
+    "rewardGold": 2430000,
+    "rewardXp": 5400000
+  },
+  {
+    "id": "thunder_bird_10000",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 10000,
+    "rewardGold": 6750000,
+    "rewardXp": 14850000
+  },
+  {
+    "id": "thunder_bird_100000",
+    "monsterId": "thunder_bird",
+    "monsterLevel": 27,
+    "monsterName": "Ptak Gromu",
+    "killCount": 100000,
+    "rewardGold": 67500000,
+    "rewardXp": 148500000
+  },
+  {
+    "id": "shadow_assassin_2500",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 2500,
+    "rewardGold": 980000,
+    "rewardXp": 2100000
+  },
+  {
+    "id": "shadow_assassin_5000",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 5000,
+    "rewardGold": 2520000,
+    "rewardXp": 5600000
+  },
+  {
+    "id": "shadow_assassin_10000",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 10000,
+    "rewardGold": 7000000,
+    "rewardXp": 15400000
+  },
+  {
+    "id": "shadow_assassin_100000",
+    "monsterId": "shadow_assassin",
+    "monsterLevel": 28,
+    "monsterName": "Cień Zabójca",
+    "killCount": 100000,
+    "rewardGold": 70000000,
+    "rewardXp": 154000000
+  },
+  {
+    "id": "medusa_2500",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 2500,
+    "rewardGold": 1015000,
+    "rewardXp": 2175000
+  },
+  {
+    "id": "medusa_5000",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 5000,
+    "rewardGold": 2610000,
+    "rewardXp": 5800000
+  },
+  {
+    "id": "medusa_10000",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 10000,
+    "rewardGold": 7250000,
+    "rewardXp": 15950000
+  },
+  {
+    "id": "medusa_100000",
+    "monsterId": "medusa",
+    "monsterLevel": 29,
+    "monsterName": "Meduza",
+    "killCount": 100000,
+    "rewardGold": 72500000,
+    "rewardXp": 159500000
+  },
+  {
+    "id": "demon_imp_2500",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 2500,
+    "rewardGold": 1050000,
+    "rewardXp": 2250000
+  },
+  {
+    "id": "demon_imp_5000",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 5000,
+    "rewardGold": 2700000,
+    "rewardXp": 6000000
+  },
+  {
+    "id": "demon_imp_10000",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 10000,
+    "rewardGold": 7500000,
+    "rewardXp": 16500000
+  },
+  {
+    "id": "demon_imp_100000",
+    "monsterId": "demon_imp",
+    "monsterLevel": 30,
+    "monsterName": "Diabelski Chochlik",
+    "killCount": 100000,
+    "rewardGold": 75000000,
+    "rewardXp": 165000000
+  },
+  {
+    "id": "gnoll_warrior_2500",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 2500,
+    "rewardGold": 1085000,
+    "rewardXp": 2325000
+  },
+  {
+    "id": "gnoll_warrior_5000",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 5000,
+    "rewardGold": 2790000,
+    "rewardXp": 6200000
+  },
+  {
+    "id": "gnoll_warrior_10000",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 10000,
+    "rewardGold": 7750000,
+    "rewardXp": 17050000
+  },
+  {
+    "id": "gnoll_warrior_100000",
+    "monsterId": "gnoll_warrior",
+    "monsterLevel": 31,
+    "monsterName": "Wojownik Gnoll",
+    "killCount": 100000,
+    "rewardGold": 77500000,
+    "rewardXp": 170500000
+  },
+  {
+    "id": "orc_warlord_2500",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 2500,
+    "rewardGold": 1225000,
+    "rewardXp": 2625000
+  },
+  {
+    "id": "orc_warlord_5000",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 5000,
+    "rewardGold": 3150000,
+    "rewardXp": 7000000
+  },
+  {
+    "id": "orc_warlord_10000",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 10000,
+    "rewardGold": 8750000,
+    "rewardXp": 19250000
+  },
+  {
+    "id": "orc_warlord_100000",
+    "monsterId": "orc_warlord",
+    "monsterLevel": 35,
+    "monsterName": "Ork Warlord",
+    "killCount": 100000,
+    "rewardGold": 87500000,
+    "rewardXp": 192500000
+  },
+  {
+    "id": "swamp_troll_2500",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 2500,
+    "rewardGold": 1400000,
+    "rewardXp": 3000000
+  },
+  {
+    "id": "swamp_troll_5000",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 5000,
+    "rewardGold": 3600000,
+    "rewardXp": 8000000
+  },
+  {
+    "id": "swamp_troll_10000",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 10000,
+    "rewardGold": 10000000,
+    "rewardXp": 22000000
+  },
+  {
+    "id": "swamp_troll_100000",
+    "monsterId": "swamp_troll",
+    "monsterLevel": 40,
+    "monsterName": "Troll Bagienny",
+    "killCount": 100000,
+    "rewardGold": 100000000,
+    "rewardXp": 220000000
+  },
+  {
+    "id": "dark_knight_2500",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 2500,
+    "rewardGold": 1575000,
+    "rewardXp": 3375000
+  },
+  {
+    "id": "dark_knight_5000",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 5000,
+    "rewardGold": 4050000,
+    "rewardXp": 9000000
+  },
+  {
+    "id": "dark_knight_10000",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 10000,
+    "rewardGold": 11250000,
+    "rewardXp": 24750000
+  },
+  {
+    "id": "dark_knight_100000",
+    "monsterId": "dark_knight",
+    "monsterLevel": 45,
+    "monsterName": "Czarny Rycerz",
+    "killCount": 100000,
+    "rewardGold": 112500000,
+    "rewardXp": 247500000
+  },
+  {
+    "id": "greater_demon_2500",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 2500,
+    "rewardGold": 1750000,
+    "rewardXp": 3750000
+  },
+  {
+    "id": "greater_demon_5000",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 5000,
+    "rewardGold": 4500000,
+    "rewardXp": 10000000
+  },
+  {
+    "id": "greater_demon_10000",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 10000,
+    "rewardGold": 12500000,
+    "rewardXp": 27500000
+  },
+  {
+    "id": "greater_demon_100000",
+    "monsterId": "greater_demon",
+    "monsterLevel": 50,
+    "monsterName": "Wielki Demon",
+    "killCount": 100000,
+    "rewardGold": 125000000,
+    "rewardXp": 275000000
+  },
+  {
+    "id": "lava_titan_2500",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 2500,
+    "rewardGold": 2100000,
+    "rewardXp": 4500000
+  },
+  {
+    "id": "lava_titan_5000",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 5000,
+    "rewardGold": 5400000,
+    "rewardXp": 12000000
+  },
+  {
+    "id": "lava_titan_10000",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 10000,
+    "rewardGold": 15000000,
+    "rewardXp": 33000000
+  },
+  {
+    "id": "lava_titan_100000",
+    "monsterId": "lava_titan",
+    "monsterLevel": 60,
+    "monsterName": "Tytan Lawy",
+    "killCount": 100000,
+    "rewardGold": 150000000,
+    "rewardXp": 330000000
+  },
+  {
+    "id": "frost_wyrm_2500",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 2500,
+    "rewardGold": 2450000,
+    "rewardXp": 5250000
+  },
+  {
+    "id": "frost_wyrm_5000",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 5000,
+    "rewardGold": 6300000,
+    "rewardXp": 14000000
+  },
+  {
+    "id": "frost_wyrm_10000",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 10000,
+    "rewardGold": 17500000,
+    "rewardXp": 38500000
+  },
+  {
+    "id": "frost_wyrm_100000",
+    "monsterId": "frost_wyrm",
+    "monsterLevel": 70,
+    "monsterName": "Lodowy Wyrm",
+    "killCount": 100000,
+    "rewardGold": 175000000,
+    "rewardXp": 385000000
+  },
+  {
+    "id": "abyssal_horror_2500",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 2500,
+    "rewardGold": 2800000,
+    "rewardXp": 6000000
+  },
+  {
+    "id": "abyssal_horror_5000",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 5000,
+    "rewardGold": 7200000,
+    "rewardXp": 16000000
+  },
+  {
+    "id": "abyssal_horror_10000",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 10000,
+    "rewardGold": 20000000,
+    "rewardXp": 44000000
+  },
+  {
+    "id": "abyssal_horror_100000",
+    "monsterId": "abyssal_horror",
+    "monsterLevel": 80,
+    "monsterName": "Groza Otchłani",
+    "killCount": 100000,
+    "rewardGold": 200000000,
+    "rewardXp": 440000000
+  },
+  {
+    "id": "undead_overlord_2500",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 2500,
+    "rewardGold": 3150000,
+    "rewardXp": 6750000
+  },
+  {
+    "id": "undead_overlord_5000",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 5000,
+    "rewardGold": 8100000,
+    "rewardXp": 18000000
+  },
+  {
+    "id": "undead_overlord_10000",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 10000,
+    "rewardGold": 22500000,
+    "rewardXp": 49500000
+  },
+  {
+    "id": "undead_overlord_100000",
+    "monsterId": "undead_overlord",
+    "monsterLevel": 90,
+    "monsterName": "Władca Nieumarłych",
+    "killCount": 100000,
+    "rewardGold": 225000000,
+    "rewardXp": 495000000
+  },
+  {
+    "id": "infernal_warlord_2500",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 2500,
+    "rewardGold": 3500000,
+    "rewardXp": 7500000
+  },
+  {
+    "id": "infernal_warlord_5000",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 5000,
+    "rewardGold": 9000000,
+    "rewardXp": 20000000
+  },
+  {
+    "id": "infernal_warlord_10000",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 10000,
+    "rewardGold": 25000000,
+    "rewardXp": 55000000
+  },
+  {
+    "id": "infernal_warlord_100000",
+    "monsterId": "infernal_warlord",
+    "monsterLevel": 100,
+    "monsterName": "Piekielny Wódz",
+    "killCount": 100000,
+    "rewardGold": 250000000,
+    "rewardXp": 550000000
+  },
+  {
+    "id": "shadow_dragon_2500",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 2500,
+    "rewardGold": 4375000,
+    "rewardXp": 9375000
+  },
+  {
+    "id": "shadow_dragon_5000",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 5000,
+    "rewardGold": 11250000,
+    "rewardXp": 25000000
+  },
+  {
+    "id": "shadow_dragon_10000",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 10000,
+    "rewardGold": 31250000,
+    "rewardXp": 68750000
+  },
+  {
+    "id": "shadow_dragon_100000",
+    "monsterId": "shadow_dragon",
+    "monsterLevel": 125,
+    "monsterName": "Smoczy Cień",
+    "killCount": 100000,
+    "rewardGold": 312500000,
+    "rewardXp": 687500000
+  },
+  {
+    "id": "elder_vampire_2500",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 2500,
+    "rewardGold": 5250000,
+    "rewardXp": 11250000
+  },
+  {
+    "id": "elder_vampire_5000",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 5000,
+    "rewardGold": 13500000,
+    "rewardXp": 30000000
+  },
+  {
+    "id": "elder_vampire_10000",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 10000,
+    "rewardGold": 37500000,
+    "rewardXp": 82500000
+  },
+  {
+    "id": "elder_vampire_100000",
+    "monsterId": "elder_vampire",
+    "monsterLevel": 150,
+    "monsterName": "Starszy Wampir",
+    "killCount": 100000,
+    "rewardGold": 375000000,
+    "rewardXp": 825000000
+  },
+  {
+    "id": "void_behemoth_2500",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 2500,
+    "rewardGold": 6125000,
+    "rewardXp": 13125000
+  },
+  {
+    "id": "void_behemoth_5000",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 5000,
+    "rewardGold": 15750000,
+    "rewardXp": 35000000
+  },
+  {
+    "id": "void_behemoth_10000",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 10000,
+    "rewardGold": 43750000,
+    "rewardXp": 96250000
+  },
+  {
+    "id": "void_behemoth_100000",
+    "monsterId": "void_behemoth",
+    "monsterLevel": 175,
+    "monsterName": "Behemot Pustki",
+    "killCount": 100000,
+    "rewardGold": 437500000,
+    "rewardXp": 962500000
+  },
+  {
+    "id": "chaos_titan_2500",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 2500,
+    "rewardGold": 7000000,
+    "rewardXp": 15000000
+  },
+  {
+    "id": "chaos_titan_5000",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 5000,
+    "rewardGold": 18000000,
+    "rewardXp": 40000000
+  },
+  {
+    "id": "chaos_titan_10000",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 10000,
+    "rewardGold": 50000000,
+    "rewardXp": 110000000
+  },
+  {
+    "id": "chaos_titan_100000",
+    "monsterId": "chaos_titan",
+    "monsterLevel": 200,
+    "monsterName": "Tytan Chaosu",
+    "killCount": 100000,
+    "rewardGold": 500000000,
+    "rewardXp": 1100000000
+  },
+  {
+    "id": "primordial_serpent_2500",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 2500,
+    "rewardGold": 8750000,
+    "rewardXp": 18750000
+  },
+  {
+    "id": "primordial_serpent_5000",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 5000,
+    "rewardGold": 22500000,
+    "rewardXp": 50000000
+  },
+  {
+    "id": "primordial_serpent_10000",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 10000,
+    "rewardGold": 62500000,
+    "rewardXp": 137500000
+  },
+  {
+    "id": "primordial_serpent_100000",
+    "monsterId": "primordial_serpent",
+    "monsterLevel": 250,
+    "monsterName": "Prawieczny Wąż",
+    "killCount": 100000,
+    "rewardGold": 625000000,
+    "rewardXp": 1375000000
+  },
+  {
+    "id": "death_knight_2500",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 2500,
+    "rewardGold": 10500000,
+    "rewardXp": 22500000
+  },
+  {
+    "id": "death_knight_5000",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 5000,
+    "rewardGold": 27000000,
+    "rewardXp": 60000000
+  },
+  {
+    "id": "death_knight_10000",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 10000,
+    "rewardGold": 75000000,
+    "rewardXp": 165000000
+  },
+  {
+    "id": "death_knight_100000",
+    "monsterId": "death_knight",
+    "monsterLevel": 300,
+    "monsterName": "Rycerz Śmierci",
+    "killCount": 100000,
+    "rewardGold": 750000000,
+    "rewardXp": 1650000000
+  },
+  {
+    "id": "elder_lich_2500",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 2500,
+    "rewardGold": 12250000,
+    "rewardXp": 26250000
+  },
+  {
+    "id": "elder_lich_5000",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 5000,
+    "rewardGold": 31500000,
+    "rewardXp": 70000000
+  },
+  {
+    "id": "elder_lich_10000",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 10000,
+    "rewardGold": 87500000,
+    "rewardXp": 192500000
+  },
+  {
+    "id": "elder_lich_100000",
+    "monsterId": "elder_lich",
+    "monsterLevel": 350,
+    "monsterName": "Starszy Lisz",
+    "killCount": 100000,
+    "rewardGold": 875000000,
+    "rewardXp": 1925000000
+  },
+  {
+    "id": "abyss_lord_2500",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 2500,
+    "rewardGold": 14000000,
+    "rewardXp": 30000000
+  },
+  {
+    "id": "abyss_lord_5000",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 5000,
+    "rewardGold": 36000000,
+    "rewardXp": 80000000
+  },
+  {
+    "id": "abyss_lord_10000",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 10000,
+    "rewardGold": 100000000,
+    "rewardXp": 220000000
+  },
+  {
+    "id": "abyss_lord_100000",
+    "monsterId": "abyss_lord",
+    "monsterLevel": 400,
+    "monsterName": "Pan Otchłani",
+    "killCount": 100000,
+    "rewardGold": 1000000000,
+    "rewardXp": 2200000000
+  },
+  {
+    "id": "demon_overlord_2500",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 2500,
+    "rewardGold": 15750000,
+    "rewardXp": 33750000
+  },
+  {
+    "id": "demon_overlord_5000",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 5000,
+    "rewardGold": 40500000,
+    "rewardXp": 90000000
+  },
+  {
+    "id": "demon_overlord_10000",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 10000,
+    "rewardGold": 112500000,
+    "rewardXp": 247500000
+  },
+  {
+    "id": "demon_overlord_100000",
+    "monsterId": "demon_overlord",
+    "monsterLevel": 450,
+    "monsterName": "Nadwładca Demonów",
+    "killCount": 100000,
+    "rewardGold": 1125000000,
+    "rewardXp": 2475000000
+  },
+  {
+    "id": "celestial_destroyer_2500",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 2500,
+    "rewardGold": 17500000,
+    "rewardXp": 37500000
+  },
+  {
+    "id": "celestial_destroyer_5000",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 5000,
+    "rewardGold": 45000000,
+    "rewardXp": 100000000
+  },
+  {
+    "id": "celestial_destroyer_10000",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 10000,
+    "rewardGold": 125000000,
+    "rewardXp": 275000000
+  },
+  {
+    "id": "celestial_destroyer_100000",
+    "monsterId": "celestial_destroyer",
+    "monsterLevel": 500,
+    "monsterName": "Niebiański Niszczyciel",
+    "killCount": 100000,
+    "rewardGold": 1250000000,
+    "rewardXp": 2750000000
+  },
+  {
+    "id": "world_serpent_2500",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 2500,
+    "rewardGold": 19250000,
+    "rewardXp": 41250000
+  },
+  {
+    "id": "world_serpent_5000",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 5000,
+    "rewardGold": 49500000,
+    "rewardXp": 110000000
+  },
+  {
+    "id": "world_serpent_10000",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 10000,
+    "rewardGold": 137500000,
+    "rewardXp": 302500000
+  },
+  {
+    "id": "world_serpent_100000",
+    "monsterId": "world_serpent",
+    "monsterLevel": 550,
+    "monsterName": "Wąż Świata",
+    "killCount": 100000,
+    "rewardGold": 1375000000,
+    "rewardXp": 3025000000
+  },
+  {
+    "id": "storm_titan_2500",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 2500,
+    "rewardGold": 21000000,
+    "rewardXp": 45000000
+  },
+  {
+    "id": "storm_titan_5000",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 5000,
+    "rewardGold": 54000000,
+    "rewardXp": 120000000
+  },
+  {
+    "id": "storm_titan_10000",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 10000,
+    "rewardGold": 150000000,
+    "rewardXp": 330000000
+  },
+  {
+    "id": "storm_titan_100000",
+    "monsterId": "storm_titan",
+    "monsterLevel": 600,
+    "monsterName": "Tytan Burzy",
+    "killCount": 100000,
+    "rewardGold": 1500000000,
+    "rewardXp": 3300000000
+  },
+  {
+    "id": "void_emperor_2500",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 2500,
+    "rewardGold": 22750000,
+    "rewardXp": 48750000
+  },
+  {
+    "id": "void_emperor_5000",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 5000,
+    "rewardGold": 58500000,
+    "rewardXp": 130000000
+  },
+  {
+    "id": "void_emperor_10000",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 10000,
+    "rewardGold": 162500000,
+    "rewardXp": 357500000
+  },
+  {
+    "id": "void_emperor_100000",
+    "monsterId": "void_emperor",
+    "monsterLevel": 650,
+    "monsterName": "Cesarz Pustki",
+    "killCount": 100000,
+    "rewardGold": 1625000000,
+    "rewardXp": 3575000000
+  },
+  {
+    "id": "time_devourer_2500",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 2500,
+    "rewardGold": 24500000,
+    "rewardXp": 52500000
+  },
+  {
+    "id": "time_devourer_5000",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 5000,
+    "rewardGold": 63000000,
+    "rewardXp": 140000000
+  },
+  {
+    "id": "time_devourer_10000",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 10000,
+    "rewardGold": 175000000,
+    "rewardXp": 385000000
+  },
+  {
+    "id": "time_devourer_100000",
+    "monsterId": "time_devourer",
+    "monsterLevel": 700,
+    "monsterName": "Pożeracz Czasu",
+    "killCount": 100000,
+    "rewardGold": 1750000000,
+    "rewardXp": 3850000000
+  },
+  {
+    "id": "reality_breaker_2500",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 2500,
+    "rewardGold": 26250000,
+    "rewardXp": 56250000
+  },
+  {
+    "id": "reality_breaker_5000",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 5000,
+    "rewardGold": 67500000,
+    "rewardXp": 150000000
+  },
+  {
+    "id": "reality_breaker_10000",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 10000,
+    "rewardGold": 187500000,
+    "rewardXp": 412500000
+  },
+  {
+    "id": "reality_breaker_100000",
+    "monsterId": "reality_breaker",
+    "monsterLevel": 750,
+    "monsterName": "Łamacz Rzeczywistości",
+    "killCount": 100000,
+    "rewardGold": 1875000000,
+    "rewardXp": 4125000000
+  },
+  {
+    "id": "ancient_god_spawn_2500",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 2500,
+    "rewardGold": 28000000,
+    "rewardXp": 60000000
+  },
+  {
+    "id": "ancient_god_spawn_5000",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 5000,
+    "rewardGold": 72000000,
+    "rewardXp": 160000000
+  },
+  {
+    "id": "ancient_god_spawn_10000",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 10000,
+    "rewardGold": 200000000,
+    "rewardXp": 440000000
+  },
+  {
+    "id": "ancient_god_spawn_100000",
+    "monsterId": "ancient_god_spawn",
+    "monsterLevel": 800,
+    "monsterName": "Potomek Starożytnego Boga",
+    "killCount": 100000,
+    "rewardGold": 2000000000,
+    "rewardXp": 4400000000
+  },
+  {
+    "id": "omega_destroyer_2500",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 2500,
+    "rewardGold": 29750000,
+    "rewardXp": 63750000
+  },
+  {
+    "id": "omega_destroyer_5000",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 5000,
+    "rewardGold": 76500000,
+    "rewardXp": 170000000
+  },
+  {
+    "id": "omega_destroyer_10000",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 10000,
+    "rewardGold": 212500000,
+    "rewardXp": 467500000
+  },
+  {
+    "id": "omega_destroyer_100000",
+    "monsterId": "omega_destroyer",
+    "monsterLevel": 850,
+    "monsterName": "Omega-Niszczyciel",
+    "killCount": 100000,
+    "rewardGold": 2125000000,
+    "rewardXp": 4675000000
+  },
+  {
+    "id": "death_incarnate_2500",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 2500,
+    "rewardGold": 31500000,
+    "rewardXp": 67500000
+  },
+  {
+    "id": "death_incarnate_5000",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 5000,
+    "rewardGold": 81000000,
+    "rewardXp": 180000000
+  },
+  {
+    "id": "death_incarnate_10000",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 10000,
+    "rewardGold": 225000000,
+    "rewardXp": 495000000
+  },
+  {
+    "id": "death_incarnate_100000",
+    "monsterId": "death_incarnate",
+    "monsterLevel": 900,
+    "monsterName": "Wcielenie Śmierci",
+    "killCount": 100000,
+    "rewardGold": 2250000000,
+    "rewardXp": 4950000000
+  },
+  {
+    "id": "apocalypse_herald_2500",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 2500,
+    "rewardGold": 33250000,
+    "rewardXp": 71250000
+  },
+  {
+    "id": "apocalypse_herald_5000",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 5000,
+    "rewardGold": 85500000,
+    "rewardXp": 190000000
+  },
+  {
+    "id": "apocalypse_herald_10000",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 10000,
+    "rewardGold": 237500000,
+    "rewardXp": 522500000
+  },
+  {
+    "id": "apocalypse_herald_100000",
+    "monsterId": "apocalypse_herald",
+    "monsterLevel": 950,
+    "monsterName": "Zwiastun Apokalipsy",
+    "killCount": 100000,
+    "rewardGold": 2375000000,
+    "rewardXp": 5225000000
+  },
+  {
+    "id": "world_ender_2500",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 2500,
+    "rewardGold": 35000000,
+    "rewardXp": 75000000
+  },
+  {
+    "id": "world_ender_5000",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 5000,
+    "rewardGold": 90000000,
+    "rewardXp": 200000000
+  },
+  {
+    "id": "world_ender_10000",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 10000,
+    "rewardGold": 250000000,
+    "rewardXp": 550000000
+  },
+  {
+    "id": "world_ender_100000",
+    "monsterId": "world_ender",
+    "monsterLevel": 1000,
+    "monsterName": "Koniec Świata",
+    "killCount": 100000,
+    "rewardGold": 2500000000,
+    "rewardXp": 5500000000
+  }
+]

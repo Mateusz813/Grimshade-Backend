@@ -1,0 +1,1326 @@
+{
+  "system": "offlineHuntSystem",
+  "note": "Generowane z src/systems/offlineHuntSystem.ts (czysta logika liczbowa). NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "getOfflineHuntSpeedMultiplier": [
+    {
+      "masteryLevel": -3,
+      "value": 1
+    },
+    {
+      "masteryLevel": 0,
+      "value": 1
+    },
+    {
+      "masteryLevel": 4,
+      "value": 1
+    },
+    {
+      "masteryLevel": 5,
+      "value": 2
+    },
+    {
+      "masteryLevel": 11,
+      "value": 2
+    },
+    {
+      "masteryLevel": 12,
+      "value": 3
+    },
+    {
+      "masteryLevel": 19,
+      "value": 3
+    },
+    {
+      "masteryLevel": 20,
+      "value": 4
+    },
+    {
+      "masteryLevel": 25,
+      "value": 4
+    },
+    {
+      "masteryLevel": 100,
+      "value": 4
+    }
+  ],
+  "preview": [
+    {
+      "input": {
+        "nowMs": 1000000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 0,
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "skillLevel": 0,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 0,
+        "cappedSeconds": 0,
+        "kills": 0,
+        "xpGained": 0,
+        "goldGained": 0,
+        "skillXpGained": 0,
+        "speedMultiplier": 1
+      }
+    },
+    {
+      "input": {
+        "nowMs": 1000000,
+        "startedAtMs": 1002000,
+        "masteryLevel": 0,
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "skillLevel": 0,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 0,
+        "cappedSeconds": 0,
+        "kills": 0,
+        "xpGained": 0,
+        "goldGained": 0,
+        "skillXpGained": 0,
+        "speedMultiplier": 1
+      }
+    },
+    {
+      "input": {
+        "nowMs": 1100000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 0,
+        "monsterXp": 3,
+        "goldMin": 1,
+        "goldMax": 1,
+        "skillLevel": 0,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 100,
+        "cappedSeconds": 100,
+        "kills": 10,
+        "xpGained": 30,
+        "goldGained": 10,
+        "skillXpGained": 192,
+        "speedMultiplier": 1
+      }
+    },
+    {
+      "input": {
+        "nowMs": 2000000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 5,
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "skillLevel": 10,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 1000,
+        "cappedSeconds": 1000,
+        "kills": 200,
+        "xpGained": 45800,
+        "goldGained": 8200,
+        "skillXpGained": 1000,
+        "speedMultiplier": 2
+      }
+    },
+    {
+      "input": {
+        "nowMs": 4600000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 12,
+        "monsterXp": 451,
+        "goldMin": 50,
+        "goldMax": 100,
+        "skillLevel": 25,
+        "trainedSkillId": "magic_level",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 3600,
+        "cappedSeconds": 3600,
+        "kills": 1080,
+        "xpGained": 603720,
+        "goldGained": 100440,
+        "skillXpGained": 2057,
+        "speedMultiplier": 3
+      }
+    },
+    {
+      "input": {
+        "nowMs": 44200000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 20,
+        "monsterXp": 977,
+        "goldMin": 100,
+        "goldMax": 200,
+        "skillLevel": 50,
+        "trainedSkillId": "distance_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 43200,
+        "cappedSeconds": 43200,
+        "kills": 17280,
+        "xpGained": 23621760,
+        "goldGained": 3628800,
+        "skillXpGained": 14400,
+        "speedMultiplier": 4
+      }
+    },
+    {
+      "input": {
+        "nowMs": 51000000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 25,
+        "monsterXp": 5981,
+        "goldMin": 500,
+        "goldMax": 1000,
+        "skillLevel": 100,
+        "trainedSkillId": "magic_level",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 50000,
+        "cappedSeconds": 43200,
+        "kills": 17280,
+        "xpGained": 155018880,
+        "goldGained": 19440000,
+        "skillXpGained": 7854,
+        "speedMultiplier": 4
+      }
+    },
+    {
+      "input": {
+        "nowMs": 101000000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 25,
+        "monsterXp": 5981,
+        "goldMin": 500,
+        "goldMax": 1000,
+        "skillLevel": 1000,
+        "trainedSkillId": "magic_level",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 100000,
+        "cappedSeconds": 43200,
+        "kills": 17280,
+        "xpGained": 155018880,
+        "goldGained": 19440000,
+        "skillXpGained": 2160,
+        "speedMultiplier": 4
+      }
+    },
+    {
+      "input": {
+        "nowMs": 4600000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 25,
+        "monsterXp": 451,
+        "goldMin": 50,
+        "goldMax": 100,
+        "skillLevel": 10,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1.5,
+        "premiumXpMult": 2,
+        "skillXpBoostMult": 1.5,
+        "offlineTrainingBoostMult": 2
+      },
+      "result": {
+        "elapsedSeconds": 3600,
+        "cappedSeconds": 3600,
+        "kills": 1440,
+        "xpGained": 2921760,
+        "goldGained": 161280,
+        "skillXpGained": 21600,
+        "speedMultiplier": 4
+      }
+    },
+    {
+      "input": {
+        "nowMs": 4600000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 0,
+        "monsterXp": 451,
+        "goldMin": 50,
+        "goldMax": 100,
+        "skillLevel": 10,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1.5,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 3600,
+        "cappedSeconds": 3600,
+        "kills": 360,
+        "xpGained": 243360,
+        "goldGained": 27000,
+        "skillXpGained": 3600,
+        "speedMultiplier": 1
+      }
+    },
+    {
+      "input": {
+        "nowMs": 4600000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 0,
+        "monsterXp": 451,
+        "goldMin": 50,
+        "goldMax": 100,
+        "skillLevel": 10,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 2,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 2
+      },
+      "result": {
+        "elapsedSeconds": 3600,
+        "cappedSeconds": 3600,
+        "kills": 360,
+        "xpGained": 324720,
+        "goldGained": 27000,
+        "skillXpGained": 14400,
+        "speedMultiplier": 1
+      }
+    },
+    {
+      "input": {
+        "nowMs": 1600000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 0,
+        "monsterXp": 10,
+        "goldMin": 1,
+        "goldMax": 2,
+        "skillLevel": 3,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 600,
+        "cappedSeconds": 600,
+        "kills": 60,
+        "xpGained": 600,
+        "goldGained": 60,
+        "skillXpGained": 909,
+        "speedMultiplier": 1
+      }
+    },
+    {
+      "input": {
+        "nowMs": 1600000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 25,
+        "monsterXp": 10,
+        "goldMin": 1,
+        "goldMax": 2,
+        "skillLevel": 3,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 600,
+        "cappedSeconds": 600,
+        "kills": 240,
+        "xpGained": 3600,
+        "goldGained": 480,
+        "skillXpGained": 909,
+        "speedMultiplier": 4
+      }
+    },
+    {
+      "input": {
+        "nowMs": 1600000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 10,
+        "monsterXp": 0,
+        "goldMin": 0,
+        "goldMax": 0,
+        "skillLevel": 5,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 600,
+        "cappedSeconds": 600,
+        "kills": 120,
+        "xpGained": 0,
+        "goldGained": 0,
+        "skillXpGained": 800,
+        "speedMultiplier": 2
+      }
+    },
+    {
+      "input": {
+        "nowMs": 8200000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 5,
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "skillLevel": 0,
+        "trainedSkillId": "crit_chance",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 7200,
+        "cappedSeconds": 7200,
+        "kills": 1440,
+        "xpGained": 329760,
+        "goldGained": 59040,
+        "skillXpGained": 1386,
+        "speedMultiplier": 2
+      }
+    },
+    {
+      "input": {
+        "nowMs": 8200000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 5,
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "skillLevel": 0,
+        "trainedSkillId": "attack_speed",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 7200,
+        "cappedSeconds": 7200,
+        "kills": 1440,
+        "xpGained": 329760,
+        "goldGained": 59040,
+        "skillXpGained": 1174,
+        "speedMultiplier": 2
+      }
+    },
+    {
+      "input": {
+        "nowMs": 8200000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 5,
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "skillLevel": 20,
+        "trainedSkillId": "defense",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 7200,
+        "cappedSeconds": 7200,
+        "kills": 1440,
+        "xpGained": 329760,
+        "goldGained": 59040,
+        "skillXpGained": 2400,
+        "speedMultiplier": 2
+      }
+    },
+    {
+      "input": {
+        "nowMs": 8200000,
+        "startedAtMs": 1000000,
+        "masteryLevel": 5,
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "skillLevel": 20,
+        "trainedSkillId": "unknown_stat",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 7200,
+        "cappedSeconds": 7200,
+        "kills": 1440,
+        "xpGained": 329760,
+        "goldGained": 59040,
+        "skillXpGained": 2400,
+        "speedMultiplier": 2
+      }
+    },
+    {
+      "input": {
+        "nowMs": 1500000,
+        "startedAtMs": 1000000,
+        "masteryLevel": -3,
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "skillLevel": 5,
+        "trainedSkillId": "sword_fighting",
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "skillXpBoostMult": 1,
+        "offlineTrainingBoostMult": 1
+      },
+      "result": {
+        "elapsedSeconds": 500,
+        "cappedSeconds": 500,
+        "kills": 50,
+        "xpGained": 10450,
+        "goldGained": 1850,
+        "skillXpGained": 666,
+        "speedMultiplier": 1
+      }
+    }
+  ],
+  "aggregateClaimRewards": [
+    {
+      "input": {
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "masteryLevel": 0,
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "killsByRarity": {
+          "normal": 0,
+          "strong": 0,
+          "epic": 0,
+          "legendary": 0,
+          "boss": 0
+        }
+      },
+      "result": {
+        "xpGained": 0,
+        "goldGained": 0
+      }
+    },
+    {
+      "input": {
+        "monsterXp": 209,
+        "goldMin": 25,
+        "goldMax": 50,
+        "masteryLevel": 0,
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "killsByRarity": {
+          "normal": 100,
+          "strong": 0,
+          "epic": 0,
+          "legendary": 0,
+          "boss": 0
+        }
+      },
+      "result": {
+        "xpGained": 20900,
+        "goldGained": 3700
+      }
+    },
+    {
+      "input": {
+        "monsterXp": 451,
+        "goldMin": 50,
+        "goldMax": 100,
+        "masteryLevel": 0,
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "killsByRarity": {
+          "normal": 50,
+          "strong": 10,
+          "epic": 5,
+          "legendary": 2,
+          "boss": 1
+        }
+      },
+      "result": {
+        "xpGained": 42161,
+        "goldGained": 7005
+      }
+    },
+    {
+      "input": {
+        "monsterXp": 977,
+        "goldMin": 100,
+        "goldMax": 200,
+        "masteryLevel": 0,
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "killsByRarity": {
+          "normal": 0,
+          "strong": 0,
+          "epic": 0,
+          "legendary": 0,
+          "boss": 10
+        }
+      },
+      "result": {
+        "xpGained": 78160,
+        "goldGained": 12000
+      }
+    },
+    {
+      "input": {
+        "monsterXp": 451,
+        "goldMin": 50,
+        "goldMax": 100,
+        "masteryLevel": 25,
+        "xpBuffMult": 1.5,
+        "premiumXpMult": 2,
+        "killsByRarity": {
+          "normal": 50,
+          "strong": 10,
+          "epic": 5,
+          "legendary": 2,
+          "boss": 1
+        }
+      },
+      "result": {
+        "xpGained": 189727,
+        "goldGained": 10485
+      }
+    },
+    {
+      "input": {
+        "monsterXp": 3,
+        "goldMin": 1,
+        "goldMax": 1,
+        "masteryLevel": 0,
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "killsByRarity": {
+          "normal": 500,
+          "strong": 20,
+          "epic": 5,
+          "legendary": 1,
+          "boss": 0
+        }
+      },
+      "result": {
+        "xpGained": 1627,
+        "goldGained": 534
+      }
+    },
+    {
+      "input": {
+        "monsterXp": 5981,
+        "goldMin": 500,
+        "goldMax": 1000,
+        "masteryLevel": 12,
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "killsByRarity": {
+          "normal": 10,
+          "strong": 5,
+          "epic": 3,
+          "legendary": 2,
+          "boss": 1
+        }
+      },
+      "result": {
+        "xpGained": 304064,
+        "goldGained": 38130
+      }
+    },
+    {
+      "input": {
+        "monsterXp": 10,
+        "goldMin": 1,
+        "goldMax": 2,
+        "masteryLevel": 0,
+        "xpBuffMult": 1,
+        "premiumXpMult": 1,
+        "killsByRarity": {
+          "normal": 7,
+          "strong": 3,
+          "epic": 0,
+          "legendary": 0,
+          "boss": 0
+        }
+      },
+      "result": {
+        "xpGained": 115,
+        "goldGained": 10
+      }
+    },
+    {
+      "input": {
+        "monsterXp": 0,
+        "goldMin": 0,
+        "goldMax": 0,
+        "masteryLevel": 25,
+        "xpBuffMult": 1.5,
+        "premiumXpMult": 2,
+        "killsByRarity": {
+          "normal": 100,
+          "strong": 50,
+          "epic": 25,
+          "legendary": 10,
+          "boss": 5
+        }
+      },
+      "result": {
+        "xpGained": 0,
+        "goldGained": 0
+      }
+    }
+  ],
+  "weightedTaskKills": [
+    {
+      "killsByRarity": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      },
+      "value": 0
+    },
+    {
+      "killsByRarity": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      },
+      "value": 1
+    },
+    {
+      "killsByRarity": {
+        "normal": 0,
+        "strong": 1,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      },
+      "value": 3
+    },
+    {
+      "killsByRarity": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 1,
+        "legendary": 0,
+        "boss": 0
+      },
+      "value": 10
+    },
+    {
+      "killsByRarity": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 1,
+        "boss": 0
+      },
+      "value": 50
+    },
+    {
+      "killsByRarity": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 1
+      },
+      "value": 200
+    },
+    {
+      "killsByRarity": {
+        "normal": 100,
+        "strong": 10,
+        "epic": 5,
+        "legendary": 2,
+        "boss": 1
+      },
+      "value": 480
+    },
+    {
+      "killsByRarity": {
+        "normal": 1234,
+        "strong": 56,
+        "epic": 7,
+        "legendary": 8,
+        "boss": 9
+      },
+      "value": 3672
+    }
+  ],
+  "rollKillsByRarity": [
+    {
+      "seed": 1,
+      "kills": 0,
+      "mastery": null,
+      "value": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 1,
+      "kills": 1,
+      "mastery": null,
+      "value": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 1,
+      "kills": 10,
+      "mastery": null,
+      "value": {
+        "normal": 7,
+        "strong": 1,
+        "epic": 1,
+        "legendary": 1,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 1,
+      "kills": 100,
+      "mastery": null,
+      "value": {
+        "normal": 88,
+        "strong": 7,
+        "epic": 2,
+        "legendary": 3,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 1,
+      "kills": 100,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": 28,
+        "strong": 34,
+        "epic": 21,
+        "legendary": 9,
+        "boss": 8
+      }
+    },
+    {
+      "seed": 2,
+      "kills": 0,
+      "mastery": null,
+      "value": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 2,
+      "kills": 1,
+      "mastery": null,
+      "value": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 2,
+      "kills": 10,
+      "mastery": null,
+      "value": {
+        "normal": 10,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 2,
+      "kills": 100,
+      "mastery": null,
+      "value": {
+        "normal": 84,
+        "strong": 10,
+        "epic": 4,
+        "legendary": 2,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 2,
+      "kills": 100,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": 25,
+        "strong": 31,
+        "epic": 22,
+        "legendary": 13,
+        "boss": 9
+      }
+    },
+    {
+      "seed": 3,
+      "kills": 0,
+      "mastery": null,
+      "value": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 3,
+      "kills": 1,
+      "mastery": null,
+      "value": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 3,
+      "kills": 10,
+      "mastery": null,
+      "value": {
+        "normal": 10,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 3,
+      "kills": 100,
+      "mastery": null,
+      "value": {
+        "normal": 91,
+        "strong": 5,
+        "epic": 2,
+        "legendary": 2,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 3,
+      "kills": 100,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": 16,
+        "strong": 38,
+        "epic": 29,
+        "legendary": 10,
+        "boss": 7
+      }
+    },
+    {
+      "seed": 7,
+      "kills": 0,
+      "mastery": null,
+      "value": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 7,
+      "kills": 1,
+      "mastery": null,
+      "value": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 7,
+      "kills": 10,
+      "mastery": null,
+      "value": {
+        "normal": 9,
+        "strong": 0,
+        "epic": 1,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 7,
+      "kills": 100,
+      "mastery": null,
+      "value": {
+        "normal": 86,
+        "strong": 11,
+        "epic": 3,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 7,
+      "kills": 100,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": 24,
+        "strong": 35,
+        "epic": 24,
+        "legendary": 9,
+        "boss": 8
+      }
+    },
+    {
+      "seed": 13,
+      "kills": 0,
+      "mastery": null,
+      "value": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 13,
+      "kills": 1,
+      "mastery": null,
+      "value": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 13,
+      "kills": 10,
+      "mastery": null,
+      "value": {
+        "normal": 10,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 13,
+      "kills": 100,
+      "mastery": null,
+      "value": {
+        "normal": 90,
+        "strong": 9,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 1
+      }
+    },
+    {
+      "seed": 13,
+      "kills": 100,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": 33,
+        "strong": 34,
+        "epic": 21,
+        "legendary": 10,
+        "boss": 2
+      }
+    },
+    {
+      "seed": 42,
+      "kills": 0,
+      "mastery": null,
+      "value": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 42,
+      "kills": 1,
+      "mastery": null,
+      "value": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 42,
+      "kills": 10,
+      "mastery": null,
+      "value": {
+        "normal": 10,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 42,
+      "kills": 100,
+      "mastery": null,
+      "value": {
+        "normal": 92,
+        "strong": 6,
+        "epic": 0,
+        "legendary": 1,
+        "boss": 1
+      }
+    },
+    {
+      "seed": 42,
+      "kills": 100,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": 25,
+        "strong": 40,
+        "epic": 18,
+        "legendary": 15,
+        "boss": 2
+      }
+    },
+    {
+      "seed": 99,
+      "kills": 0,
+      "mastery": null,
+      "value": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 99,
+      "kills": 1,
+      "mastery": null,
+      "value": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 99,
+      "kills": 10,
+      "mastery": null,
+      "value": {
+        "normal": 10,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 99,
+      "kills": 100,
+      "mastery": null,
+      "value": {
+        "normal": 93,
+        "strong": 4,
+        "epic": 1,
+        "legendary": 1,
+        "boss": 1
+      }
+    },
+    {
+      "seed": 99,
+      "kills": 100,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": 20,
+        "strong": 39,
+        "epic": 30,
+        "legendary": 7,
+        "boss": 4
+      }
+    },
+    {
+      "seed": 777,
+      "kills": 0,
+      "mastery": null,
+      "value": {
+        "normal": 0,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 777,
+      "kills": 1,
+      "mastery": null,
+      "value": {
+        "normal": 1,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 777,
+      "kills": 10,
+      "mastery": null,
+      "value": {
+        "normal": 10,
+        "strong": 0,
+        "epic": 0,
+        "legendary": 0,
+        "boss": 0
+      }
+    },
+    {
+      "seed": 777,
+      "kills": 100,
+      "mastery": null,
+      "value": {
+        "normal": 92,
+        "strong": 5,
+        "epic": 2,
+        "legendary": 0,
+        "boss": 1
+      }
+    },
+    {
+      "seed": 777,
+      "kills": 100,
+      "mastery": {
+        "strong": 30,
+        "epic": 20,
+        "legendary": 10,
+        "mythic": 5,
+        "heroic": 0
+      },
+      "value": {
+        "normal": 25,
+        "strong": 30,
+        "epic": 31,
+        "legendary": 9,
+        "boss": 5
+      }
+    }
+  ]
+}

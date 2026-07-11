@@ -1,0 +1,2546 @@
+{
+  "system": "skillSystem",
+  "note": "Generowane z src/systems/skillSystem.ts. Funkcja RNG: seed + mulberry32. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "constants": {
+    "MLVL_FROM_ATTACKS_CLASSES": [
+      "Mage",
+      "Cleric",
+      "Necromancer"
+    ],
+    "MAX_OFFLINE_TRAINING_SECONDS": 86400,
+    "OFFLINE_TRAINING_SPEED_MULTIPLIER": {
+      "sword_fighting": 1,
+      "shielding": 1,
+      "distance_fighting": 1,
+      "dagger_fighting": 1,
+      "magic_level": 1,
+      "bard_level": 1,
+      "max_hp": 0.6,
+      "max_mp": 0.6,
+      "defense": 0.5,
+      "mp_regen": 0.15,
+      "hp_regen": 0.15,
+      "crit_chance": 0.12,
+      "crit_dmg": 0.12,
+      "attack_speed": 0.1
+    },
+    "CLASS_WEAPON_SKILLS": {
+      "Knight": [
+        "sword_fighting",
+        "shielding"
+      ],
+      "Mage": [
+        "magic_level"
+      ],
+      "Cleric": [
+        "magic_level"
+      ],
+      "Archer": [
+        "distance_fighting"
+      ],
+      "Rogue": [
+        "dagger_fighting"
+      ],
+      "Necromancer": [
+        "magic_level"
+      ],
+      "Bard": [
+        "bard_level"
+      ]
+    },
+    "CLASS_WEAPON_SKILL": {
+      "Knight": "sword_fighting",
+      "Mage": "magic_level",
+      "Cleric": "magic_level",
+      "Archer": "distance_fighting",
+      "Rogue": "dagger_fighting",
+      "Necromancer": "magic_level",
+      "Bard": "bard_level"
+    },
+    "ALL_WEAPON_SKILL_IDS": [
+      "sword_fighting",
+      "shielding",
+      "distance_fighting",
+      "dagger_fighting",
+      "magic_level",
+      "bard_level"
+    ],
+    "GENERAL_TRAINABLE_STATS": [
+      "attack_speed",
+      "max_hp",
+      "max_mp",
+      "hp_regen",
+      "mp_regen",
+      "defense",
+      "crit_chance",
+      "crit_dmg"
+    ],
+    "ALL_TRAINABLE_STATS": [
+      "sword_fighting",
+      "shielding",
+      "distance_fighting",
+      "dagger_fighting",
+      "magic_level",
+      "bard_level",
+      "attack_speed",
+      "max_hp",
+      "max_mp",
+      "hp_regen",
+      "mp_regen",
+      "defense",
+      "crit_chance",
+      "crit_dmg"
+    ],
+    "SPELL_CHEST_LEVELS": [
+      5,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      100,
+      150,
+      300,
+      600,
+      800,
+      1000
+    ]
+  },
+  "skillXpToNextLevel": [
+    {
+      "level": -1,
+      "value": 100
+    },
+    {
+      "level": 0,
+      "value": 100
+    },
+    {
+      "level": 1,
+      "value": 100
+    },
+    {
+      "level": 2,
+      "value": 349
+    },
+    {
+      "level": 3,
+      "value": 723
+    },
+    {
+      "level": 5,
+      "value": 1812
+    },
+    {
+      "level": 10,
+      "value": 6310
+    },
+    {
+      "level": 25,
+      "value": 32832
+    },
+    {
+      "level": 50,
+      "value": 114327
+    },
+    {
+      "level": 99,
+      "value": 390970
+    },
+    {
+      "level": 100,
+      "value": 398108
+    },
+    {
+      "level": 101,
+      "value": 405302
+    },
+    {
+      "level": 150,
+      "value": 825970
+    },
+    {
+      "level": 500,
+      "value": 7213500
+    },
+    {
+      "level": 1000,
+      "value": 25118865
+    }
+  ],
+  "skillXpPerHit": [
+    {
+      "level": -1,
+      "value": 10
+    },
+    {
+      "level": 0,
+      "value": 10
+    },
+    {
+      "level": 1,
+      "value": 9
+    },
+    {
+      "level": 2,
+      "value": 9
+    },
+    {
+      "level": 3,
+      "value": 8
+    },
+    {
+      "level": 5,
+      "value": 8
+    },
+    {
+      "level": 10,
+      "value": 6
+    },
+    {
+      "level": 25,
+      "value": 4
+    },
+    {
+      "level": 50,
+      "value": 2
+    },
+    {
+      "level": 99,
+      "value": 1
+    },
+    {
+      "level": 100,
+      "value": 1
+    },
+    {
+      "level": 101,
+      "value": 1
+    },
+    {
+      "level": 150,
+      "value": 1
+    },
+    {
+      "level": 500,
+      "value": 1
+    },
+    {
+      "level": 1000,
+      "value": 1
+    }
+  ],
+  "skillXpPerCast": [
+    {
+      "level": -1,
+      "value": 15
+    },
+    {
+      "level": 0,
+      "value": 15
+    },
+    {
+      "level": 1,
+      "value": 14
+    },
+    {
+      "level": 2,
+      "value": 13
+    },
+    {
+      "level": 3,
+      "value": 13
+    },
+    {
+      "level": 5,
+      "value": 12
+    },
+    {
+      "level": 10,
+      "value": 10
+    },
+    {
+      "level": 25,
+      "value": 6
+    },
+    {
+      "level": 50,
+      "value": 4
+    },
+    {
+      "level": 99,
+      "value": 2
+    },
+    {
+      "level": 100,
+      "value": 2
+    },
+    {
+      "level": 101,
+      "value": 2
+    },
+    {
+      "level": 150,
+      "value": 1
+    },
+    {
+      "level": 500,
+      "value": 1
+    },
+    {
+      "level": 1000,
+      "value": 1
+    }
+  ],
+  "mlvlXpPerAttack": [
+    {
+      "mlvl": -1,
+      "value": 8
+    },
+    {
+      "mlvl": 0,
+      "value": 8
+    },
+    {
+      "mlvl": 1,
+      "value": 7
+    },
+    {
+      "mlvl": 2,
+      "value": 7
+    },
+    {
+      "mlvl": 5,
+      "value": 6
+    },
+    {
+      "mlvl": 10,
+      "value": 5
+    },
+    {
+      "mlvl": 25,
+      "value": 4
+    },
+    {
+      "mlvl": 50,
+      "value": 2
+    },
+    {
+      "mlvl": 100,
+      "value": 1
+    },
+    {
+      "mlvl": 500,
+      "value": 1
+    },
+    {
+      "mlvl": 1000,
+      "value": 1
+    }
+  ],
+  "mlvlXpPerSkillUse": [
+    {
+      "mlvl": -1,
+      "class": "Knight",
+      "value": 4
+    },
+    {
+      "mlvl": -1,
+      "class": "Mage",
+      "value": 12
+    },
+    {
+      "mlvl": -1,
+      "class": "Cleric",
+      "value": 12
+    },
+    {
+      "mlvl": -1,
+      "class": "Archer",
+      "value": 4
+    },
+    {
+      "mlvl": -1,
+      "class": "Rogue",
+      "value": 4
+    },
+    {
+      "mlvl": -1,
+      "class": "Necromancer",
+      "value": 12
+    },
+    {
+      "mlvl": -1,
+      "class": "Bard",
+      "value": 4
+    },
+    {
+      "mlvl": 0,
+      "class": "Knight",
+      "value": 4
+    },
+    {
+      "mlvl": 0,
+      "class": "Mage",
+      "value": 12
+    },
+    {
+      "mlvl": 0,
+      "class": "Cleric",
+      "value": 12
+    },
+    {
+      "mlvl": 0,
+      "class": "Archer",
+      "value": 4
+    },
+    {
+      "mlvl": 0,
+      "class": "Rogue",
+      "value": 4
+    },
+    {
+      "mlvl": 0,
+      "class": "Necromancer",
+      "value": 12
+    },
+    {
+      "mlvl": 0,
+      "class": "Bard",
+      "value": 4
+    },
+    {
+      "mlvl": 1,
+      "class": "Knight",
+      "value": 3
+    },
+    {
+      "mlvl": 1,
+      "class": "Mage",
+      "value": 11
+    },
+    {
+      "mlvl": 1,
+      "class": "Cleric",
+      "value": 11
+    },
+    {
+      "mlvl": 1,
+      "class": "Archer",
+      "value": 3
+    },
+    {
+      "mlvl": 1,
+      "class": "Rogue",
+      "value": 3
+    },
+    {
+      "mlvl": 1,
+      "class": "Necromancer",
+      "value": 11
+    },
+    {
+      "mlvl": 1,
+      "class": "Bard",
+      "value": 3
+    },
+    {
+      "mlvl": 2,
+      "class": "Knight",
+      "value": 3
+    },
+    {
+      "mlvl": 2,
+      "class": "Mage",
+      "value": 11
+    },
+    {
+      "mlvl": 2,
+      "class": "Cleric",
+      "value": 11
+    },
+    {
+      "mlvl": 2,
+      "class": "Archer",
+      "value": 3
+    },
+    {
+      "mlvl": 2,
+      "class": "Rogue",
+      "value": 3
+    },
+    {
+      "mlvl": 2,
+      "class": "Necromancer",
+      "value": 11
+    },
+    {
+      "mlvl": 2,
+      "class": "Bard",
+      "value": 3
+    },
+    {
+      "mlvl": 5,
+      "class": "Knight",
+      "value": 3
+    },
+    {
+      "mlvl": 5,
+      "class": "Mage",
+      "value": 10
+    },
+    {
+      "mlvl": 5,
+      "class": "Cleric",
+      "value": 10
+    },
+    {
+      "mlvl": 5,
+      "class": "Archer",
+      "value": 3
+    },
+    {
+      "mlvl": 5,
+      "class": "Rogue",
+      "value": 3
+    },
+    {
+      "mlvl": 5,
+      "class": "Necromancer",
+      "value": 10
+    },
+    {
+      "mlvl": 5,
+      "class": "Bard",
+      "value": 3
+    },
+    {
+      "mlvl": 10,
+      "class": "Knight",
+      "value": 2
+    },
+    {
+      "mlvl": 10,
+      "class": "Mage",
+      "value": 8
+    },
+    {
+      "mlvl": 10,
+      "class": "Cleric",
+      "value": 8
+    },
+    {
+      "mlvl": 10,
+      "class": "Archer",
+      "value": 2
+    },
+    {
+      "mlvl": 10,
+      "class": "Rogue",
+      "value": 2
+    },
+    {
+      "mlvl": 10,
+      "class": "Necromancer",
+      "value": 8
+    },
+    {
+      "mlvl": 10,
+      "class": "Bard",
+      "value": 2
+    },
+    {
+      "mlvl": 25,
+      "class": "Knight",
+      "value": 2
+    },
+    {
+      "mlvl": 25,
+      "class": "Mage",
+      "value": 6
+    },
+    {
+      "mlvl": 25,
+      "class": "Cleric",
+      "value": 6
+    },
+    {
+      "mlvl": 25,
+      "class": "Archer",
+      "value": 2
+    },
+    {
+      "mlvl": 25,
+      "class": "Rogue",
+      "value": 2
+    },
+    {
+      "mlvl": 25,
+      "class": "Necromancer",
+      "value": 6
+    },
+    {
+      "mlvl": 25,
+      "class": "Bard",
+      "value": 2
+    },
+    {
+      "mlvl": 50,
+      "class": "Knight",
+      "value": 1
+    },
+    {
+      "mlvl": 50,
+      "class": "Mage",
+      "value": 4
+    },
+    {
+      "mlvl": 50,
+      "class": "Cleric",
+      "value": 4
+    },
+    {
+      "mlvl": 50,
+      "class": "Archer",
+      "value": 1
+    },
+    {
+      "mlvl": 50,
+      "class": "Rogue",
+      "value": 1
+    },
+    {
+      "mlvl": 50,
+      "class": "Necromancer",
+      "value": 4
+    },
+    {
+      "mlvl": 50,
+      "class": "Bard",
+      "value": 1
+    },
+    {
+      "mlvl": 100,
+      "class": "Knight",
+      "value": 1
+    },
+    {
+      "mlvl": 100,
+      "class": "Mage",
+      "value": 2
+    },
+    {
+      "mlvl": 100,
+      "class": "Cleric",
+      "value": 2
+    },
+    {
+      "mlvl": 100,
+      "class": "Archer",
+      "value": 1
+    },
+    {
+      "mlvl": 100,
+      "class": "Rogue",
+      "value": 1
+    },
+    {
+      "mlvl": 100,
+      "class": "Necromancer",
+      "value": 2
+    },
+    {
+      "mlvl": 100,
+      "class": "Bard",
+      "value": 1
+    },
+    {
+      "mlvl": 500,
+      "class": "Knight",
+      "value": 1
+    },
+    {
+      "mlvl": 500,
+      "class": "Mage",
+      "value": 1
+    },
+    {
+      "mlvl": 500,
+      "class": "Cleric",
+      "value": 1
+    },
+    {
+      "mlvl": 500,
+      "class": "Archer",
+      "value": 1
+    },
+    {
+      "mlvl": 500,
+      "class": "Rogue",
+      "value": 1
+    },
+    {
+      "mlvl": 500,
+      "class": "Necromancer",
+      "value": 1
+    },
+    {
+      "mlvl": 500,
+      "class": "Bard",
+      "value": 1
+    },
+    {
+      "mlvl": 1000,
+      "class": "Knight",
+      "value": 1
+    },
+    {
+      "mlvl": 1000,
+      "class": "Mage",
+      "value": 1
+    },
+    {
+      "mlvl": 1000,
+      "class": "Cleric",
+      "value": 1
+    },
+    {
+      "mlvl": 1000,
+      "class": "Archer",
+      "value": 1
+    },
+    {
+      "mlvl": 1000,
+      "class": "Rogue",
+      "value": 1
+    },
+    {
+      "mlvl": 1000,
+      "class": "Necromancer",
+      "value": 1
+    },
+    {
+      "mlvl": 1000,
+      "class": "Bard",
+      "value": 1
+    }
+  ],
+  "doesClassGainMlvlFromAttacks": [
+    {
+      "class": "Knight",
+      "value": false
+    },
+    {
+      "class": "Mage",
+      "value": true
+    },
+    {
+      "class": "Cleric",
+      "value": true
+    },
+    {
+      "class": "Archer",
+      "value": false
+    },
+    {
+      "class": "Rogue",
+      "value": false
+    },
+    {
+      "class": "Necromancer",
+      "value": true
+    },
+    {
+      "class": "Bard",
+      "value": false
+    }
+  ],
+  "shieldingXpPerBlock": [
+    {
+      "level": -1,
+      "value": 15
+    },
+    {
+      "level": 0,
+      "value": 15
+    },
+    {
+      "level": 1,
+      "value": 14
+    },
+    {
+      "level": 2,
+      "value": 13
+    },
+    {
+      "level": 3,
+      "value": 12
+    },
+    {
+      "level": 5,
+      "value": 11
+    },
+    {
+      "level": 10,
+      "value": 9
+    },
+    {
+      "level": 25,
+      "value": 6
+    },
+    {
+      "level": 50,
+      "value": 3
+    },
+    {
+      "level": 99,
+      "value": 2
+    },
+    {
+      "level": 100,
+      "value": 2
+    },
+    {
+      "level": 101,
+      "value": 2
+    },
+    {
+      "level": 150,
+      "value": 1
+    },
+    {
+      "level": 500,
+      "value": 1
+    },
+    {
+      "level": 1000,
+      "value": 1
+    }
+  ],
+  "getShieldingDefBonus": [
+    {
+      "level": -1,
+      "value": -1
+    },
+    {
+      "level": 0,
+      "value": 0
+    },
+    {
+      "level": 1,
+      "value": 0
+    },
+    {
+      "level": 2,
+      "value": 1
+    },
+    {
+      "level": 3,
+      "value": 1
+    },
+    {
+      "level": 5,
+      "value": 2
+    },
+    {
+      "level": 10,
+      "value": 5
+    },
+    {
+      "level": 25,
+      "value": 12
+    },
+    {
+      "level": 50,
+      "value": 25
+    },
+    {
+      "level": 99,
+      "value": 49
+    },
+    {
+      "level": 100,
+      "value": 50
+    },
+    {
+      "level": 101,
+      "value": 50
+    },
+    {
+      "level": 150,
+      "value": 75
+    },
+    {
+      "level": 500,
+      "value": 250
+    },
+    {
+      "level": 1000,
+      "value": 500
+    }
+  ],
+  "getShieldingBlockBonus": [
+    {
+      "level": -1,
+      "value": -0.005
+    },
+    {
+      "level": 0,
+      "value": 0
+    },
+    {
+      "level": 1,
+      "value": 0.005
+    },
+    {
+      "level": 2,
+      "value": 0.01
+    },
+    {
+      "level": 3,
+      "value": 0.015
+    },
+    {
+      "level": 5,
+      "value": 0.025
+    },
+    {
+      "level": 10,
+      "value": 0.05
+    },
+    {
+      "level": 25,
+      "value": 0.125
+    },
+    {
+      "level": 50,
+      "value": 0.25
+    },
+    {
+      "level": 99,
+      "value": 0.495
+    },
+    {
+      "level": 100,
+      "value": 0.5
+    },
+    {
+      "level": 101,
+      "value": 0.505
+    },
+    {
+      "level": 150,
+      "value": 0.75
+    },
+    {
+      "level": 500,
+      "value": 2.5
+    },
+    {
+      "level": 1000,
+      "value": 5
+    }
+  ],
+  "offlineXpRate": [
+    {
+      "level": -1,
+      "value": 2.2222222222222223
+    },
+    {
+      "level": 0,
+      "value": 2
+    },
+    {
+      "level": 1,
+      "value": 1.8181818181818181
+    },
+    {
+      "level": 2,
+      "value": 1.6666666666666667
+    },
+    {
+      "level": 3,
+      "value": 1.5384615384615383
+    },
+    {
+      "level": 5,
+      "value": 1.3333333333333333
+    },
+    {
+      "level": 10,
+      "value": 1
+    },
+    {
+      "level": 25,
+      "value": 0.5714285714285714
+    },
+    {
+      "level": 50,
+      "value": 0.3333333333333333
+    },
+    {
+      "level": 99,
+      "value": 0.18348623853211007
+    },
+    {
+      "level": 100,
+      "value": 0.18181818181818182
+    },
+    {
+      "level": 101,
+      "value": 0.18018018018018014
+    },
+    {
+      "level": 150,
+      "value": 0.125
+    },
+    {
+      "level": 500,
+      "value": 0.05
+    },
+    {
+      "level": 1000,
+      "value": 0.05
+    }
+  ],
+  "offlineXpRateForStat": [
+    {
+      "level": 0,
+      "skillId": "sword_fighting",
+      "value": 2
+    },
+    {
+      "level": 10,
+      "skillId": "sword_fighting",
+      "value": 1
+    },
+    {
+      "level": 50,
+      "skillId": "magic_level",
+      "value": 0.3333333333333333
+    },
+    {
+      "level": 5,
+      "skillId": "max_hp",
+      "value": 0.7999999999999999
+    },
+    {
+      "level": 5,
+      "skillId": "defense",
+      "value": 0.6666666666666666
+    },
+    {
+      "level": 5,
+      "skillId": "hp_regen",
+      "value": 0.19999999999999998
+    },
+    {
+      "level": 5,
+      "skillId": "crit_chance",
+      "value": 0.15999999999999998
+    },
+    {
+      "level": 5,
+      "skillId": "attack_speed",
+      "value": 0.13333333333333333
+    },
+    {
+      "level": 100,
+      "skillId": "attack_speed",
+      "value": 0.018181818181818184
+    },
+    {
+      "level": 3,
+      "skillId": "unknown_stat",
+      "value": 0.7692307692307692
+    },
+    {
+      "level": 0,
+      "skillId": "unknown_stat",
+      "value": 1
+    }
+  ],
+  "calculateOfflineSkillXp": [
+    {
+      "elapsedSeconds": 0,
+      "skillLevel": 0,
+      "skillId": null,
+      "value": 0
+    },
+    {
+      "elapsedSeconds": 3600,
+      "skillLevel": 0,
+      "skillId": null,
+      "value": 7200
+    },
+    {
+      "elapsedSeconds": 86400,
+      "skillLevel": 0,
+      "skillId": null,
+      "value": 172800
+    },
+    {
+      "elapsedSeconds": 3600,
+      "skillLevel": 5,
+      "skillId": "sword_fighting",
+      "value": 4601
+    },
+    {
+      "elapsedSeconds": 86400,
+      "skillLevel": 1,
+      "skillId": "magic_level",
+      "value": 80043
+    },
+    {
+      "elapsedSeconds": 90000,
+      "skillLevel": 10,
+      "skillId": "crit_chance",
+      "value": 10174
+    },
+    {
+      "elapsedSeconds": 100,
+      "skillLevel": 50,
+      "skillId": "max_hp",
+      "value": 19
+    },
+    {
+      "elapsedSeconds": 86400,
+      "skillLevel": 100,
+      "skillId": "attack_speed",
+      "value": 1570
+    },
+    {
+      "elapsedSeconds": 60,
+      "skillLevel": 3,
+      "skillId": "unknown_stat",
+      "value": 46
+    },
+    {
+      "elapsedSeconds": 1000000,
+      "skillLevel": 0,
+      "skillId": "sword_fighting",
+      "value": 80106
+    },
+    {
+      "elapsedSeconds": 30,
+      "skillLevel": 2,
+      "skillId": "defense",
+      "value": 25
+    }
+  ],
+  "processSkillXp": [
+    {
+      "level": 0,
+      "xp": 0,
+      "gained": 100,
+      "result": {
+        "newLevel": 1,
+        "remainingXp": 0,
+        "levelsGained": 1
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gained": 349,
+      "result": {
+        "newLevel": 2,
+        "remainingXp": 249,
+        "levelsGained": 1
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gained": 1000,
+      "result": {
+        "newLevel": 3,
+        "remainingXp": 551,
+        "levelsGained": 2
+      }
+    },
+    {
+      "level": 1,
+      "xp": 50,
+      "gained": 300,
+      "result": {
+        "newLevel": 2,
+        "remainingXp": 250,
+        "levelsGained": 1
+      }
+    },
+    {
+      "level": 5,
+      "xp": 0,
+      "gained": 100000,
+      "result": {
+        "newLevel": 17,
+        "remainingXp": 10870,
+        "levelsGained": 12
+      }
+    },
+    {
+      "level": 10,
+      "xp": 0,
+      "gained": 6310,
+      "result": {
+        "newLevel": 11,
+        "remainingXp": 0,
+        "levelsGained": 1
+      }
+    },
+    {
+      "level": 50,
+      "xp": 0,
+      "gained": 500000,
+      "result": {
+        "newLevel": 54,
+        "remainingXp": 17539,
+        "levelsGained": 4
+      }
+    },
+    {
+      "level": 99,
+      "xp": 0,
+      "gained": 400000,
+      "result": {
+        "newLevel": 100,
+        "remainingXp": 9030,
+        "levelsGained": 1
+      }
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "gained": 1000000,
+      "result": {
+        "newLevel": 102,
+        "remainingXp": 196590,
+        "levelsGained": 2
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gained": 0,
+      "result": {
+        "newLevel": 1,
+        "remainingXp": 0,
+        "levelsGained": 0
+      }
+    },
+    {
+      "level": 0,
+      "xp": 50,
+      "gained": 60,
+      "result": {
+        "newLevel": 1,
+        "remainingXp": 10,
+        "levelsGained": 1
+      }
+    },
+    {
+      "level": 10,
+      "xp": 100,
+      "gained": 0,
+      "result": {
+        "newLevel": 10,
+        "remainingXp": 100,
+        "levelsGained": 0
+      }
+    }
+  ],
+  "applySkillDeathPenalty": [
+    {
+      "xp": 0,
+      "level": 1,
+      "value": 0
+    },
+    {
+      "xp": 50,
+      "level": 1,
+      "value": 45
+    },
+    {
+      "xp": 100,
+      "level": 5,
+      "value": 10
+    },
+    {
+      "xp": 1000,
+      "level": 10,
+      "value": 685
+    },
+    {
+      "xp": 500,
+      "level": 50,
+      "value": 0
+    },
+    {
+      "xp": 0,
+      "level": 100,
+      "value": 0
+    },
+    {
+      "xp": 10000,
+      "level": 100,
+      "value": 0
+    },
+    {
+      "xp": 3,
+      "level": 0,
+      "value": 0
+    }
+  ],
+  "getSkillDamageBonus": [
+    {
+      "level": 0,
+      "damageBonus": 0.05,
+      "value": 0
+    },
+    {
+      "level": 1,
+      "damageBonus": 0.05,
+      "value": 0.05
+    },
+    {
+      "level": 10,
+      "damageBonus": 0.06,
+      "value": 0.6
+    },
+    {
+      "level": 25,
+      "damageBonus": 0.07,
+      "value": 1.7500000000000002
+    },
+    {
+      "level": 50,
+      "damageBonus": 0.08,
+      "value": 4
+    },
+    {
+      "level": 100,
+      "damageBonus": 0.04,
+      "value": 4
+    },
+    {
+      "level": 1000,
+      "damageBonus": 0.05,
+      "value": 50
+    },
+    {
+      "level": -1,
+      "damageBonus": 0.05,
+      "value": -0.05
+    }
+  ],
+  "getClassWeaponSkills": [
+    {
+      "class": "Knight",
+      "value": [
+        "sword_fighting",
+        "shielding"
+      ]
+    },
+    {
+      "class": "Mage",
+      "value": [
+        "magic_level"
+      ]
+    },
+    {
+      "class": "Cleric",
+      "value": [
+        "magic_level"
+      ]
+    },
+    {
+      "class": "Archer",
+      "value": [
+        "distance_fighting"
+      ]
+    },
+    {
+      "class": "Rogue",
+      "value": [
+        "dagger_fighting"
+      ]
+    },
+    {
+      "class": "Necromancer",
+      "value": [
+        "magic_level"
+      ]
+    },
+    {
+      "class": "Bard",
+      "value": [
+        "bard_level"
+      ]
+    }
+  ],
+  "getTrainableStatsForClass": [
+    {
+      "class": "Knight",
+      "value": [
+        "sword_fighting",
+        "shielding",
+        "attack_speed",
+        "max_hp",
+        "max_mp",
+        "hp_regen",
+        "mp_regen",
+        "defense",
+        "crit_chance",
+        "crit_dmg"
+      ]
+    },
+    {
+      "class": "Mage",
+      "value": [
+        "magic_level",
+        "attack_speed",
+        "max_hp",
+        "max_mp",
+        "hp_regen",
+        "mp_regen",
+        "defense",
+        "crit_chance",
+        "crit_dmg"
+      ]
+    },
+    {
+      "class": "Cleric",
+      "value": [
+        "magic_level",
+        "attack_speed",
+        "max_hp",
+        "max_mp",
+        "hp_regen",
+        "mp_regen",
+        "defense",
+        "crit_chance",
+        "crit_dmg"
+      ]
+    },
+    {
+      "class": "Archer",
+      "value": [
+        "distance_fighting",
+        "attack_speed",
+        "max_hp",
+        "max_mp",
+        "hp_regen",
+        "mp_regen",
+        "defense",
+        "crit_chance",
+        "crit_dmg"
+      ]
+    },
+    {
+      "class": "Rogue",
+      "value": [
+        "dagger_fighting",
+        "attack_speed",
+        "max_hp",
+        "max_mp",
+        "hp_regen",
+        "mp_regen",
+        "defense",
+        "crit_chance",
+        "crit_dmg"
+      ]
+    },
+    {
+      "class": "Necromancer",
+      "value": [
+        "magic_level",
+        "attack_speed",
+        "max_hp",
+        "max_mp",
+        "hp_regen",
+        "mp_regen",
+        "defense",
+        "crit_chance",
+        "crit_dmg"
+      ]
+    },
+    {
+      "class": "Bard",
+      "value": [
+        "bard_level",
+        "attack_speed",
+        "max_hp",
+        "max_mp",
+        "hp_regen",
+        "mp_regen",
+        "defense",
+        "crit_chance",
+        "crit_dmg"
+      ]
+    }
+  ],
+  "getTrainingBonuses": [
+    {
+      "levels": {},
+      "class": null,
+      "value": {
+        "attack_speed": 0,
+        "max_hp": 0,
+        "max_mp": 0,
+        "hp_regen": 0,
+        "mp_regen": 0,
+        "defense": 0,
+        "crit_chance": 0,
+        "crit_dmg": 0
+      }
+    },
+    {
+      "levels": {
+        "attack_speed": 10,
+        "max_hp": 5,
+        "max_mp": 3,
+        "hp_regen": 20,
+        "mp_regen": 15,
+        "defense": 7,
+        "crit_chance": 4,
+        "crit_dmg": 8
+      },
+      "class": "Knight",
+      "value": {
+        "attack_speed": 1,
+        "max_hp": 25,
+        "max_mp": 15,
+        "hp_regen": 4,
+        "mp_regen": 0.75,
+        "defense": 7,
+        "crit_chance": 0.02,
+        "crit_dmg": 0.16
+      }
+    },
+    {
+      "levels": {
+        "hp_regen": 12,
+        "mp_regen": 30,
+        "max_mp": 10,
+        "defense": 2
+      },
+      "class": "Mage",
+      "value": {
+        "attack_speed": 0,
+        "max_hp": 0,
+        "max_mp": 50,
+        "hp_regen": 0.6000000000000001,
+        "mp_regen": 6,
+        "defense": 2,
+        "crit_chance": 0,
+        "crit_dmg": 0
+      }
+    },
+    {
+      "levels": {
+        "hp_regen": 50,
+        "mp_regen": 50,
+        "crit_chance": 100,
+        "crit_dmg": 25,
+        "attack_speed": 40
+      },
+      "class": "Necromancer",
+      "value": {
+        "attack_speed": 4,
+        "max_hp": 0,
+        "max_mp": 0,
+        "hp_regen": 3,
+        "mp_regen": 9,
+        "defense": 0,
+        "crit_chance": 0.5,
+        "crit_dmg": 0.5
+      }
+    },
+    {
+      "levels": {
+        "hp_regen": 10,
+        "mp_regen": 10
+      },
+      "class": "UnknownClass",
+      "value": {
+        "attack_speed": 0,
+        "max_hp": 0,
+        "max_mp": 0,
+        "hp_regen": 1,
+        "mp_regen": 1,
+        "defense": 0,
+        "crit_chance": 0,
+        "crit_dmg": 0
+      }
+    },
+    {
+      "levels": {
+        "hp_regen": 100,
+        "mp_regen": 100,
+        "defense": 33
+      },
+      "class": null,
+      "value": {
+        "attack_speed": 0,
+        "max_hp": 0,
+        "max_mp": 0,
+        "hp_regen": 10,
+        "mp_regen": 10,
+        "defense": 33,
+        "crit_chance": 0,
+        "crit_dmg": 0
+      }
+    }
+  ],
+  "skillXpProgress": [
+    {
+      "xp": 0,
+      "level": 1,
+      "value": 0
+    },
+    {
+      "xp": 50,
+      "level": 1,
+      "value": 0.5
+    },
+    {
+      "xp": 100,
+      "level": 1,
+      "value": 1
+    },
+    {
+      "xp": 200,
+      "level": 2,
+      "value": 0.5730659025787965
+    },
+    {
+      "xp": 1000,
+      "level": 10,
+      "value": 0.15847860538827258
+    },
+    {
+      "xp": 0,
+      "level": 0,
+      "value": 0
+    },
+    {
+      "xp": 50,
+      "level": 0,
+      "value": 0.5
+    },
+    {
+      "xp": 500000,
+      "level": 1000,
+      "value": 0.019905357984924876
+    }
+  ],
+  "getSkillUnlockCost": [
+    {
+      "level": -1,
+      "value": 100
+    },
+    {
+      "level": 0,
+      "value": 100
+    },
+    {
+      "level": 5,
+      "value": 1811
+    },
+    {
+      "level": 10,
+      "value": 6309
+    },
+    {
+      "level": 20,
+      "value": 21971
+    },
+    {
+      "level": 30,
+      "value": 45584
+    },
+    {
+      "level": 40,
+      "value": 76508
+    },
+    {
+      "level": 50,
+      "value": 114326
+    },
+    {
+      "level": 60,
+      "value": 158734
+    },
+    {
+      "level": 70,
+      "value": 209496
+    },
+    {
+      "level": 80,
+      "value": 266417
+    },
+    {
+      "level": 100,
+      "value": 398107
+    },
+    {
+      "level": 150,
+      "value": 825969
+    },
+    {
+      "level": 300,
+      "value": 2876194
+    },
+    {
+      "level": 600,
+      "value": 10015491
+    },
+    {
+      "level": 800,
+      "value": 16809777
+    },
+    {
+      "level": 1000,
+      "value": 25118864
+    }
+  ],
+  "getSkillUpgradeCost": [
+    {
+      "targetLevel": 0,
+      "result": {
+        "gold": 0,
+        "successRate": 100
+      }
+    },
+    {
+      "targetLevel": 1,
+      "result": {
+        "gold": 200,
+        "successRate": 100
+      }
+    },
+    {
+      "targetLevel": 2,
+      "result": {
+        "gold": 918,
+        "successRate": 90
+      }
+    },
+    {
+      "targetLevel": 3,
+      "result": {
+        "gold": 2242,
+        "successRate": 75
+      }
+    },
+    {
+      "targetLevel": 5,
+      "result": {
+        "gold": 6898,
+        "successRate": 45
+      }
+    },
+    {
+      "targetLevel": 7,
+      "result": {
+        "gold": 14462,
+        "successRate": 20
+      }
+    },
+    {
+      "targetLevel": 10,
+      "result": {
+        "gold": 31697,
+        "successRate": 3
+      }
+    },
+    {
+      "targetLevel": 11,
+      "result": {
+        "gold": 39092,
+        "successRate": 1.5
+      }
+    },
+    {
+      "targetLevel": 12,
+      "result": {
+        "gold": 47340,
+        "successRate": 0.75
+      }
+    },
+    {
+      "targetLevel": 15,
+      "result": {
+        "gold": 77344,
+        "successRate": 0.1
+      }
+    },
+    {
+      "targetLevel": 20,
+      "result": {
+        "gold": 145645,
+        "successRate": 0.1
+      }
+    },
+    {
+      "targetLevel": 30,
+      "result": {
+        "gold": 355383,
+        "successRate": 0.1
+      }
+    },
+    {
+      "targetLevel": 50,
+      "result": {
+        "gold": 1093362,
+        "successRate": 0.1
+      }
+    }
+  ],
+  "getSkillUpgradeBonus": [
+    {
+      "level": -1,
+      "value": 0
+    },
+    {
+      "level": 0,
+      "value": 0
+    },
+    {
+      "level": 1,
+      "value": 0.1499999999999999
+    },
+    {
+      "level": 2,
+      "value": 0.3224999999999998
+    },
+    {
+      "level": 5,
+      "value": 1.0113571874999994
+    },
+    {
+      "level": 9,
+      "value": 2.5178762919199196
+    },
+    {
+      "level": 10,
+      "value": 3.0455577357079067
+    },
+    {
+      "level": 11,
+      "value": 3.369202354564539
+    },
+    {
+      "level": 15,
+      "value": 4.944251567391063
+    },
+    {
+      "level": 20,
+      "value": 7.7340557235300995
+    },
+    {
+      "level": 30,
+      "value": 17.8561712291026
+    },
+    {
+      "level": 50,
+      "value": 86.88780599593156
+    }
+  ],
+  "getCombatSkillUpgradeMultiplier": [
+    {
+      "level": -1,
+      "value": 1
+    },
+    {
+      "level": 0,
+      "value": 1
+    },
+    {
+      "level": 1,
+      "value": 1.02
+    },
+    {
+      "level": 2,
+      "value": 1.04
+    },
+    {
+      "level": 5,
+      "value": 1.1
+    },
+    {
+      "level": 9,
+      "value": 1.18
+    },
+    {
+      "level": 10,
+      "value": 1.2
+    },
+    {
+      "level": 11,
+      "value": 1.21
+    },
+    {
+      "level": 15,
+      "value": 1.25
+    },
+    {
+      "level": 20,
+      "value": 1.3
+    },
+    {
+      "level": 30,
+      "value": 1.4
+    },
+    {
+      "level": 50,
+      "value": 1.6
+    }
+  ],
+  "getSpellChestUnlockCost": [
+    {
+      "level": -1,
+      "result": {
+        "chests": 1,
+        "chestLevel": -1,
+        "gold": 20
+      }
+    },
+    {
+      "level": 0,
+      "result": {
+        "chests": 1,
+        "chestLevel": 0,
+        "gold": 20
+      }
+    },
+    {
+      "level": 5,
+      "result": {
+        "chests": 1,
+        "chestLevel": 5,
+        "gold": 362
+      }
+    },
+    {
+      "level": 10,
+      "result": {
+        "chests": 1,
+        "chestLevel": 10,
+        "gold": 1261
+      }
+    },
+    {
+      "level": 20,
+      "result": {
+        "chests": 1,
+        "chestLevel": 20,
+        "gold": 4394
+      }
+    },
+    {
+      "level": 30,
+      "result": {
+        "chests": 1,
+        "chestLevel": 30,
+        "gold": 9116
+      }
+    },
+    {
+      "level": 40,
+      "result": {
+        "chests": 1,
+        "chestLevel": 40,
+        "gold": 15301
+      }
+    },
+    {
+      "level": 50,
+      "result": {
+        "chests": 1,
+        "chestLevel": 50,
+        "gold": 22865
+      }
+    },
+    {
+      "level": 60,
+      "result": {
+        "chests": 1,
+        "chestLevel": 60,
+        "gold": 31746
+      }
+    },
+    {
+      "level": 70,
+      "result": {
+        "chests": 1,
+        "chestLevel": 70,
+        "gold": 41899
+      }
+    },
+    {
+      "level": 80,
+      "result": {
+        "chests": 1,
+        "chestLevel": 80,
+        "gold": 53283
+      }
+    },
+    {
+      "level": 100,
+      "result": {
+        "chests": 1,
+        "chestLevel": 100,
+        "gold": 79621
+      }
+    },
+    {
+      "level": 150,
+      "result": {
+        "chests": 1,
+        "chestLevel": 150,
+        "gold": 165193
+      }
+    },
+    {
+      "level": 300,
+      "result": {
+        "chests": 1,
+        "chestLevel": 300,
+        "gold": 575238
+      }
+    },
+    {
+      "level": 600,
+      "result": {
+        "chests": 1,
+        "chestLevel": 600,
+        "gold": 2003098
+      }
+    },
+    {
+      "level": 800,
+      "result": {
+        "chests": 1,
+        "chestLevel": 800,
+        "gold": 3361955
+      }
+    },
+    {
+      "level": 1000,
+      "result": {
+        "chests": 1,
+        "chestLevel": 1000,
+        "gold": 5023772
+      }
+    }
+  ],
+  "getSpellChestUpgradeCost": [
+    {
+      "targetLevel": 0,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 20,
+        "chestLevel": 5,
+        "gold": 5000000,
+        "successRate": 5
+      }
+    },
+    {
+      "targetLevel": 0,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 20,
+        "chestLevel": 50,
+        "gold": 5000000,
+        "successRate": 5
+      }
+    },
+    {
+      "targetLevel": 0,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 20,
+        "chestLevel": 1000,
+        "gold": 5000000,
+        "successRate": 5
+      }
+    },
+    {
+      "targetLevel": 1,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 1,
+        "chestLevel": 5,
+        "gold": 100,
+        "successRate": 100
+      }
+    },
+    {
+      "targetLevel": 1,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 1,
+        "chestLevel": 50,
+        "gold": 100,
+        "successRate": 100
+      }
+    },
+    {
+      "targetLevel": 1,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 1,
+        "chestLevel": 1000,
+        "gold": 100,
+        "successRate": 100
+      }
+    },
+    {
+      "targetLevel": 2,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 1,
+        "chestLevel": 5,
+        "gold": 500,
+        "successRate": 90
+      }
+    },
+    {
+      "targetLevel": 2,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 1,
+        "chestLevel": 50,
+        "gold": 500,
+        "successRate": 90
+      }
+    },
+    {
+      "targetLevel": 2,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 1,
+        "chestLevel": 1000,
+        "gold": 500,
+        "successRate": 90
+      }
+    },
+    {
+      "targetLevel": 3,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 2,
+        "chestLevel": 5,
+        "gold": 1500,
+        "successRate": 75
+      }
+    },
+    {
+      "targetLevel": 3,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 2,
+        "chestLevel": 50,
+        "gold": 1500,
+        "successRate": 75
+      }
+    },
+    {
+      "targetLevel": 3,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 2,
+        "chestLevel": 1000,
+        "gold": 1500,
+        "successRate": 75
+      }
+    },
+    {
+      "targetLevel": 5,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 4,
+        "chestLevel": 5,
+        "gold": 15000,
+        "successRate": 45
+      }
+    },
+    {
+      "targetLevel": 5,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 4,
+        "chestLevel": 50,
+        "gold": 15000,
+        "successRate": 45
+      }
+    },
+    {
+      "targetLevel": 5,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 4,
+        "chestLevel": 1000,
+        "gold": 15000,
+        "successRate": 45
+      }
+    },
+    {
+      "targetLevel": 10,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 20,
+        "chestLevel": 5,
+        "gold": 5000000,
+        "successRate": 5
+      }
+    },
+    {
+      "targetLevel": 10,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 20,
+        "chestLevel": 50,
+        "gold": 5000000,
+        "successRate": 5
+      }
+    },
+    {
+      "targetLevel": 10,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 20,
+        "chestLevel": 1000,
+        "gold": 5000000,
+        "successRate": 5
+      }
+    },
+    {
+      "targetLevel": 11,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 40,
+        "chestLevel": 5,
+        "gold": 10000000,
+        "successRate": 2.5
+      }
+    },
+    {
+      "targetLevel": 11,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 40,
+        "chestLevel": 50,
+        "gold": 10000000,
+        "successRate": 2.5
+      }
+    },
+    {
+      "targetLevel": 11,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 40,
+        "chestLevel": 1000,
+        "gold": 10000000,
+        "successRate": 2.5
+      }
+    },
+    {
+      "targetLevel": 12,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 80,
+        "chestLevel": 5,
+        "gold": 20000000,
+        "successRate": 1.25
+      }
+    },
+    {
+      "targetLevel": 12,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 80,
+        "chestLevel": 50,
+        "gold": 20000000,
+        "successRate": 1.25
+      }
+    },
+    {
+      "targetLevel": 12,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 80,
+        "chestLevel": 1000,
+        "gold": 20000000,
+        "successRate": 1.25
+      }
+    },
+    {
+      "targetLevel": 15,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 640,
+        "chestLevel": 5,
+        "gold": 160000000,
+        "successRate": 0.15625
+      }
+    },
+    {
+      "targetLevel": 15,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 640,
+        "chestLevel": 50,
+        "gold": 160000000,
+        "successRate": 0.15625
+      }
+    },
+    {
+      "targetLevel": 15,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 640,
+        "chestLevel": 1000,
+        "gold": 160000000,
+        "successRate": 0.15625
+      }
+    },
+    {
+      "targetLevel": 20,
+      "unlockLevel": 5,
+      "result": {
+        "chests": 20480,
+        "chestLevel": 5,
+        "gold": 5120000000,
+        "successRate": 0.1
+      }
+    },
+    {
+      "targetLevel": 20,
+      "unlockLevel": 50,
+      "result": {
+        "chests": 20480,
+        "chestLevel": 50,
+        "gold": 5120000000,
+        "successRate": 0.1
+      }
+    },
+    {
+      "targetLevel": 20,
+      "unlockLevel": 1000,
+      "result": {
+        "chests": 20480,
+        "chestLevel": 1000,
+        "gold": 5120000000,
+        "successRate": 0.1
+      }
+    }
+  ],
+  "rollSkillUpgrade": [
+    {
+      "seed": 1,
+      "targetLevel": 1,
+      "value": true
+    },
+    {
+      "seed": 1,
+      "targetLevel": 3,
+      "value": true
+    },
+    {
+      "seed": 1,
+      "targetLevel": 5,
+      "value": false
+    },
+    {
+      "seed": 1,
+      "targetLevel": 10,
+      "value": false
+    },
+    {
+      "seed": 1,
+      "targetLevel": 15,
+      "value": false
+    },
+    {
+      "seed": 2,
+      "targetLevel": 1,
+      "value": true
+    },
+    {
+      "seed": 2,
+      "targetLevel": 3,
+      "value": true
+    },
+    {
+      "seed": 2,
+      "targetLevel": 5,
+      "value": false
+    },
+    {
+      "seed": 2,
+      "targetLevel": 10,
+      "value": false
+    },
+    {
+      "seed": 2,
+      "targetLevel": 15,
+      "value": false
+    },
+    {
+      "seed": 3,
+      "targetLevel": 1,
+      "value": true
+    },
+    {
+      "seed": 3,
+      "targetLevel": 3,
+      "value": true
+    },
+    {
+      "seed": 3,
+      "targetLevel": 5,
+      "value": false
+    },
+    {
+      "seed": 3,
+      "targetLevel": 10,
+      "value": false
+    },
+    {
+      "seed": 3,
+      "targetLevel": 15,
+      "value": false
+    },
+    {
+      "seed": 7,
+      "targetLevel": 1,
+      "value": true
+    },
+    {
+      "seed": 7,
+      "targetLevel": 3,
+      "value": true
+    },
+    {
+      "seed": 7,
+      "targetLevel": 5,
+      "value": true
+    },
+    {
+      "seed": 7,
+      "targetLevel": 10,
+      "value": true
+    },
+    {
+      "seed": 7,
+      "targetLevel": 15,
+      "value": false
+    },
+    {
+      "seed": 13,
+      "targetLevel": 1,
+      "value": true
+    },
+    {
+      "seed": 13,
+      "targetLevel": 3,
+      "value": true
+    },
+    {
+      "seed": 13,
+      "targetLevel": 5,
+      "value": false
+    },
+    {
+      "seed": 13,
+      "targetLevel": 10,
+      "value": false
+    },
+    {
+      "seed": 13,
+      "targetLevel": 15,
+      "value": false
+    },
+    {
+      "seed": 42,
+      "targetLevel": 1,
+      "value": true
+    },
+    {
+      "seed": 42,
+      "targetLevel": 3,
+      "value": true
+    },
+    {
+      "seed": 42,
+      "targetLevel": 5,
+      "value": false
+    },
+    {
+      "seed": 42,
+      "targetLevel": 10,
+      "value": false
+    },
+    {
+      "seed": 42,
+      "targetLevel": 15,
+      "value": false
+    },
+    {
+      "seed": 99,
+      "targetLevel": 1,
+      "value": true
+    },
+    {
+      "seed": 99,
+      "targetLevel": 3,
+      "value": true
+    },
+    {
+      "seed": 99,
+      "targetLevel": 5,
+      "value": true
+    },
+    {
+      "seed": 99,
+      "targetLevel": 10,
+      "value": false
+    },
+    {
+      "seed": 99,
+      "targetLevel": 15,
+      "value": false
+    },
+    {
+      "seed": 777,
+      "targetLevel": 1,
+      "value": true
+    },
+    {
+      "seed": 777,
+      "targetLevel": 3,
+      "value": true
+    },
+    {
+      "seed": 777,
+      "targetLevel": 5,
+      "value": false
+    },
+    {
+      "seed": 777,
+      "targetLevel": 10,
+      "value": false
+    },
+    {
+      "seed": 777,
+      "targetLevel": 15,
+      "value": false
+    }
+  ]
+}

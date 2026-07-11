@@ -1,0 +1,2543 @@
+[
+  {
+    "id": "sewer_king",
+    "name_pl": "Król Kanałów",
+    "name_en": "Sewer King",
+    "level": 10,
+    "hp": 4787,
+    "attack": 89,
+    "defense": 9,
+    "speed": 10,
+    "xp": 2998,
+    "gold": [
+      80,
+      200
+    ],
+    "dailyAttempts": 3,
+    "sprite": "rat",
+    "heroicDropChance": 0.01,
+    "dropTable": [
+      {
+        "itemId": "sewer_crown",
+        "chance": 0.1,
+        "rarity": "rare"
+      },
+      {
+        "itemId": "rat_king_blade",
+        "chance": 0.06,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Gigantyczny szczur władający podziemnymi kanałami.",
+    "abilities": [
+      "heavy_strike",
+      "poison"
+    ]
+  },
+  {
+    "id": "forest_guardian",
+    "name_pl": "Strażnik Lasu",
+    "name_en": "Forest Guardian",
+    "level": 15,
+    "hp": 5799,
+    "attack": 110,
+    "defense": 11,
+    "speed": 12,
+    "xp": 4845,
+    "gold": [
+      120,
+      300
+    ],
+    "dailyAttempts": 3,
+    "sprite": "deciduous-tree",
+    "heroicDropChance": 0.01,
+    "dropTable": [
+      {
+        "itemId": "verdant_shield",
+        "chance": 0.1,
+        "rarity": "rare"
+      },
+      {
+        "itemId": "bark_armor",
+        "chance": 0.06,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Pradawny ent chroniący święty las przed intruzami.",
+    "abilities": [
+      "heal",
+      "shield_bash",
+      "earthquake"
+    ]
+  },
+  {
+    "id": "shadow_lord",
+    "name_pl": "Pan Cieni",
+    "name_en": "Shadow Lord",
+    "level": 25,
+    "hp": 7966,
+    "attack": 156,
+    "defense": 15,
+    "speed": 16,
+    "xp": 20000,
+    "gold": [
+      800,
+      2000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "new-moon",
+    "heroicDropChance": 0.18,
+    "dropTable": [
+      {
+        "itemId": "shadow_cloak",
+        "chance": 0.08,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "void_blade",
+        "chance": 0.04,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Pradawny władca ciemności. Niezwykle niebezpieczny.",
+    "abilities": [
+      "dark_curse",
+      "shadow_step",
+      "life_drain"
+    ]
+  },
+  {
+    "id": "desert_scorpion_king",
+    "name_pl": "Król Skorpionów",
+    "name_en": "Scorpion King",
+    "level": 35,
+    "hp": 10098,
+    "attack": 201,
+    "defense": 18,
+    "speed": 14,
+    "xp": 13419,
+    "gold": [
+      280,
+      700
+    ],
+    "dailyAttempts": 3,
+    "sprite": "scorpion",
+    "heroicDropChance": 0.015,
+    "dropTable": [
+      {
+        "itemId": "scorpion_king_stinger",
+        "chance": 0.08,
+        "rarity": "rare"
+      },
+      {
+        "itemId": "desert_crown",
+        "chance": 0.04,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Władca pustynnych skorpionów, śmiertelnie jadowity.",
+    "abilities": [
+      "poison",
+      "heavy_strike",
+      "stun"
+    ]
+  },
+  {
+    "id": "sea_witch",
+    "name_pl": "Wiedźma Morska",
+    "name_en": "Sea Witch",
+    "level": 45,
+    "hp": 12275,
+    "attack": 247,
+    "defense": 23,
+    "speed": 13,
+    "xp": 18562,
+    "gold": [
+      360,
+      900
+    ],
+    "dailyAttempts": 3,
+    "sprite": "merperson",
+    "heroicDropChance": 0.015,
+    "dropTable": [
+      {
+        "itemId": "tidal_staff",
+        "chance": 0.08,
+        "rarity": "rare"
+      },
+      {
+        "itemId": "sea_witch_robe",
+        "chance": 0.04,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Potężna wiedźma władająca mocą oceanu.",
+    "abilities": [
+      "ice_blast",
+      "poison",
+      "heal",
+      "dark_curse"
+    ]
+  },
+  {
+    "id": "ancient_dragon",
+    "name_pl": "Starożytny Smok",
+    "name_en": "Ancient Dragon",
+    "level": 50,
+    "hp": 13520,
+    "attack": 274,
+    "defense": 25,
+    "speed": 12,
+    "xp": 80000,
+    "gold": [
+      3000,
+      8000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "dragon-face",
+    "heroicDropChance": 0.15,
+    "dropTable": [
+      {
+        "itemId": "dragon_scale_armor",
+        "chance": 0.06,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "dragonslayer",
+        "chance": 0.03,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Legendarny smok śpiący od tysięcy lat.",
+    "abilities": [
+      "fire_breath",
+      "cleave",
+      "enrage"
+    ]
+  },
+  {
+    "id": "orc_warlord",
+    "name_pl": "Orczy Watażka",
+    "name_en": "Orc Warlord",
+    "level": 55,
+    "hp": 14453,
+    "attack": 292,
+    "defense": 27,
+    "speed": 14,
+    "xp": 24046,
+    "gold": [
+      440,
+      1100
+    ],
+    "dailyAttempts": 3,
+    "sprite": "ogre",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "warlord_axe",
+        "chance": 0.07,
+        "rarity": "epic"
+      },
+      {
+        "itemId": "orc_war_plate",
+        "chance": 0.04,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Najsilniejszy z orczych wodzów, zjednoczył wszystkie klany.",
+    "abilities": [
+      "berserker_rage",
+      "cleave",
+      "heavy_strike"
+    ]
+  },
+  {
+    "id": "basilisk_queen",
+    "name_pl": "Królowa Bazyliszków",
+    "name_en": "Basilisk Queen",
+    "level": 65,
+    "hp": 19554,
+    "attack": 338,
+    "defense": 31,
+    "speed": 11,
+    "xp": 29852,
+    "gold": [
+      520,
+      1300
+    ],
+    "dailyAttempts": 3,
+    "sprite": "snake",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "petrify_eye",
+        "chance": 0.07,
+        "rarity": "epic"
+      },
+      {
+        "itemId": "stone_gaze_helm",
+        "chance": 0.04,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Matka wszystkich bazyliszków, jej spojrzenie zamienia w kamień.",
+    "abilities": [
+      "stun",
+      "poison",
+      "dark_curse"
+    ]
+  },
+  {
+    "id": "cyclops_elder",
+    "name_pl": "Starszyzna Cyklopów",
+    "name_en": "Cyclops Elder",
+    "level": 70,
+    "hp": 20915,
+    "attack": 365,
+    "defense": 33,
+    "speed": 10,
+    "xp": 32886,
+    "gold": [
+      560,
+      1400
+    ],
+    "dailyAttempts": 3,
+    "sprite": "eye",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "giant_eye_gem",
+        "chance": 0.07,
+        "rarity": "epic"
+      },
+      {
+        "itemId": "boulder_crusher",
+        "chance": 0.04,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Najstarszy z cyklopów, jego cios roztrzaskuje skały.",
+    "abilities": [
+      "earthquake",
+      "heavy_strike",
+      "enrage"
+    ]
+  },
+  {
+    "id": "frost_queen",
+    "name_pl": "Królowa Lodu",
+    "name_en": "Frost Queen",
+    "level": 75,
+    "hp": 21992,
+    "attack": 385,
+    "defense": 35,
+    "speed": 14,
+    "xp": 180000,
+    "gold": [
+      6000,
+      15000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "snowflake",
+    "heroicDropChance": 0.15,
+    "dropTable": [
+      {
+        "itemId": "frost_crown",
+        "chance": 0.06,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "blizzard_staff",
+        "chance": 0.03,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Lodowa królowa rządząca Krainą Wiecznego Mrozu.",
+    "abilities": [
+      "ice_blast",
+      "stun",
+      "heal"
+    ]
+  },
+  {
+    "id": "hydra_matriarch",
+    "name_pl": "Matriarchini Hydry",
+    "name_en": "Hydra Matriarch",
+    "level": 85,
+    "hp": 24539,
+    "attack": 432,
+    "defense": 38,
+    "speed": 12,
+    "xp": 42462,
+    "gold": [
+      680,
+      1700
+    ],
+    "dailyAttempts": 3,
+    "sprite": "dragon",
+    "heroicDropChance": 0.025,
+    "dropTable": [
+      {
+        "itemId": "hydra_heart",
+        "chance": 0.06,
+        "rarity": "epic"
+      },
+      {
+        "itemId": "multihead_staff",
+        "chance": 0.04,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Wielogłowa bestia regenerująca odcięte głowy.",
+    "abilities": [
+      "poison",
+      "heal",
+      "cleave",
+      "fire_breath"
+    ]
+  },
+  {
+    "id": "golem_overlord",
+    "name_pl": "Nadgolem",
+    "name_en": "Golem Overlord",
+    "level": 90,
+    "hp": 25846,
+    "attack": 454,
+    "defense": 41,
+    "speed": 8,
+    "xp": 45849,
+    "gold": [
+      720,
+      1800
+    ],
+    "dailyAttempts": 3,
+    "sprite": "moai",
+    "heroicDropChance": 0.025,
+    "dropTable": [
+      {
+        "itemId": "golem_core_prime",
+        "chance": 0.06,
+        "rarity": "epic"
+      },
+      {
+        "itemId": "iron_titan_plate",
+        "chance": 0.04,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Gigantyczny golem stworzony z pradawnej magii.",
+    "abilities": [
+      "earthquake",
+      "shield_bash",
+      "enrage"
+    ]
+  },
+  {
+    "id": "vampire_elder",
+    "name_pl": "Prastarszy Wampir",
+    "name_en": "Vampire Elder",
+    "level": 95,
+    "hp": 27032,
+    "attack": 477,
+    "defense": 42,
+    "speed": 18,
+    "xp": 49307,
+    "gold": [
+      760,
+      1900
+    ],
+    "dailyAttempts": 3,
+    "sprite": "vampire",
+    "heroicDropChance": 0.03,
+    "dropTable": [
+      {
+        "itemId": "blood_lord_cape",
+        "chance": 0.06,
+        "rarity": "epic"
+      },
+      {
+        "itemId": "nightfang_blade",
+        "chance": 0.04,
+        "rarity": "epic"
+      }
+    ],
+    "description_pl": "Najstarszy z wampirów, kryje się od tysiącleci.",
+    "abilities": [
+      "life_drain",
+      "shadow_step",
+      "dark_curse",
+      "heal"
+    ]
+  },
+  {
+    "id": "demon_king",
+    "name_pl": "Król Demonów",
+    "name_en": "Demon King",
+    "level": 100,
+    "hp": 28568,
+    "attack": 504,
+    "defense": 45,
+    "speed": 16,
+    "xp": 400000,
+    "gold": [
+      12000,
+      30000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "angry-face-with-horns",
+    "heroicDropChance": 0.13,
+    "dropTable": [
+      {
+        "itemId": "demon_king_sword",
+        "chance": 0.05,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "hellfire_crown",
+        "chance": 0.03,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Potężny władca demonów. Wymaga najlepszego ekwipunku.",
+    "abilities": [
+      "fire_breath",
+      "dark_curse",
+      "enrage",
+      "cleave"
+    ]
+  },
+  {
+    "id": "phoenix_lord",
+    "name_pl": "Lord Feniksów",
+    "name_en": "Phoenix Lord",
+    "level": 110,
+    "hp": 31016,
+    "attack": 549,
+    "defense": 49,
+    "speed": 17,
+    "xp": 60179,
+    "gold": [
+      880,
+      2200
+    ],
+    "dailyAttempts": 3,
+    "sprite": "eagle",
+    "heroicDropChance": 0.03,
+    "dropTable": [
+      {
+        "itemId": "phoenix_plume",
+        "chance": 0.05,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "rebirth_amulet",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Ognisty feniks odradzający się z popiołów.",
+    "abilities": [
+      "fire_breath",
+      "heal",
+      "enrage"
+    ]
+  },
+  {
+    "id": "medusa_empress",
+    "name_pl": "Cesarzowa Meduz",
+    "name_en": "Medusa Empress",
+    "level": 115,
+    "hp": 32202,
+    "attack": 568,
+    "defense": 51,
+    "speed": 13,
+    "xp": 63909,
+    "gold": [
+      920,
+      2300
+    ],
+    "dailyAttempts": 3,
+    "sprite": "snake",
+    "heroicDropChance": 0.03,
+    "dropTable": [
+      {
+        "itemId": "gorgon_eye",
+        "chance": 0.05,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "petrify_crown",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Najpotężniejsza z gorgon, jej spojrzenie zamienia w pył.",
+    "abilities": [
+      "stun",
+      "dark_curse",
+      "poison",
+      "life_drain"
+    ]
+  },
+  {
+    "id": "shadow_dragon",
+    "name_pl": "Smok Cienia",
+    "name_en": "Shadow Dragon",
+    "level": 125,
+    "hp": 34640,
+    "attack": 614,
+    "defense": 55,
+    "speed": 15,
+    "xp": 750000,
+    "gold": [
+      22000,
+      55000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "dragon",
+    "heroicDropChance": 0.12,
+    "dropTable": [
+      {
+        "itemId": "shadow_dragon_armor",
+        "chance": 0.04,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "void_fang",
+        "chance": 0.03,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Smok zrodzony z czystej ciemności.",
+    "abilities": [
+      "dark_curse",
+      "fire_breath",
+      "shadow_step",
+      "cleave"
+    ]
+  },
+  {
+    "id": "lich_overlord",
+    "name_pl": "Nadlisz",
+    "name_en": "Lich Overlord",
+    "level": 130,
+    "hp": 36056,
+    "attack": 640,
+    "defense": 57,
+    "speed": 12,
+    "xp": 75555,
+    "gold": [
+      1040,
+      2600
+    ],
+    "dailyAttempts": 3,
+    "sprite": "skull",
+    "heroicDropChance": 0.035,
+    "dropTable": [
+      {
+        "itemId": "dark_phylactery",
+        "chance": 0.05,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "necrotic_staff",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Lisz starszy od większości cywilizacji.",
+    "abilities": [
+      "dark_curse",
+      "summon_adds",
+      "life_drain",
+      "ice_blast"
+    ]
+  },
+  {
+    "id": "wyvern_queen",
+    "name_pl": "Królowa Wywerny",
+    "name_en": "Wyvern Queen",
+    "level": 140,
+    "hp": 38703,
+    "attack": 686,
+    "defense": 61,
+    "speed": 19,
+    "xp": 83496,
+    "gold": [
+      1120,
+      2800
+    ],
+    "dailyAttempts": 3,
+    "sprite": "lizard",
+    "heroicDropChance": 0.035,
+    "dropTable": [
+      {
+        "itemId": "wyvern_queen_scale",
+        "chance": 0.05,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "sky_piercer_lance",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Największa wywerny, jej skrzydła zaćmiewają słońce.",
+    "abilities": [
+      "fire_breath",
+      "cleave",
+      "enrage",
+      "stun"
+    ]
+  },
+  {
+    "id": "lich_king",
+    "name_pl": "Lich-Król",
+    "name_en": "Lich King",
+    "level": 150,
+    "hp": 41195,
+    "attack": 732,
+    "defense": 65,
+    "speed": 12,
+    "xp": 1300000,
+    "gold": [
+      40000,
+      100000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "skull",
+    "heroicDropChance": 0.11,
+    "dropTable": [
+      {
+        "itemId": "lich_crown",
+        "chance": 0.04,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "death_scythe",
+        "chance": 0.03,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Pradawny Lich panujący nad armiami nieumarłych.",
+    "abilities": [
+      "dark_curse",
+      "summon_adds",
+      "life_drain",
+      "ice_blast"
+    ]
+  },
+  {
+    "id": "flame_colossus",
+    "name_pl": "Kolos Płomieni",
+    "name_en": "Flame Colossus",
+    "level": 160,
+    "hp": 43698,
+    "attack": 778,
+    "defense": 68,
+    "speed": 9,
+    "xp": 100276,
+    "gold": [
+      1280,
+      3200
+    ],
+    "dailyAttempts": 3,
+    "sprite": "fire",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "magma_core",
+        "chance": 0.04,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "flame_titan_plate",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Kolos stworzony z czystego ognia i lawy.",
+    "abilities": [
+      "fire_breath",
+      "earthquake",
+      "enrage",
+      "cleave"
+    ]
+  },
+  {
+    "id": "kraken",
+    "name_pl": "Kraken",
+    "name_en": "Kraken",
+    "level": 170,
+    "hp": 46256,
+    "attack": 820,
+    "defense": 73,
+    "speed": 11,
+    "xp": 109111,
+    "gold": [
+      1360,
+      3400
+    ],
+    "dailyAttempts": 3,
+    "sprite": "squid",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "kraken_tentacle",
+        "chance": 0.04,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "deep_sea_crown",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Legendarna bestia morska zdolna zatopić cały okręt.",
+    "abilities": [
+      "stun",
+      "heavy_strike",
+      "poison",
+      "cleave"
+    ]
+  },
+  {
+    "id": "titan_lord",
+    "name_pl": "Lord Tytanów",
+    "name_en": "Titan Lord",
+    "level": 175,
+    "hp": 47343,
+    "attack": 843,
+    "defense": 75,
+    "speed": 10,
+    "xp": 2200000,
+    "gold": [
+      70000,
+      175000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "high-voltage",
+    "heroicDropChance": 0.1,
+    "dropTable": [
+      {
+        "itemId": "titan_axe",
+        "chance": 0.04,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "thunder_plate",
+        "chance": 0.03,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Pradawny tytan który zniszczył całą cywilizację.",
+    "abilities": [
+      "lightning_bolt",
+      "earthquake",
+      "enrage",
+      "heavy_strike"
+    ]
+  },
+  {
+    "id": "bone_emperor",
+    "name_pl": "Cesarz Kości",
+    "name_en": "Bone Emperor",
+    "level": 180,
+    "hp": 48803,
+    "attack": 866,
+    "defense": 77,
+    "speed": 12,
+    "xp": 118190,
+    "gold": [
+      1440,
+      3600
+    ],
+    "dailyAttempts": 3,
+    "sprite": "bone",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "bone_crown",
+        "chance": 0.04,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "ossuary_blade",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Cesarz zbudowany z kości milionów poległych wojowników.",
+    "abilities": [
+      "summon_adds",
+      "dark_curse",
+      "heavy_strike",
+      "life_drain"
+    ]
+  },
+  {
+    "id": "djinn_sultan",
+    "name_pl": "Sułtan Dżinnów",
+    "name_en": "Djinn Sultan",
+    "level": 190,
+    "hp": 51251,
+    "attack": 916,
+    "defense": 81,
+    "speed": 20,
+    "xp": 127506,
+    "gold": [
+      1520,
+      3800
+    ],
+    "dailyAttempts": 3,
+    "sprite": "genie",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "wish_lamp",
+        "chance": 0.04,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "sandstorm_staff",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Najpotężniejszy dżinn którego życzenia mają cenę.",
+    "abilities": [
+      "fire_breath",
+      "lightning_bolt",
+      "stun",
+      "heal"
+    ]
+  },
+  {
+    "id": "chaos_emperor",
+    "name_pl": "Cesarz Chaosu",
+    "name_en": "Chaos Emperor",
+    "level": 200,
+    "hp": 53799,
+    "attack": 960,
+    "defense": 85,
+    "speed": 14,
+    "xp": 3800000,
+    "gold": [
+      120000,
+      300000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "tornado",
+    "heroicDropChance": 0.1,
+    "dropTable": [
+      {
+        "itemId": "chaos_crown",
+        "chance": 0.03,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "disorder_blade",
+        "chance": 0.02,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Istota ucieleśniająca czysty chaos wszechświata.",
+    "abilities": [
+      "dark_curse",
+      "fire_breath",
+      "enrage",
+      "cleave"
+    ]
+  },
+  {
+    "id": "earth_titan",
+    "name_pl": "Tytan Ziemi",
+    "name_en": "Earth Titan",
+    "level": 210,
+    "hp": 56411,
+    "attack": 1006,
+    "defense": 89,
+    "speed": 8,
+    "xp": 146869,
+    "gold": [
+      1680,
+      4200
+    ],
+    "dailyAttempts": 3,
+    "sprite": "snow-capped-mountain",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "earthen_core",
+        "chance": 0.04,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "tectonic_plate",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Tytan z żywej skały, każdy jego krok powoduje trzęsienie ziemi.",
+    "abilities": [
+      "earthquake",
+      "heavy_strike",
+      "enrage",
+      "shield_bash"
+    ]
+  },
+  {
+    "id": "nightmare_weaver",
+    "name_pl": "Tkacz Koszmarów",
+    "name_en": "Nightmare Weaver",
+    "level": 220,
+    "hp": 59014,
+    "attack": 1052,
+    "defense": 93,
+    "speed": 16,
+    "xp": 156916,
+    "gold": [
+      1760,
+      4400
+    ],
+    "dailyAttempts": 3,
+    "sprite": "spider",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "nightmare_thread",
+        "chance": 0.04,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "dream_eater_helm",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Istota żerująca na koszmarach śpiących dusz.",
+    "abilities": [
+      "dark_curse",
+      "poison",
+      "life_drain",
+      "stun"
+    ]
+  },
+  {
+    "id": "void_guardian",
+    "name_pl": "Strażnik Pustki",
+    "name_en": "Void Guardian",
+    "level": 225,
+    "hp": 60090,
+    "attack": 1073,
+    "defense": 95,
+    "speed": 16,
+    "xp": 6500000,
+    "gold": [
+      200000,
+      500000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "cyclone",
+    "heroicDropChance": 0.09,
+    "dropTable": [
+      {
+        "itemId": "void_guardian_armor",
+        "chance": 0.03,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "null_blade",
+        "chance": 0.02,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Strażnik granicy między istnieniem a nicością.",
+    "abilities": [
+      "dark_curse",
+      "heavy_strike",
+      "life_drain",
+      "stun"
+    ]
+  },
+  {
+    "id": "thunder_drake",
+    "name_pl": "Smok Grzmotów",
+    "name_en": "Thunder Drake",
+    "level": 230,
+    "hp": 61451,
+    "attack": 1100,
+    "defense": 97,
+    "speed": 19,
+    "xp": 167186,
+    "gold": [
+      1840,
+      4600
+    ],
+    "dailyAttempts": 3,
+    "sprite": "high-voltage",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "thunder_scale",
+        "chance": 0.04,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "storm_fang",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Smok wyładowujący pioruny z każdym oddechem.",
+    "abilities": [
+      "lightning_bolt",
+      "fire_breath",
+      "cleave",
+      "stun"
+    ]
+  },
+  {
+    "id": "sand_wyrm",
+    "name_pl": "Pustynny Wyrm",
+    "name_en": "Sand Wyrm",
+    "level": 240,
+    "hp": 63899,
+    "attack": 1146,
+    "defense": 101,
+    "speed": 14,
+    "xp": 177673,
+    "gold": [
+      1920,
+      4800
+    ],
+    "dailyAttempts": 3,
+    "sprite": "bug",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "wyrm_tooth",
+        "chance": 0.04,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "sand_plate",
+        "chance": 0.03,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Olbrzymi wyrm pustynny połykający całe karawany.",
+    "abilities": [
+      "earthquake",
+      "poison",
+      "heavy_strike",
+      "stun"
+    ]
+  },
+  {
+    "id": "serpent_god",
+    "name_pl": "Bóg-Wąż",
+    "name_en": "Serpent God",
+    "level": 250,
+    "hp": 66491,
+    "attack": 1190,
+    "defense": 105,
+    "speed": 18,
+    "xp": 11000000,
+    "gold": [
+      330000,
+      820000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "snake",
+    "heroicDropChance": 0.09,
+    "dropTable": [
+      {
+        "itemId": "serpent_god_fang",
+        "chance": 0.03,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "venom_crown",
+        "chance": 0.02,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Pradawne bóstwo w formie gigantycznego węża.",
+    "abilities": [
+      "poison",
+      "dark_curse",
+      "life_drain",
+      "stun"
+    ]
+  },
+  {
+    "id": "plague_lord",
+    "name_pl": "Lord Zarazy",
+    "name_en": "Plague Lord",
+    "level": 260,
+    "hp": 69114,
+    "attack": 1237,
+    "defense": 109,
+    "speed": 13,
+    "xp": 199275,
+    "gold": [
+      2080,
+      5200
+    ],
+    "dailyAttempts": 3,
+    "sprite": "biohazard",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "plague_staff",
+        "chance": 0.035,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "pestilence_robe",
+        "chance": 0.025,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Władca epidemii, samo jego istnienie niesie chorobę.",
+    "abilities": [
+      "poison",
+      "dark_curse",
+      "summon_adds",
+      "life_drain"
+    ]
+  },
+  {
+    "id": "frost_wyrm",
+    "name_pl": "Mroźny Wyrm",
+    "name_en": "Frost Wyrm",
+    "level": 270,
+    "hp": 71607,
+    "attack": 1282,
+    "defense": 113,
+    "speed": 15,
+    "xp": 210386,
+    "gold": [
+      2160,
+      5400
+    ],
+    "dailyAttempts": 3,
+    "sprite": "cold-face",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "frost_wyrm_fang",
+        "chance": 0.035,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "glacial_plate",
+        "chance": 0.025,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Wyrm lodowy z epoki lodowcowej zamrażający wszystko.",
+    "abilities": [
+      "ice_blast",
+      "heavy_strike",
+      "stun",
+      "enrage"
+    ]
+  },
+  {
+    "id": "death_knight_lord",
+    "name_pl": "Lord Rycerzy Śmierci",
+    "name_en": "Death Knight Lord",
+    "level": 275,
+    "hp": 72738,
+    "attack": 1303,
+    "defense": 115,
+    "speed": 14,
+    "xp": 18000000,
+    "gold": [
+      520000,
+      1300000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "crossed-swords",
+    "heroicDropChance": 0.08,
+    "dropTable": [
+      {
+        "itemId": "death_lord_blade",
+        "chance": 0.02,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "soul_plate",
+        "chance": 0.02,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Dowódca armii rycerzy śmierci.",
+    "abilities": [
+      "heavy_strike",
+      "dark_curse",
+      "cleave",
+      "enrage"
+    ]
+  },
+  {
+    "id": "infernal_drake",
+    "name_pl": "Piekielny Smok",
+    "name_en": "Infernal Drake",
+    "level": 280,
+    "hp": 74099,
+    "attack": 1328,
+    "defense": 117,
+    "speed": 16,
+    "xp": 221702,
+    "gold": [
+      2240,
+      5600
+    ],
+    "dailyAttempts": 3,
+    "sprite": "fire",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "infernal_fang",
+        "chance": 0.035,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "hellfire_plate",
+        "chance": 0.025,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Smok zrodzony w samym piekle, jego ogień topi metal.",
+    "abilities": [
+      "fire_breath",
+      "enrage",
+      "cleave",
+      "heavy_strike"
+    ]
+  },
+  {
+    "id": "soul_reaper",
+    "name_pl": "Żniwiarz Dusz",
+    "name_en": "Soul Reaper",
+    "level": 290,
+    "hp": 76602,
+    "attack": 1373,
+    "defense": 121,
+    "speed": 17,
+    "xp": 233219,
+    "gold": [
+      2320,
+      5800
+    ],
+    "dailyAttempts": 3,
+    "sprite": "skull",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "reaper_scythe_II",
+        "chance": 0.035,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "soul_collector_robe",
+        "chance": 0.025,
+        "rarity": "legendary"
+      }
+    ],
+    "description_pl": "Żniwiarz dusz zbierający ofiary dla boga śmierci.",
+    "abilities": [
+      "life_drain",
+      "dark_curse",
+      "shadow_step",
+      "stun"
+    ]
+  },
+  {
+    "id": "abyssal_titan",
+    "name_pl": "Tytan Otchłani",
+    "name_en": "Abyssal Titan",
+    "level": 300,
+    "hp": 93845,
+    "attack": 1420,
+    "defense": 125,
+    "speed": 12,
+    "xp": 30000000,
+    "gold": [
+      800000,
+      2000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "trident-emblem",
+    "heroicDropChance": 0.08,
+    "dropTable": [
+      {
+        "itemId": "abyssal_titan_armor",
+        "chance": 0.02,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "titan_crusher",
+        "chance": 0.015,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Tytan zrodzony w otchłaniach przestrzeni.",
+    "abilities": [
+      "earthquake",
+      "heavy_strike",
+      "enrage",
+      "cleave"
+    ]
+  },
+  {
+    "id": "crystal_dragon",
+    "name_pl": "Kryształowy Smok",
+    "name_en": "Crystal Dragon",
+    "level": 310,
+    "hp": 96735,
+    "attack": 1466,
+    "defense": 128,
+    "speed": 15,
+    "xp": 256857,
+    "gold": [
+      2480,
+      6200
+    ],
+    "dailyAttempts": 3,
+    "sprite": "gem-stone",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "crystal_fang",
+        "chance": 0.03,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "prism_armor",
+        "chance": 0.02,
+        "rarity": "mythic"
+      }
+    ],
+    "description_pl": "Smok z czystego kryształu załamujący światło w śmiercionośne wiązki.",
+    "abilities": [
+      "lightning_bolt",
+      "ice_blast",
+      "fire_breath",
+      "enrage"
+    ]
+  },
+  {
+    "id": "shadow_titan",
+    "name_pl": "Tytan Cieni",
+    "name_en": "Shadow Titan",
+    "level": 320,
+    "hp": 99776,
+    "attack": 1511,
+    "defense": 133,
+    "speed": 14,
+    "xp": 268974,
+    "gold": [
+      2560,
+      6400
+    ],
+    "dailyAttempts": 3,
+    "sprite": "new-moon",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "shadow_titan_blade",
+        "chance": 0.03,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "umbral_plate",
+        "chance": 0.02,
+        "rarity": "mythic"
+      }
+    ],
+    "description_pl": "Tytan utkany z czystej ciemności.",
+    "abilities": [
+      "dark_curse",
+      "shadow_step",
+      "life_drain",
+      "heavy_strike"
+    ]
+  },
+  {
+    "id": "ancient_lich",
+    "name_pl": "Pradawny Lisz",
+    "name_en": "Ancient Lich",
+    "level": 325,
+    "hp": 100993,
+    "attack": 1530,
+    "defense": 135,
+    "speed": 13,
+    "xp": 48000000,
+    "gold": [
+      1200000,
+      3000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "bone",
+    "heroicDropChance": 0.07,
+    "dropTable": [
+      {
+        "itemId": "ancient_staff",
+        "chance": 0.02,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "lich_robe",
+        "chance": 0.015,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Lisz starszy niż sama historia.",
+    "abilities": [
+      "dark_curse",
+      "summon_adds",
+      "life_drain",
+      "ice_blast"
+    ]
+  },
+  {
+    "id": "molten_behemoth",
+    "name_pl": "Rozgrzany Behemot",
+    "name_en": "Molten Behemoth",
+    "level": 340,
+    "hp": 105807,
+    "attack": 1601,
+    "defense": 141,
+    "speed": 10,
+    "xp": 293815,
+    "gold": [
+      2720,
+      6800
+    ],
+    "dailyAttempts": 3,
+    "sprite": "volcano",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "molten_core",
+        "chance": 0.03,
+        "rarity": "legendary"
+      },
+      {
+        "itemId": "lava_behemoth_plate",
+        "chance": 0.02,
+        "rarity": "mythic"
+      }
+    ],
+    "description_pl": "Behemot z płynnej lawy niszczący wszystko na swojej drodze.",
+    "abilities": [
+      "fire_breath",
+      "earthquake",
+      "enrage",
+      "heavy_strike"
+    ]
+  },
+  {
+    "id": "storm_god",
+    "name_pl": "Bóg Burzy",
+    "name_en": "Storm God",
+    "level": 350,
+    "hp": 108817,
+    "attack": 1646,
+    "defense": 145,
+    "speed": 20,
+    "xp": 76000000,
+    "gold": [
+      1800000,
+      4500000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "cloud-with-lightning-and-rain",
+    "heroicDropChance": 0.07,
+    "dropTable": [
+      {
+        "itemId": "storm_hammer",
+        "chance": 0.015,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "thunder_aegis",
+        "chance": 0.012,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Bóstwo burzy z mocą tysiąca piorunów.",
+    "abilities": [
+      "lightning_bolt",
+      "stun",
+      "heavy_strike",
+      "enrage"
+    ]
+  },
+  {
+    "id": "reality_shaper",
+    "name_pl": "Kształtownik Rzeczywistości",
+    "name_en": "Reality Shaper",
+    "level": 375,
+    "hp": 116031,
+    "attack": 1760,
+    "defense": 155,
+    "speed": 17,
+    "xp": 120000000,
+    "gold": [
+      2700000,
+      6750000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "dizzy",
+    "heroicDropChance": 0.07,
+    "dropTable": [
+      {
+        "itemId": "reality_orb",
+        "chance": 0.012,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "shape_staff",
+        "chance": 0.01,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Istota zdolna do przepisania samej rzeczywistości.",
+    "abilities": [
+      "dark_curse",
+      "stun",
+      "life_drain",
+      "lightning_bolt"
+    ]
+  },
+  {
+    "id": "infernal_overlord",
+    "name_pl": "Nadwładca Piekieł",
+    "name_en": "Infernal Overlord",
+    "level": 400,
+    "hp": 123800,
+    "attack": 1877,
+    "defense": 165,
+    "speed": 15,
+    "xp": 190000000,
+    "gold": [
+      4000000,
+      10000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "fire",
+    "heroicDropChance": 0.06,
+    "dropTable": [
+      {
+        "itemId": "infernal_crown",
+        "chance": 0.01,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "hellfire_sword",
+        "chance": 0.008,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Władca samego piekła przybyły by pochłonąć świat.",
+    "abilities": [
+      "fire_breath",
+      "dark_curse",
+      "enrage",
+      "cleave"
+    ]
+  },
+  {
+    "id": "cosmic_horror",
+    "name_pl": "Kosmiczny Horror",
+    "name_en": "Cosmic Horror",
+    "level": 425,
+    "hp": 131134,
+    "attack": 1990,
+    "defense": 175,
+    "speed": 14,
+    "xp": 300000000,
+    "gold": [
+      6000000,
+      15000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "milky-way",
+    "heroicDropChance": 0.06,
+    "dropTable": [
+      {
+        "itemId": "cosmic_eye",
+        "chance": 0.01,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "star_armor",
+        "chance": 0.008,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Coś z przestrzeni kosmicznej czego nie powinna widzieć żadna istota.",
+    "abilities": [
+      "dark_curse",
+      "life_drain",
+      "stun",
+      "summon_adds"
+    ]
+  },
+  {
+    "id": "void_emperor",
+    "name_pl": "Cesarz Pustki",
+    "name_en": "Void Emperor",
+    "level": 450,
+    "hp": 138838,
+    "attack": 2108,
+    "defense": 185,
+    "speed": 16,
+    "xp": 480000000,
+    "gold": [
+      9000000,
+      22500000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "crown",
+    "heroicDropChance": 0.05,
+    "dropTable": [
+      {
+        "itemId": "void_emperor_crown",
+        "chance": 0.008,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "null_scepter",
+        "chance": 0.006,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Cesarz panujący nad samą pustką.",
+    "abilities": [
+      "dark_curse",
+      "heavy_strike",
+      "life_drain",
+      "stun"
+    ]
+  },
+  {
+    "id": "time_lord",
+    "name_pl": "Władca Czasu",
+    "name_en": "Time Lord",
+    "level": 475,
+    "hp": 146106,
+    "attack": 2219,
+    "defense": 195,
+    "speed": 18,
+    "xp": 750000000,
+    "gold": [
+      13000000,
+      32500000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "hourglass-not-done",
+    "heroicDropChance": 0.05,
+    "dropTable": [
+      {
+        "itemId": "time_crown",
+        "chance": 0.008,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "chronos_staff",
+        "chance": 0.006,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Istota kontrolująca sam czas.",
+    "abilities": [
+      "stun",
+      "heal",
+      "shadow_step",
+      "lightning_bolt"
+    ]
+  },
+  {
+    "id": "celestial_destroyer",
+    "name_pl": "Niebiański Niszczyciel",
+    "name_en": "Celestial Destroyer",
+    "level": 500,
+    "hp": 153941,
+    "attack": 2338,
+    "defense": 205,
+    "speed": 17,
+    "xp": 1200000000,
+    "gold": [
+      18000000,
+      45000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "star",
+    "heroicDropChance": 0.05,
+    "dropTable": [
+      {
+        "itemId": "celestial_blade",
+        "chance": 0.007,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "destroyer_mantle",
+        "chance": 0.005,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Byt stworzony do niszczenia gwiazd i planety.",
+    "abilities": [
+      "fire_breath",
+      "lightning_bolt",
+      "enrage",
+      "earthquake"
+    ]
+  },
+  {
+    "id": "primordial_chaos",
+    "name_pl": "Prawieczny Chaos",
+    "name_en": "Primordial Chaos",
+    "level": 525,
+    "hp": 161089,
+    "attack": 2447,
+    "defense": 215,
+    "speed": 16,
+    "xp": 1900000000,
+    "gold": [
+      25000000,
+      62500000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "cyclone",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "chaos_heart",
+        "chance": 0.006,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "primordial_armor",
+        "chance": 0.004,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Ucieleśnienie prawiecznego chaosu z początku wszechświata.",
+    "abilities": [
+      "dark_curse",
+      "fire_breath",
+      "ice_blast",
+      "enrage"
+    ]
+  },
+  {
+    "id": "serpent_titan",
+    "name_pl": "Tytan-Wąż",
+    "name_en": "Serpent Titan",
+    "level": 550,
+    "hp": 168848,
+    "attack": 2565,
+    "defense": 225,
+    "speed": 15,
+    "xp": 3000000000,
+    "gold": [
+      35000000,
+      87500000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "snake",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "titan_serpent_scale",
+        "chance": 0.005,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "venom_crown_II",
+        "chance": 0.003,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Tytaniczny wąż zdolny otoczyć cały świat.",
+    "abilities": [
+      "poison",
+      "earthquake",
+      "heavy_strike",
+      "enrage"
+    ]
+  },
+  {
+    "id": "death_god",
+    "name_pl": "Bóg Śmierci",
+    "name_en": "Death God",
+    "level": 575,
+    "hp": 176127,
+    "attack": 2677,
+    "defense": 235,
+    "speed": 14,
+    "xp": 4800000000,
+    "gold": [
+      50000000,
+      125000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "skull-and-crossbones",
+    "heroicDropChance": 0.04,
+    "dropTable": [
+      {
+        "itemId": "death_god_scythe",
+        "chance": 0.004,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "soul_veil",
+        "chance": 0.003,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Samo bóstwo śmierci zstąpiło w ten wymiar.",
+    "abilities": [
+      "life_drain",
+      "dark_curse",
+      "summon_adds",
+      "heavy_strike"
+    ]
+  },
+  {
+    "id": "world_eater",
+    "name_pl": "Pożeracz Światów",
+    "name_en": "World Eater",
+    "level": 600,
+    "hp": 183711,
+    "attack": 2794,
+    "defense": 245,
+    "speed": 16,
+    "xp": 7500000000,
+    "gold": [
+      70000000,
+      175000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "globe-showing-europe-africa",
+    "heroicDropChance": 0.03,
+    "dropTable": [
+      {
+        "itemId": "world_core",
+        "chance": 0.004,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "devourer_armor",
+        "chance": 0.003,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Byt który pochłonął setki planet.",
+    "abilities": [
+      "earthquake",
+      "fire_breath",
+      "dark_curse",
+      "enrage"
+    ]
+  },
+  {
+    "id": "reality_god",
+    "name_pl": "Bóg Rzeczywistości",
+    "name_en": "Reality God",
+    "level": 625,
+    "hp": 191230,
+    "attack": 2908,
+    "defense": 255,
+    "speed": 17,
+    "xp": 12000000000,
+    "gold": [
+      100000000,
+      250000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "dizzy",
+    "heroicDropChance": 0.03,
+    "dropTable": [
+      {
+        "itemId": "reality_god_staff",
+        "chance": 0.003,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "existence_crown",
+        "chance": 0.002,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Bóstwo kontrolujące samą tkankę rzeczywistości.",
+    "abilities": [
+      "stun",
+      "lightning_bolt",
+      "dark_curse",
+      "heal"
+    ]
+  },
+  {
+    "id": "void_god",
+    "name_pl": "Bóg Pustki",
+    "name_en": "Void God",
+    "level": 650,
+    "hp": 198749,
+    "attack": 3021,
+    "defense": 265,
+    "speed": 18,
+    "xp": 19000000000,
+    "gold": [
+      140000000,
+      350000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "new-moon",
+    "heroicDropChance": 0.03,
+    "dropTable": [
+      {
+        "itemId": "void_god_blade",
+        "chance": 0.003,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "nothingness_robe",
+        "chance": 0.002,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Bóstwo pustki - nicość przyjęła formę.",
+    "abilities": [
+      "dark_curse",
+      "life_drain",
+      "heavy_strike",
+      "stun"
+    ]
+  },
+  {
+    "id": "time_god",
+    "name_pl": "Bóg Czasu",
+    "name_en": "Time God",
+    "level": 675,
+    "hp": 206182,
+    "attack": 3136,
+    "defense": 274,
+    "speed": 20,
+    "xp": 30000000000,
+    "gold": [
+      200000000,
+      500000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "hourglass-not-done",
+    "heroicDropChance": 0.03,
+    "dropTable": [
+      {
+        "itemId": "time_god_scepter",
+        "chance": 0.002,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "chrono_armor",
+        "chance": 0.002,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Bóstwo czasu widzące wszystkie możliwe przyszłości.",
+    "abilities": [
+      "stun",
+      "heal",
+      "shadow_step",
+      "lightning_bolt"
+    ]
+  },
+  {
+    "id": "storm_god_prime",
+    "name_pl": "Prabóg Burzy",
+    "name_en": "Prime Storm God",
+    "level": 700,
+    "hp": 213906,
+    "attack": 3250,
+    "defense": 285,
+    "speed": 19,
+    "xp": 47000000000,
+    "gold": [
+      280000000,
+      700000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "cloud-with-lightning-and-rain",
+    "heroicDropChance": 0.03,
+    "dropTable": [
+      {
+        "itemId": "prime_storm_hammer",
+        "chance": 0.002,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "lightning_god_armor",
+        "chance": 0.001,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Prabóg burzy, starszy od samego czasu.",
+    "abilities": [
+      "lightning_bolt",
+      "earthquake",
+      "enrage",
+      "stun"
+    ]
+  },
+  {
+    "id": "omega_god",
+    "name_pl": "Bóg Omega",
+    "name_en": "Omega God",
+    "level": 725,
+    "hp": 221034,
+    "attack": 3364,
+    "defense": 294,
+    "speed": 18,
+    "xp": 74000000000,
+    "gold": [
+      390000000,
+      975000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "glowing-star",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "omega_divinity",
+        "chance": 0.002,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "god_plate",
+        "chance": 0.001,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Bóstwo oznaczające koniec wszelkiego istnienia.",
+    "abilities": [
+      "dark_curse",
+      "heavy_strike",
+      "enrage",
+      "life_drain"
+    ]
+  },
+  {
+    "id": "cosmic_emperor",
+    "name_pl": "Cesarz Kosmosu",
+    "name_en": "Cosmic Emperor",
+    "level": 750,
+    "hp": 228889,
+    "attack": 3481,
+    "defense": 305,
+    "speed": 17,
+    "xp": 115000000000,
+    "gold": [
+      550000000,
+      1375000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "milky-way",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "cosmic_crown",
+        "chance": 0.0015,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "universe_armor",
+        "chance": 0.001,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Cesarz całego kosmosu, rządzący nieskończonością.",
+    "abilities": [
+      "fire_breath",
+      "lightning_bolt",
+      "dark_curse",
+      "enrage"
+    ]
+  },
+  {
+    "id": "death_incarnate",
+    "name_pl": "Wcielenie Śmierci",
+    "name_en": "Death Incarnate",
+    "level": 775,
+    "hp": 236137,
+    "attack": 3594,
+    "defense": 314,
+    "speed": 16,
+    "xp": 180000000000,
+    "gold": [
+      760000000,
+      1900000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "skull-and-crossbones",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "death_incarnate_blade",
+        "chance": 0.0012,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "reaper_plate",
+        "chance": 0.0008,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Śmierć sama przybrała formę wojownika.",
+    "abilities": [
+      "life_drain",
+      "dark_curse",
+      "heavy_strike",
+      "summon_adds"
+    ]
+  },
+  {
+    "id": "world_destroyer",
+    "name_pl": "Niszczyciel Świata",
+    "name_en": "World Destroyer",
+    "level": 800,
+    "hp": 243862,
+    "attack": 3711,
+    "defense": 325,
+    "speed": 18,
+    "xp": 280000000000,
+    "gold": [
+      1100000000,
+      2750000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "collision",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "destroyer_crown",
+        "chance": 0.001,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "world_end_armor",
+        "chance": 0.0008,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Byt którego jedynym celem jest zniszczenie wszystkiego.",
+    "abilities": [
+      "earthquake",
+      "fire_breath",
+      "enrage",
+      "cleave"
+    ]
+  },
+  {
+    "id": "apocalypse_god",
+    "name_pl": "Bóg Apokalipsy",
+    "name_en": "Apocalypse God",
+    "level": 825,
+    "hp": 251230,
+    "attack": 3824,
+    "defense": 334,
+    "speed": 17,
+    "xp": 440000000000,
+    "gold": [
+      1500000000,
+      3750000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "shooting-star",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "apocalypse_crown",
+        "chance": 0.0008,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "end_of_days_armor",
+        "chance": 0.0006,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Bóstwo apokalipsy czekające na ostateczny koniec.",
+    "abilities": [
+      "fire_breath",
+      "dark_curse",
+      "earthquake",
+      "enrage"
+    ]
+  },
+  {
+    "id": "absolute_entity",
+    "name_pl": "Absolut",
+    "name_en": "Absolute Entity",
+    "level": 850,
+    "hp": 258899,
+    "attack": 3942,
+    "defense": 345,
+    "speed": 20,
+    "xp": 690000000000,
+    "gold": [
+      2100000000,
+      5250000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "crystal-ball",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "absolute_core",
+        "chance": 0.0007,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "absolute_armor",
+        "chance": 0.0005,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Istniejąc poza wszelkim rozumieniem, Absolut jest.",
+    "abilities": [
+      "dark_curse",
+      "life_drain",
+      "stun",
+      "enrage"
+    ]
+  },
+  {
+    "id": "universe_god",
+    "name_pl": "Bóg Wszechświata",
+    "name_en": "Universe God",
+    "level": 875,
+    "hp": 266213,
+    "attack": 4053,
+    "defense": 354,
+    "speed": 19,
+    "xp": 1100000000000,
+    "gold": [
+      3000000000,
+      7500000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "globe-showing-europe-africa",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "universe_orb",
+        "chance": 0.0006,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "cosmos_armor",
+        "chance": 0.0004,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Bóstwo samego wszechświata przybrane w formę.",
+    "abilities": [
+      "earthquake",
+      "lightning_bolt",
+      "fire_breath",
+      "heal"
+    ]
+  },
+  {
+    "id": "true_void",
+    "name_pl": "Prawdziwa Pustka",
+    "name_en": "True Void",
+    "level": 900,
+    "hp": 274002,
+    "attack": 4172,
+    "defense": 365,
+    "speed": 18,
+    "xp": 1700000000000,
+    "gold": [
+      4200000000,
+      10500000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "black-circle",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "true_void_essence",
+        "chance": 0.0005,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "void_heart",
+        "chance": 0.0003,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Nicość przed stworzeniem. Pochłania wszystko.",
+    "abilities": [
+      "dark_curse",
+      "life_drain",
+      "heavy_strike",
+      "stun"
+    ]
+  },
+  {
+    "id": "omega_entity",
+    "name_pl": "Byt Omega",
+    "name_en": "Omega Entity",
+    "level": 925,
+    "hp": 281185,
+    "attack": 4281,
+    "defense": 374,
+    "speed": 19,
+    "xp": 2700000000000,
+    "gold": [
+      6000000000,
+      15000000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "trident-emblem",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "omega_shard",
+        "chance": 0.0004,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "final_armor",
+        "chance": 0.0003,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Ostatni byt stojący między graczem a absolutnym końcem.",
+    "abilities": [
+      "dark_curse",
+      "enrage",
+      "life_drain",
+      "earthquake"
+    ]
+  },
+  {
+    "id": "primal_god",
+    "name_pl": "Prabóg",
+    "name_en": "Primal God",
+    "level": 950,
+    "hp": 288920,
+    "attack": 4399,
+    "defense": 385,
+    "speed": 20,
+    "xp": 4300000000000,
+    "gold": [
+      8500000000,
+      21250000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "glowing-star",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "primal_essence",
+        "chance": 0.0003,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "primal_crown",
+        "chance": 0.0002,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Prabóg sprzed stworzenia. Jedyne co istniało przed wszystkim.",
+    "abilities": [
+      "heavy_strike",
+      "earthquake",
+      "enrage",
+      "heal"
+    ]
+  },
+  {
+    "id": "final_guardian",
+    "name_pl": "Ostateczny Strażnik",
+    "name_en": "Final Guardian",
+    "level": 975,
+    "hp": 296223,
+    "attack": 4511,
+    "defense": 394,
+    "speed": 20,
+    "xp": 6800000000000,
+    "gold": [
+      12000000000,
+      30000000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "crossed-swords",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "guardian_blade",
+        "chance": 0.0003,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "guardian_armor",
+        "chance": 0.0002,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Ostatni strażnik stojący przed absolutem.",
+    "abilities": [
+      "heavy_strike",
+      "shield_bash",
+      "enrage",
+      "cleave"
+    ]
+  },
+  {
+    "id": "end_of_all",
+    "name_pl": "Koniec Wszystkiego",
+    "name_en": "End of All",
+    "level": 1000,
+    "hp": 303807,
+    "attack": 4628,
+    "defense": 404,
+    "speed": 20,
+    "xp": 10000000000000,
+    "gold": [
+      17000000000,
+      42500000000
+    ],
+    "dailyAttempts": 3,
+    "sprite": "new-moon",
+    "heroicDropChance": 0.02,
+    "dropTable": [
+      {
+        "itemId": "all_end_gem",
+        "chance": 0.0002,
+        "rarity": "heroic"
+      },
+      {
+        "itemId": "eternal_armor",
+        "chance": 0.0001,
+        "rarity": "heroic"
+      }
+    ],
+    "description_pl": "Koniec Wszystkiego. Ostatni boss w grze. Nikt jeszcze go nie pokonał.",
+    "abilities": [
+      "dark_curse",
+      "life_drain",
+      "earthquake",
+      "enrage"
+    ]
+  }
+]

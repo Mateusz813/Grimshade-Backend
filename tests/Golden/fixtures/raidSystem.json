@@ -1,0 +1,2239 @@
+{
+  "system": "raidSystem",
+  "note": "Generowane z src/systems/raidSystem.ts. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "getRaidWaveCount": [
+    {
+      "level": 0,
+      "value": 1
+    },
+    {
+      "level": 1,
+      "value": 1
+    },
+    {
+      "level": 5,
+      "value": 1
+    },
+    {
+      "level": 10,
+      "value": 1
+    },
+    {
+      "level": 11,
+      "value": 2
+    },
+    {
+      "level": 25,
+      "value": 2
+    },
+    {
+      "level": 50,
+      "value": 2
+    },
+    {
+      "level": 51,
+      "value": 3
+    },
+    {
+      "level": 100,
+      "value": 3
+    },
+    {
+      "level": 150,
+      "value": 3
+    },
+    {
+      "level": 200,
+      "value": 3
+    },
+    {
+      "level": 201,
+      "value": 4
+    },
+    {
+      "level": 300,
+      "value": 4
+    },
+    {
+      "level": 400,
+      "value": 4
+    },
+    {
+      "level": 500,
+      "value": 4
+    },
+    {
+      "level": 501,
+      "value": 5
+    },
+    {
+      "level": 600,
+      "value": 5
+    },
+    {
+      "level": 700,
+      "value": 5
+    },
+    {
+      "level": 800,
+      "value": 5
+    },
+    {
+      "level": 900,
+      "value": 5
+    },
+    {
+      "level": 960,
+      "value": 5
+    },
+    {
+      "level": 980,
+      "value": 5
+    },
+    {
+      "level": 999,
+      "value": 5
+    },
+    {
+      "level": 1000,
+      "value": 5
+    }
+  ],
+  "getAllRaids": [
+    {
+      "id": "raid_1",
+      "name_pl": "Ruiny Starego Fortu",
+      "level": 1,
+      "waves": 1,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_1"
+    },
+    {
+      "id": "raid_3",
+      "name_pl": "Kanały Miasta",
+      "level": 3,
+      "waves": 1,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_3"
+    },
+    {
+      "id": "raid_5",
+      "name_pl": "Jaskinia Wilków",
+      "level": 5,
+      "waves": 1,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_5"
+    },
+    {
+      "id": "raid_7",
+      "name_pl": "Kopiec Goblinów",
+      "level": 7,
+      "waves": 1,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_7"
+    },
+    {
+      "id": "raid_8",
+      "name_pl": "Grota Pająków",
+      "level": 8,
+      "waves": 1,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_8"
+    },
+    {
+      "id": "raid_10",
+      "name_pl": "Ruiny Strażnicy",
+      "level": 10,
+      "waves": 1,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_10"
+    },
+    {
+      "id": "raid_12",
+      "name_pl": "Bagno Żab",
+      "level": 12,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_12"
+    },
+    {
+      "id": "raid_15",
+      "name_pl": "Podziemia Grobowca",
+      "level": 15,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_15"
+    },
+    {
+      "id": "raid_18",
+      "name_pl": "Kopalnia Koboldi",
+      "level": 18,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_18"
+    },
+    {
+      "id": "raid_20",
+      "name_pl": "Las Trolli",
+      "level": 20,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_20"
+    },
+    {
+      "id": "raid_22",
+      "name_pl": "Jama Niedźwiedzi",
+      "level": 22,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_22"
+    },
+    {
+      "id": "raid_25",
+      "name_pl": "Zamek Goblinów",
+      "level": 25,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_25"
+    },
+    {
+      "id": "raid_28",
+      "name_pl": "Ruiny Świątyni Słońca",
+      "level": 28,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_28"
+    },
+    {
+      "id": "raid_30",
+      "name_pl": "Gniazdo Harpii",
+      "level": 30,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_30"
+    },
+    {
+      "id": "raid_33",
+      "name_pl": "Krypta Rycerzy",
+      "level": 33,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_33"
+    },
+    {
+      "id": "raid_35",
+      "name_pl": "Wąwóz Skorpionów",
+      "level": 35,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_35"
+    },
+    {
+      "id": "raid_38",
+      "name_pl": "Wieża Alchemika",
+      "level": 38,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_38"
+    },
+    {
+      "id": "raid_40",
+      "name_pl": "Jaskinia Ogra",
+      "level": 40,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_40"
+    },
+    {
+      "id": "raid_43",
+      "name_pl": "Labirynt Mantykor",
+      "level": 43,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_43"
+    },
+    {
+      "id": "raid_45",
+      "name_pl": "Zatopiona Katedra",
+      "level": 45,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_45"
+    },
+    {
+      "id": "raid_48",
+      "name_pl": "Jaskinia Bazyliszka",
+      "level": 48,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_48"
+    },
+    {
+      "id": "raid_50",
+      "name_pl": "Forteca Orków",
+      "level": 50,
+      "waves": 2,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_50"
+    },
+    {
+      "id": "raid_55",
+      "name_pl": "Gniazdo Wywerny",
+      "level": 55,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_55"
+    },
+    {
+      "id": "raid_60",
+      "name_pl": "Wieża Mrocznego Maga",
+      "level": 60,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_60"
+    },
+    {
+      "id": "raid_65",
+      "name_pl": "Podziemia Golemów",
+      "level": 65,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_65"
+    },
+    {
+      "id": "raid_70",
+      "name_pl": "Pałac Meduzy",
+      "level": 70,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_70"
+    },
+    {
+      "id": "raid_75",
+      "name_pl": "Krypta Faraona",
+      "level": 75,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_75"
+    },
+    {
+      "id": "raid_80",
+      "name_pl": "Podziemia Wampirów",
+      "level": 80,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_80"
+    },
+    {
+      "id": "raid_85",
+      "name_pl": "Bagna Hydry",
+      "level": 85,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_85"
+    },
+    {
+      "id": "raid_90",
+      "name_pl": "Twierdza Cyklopów",
+      "level": 90,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_90"
+    },
+    {
+      "id": "raid_95",
+      "name_pl": "Jaskinia Chimerów",
+      "level": 95,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_95"
+    },
+    {
+      "id": "raid_100",
+      "name_pl": "Cytadela Demonów",
+      "level": 100,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_100"
+    },
+    {
+      "id": "raid_110",
+      "name_pl": "Gniazdo Feniksa",
+      "level": 110,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_110"
+    },
+    {
+      "id": "raid_120",
+      "name_pl": "Krypta Władców",
+      "level": 120,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_120"
+    },
+    {
+      "id": "raid_125",
+      "name_pl": "Labirynt Minotaurów",
+      "level": 125,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_125"
+    },
+    {
+      "id": "raid_135",
+      "name_pl": "Wieża Elementalistów",
+      "level": 135,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_135"
+    },
+    {
+      "id": "raid_145",
+      "name_pl": "Dół Potworów",
+      "level": 145,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_145"
+    },
+    {
+      "id": "raid_150",
+      "name_pl": "Świątynia Cieni",
+      "level": 150,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_150"
+    },
+    {
+      "id": "raid_160",
+      "name_pl": "Lodowa Forteca",
+      "level": 160,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_160"
+    },
+    {
+      "id": "raid_175",
+      "name_pl": "Lodowe Krainy",
+      "level": 175,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_175"
+    },
+    {
+      "id": "raid_190",
+      "name_pl": "Leże Smoka",
+      "level": 190,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_190"
+    },
+    {
+      "id": "raid_200",
+      "name_pl": "Wulkaniczna Przepaść",
+      "level": 200,
+      "waves": 3,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_200"
+    },
+    {
+      "id": "raid_220",
+      "name_pl": "Zamek Nieumarłych",
+      "level": 220,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_220"
+    },
+    {
+      "id": "raid_240",
+      "name_pl": "Ruiny Starożytnych",
+      "level": 240,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_240"
+    },
+    {
+      "id": "raid_260",
+      "name_pl": "Grób Smoka",
+      "level": 260,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_260"
+    },
+    {
+      "id": "raid_280",
+      "name_pl": "Piekielne Kuźnie",
+      "level": 280,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_280"
+    },
+    {
+      "id": "raid_300",
+      "name_pl": "Królestwo Nieumarłych",
+      "level": 300,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_300"
+    },
+    {
+      "id": "raid_320",
+      "name_pl": "Podziemia Nekromanty",
+      "level": 320,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_320"
+    },
+    {
+      "id": "raid_340",
+      "name_pl": "Twierdza Gigantów",
+      "level": 340,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_340"
+    },
+    {
+      "id": "raid_360",
+      "name_pl": "Forteca Demonów",
+      "level": 360,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_360"
+    },
+    {
+      "id": "raid_380",
+      "name_pl": "Piramida Wieczności",
+      "level": 380,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_380"
+    },
+    {
+      "id": "raid_400",
+      "name_pl": "Otchłań Nicości",
+      "level": 400,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_400"
+    },
+    {
+      "id": "raid_420",
+      "name_pl": "Pałac Potępienia",
+      "level": 420,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_420"
+    },
+    {
+      "id": "raid_450",
+      "name_pl": "Komnaty Chaosu",
+      "level": 450,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_450"
+    },
+    {
+      "id": "raid_475",
+      "name_pl": "Rozpadlina Grozy",
+      "level": 475,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_475"
+    },
+    {
+      "id": "raid_500",
+      "name_pl": "Świątynia Gwiazd",
+      "level": 500,
+      "waves": 4,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_500"
+    },
+    {
+      "id": "raid_530",
+      "name_pl": "Spirala Obłędu",
+      "level": 530,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_530"
+    },
+    {
+      "id": "raid_550",
+      "name_pl": "Grota Węża Świata",
+      "level": 550,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_550"
+    },
+    {
+      "id": "raid_575",
+      "name_pl": "Nexus Wymiarów",
+      "level": 575,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_575"
+    },
+    {
+      "id": "raid_600",
+      "name_pl": "Wieża Burzy",
+      "level": 600,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_600"
+    },
+    {
+      "id": "raid_625",
+      "name_pl": "Ogród Otchłani",
+      "level": 625,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_625"
+    },
+    {
+      "id": "raid_650",
+      "name_pl": "Pałac Cesarski",
+      "level": 650,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_650"
+    },
+    {
+      "id": "raid_675",
+      "name_pl": "Studnia Dusz",
+      "level": 675,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_675"
+    },
+    {
+      "id": "raid_700",
+      "name_pl": "Korytarze Czasu",
+      "level": 700,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_700"
+    },
+    {
+      "id": "raid_725",
+      "name_pl": "Sanktuarium Próżni",
+      "level": 725,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_725"
+    },
+    {
+      "id": "raid_750",
+      "name_pl": "Kryształy Rzeczywistości",
+      "level": 750,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_750"
+    },
+    {
+      "id": "raid_775",
+      "name_pl": "Grota Wiecznego Ognia",
+      "level": 775,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_775"
+    },
+    {
+      "id": "raid_800",
+      "name_pl": "Sanktuarium Bogów",
+      "level": 800,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_800"
+    },
+    {
+      "id": "raid_830",
+      "name_pl": "Przepaść Wieczności",
+      "level": 830,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_830"
+    },
+    {
+      "id": "raid_850",
+      "name_pl": "Kompleks Omega",
+      "level": 850,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_850"
+    },
+    {
+      "id": "raid_870",
+      "name_pl": "Kolumny Kreacji",
+      "level": 870,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_870"
+    },
+    {
+      "id": "raid_900",
+      "name_pl": "Jaskinia Śmierci",
+      "level": 900,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_900"
+    },
+    {
+      "id": "raid_920",
+      "name_pl": "Tron Apokalipsy",
+      "level": 920,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_920"
+    },
+    {
+      "id": "raid_940",
+      "name_pl": "Komnaty Nicości",
+      "level": 940,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_940"
+    },
+    {
+      "id": "raid_960",
+      "name_pl": "Brama Absolutu",
+      "level": 960,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_960"
+    },
+    {
+      "id": "raid_980",
+      "name_pl": "Przedsionek Końca",
+      "level": 980,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_980"
+    },
+    {
+      "id": "raid_1000",
+      "name_pl": "Koniec Wszechświata",
+      "level": 1000,
+      "waves": 5,
+      "dailyAttempts": 5,
+      "sourceDungeonId": "dungeon_1000"
+    }
+  ],
+  "getRaidById": [
+    {
+      "id": "raid_1",
+      "value": {
+        "id": "raid_1",
+        "name_pl": "Ruiny Starego Fortu",
+        "level": 1,
+        "waves": 1,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1"
+      }
+    },
+    {
+      "id": "raid_1000",
+      "value": {
+        "id": "raid_1000",
+        "name_pl": "Koniec Wszechświata",
+        "level": 1000,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1000"
+      }
+    },
+    {
+      "id": "raid_500",
+      "value": {
+        "id": "raid_500",
+        "name_pl": "Świątynia Gwiazd",
+        "level": 500,
+        "waves": 4,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_500"
+      }
+    },
+    {
+      "id": "raid_nope",
+      "value": null
+    },
+    {
+      "id": "",
+      "value": null
+    }
+  ],
+  "estimateRaidRewards": [
+    {
+      "raid": {
+        "id": "raid_test_1_1",
+        "name_pl": "Test Raid",
+        "level": 1,
+        "waves": 1,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1"
+      },
+      "value": {
+        "goldMin": 1720,
+        "goldMax": 1720,
+        "xp": 1441
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_10_1",
+        "name_pl": "Test Raid",
+        "level": 10,
+        "waves": 1,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_10"
+      },
+      "value": {
+        "goldMin": 13600,
+        "goldMax": 17200,
+        "xp": 19780
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_11_2",
+        "name_pl": "Test Raid",
+        "level": 11,
+        "waves": 2,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_11"
+      },
+      "value": {
+        "goldMin": 18200,
+        "goldMax": 26840,
+        "xp": 44281
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_50_2",
+        "name_pl": "Test Raid",
+        "level": 50,
+        "waves": 2,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_50"
+      },
+      "value": {
+        "goldMin": 86000,
+        "goldMax": 122000,
+        "xp": 203140
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_51_3",
+        "name_pl": "Test Raid",
+        "level": 51,
+        "waves": 3,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_51"
+      },
+      "value": {
+        "goldMin": 105000,
+        "goldMax": 159000,
+        "xp": 303561
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_100_3",
+        "name_pl": "Test Raid",
+        "level": 100,
+        "waves": 3,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_100"
+      },
+      "value": {
+        "goldMin": 208000,
+        "goldMax": 316000,
+        "xp": 659440
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_200_3",
+        "name_pl": "Test Raid",
+        "level": 200,
+        "waves": 3,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_200"
+      },
+      "value": {
+        "goldMin": 416000,
+        "goldMax": 632000,
+        "xp": 1446880
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_201_4",
+        "name_pl": "Test Raid",
+        "level": 201,
+        "waves": 4,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_201"
+      },
+      "value": {
+        "goldMin": 489000,
+        "goldMax": 777000,
+        "xp": 1916241
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_500_4",
+        "name_pl": "Test Raid",
+        "level": 500,
+        "waves": 4,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_500"
+      },
+      "value": {
+        "goldMin": 1220000,
+        "goldMax": 1940000,
+        "xp": 5495440
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_501_5",
+        "name_pl": "Test Raid",
+        "level": 501,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_501"
+      },
+      "value": {
+        "goldMin": 1401000,
+        "goldMax": 2301000,
+        "xp": 6807801
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_900_5",
+        "name_pl": "Test Raid",
+        "level": 900,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_900"
+      },
+      "value": {
+        "goldMin": 2520000,
+        "goldMax": 4140000,
+        "xp": 13549200
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_1000_5",
+        "name_pl": "Test Raid",
+        "level": 1000,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1000"
+      },
+      "value": {
+        "goldMin": 2800000,
+        "goldMax": 4600000,
+        "xp": 15354400
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_33_2",
+        "name_pl": "Test Raid",
+        "level": 33,
+        "waves": 2,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_33"
+      },
+      "value": {
+        "goldMin": 54600,
+        "goldMax": 77640,
+        "xp": 119169
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_275_3",
+        "name_pl": "Test Raid",
+        "level": 275,
+        "waves": 3,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_275"
+      },
+      "value": {
+        "goldMin": 545000,
+        "goldMax": 815000,
+        "xp": 1881385
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_725_5",
+        "name_pl": "Test Raid",
+        "level": 725,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_725"
+      },
+      "value": {
+        "goldMin": 1985000,
+        "goldMax": 3245000,
+        "xp": 10111225
+      }
+    }
+  ],
+  "generateWaveBosses": [
+    {
+      "raid": {
+        "id": "raid_test_1_1",
+        "name_pl": "Test Raid",
+        "level": 1,
+        "waves": 1,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1"
+      },
+      "waveIdx": 0,
+      "value": [
+        {
+          "baseId": "rat",
+          "level": 1,
+          "name": "Szczur #1",
+          "sprite": "rat",
+          "maxHp": 630,
+          "currentHp": 630,
+          "attack": 21,
+          "defense": 2,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 0
+        },
+        {
+          "baseId": "rat",
+          "level": 1,
+          "name": "Szczur #2",
+          "sprite": "rat",
+          "maxHp": 630,
+          "currentHp": 630,
+          "attack": 21,
+          "defense": 2,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 1
+        },
+        {
+          "baseId": "rat",
+          "level": 1,
+          "name": "Szczur #3",
+          "sprite": "rat",
+          "maxHp": 630,
+          "currentHp": 630,
+          "attack": 21,
+          "defense": 2,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 2
+        },
+        {
+          "baseId": "rat",
+          "level": 1,
+          "name": "Szczur #4",
+          "sprite": "rat",
+          "maxHp": 630,
+          "currentHp": 630,
+          "attack": 21,
+          "defense": 2,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 3
+        }
+      ]
+    },
+    {
+      "raid": {
+        "id": "raid_test_50_2",
+        "name_pl": "Test Raid",
+        "level": 50,
+        "waves": 2,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_50"
+      },
+      "waveIdx": 0,
+      "value": [
+        {
+          "baseId": "greater_demon",
+          "level": 50,
+          "name": "Wielki Demon #1",
+          "sprite": "angry-face-with-horns",
+          "maxHp": 8883,
+          "currentHp": 8883,
+          "attack": 467,
+          "defense": 27,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 0
+        },
+        {
+          "baseId": "greater_demon",
+          "level": 50,
+          "name": "Wielki Demon #2",
+          "sprite": "angry-face-with-horns",
+          "maxHp": 8883,
+          "currentHp": 8883,
+          "attack": 467,
+          "defense": 27,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 1
+        },
+        {
+          "baseId": "greater_demon",
+          "level": 50,
+          "name": "Wielki Demon #3",
+          "sprite": "angry-face-with-horns",
+          "maxHp": 8883,
+          "currentHp": 8883,
+          "attack": 467,
+          "defense": 27,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 2
+        },
+        {
+          "baseId": "greater_demon",
+          "level": 50,
+          "name": "Wielki Demon #4",
+          "sprite": "angry-face-with-horns",
+          "maxHp": 8883,
+          "currentHp": 8883,
+          "attack": 467,
+          "defense": 27,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 3
+        }
+      ]
+    },
+    {
+      "raid": {
+        "id": "raid_test_50_2",
+        "name_pl": "Test Raid",
+        "level": 50,
+        "waves": 2,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_50"
+      },
+      "waveIdx": 1,
+      "value": [
+        {
+          "baseId": "greater_demon",
+          "level": 50,
+          "name": "Wielki Demon #1",
+          "sprite": "angry-face-with-horns",
+          "maxHp": 10215,
+          "currentHp": 10215,
+          "attack": 537,
+          "defense": 31,
+          "isDead": false,
+          "waveIdx": 1,
+          "slotIdx": 0
+        },
+        {
+          "baseId": "greater_demon",
+          "level": 50,
+          "name": "Wielki Demon #2",
+          "sprite": "angry-face-with-horns",
+          "maxHp": 10215,
+          "currentHp": 10215,
+          "attack": 537,
+          "defense": 31,
+          "isDead": false,
+          "waveIdx": 1,
+          "slotIdx": 1
+        },
+        {
+          "baseId": "greater_demon",
+          "level": 50,
+          "name": "Wielki Demon #3",
+          "sprite": "angry-face-with-horns",
+          "maxHp": 10215,
+          "currentHp": 10215,
+          "attack": 537,
+          "defense": 31,
+          "isDead": false,
+          "waveIdx": 1,
+          "slotIdx": 2
+        },
+        {
+          "baseId": "greater_demon",
+          "level": 50,
+          "name": "Wielki Demon #4",
+          "sprite": "angry-face-with-horns",
+          "maxHp": 10215,
+          "currentHp": 10215,
+          "attack": 537,
+          "defense": 31,
+          "isDead": false,
+          "waveIdx": 1,
+          "slotIdx": 3
+        }
+      ]
+    },
+    {
+      "raid": {
+        "id": "raid_test_200_3",
+        "name_pl": "Test Raid",
+        "level": 200,
+        "waves": 3,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_200"
+      },
+      "waveIdx": 2,
+      "value": [
+        {
+          "baseId": "chaos_titan",
+          "level": 200,
+          "name": "Tytan Chaosu #1",
+          "sprite": "tornado",
+          "maxHp": 40035,
+          "currentHp": 40035,
+          "attack": 2231,
+          "defense": 125,
+          "isDead": false,
+          "waveIdx": 2,
+          "slotIdx": 0
+        },
+        {
+          "baseId": "chaos_titan",
+          "level": 200,
+          "name": "Tytan Chaosu #2",
+          "sprite": "tornado",
+          "maxHp": 40035,
+          "currentHp": 40035,
+          "attack": 2231,
+          "defense": 125,
+          "isDead": false,
+          "waveIdx": 2,
+          "slotIdx": 1
+        },
+        {
+          "baseId": "chaos_titan",
+          "level": 200,
+          "name": "Tytan Chaosu #3",
+          "sprite": "tornado",
+          "maxHp": 40035,
+          "currentHp": 40035,
+          "attack": 2231,
+          "defense": 125,
+          "isDead": false,
+          "waveIdx": 2,
+          "slotIdx": 2
+        },
+        {
+          "baseId": "chaos_titan",
+          "level": 200,
+          "name": "Tytan Chaosu #4",
+          "sprite": "tornado",
+          "maxHp": 40035,
+          "currentHp": 40035,
+          "attack": 2231,
+          "defense": 125,
+          "isDead": false,
+          "waveIdx": 2,
+          "slotIdx": 3
+        }
+      ]
+    },
+    {
+      "raid": {
+        "id": "raid_test_500_4",
+        "name_pl": "Test Raid",
+        "level": 500,
+        "waves": 4,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_500"
+      },
+      "waveIdx": 3,
+      "value": [
+        {
+          "baseId": "celestial_destroyer",
+          "level": 500,
+          "name": "Niebiański Niszczyciel #1",
+          "sprite": "star",
+          "maxHp": 105265,
+          "currentHp": 105265,
+          "attack": 6112,
+          "defense": 347,
+          "isDead": false,
+          "waveIdx": 3,
+          "slotIdx": 0
+        },
+        {
+          "baseId": "celestial_destroyer",
+          "level": 500,
+          "name": "Niebiański Niszczyciel #2",
+          "sprite": "star",
+          "maxHp": 105265,
+          "currentHp": 105265,
+          "attack": 6112,
+          "defense": 347,
+          "isDead": false,
+          "waveIdx": 3,
+          "slotIdx": 1
+        },
+        {
+          "baseId": "celestial_destroyer",
+          "level": 500,
+          "name": "Niebiański Niszczyciel #3",
+          "sprite": "star",
+          "maxHp": 105265,
+          "currentHp": 105265,
+          "attack": 6112,
+          "defense": 347,
+          "isDead": false,
+          "waveIdx": 3,
+          "slotIdx": 2
+        },
+        {
+          "baseId": "celestial_destroyer",
+          "level": 500,
+          "name": "Niebiański Niszczyciel #4",
+          "sprite": "star",
+          "maxHp": 105265,
+          "currentHp": 105265,
+          "attack": 6112,
+          "defense": 347,
+          "isDead": false,
+          "waveIdx": 3,
+          "slotIdx": 3
+        }
+      ]
+    },
+    {
+      "raid": {
+        "id": "raid_test_1000_5",
+        "name_pl": "Test Raid",
+        "level": 1000,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1000"
+      },
+      "waveIdx": 4,
+      "value": [
+        {
+          "baseId": "world_ender",
+          "level": 1000,
+          "name": "Koniec Świata #1",
+          "sprite": "new-moon",
+          "maxHp": 227640,
+          "currentHp": 227640,
+          "attack": 13406,
+          "defense": 759,
+          "isDead": false,
+          "waveIdx": 4,
+          "slotIdx": 0
+        },
+        {
+          "baseId": "world_ender",
+          "level": 1000,
+          "name": "Koniec Świata #2",
+          "sprite": "new-moon",
+          "maxHp": 227640,
+          "currentHp": 227640,
+          "attack": 13406,
+          "defense": 759,
+          "isDead": false,
+          "waveIdx": 4,
+          "slotIdx": 1
+        },
+        {
+          "baseId": "world_ender",
+          "level": 1000,
+          "name": "Koniec Świata #3",
+          "sprite": "new-moon",
+          "maxHp": 227640,
+          "currentHp": 227640,
+          "attack": 13406,
+          "defense": 759,
+          "isDead": false,
+          "waveIdx": 4,
+          "slotIdx": 2
+        },
+        {
+          "baseId": "world_ender",
+          "level": 1000,
+          "name": "Koniec Świata #4",
+          "sprite": "new-moon",
+          "maxHp": 227640,
+          "currentHp": 227640,
+          "attack": 13406,
+          "defense": 759,
+          "isDead": false,
+          "waveIdx": 4,
+          "slotIdx": 3
+        }
+      ]
+    },
+    {
+      "raid": {
+        "id": "raid_test_275_3",
+        "name_pl": "Test Raid",
+        "level": 275,
+        "waves": 3,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_275"
+      },
+      "waveIdx": 1,
+      "value": [
+        {
+          "baseId": "primordial_serpent",
+          "level": 250,
+          "name": "Prawieczny Wąż #1",
+          "sprite": "snake",
+          "maxHp": 93046,
+          "currentHp": 93046,
+          "attack": 5259,
+          "defense": 300,
+          "isDead": false,
+          "waveIdx": 1,
+          "slotIdx": 0
+        },
+        {
+          "baseId": "primordial_serpent",
+          "level": 250,
+          "name": "Prawieczny Wąż #2",
+          "sprite": "snake",
+          "maxHp": 93046,
+          "currentHp": 93046,
+          "attack": 5259,
+          "defense": 300,
+          "isDead": false,
+          "waveIdx": 1,
+          "slotIdx": 1
+        },
+        {
+          "baseId": "primordial_serpent",
+          "level": 250,
+          "name": "Prawieczny Wąż #3",
+          "sprite": "snake",
+          "maxHp": 93046,
+          "currentHp": 93046,
+          "attack": 5259,
+          "defense": 300,
+          "isDead": false,
+          "waveIdx": 1,
+          "slotIdx": 2
+        },
+        {
+          "baseId": "primordial_serpent",
+          "level": 250,
+          "name": "Prawieczny Wąż #4",
+          "sprite": "snake",
+          "maxHp": 93046,
+          "currentHp": 93046,
+          "attack": 5259,
+          "defense": 300,
+          "isDead": false,
+          "waveIdx": 1,
+          "slotIdx": 3
+        }
+      ]
+    },
+    {
+      "raid": {
+        "id": "raid_test_960_5",
+        "name_pl": "Test Raid",
+        "level": 960,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_960"
+      },
+      "waveIdx": 0,
+      "value": [
+        {
+          "baseId": "apocalypse_herald",
+          "level": 950,
+          "name": "Zwiastun Apokalipsy #1",
+          "sprite": "shooting-star",
+          "maxHp": 193305,
+          "currentHp": 193305,
+          "attack": 11377,
+          "defense": 645,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 0
+        },
+        {
+          "baseId": "apocalypse_herald",
+          "level": 950,
+          "name": "Zwiastun Apokalipsy #2",
+          "sprite": "shooting-star",
+          "maxHp": 193305,
+          "currentHp": 193305,
+          "attack": 11377,
+          "defense": 645,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 1
+        },
+        {
+          "baseId": "apocalypse_herald",
+          "level": 950,
+          "name": "Zwiastun Apokalipsy #3",
+          "sprite": "shooting-star",
+          "maxHp": 193305,
+          "currentHp": 193305,
+          "attack": 11377,
+          "defense": 645,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 2
+        },
+        {
+          "baseId": "apocalypse_herald",
+          "level": 950,
+          "name": "Zwiastun Apokalipsy #4",
+          "sprite": "shooting-star",
+          "maxHp": 193305,
+          "currentHp": 193305,
+          "attack": 11377,
+          "defense": 645,
+          "isDead": false,
+          "waveIdx": 0,
+          "slotIdx": 3
+        }
+      ]
+    }
+  ],
+  "memberRewards": [
+    {
+      "raid": {
+        "id": "raid_test_1_1",
+        "name_pl": "Test Raid",
+        "level": 1,
+        "waves": 1,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1"
+      },
+      "bossesDefeated": 0,
+      "value": {
+        "xp": 0,
+        "gold": 0
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_1_1",
+        "name_pl": "Test Raid",
+        "level": 1,
+        "waves": 1,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1"
+      },
+      "bossesDefeated": 1,
+      "value": {
+        "xp": 360,
+        "gold": 180
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_1_1",
+        "name_pl": "Test Raid",
+        "level": 1,
+        "waves": 1,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1"
+      },
+      "bossesDefeated": 4,
+      "value": {
+        "xp": 1441,
+        "gold": 1720
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_50_2",
+        "name_pl": "Test Raid",
+        "level": 50,
+        "waves": 2,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_50"
+      },
+      "bossesDefeated": 3,
+      "value": {
+        "xp": 75240,
+        "gold": 20232
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_50_2",
+        "name_pl": "Test Raid",
+        "level": 50,
+        "waves": 2,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_50"
+      },
+      "bossesDefeated": 8,
+      "value": {
+        "xp": 203140,
+        "gold": 103952
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_200_3",
+        "name_pl": "Test Raid",
+        "level": 200,
+        "waves": 3,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_200"
+      },
+      "bossesDefeated": 12,
+      "value": {
+        "xp": 1446880,
+        "gold": 524000
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_500_4",
+        "name_pl": "Test Raid",
+        "level": 500,
+        "waves": 4,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_500"
+      },
+      "bossesDefeated": 16,
+      "value": {
+        "xp": 5495440,
+        "gold": 1580000
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_1000_5",
+        "name_pl": "Test Raid",
+        "level": 1000,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1000"
+      },
+      "bossesDefeated": 20,
+      "value": {
+        "xp": 15354400,
+        "gold": 3700000
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_1000_5",
+        "name_pl": "Test Raid",
+        "level": 1000,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_1000"
+      },
+      "bossesDefeated": 25,
+      "value": {
+        "xp": 18943000,
+        "gold": 4375000
+      }
+    },
+    {
+      "raid": {
+        "id": "raid_test_960_5",
+        "name_pl": "Test Raid",
+        "level": 960,
+        "waves": 5,
+        "dailyAttempts": 5,
+        "sourceDungeonId": "dungeon_960"
+      },
+      "bossesDefeated": 7,
+      "value": {
+        "xp": 4740120,
+        "gold": 897708
+      }
+    }
+  ],
+  "selectItemRarity": [
+    {
+      "roll": 0,
+      "value": "heroic"
+    },
+    {
+      "roll": 0.0049,
+      "value": "heroic"
+    },
+    {
+      "roll": 0.005,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.0055,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.01,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.015,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.05,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.0549,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.055,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.08,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.095,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.1,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.15,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.155,
+      "value": "epic"
+    },
+    {
+      "roll": 0.16,
+      "value": "epic"
+    },
+    {
+      "roll": 0.2,
+      "value": "epic"
+    },
+    {
+      "roll": 0.245,
+      "value": "epic"
+    },
+    {
+      "roll": 0.25,
+      "value": "epic"
+    },
+    {
+      "roll": 0.3,
+      "value": "epic"
+    },
+    {
+      "roll": 0.355,
+      "value": "rare"
+    },
+    {
+      "roll": 0.4,
+      "value": "rare"
+    },
+    {
+      "roll": 0.41,
+      "value": "rare"
+    },
+    {
+      "roll": 0.495,
+      "value": "rare"
+    },
+    {
+      "roll": 0.5,
+      "value": "rare"
+    },
+    {
+      "roll": 0.55,
+      "value": "rare"
+    },
+    {
+      "roll": 0.8,
+      "value": "rare"
+    },
+    {
+      "roll": 0.81,
+      "value": "rare"
+    },
+    {
+      "roll": 0.855,
+      "value": "common"
+    },
+    {
+      "roll": 0.895,
+      "value": "common"
+    },
+    {
+      "roll": 0.9,
+      "value": "common"
+    },
+    {
+      "roll": 0.91,
+      "value": "common"
+    },
+    {
+      "roll": 0.95,
+      "value": "common"
+    },
+    {
+      "roll": 0.999999,
+      "value": "common"
+    }
+  ],
+  "selectStoneDrop": [
+    {
+      "roll": 0,
+      "value": {
+        "rarity": "heroic",
+        "id": "heroic_stone"
+      }
+    },
+    {
+      "roll": 0.0049,
+      "value": {
+        "rarity": "heroic",
+        "id": "heroic_stone"
+      }
+    },
+    {
+      "roll": 0.005,
+      "value": {
+        "rarity": "heroic",
+        "id": "heroic_stone"
+      }
+    },
+    {
+      "roll": 0.0055,
+      "value": {
+        "rarity": "heroic",
+        "id": "heroic_stone"
+      }
+    },
+    {
+      "roll": 0.01,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.015,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.05,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.0549,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.055,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.08,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.095,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.1,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.15,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.155,
+      "value": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      }
+    },
+    {
+      "roll": 0.16,
+      "value": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      }
+    },
+    {
+      "roll": 0.2,
+      "value": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      }
+    },
+    {
+      "roll": 0.245,
+      "value": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      }
+    },
+    {
+      "roll": 0.25,
+      "value": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      }
+    },
+    {
+      "roll": 0.3,
+      "value": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      }
+    },
+    {
+      "roll": 0.355,
+      "value": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      }
+    },
+    {
+      "roll": 0.4,
+      "value": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      }
+    },
+    {
+      "roll": 0.41,
+      "value": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      }
+    },
+    {
+      "roll": 0.495,
+      "value": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      }
+    },
+    {
+      "roll": 0.5,
+      "value": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      }
+    },
+    {
+      "roll": 0.55,
+      "value": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      }
+    },
+    {
+      "roll": 0.8,
+      "value": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      }
+    },
+    {
+      "roll": 0.81,
+      "value": {
+        "rarity": "rare",
+        "id": "rare_stone"
+      }
+    },
+    {
+      "roll": 0.855,
+      "value": {
+        "rarity": "rare",
+        "id": "rare_stone"
+      }
+    },
+    {
+      "roll": 0.895,
+      "value": {
+        "rarity": "rare",
+        "id": "rare_stone"
+      }
+    },
+    {
+      "roll": 0.9,
+      "value": {
+        "rarity": "rare",
+        "id": "rare_stone"
+      }
+    },
+    {
+      "roll": 0.91,
+      "value": {
+        "rarity": "common",
+        "id": "common_stone"
+      }
+    },
+    {
+      "roll": 0.95,
+      "value": {
+        "rarity": "common",
+        "id": "common_stone"
+      }
+    },
+    {
+      "roll": 0.999999,
+      "value": {
+        "rarity": "common",
+        "id": "common_stone"
+      }
+    }
+  ],
+  "selectCompletionRarity": [
+    {
+      "roll": 0,
+      "value": "heroic"
+    },
+    {
+      "roll": 0.0049,
+      "value": "heroic"
+    },
+    {
+      "roll": 0.005,
+      "value": "heroic"
+    },
+    {
+      "roll": 0.0055,
+      "value": "heroic"
+    },
+    {
+      "roll": 0.01,
+      "value": "heroic"
+    },
+    {
+      "roll": 0.015,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.05,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.0549,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.055,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.08,
+      "value": "mythic"
+    },
+    {
+      "roll": 0.095,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.1,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.15,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.155,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.16,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.2,
+      "value": "legendary"
+    },
+    {
+      "roll": 0.245,
+      "value": "epic"
+    },
+    {
+      "roll": 0.25,
+      "value": "epic"
+    },
+    {
+      "roll": 0.3,
+      "value": "epic"
+    },
+    {
+      "roll": 0.355,
+      "value": "epic"
+    },
+    {
+      "roll": 0.4,
+      "value": "epic"
+    },
+    {
+      "roll": 0.41,
+      "value": "epic"
+    },
+    {
+      "roll": 0.495,
+      "value": "rare"
+    },
+    {
+      "roll": 0.5,
+      "value": "rare"
+    },
+    {
+      "roll": 0.55,
+      "value": "rare"
+    },
+    {
+      "roll": 0.8,
+      "value": "rare"
+    },
+    {
+      "roll": 0.81,
+      "value": "rare"
+    },
+    {
+      "roll": 0.855,
+      "value": "rare"
+    },
+    {
+      "roll": 0.895,
+      "value": "common"
+    },
+    {
+      "roll": 0.9,
+      "value": "common"
+    },
+    {
+      "roll": 0.91,
+      "value": "common"
+    },
+    {
+      "roll": 0.95,
+      "value": "common"
+    },
+    {
+      "roll": 0.999999,
+      "value": "common"
+    }
+  ],
+  "seededSelectors": [
+    {
+      "seed": 1,
+      "item": "rare",
+      "stone": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      },
+      "completion": "rare"
+    },
+    {
+      "seed": 2,
+      "item": "rare",
+      "stone": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      },
+      "completion": "rare"
+    },
+    {
+      "seed": 3,
+      "item": "rare",
+      "stone": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      },
+      "completion": "rare"
+    },
+    {
+      "seed": 7,
+      "item": "mythic",
+      "stone": {
+        "rarity": "mythic",
+        "id": "mythic_stone"
+      },
+      "completion": "heroic"
+    },
+    {
+      "seed": 13,
+      "item": "rare",
+      "stone": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      },
+      "completion": "rare"
+    },
+    {
+      "seed": 42,
+      "item": "rare",
+      "stone": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      },
+      "completion": "rare"
+    },
+    {
+      "seed": 99,
+      "item": "epic",
+      "stone": {
+        "rarity": "legendary",
+        "id": "legendary_stone"
+      },
+      "completion": "epic"
+    },
+    {
+      "seed": 777,
+      "item": "rare",
+      "stone": {
+        "rarity": "epic",
+        "id": "epic_stone"
+      },
+      "completion": "rare"
+    }
+  ]
+}

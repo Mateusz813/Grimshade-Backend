@@ -1,0 +1,434 @@
+{
+  "system": "taskRewards",
+  "note": "Generowane z src/systems/taskRewards.ts + realne monsters.json. NIE edytuj ręcznie.",
+  "getEffectiveTaskXpPerKill": [
+    {
+      "monster": {
+        "level": 1,
+        "xp": 3,
+        "gold": [
+          1,
+          1
+        ]
+      },
+      "value": 3
+    },
+    {
+      "monster": {
+        "level": 23,
+        "xp": 89,
+        "gold": [
+          11,
+          23
+        ]
+      },
+      "value": 89
+    },
+    {
+      "monster": {
+        "level": 250,
+        "xp": 1254,
+        "gold": [
+          125,
+          250
+        ]
+      },
+      "value": 1254
+    },
+    {
+      "monster": {
+        "level": 300,
+        "xp": 1538,
+        "gold": [
+          150,
+          300
+        ]
+      },
+      "value": 1538
+    },
+    {
+      "monster": {
+        "level": 650,
+        "xp": 3674,
+        "gold": [
+          325,
+          650
+        ]
+      },
+      "value": 2164
+    },
+    {
+      "monster": {
+        "level": 1000,
+        "xp": 5981,
+        "gold": [
+          500,
+          1000
+        ]
+      },
+      "value": 3045
+    }
+  ],
+  "computeTaskRewards": [
+    {
+      "monster": {
+        "level": 1,
+        "xp": 3,
+        "gold": [
+          1,
+          1
+        ]
+      },
+      "kills": 1,
+      "result": {
+        "rewardXp": 4,
+        "rewardGold": 3
+      }
+    },
+    {
+      "monster": {
+        "level": 1,
+        "xp": 3,
+        "gold": [
+          1,
+          1
+        ]
+      },
+      "kills": 10,
+      "result": {
+        "rewardXp": 45,
+        "rewardGold": 30
+      }
+    },
+    {
+      "monster": {
+        "level": 1,
+        "xp": 3,
+        "gold": [
+          1,
+          1
+        ]
+      },
+      "kills": 100,
+      "result": {
+        "rewardXp": 450,
+        "rewardGold": 300
+      }
+    },
+    {
+      "monster": {
+        "level": 1,
+        "xp": 3,
+        "gold": [
+          1,
+          1
+        ]
+      },
+      "kills": 5000,
+      "result": {
+        "rewardXp": 22500,
+        "rewardGold": 15000
+      }
+    },
+    {
+      "monster": {
+        "level": 23,
+        "xp": 89,
+        "gold": [
+          11,
+          23
+        ]
+      },
+      "kills": 1,
+      "result": {
+        "rewardXp": 133,
+        "rewardGold": 69
+      }
+    },
+    {
+      "monster": {
+        "level": 23,
+        "xp": 89,
+        "gold": [
+          11,
+          23
+        ]
+      },
+      "kills": 10,
+      "result": {
+        "rewardXp": 1335,
+        "rewardGold": 690
+      }
+    },
+    {
+      "monster": {
+        "level": 23,
+        "xp": 89,
+        "gold": [
+          11,
+          23
+        ]
+      },
+      "kills": 100,
+      "result": {
+        "rewardXp": 13350,
+        "rewardGold": 6900
+      }
+    },
+    {
+      "monster": {
+        "level": 23,
+        "xp": 89,
+        "gold": [
+          11,
+          23
+        ]
+      },
+      "kills": 5000,
+      "result": {
+        "rewardXp": 667500,
+        "rewardGold": 345000
+      }
+    },
+    {
+      "monster": {
+        "level": 250,
+        "xp": 1254,
+        "gold": [
+          125,
+          250
+        ]
+      },
+      "kills": 1,
+      "result": {
+        "rewardXp": 1881,
+        "rewardGold": 750
+      }
+    },
+    {
+      "monster": {
+        "level": 250,
+        "xp": 1254,
+        "gold": [
+          125,
+          250
+        ]
+      },
+      "kills": 10,
+      "result": {
+        "rewardXp": 18810,
+        "rewardGold": 7500
+      }
+    },
+    {
+      "monster": {
+        "level": 250,
+        "xp": 1254,
+        "gold": [
+          125,
+          250
+        ]
+      },
+      "kills": 100,
+      "result": {
+        "rewardXp": 188100,
+        "rewardGold": 75000
+      }
+    },
+    {
+      "monster": {
+        "level": 250,
+        "xp": 1254,
+        "gold": [
+          125,
+          250
+        ]
+      },
+      "kills": 5000,
+      "result": {
+        "rewardXp": 9405000,
+        "rewardGold": 3750000
+      }
+    },
+    {
+      "monster": {
+        "level": 300,
+        "xp": 1538,
+        "gold": [
+          150,
+          300
+        ]
+      },
+      "kills": 1,
+      "result": {
+        "rewardXp": 2307,
+        "rewardGold": 900
+      }
+    },
+    {
+      "monster": {
+        "level": 300,
+        "xp": 1538,
+        "gold": [
+          150,
+          300
+        ]
+      },
+      "kills": 10,
+      "result": {
+        "rewardXp": 23070,
+        "rewardGold": 9000
+      }
+    },
+    {
+      "monster": {
+        "level": 300,
+        "xp": 1538,
+        "gold": [
+          150,
+          300
+        ]
+      },
+      "kills": 100,
+      "result": {
+        "rewardXp": 230700,
+        "rewardGold": 90000
+      }
+    },
+    {
+      "monster": {
+        "level": 300,
+        "xp": 1538,
+        "gold": [
+          150,
+          300
+        ]
+      },
+      "kills": 5000,
+      "result": {
+        "rewardXp": 11535000,
+        "rewardGold": 4500000
+      }
+    },
+    {
+      "monster": {
+        "level": 650,
+        "xp": 3674,
+        "gold": [
+          325,
+          650
+        ]
+      },
+      "kills": 1,
+      "result": {
+        "rewardXp": 3246,
+        "rewardGold": 1950
+      }
+    },
+    {
+      "monster": {
+        "level": 650,
+        "xp": 3674,
+        "gold": [
+          325,
+          650
+        ]
+      },
+      "kills": 10,
+      "result": {
+        "rewardXp": 32460,
+        "rewardGold": 19500
+      }
+    },
+    {
+      "monster": {
+        "level": 650,
+        "xp": 3674,
+        "gold": [
+          325,
+          650
+        ]
+      },
+      "kills": 100,
+      "result": {
+        "rewardXp": 324600,
+        "rewardGold": 195000
+      }
+    },
+    {
+      "monster": {
+        "level": 650,
+        "xp": 3674,
+        "gold": [
+          325,
+          650
+        ]
+      },
+      "kills": 5000,
+      "result": {
+        "rewardXp": 16230000,
+        "rewardGold": 9750000
+      }
+    },
+    {
+      "monster": {
+        "level": 1000,
+        "xp": 5981,
+        "gold": [
+          500,
+          1000
+        ]
+      },
+      "kills": 1,
+      "result": {
+        "rewardXp": 4567,
+        "rewardGold": 3000
+      }
+    },
+    {
+      "monster": {
+        "level": 1000,
+        "xp": 5981,
+        "gold": [
+          500,
+          1000
+        ]
+      },
+      "kills": 10,
+      "result": {
+        "rewardXp": 45675,
+        "rewardGold": 30000
+      }
+    },
+    {
+      "monster": {
+        "level": 1000,
+        "xp": 5981,
+        "gold": [
+          500,
+          1000
+        ]
+      },
+      "kills": 100,
+      "result": {
+        "rewardXp": 456750,
+        "rewardGold": 300000
+      }
+    },
+    {
+      "monster": {
+        "level": 1000,
+        "xp": 5981,
+        "gold": [
+          500,
+          1000
+        ]
+      },
+      "kills": 5000,
+      "result": {
+        "rewardXp": 22837500,
+        "rewardGold": 15000000
+      }
+    }
+  ]
+}

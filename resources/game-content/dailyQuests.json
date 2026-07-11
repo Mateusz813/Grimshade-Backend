@@ -1,0 +1,245 @@
+[
+    {
+        "id": "daily_kill_5",
+        "name_pl": "Rozgrzewka",
+        "name_en": "Warm Up",
+        "description_pl": "Zabij 5 dowolnych potworow",
+        "minLevel": 25,
+        "goal": { "type": "kill_any", "count": 5 },
+        "rewards": { "gold": 200, "xp": 100 }
+    },
+    {
+        "id": "daily_kill_10",
+        "name_pl": "Polowanie",
+        "name_en": "Hunt",
+        "description_pl": "Zabij 10 dowolnych potworow",
+        "minLevel": 25,
+        "goal": { "type": "kill_any", "count": 10 },
+        "rewards": { "gold": 400, "xp": 200 }
+    },
+    {
+        "id": "daily_kill_20",
+        "name_pl": "Wielkie Polowanie",
+        "name_en": "Great Hunt",
+        "description_pl": "Zabij 20 dowolnych potworow",
+        "minLevel": 25,
+        "goal": { "type": "kill_any", "count": 20 },
+        "rewards": { "gold": 800, "xp": 400 }
+    },
+    {
+        "id": "daily_kill_35",
+        "name_pl": "Masakra",
+        "name_en": "Massacre",
+        "description_pl": "Zabij 35 dowolnych potworow",
+        "minLevel": 40,
+        "goal": { "type": "kill_any", "count": 35 },
+        "rewards": { "gold": 1500, "xp": 700 }
+    },
+    {
+        "id": "daily_kill_50",
+        "name_pl": "Rzez",
+        "name_en": "Slaughter",
+        "description_pl": "Zabij 50 dowolnych potworow",
+        "minLevel": 60,
+        "goal": { "type": "kill_any", "count": 50 },
+        "rewards": { "gold": 2500, "xp": 1200 }
+    },
+    {
+        "id": "daily_gold_500",
+        "name_pl": "Zbieracz",
+        "name_en": "Collector",
+        "description_pl": "Zdobadz 500 zlota z potworow",
+        "minLevel": 25,
+        "goal": { "type": "earn_gold", "count": 500 },
+        "rewards": { "gold": 300, "xp": 150 }
+    },
+    {
+        "id": "daily_gold_1500",
+        "name_pl": "Zbieracz Zlota",
+        "name_en": "Gold Collector",
+        "description_pl": "Zdobadz 1500 zlota z potworow",
+        "minLevel": 30,
+        "goal": { "type": "earn_gold", "count": 1500 },
+        "rewards": { "gold": 600, "xp": 300 }
+    },
+    {
+        "id": "daily_gold_3000",
+        "name_pl": "Bogacz",
+        "name_en": "Rich Man",
+        "description_pl": "Zdobadz 3000 zlota z potworow",
+        "minLevel": 50,
+        "goal": { "type": "earn_gold", "count": 3000 },
+        "rewards": { "gold": 1200, "xp": 600 }
+    },
+    {
+        "id": "daily_gold_8000",
+        "name_pl": "Skarb",
+        "name_en": "Treasure",
+        "description_pl": "Zdobadz 8000 zlota z potworow",
+        "minLevel": 80,
+        "goal": { "type": "earn_gold", "count": 8000 },
+        "rewards": { "gold": 3000, "xp": 1500 }
+    },
+    {
+        "id": "daily_dungeon_1",
+        "name_pl": "Eksploracja",
+        "name_en": "Exploration",
+        "description_pl": "Ukoncz 1 dungeon",
+        "minLevel": 25,
+        "goal": { "type": "complete_dungeon", "count": 1 },
+        "rewards": { "gold": 1000, "xp": 500 }
+    },
+    {
+        "id": "daily_dungeon_2",
+        "name_pl": "Spelunker",
+        "name_en": "Spelunker",
+        "description_pl": "Ukoncz 2 dungeony",
+        "minLevel": 40,
+        "goal": { "type": "complete_dungeon", "count": 2 },
+        "rewards": { "gold": 2000, "xp": 1000 }
+    },
+    {
+        "id": "daily_dungeon_3",
+        "name_pl": "Mistrz Podziemi",
+        "name_en": "Dungeon Master",
+        "description_pl": "Ukoncz 3 dungeony",
+        "minLevel": 60,
+        "goal": { "type": "complete_dungeon", "count": 3 },
+        "rewards": { "gold": 3500, "xp": 1800 }
+    },
+    {
+        "id": "daily_boss_1",
+        "name_pl": "Pogromca",
+        "name_en": "Slayer",
+        "description_pl": "Pokonaj 1 bossa",
+        "minLevel": 40,
+        "goal": { "type": "kill_boss", "count": 1 },
+        "rewards": { "gold": 1500, "xp": 800 }
+    },
+    {
+        "id": "daily_boss_2",
+        "name_pl": "Lowca Bossow",
+        "name_en": "Boss Hunter",
+        "description_pl": "Pokonaj 2 bossow",
+        "minLevel": 60,
+        "goal": { "type": "kill_boss", "count": 2 },
+        "rewards": { "gold": 3000, "xp": 1500 }
+    },
+    {
+        "id": "daily_potion_3",
+        "name_pl": "Alchemik",
+        "name_en": "Alchemist",
+        "description_pl": "Uzyj 3 potionow w walce",
+        "minLevel": 25,
+        "goal": { "type": "use_potion", "count": 3 },
+        "rewards": { "gold": 200, "xp": 100 }
+    },
+    {
+        "id": "daily_potion_8",
+        "name_pl": "Mistrz Mikstur",
+        "name_en": "Potion Master",
+        "description_pl": "Uzyj 8 potionow w walce",
+        "minLevel": 35,
+        "goal": { "type": "use_potion", "count": 8 },
+        "rewards": { "gold": 500, "xp": 250 }
+    },
+    {
+        "id": "daily_potion_15",
+        "name_pl": "Apotekarz",
+        "name_en": "Apothecary",
+        "description_pl": "Uzyj 15 potionow w walce",
+        "minLevel": 50,
+        "goal": { "type": "use_potion", "count": 15 },
+        "rewards": { "gold": 1000, "xp": 500 }
+    },
+    {
+        "id": "daily_damage_500",
+        "name_pl": "Pierwszy Cios",
+        "name_en": "First Strike",
+        "description_pl": "Zadaj lacznie 500 obrazen",
+        "minLevel": 25,
+        "goal": { "type": "deal_damage", "count": 500 },
+        "rewards": { "gold": 300, "xp": 150 }
+    },
+    {
+        "id": "daily_damage_2000",
+        "name_pl": "Niszczyciel",
+        "name_en": "Destroyer",
+        "description_pl": "Zadaj lacznie 2000 obrazen",
+        "minLevel": 35,
+        "goal": { "type": "deal_damage", "count": 2000 },
+        "rewards": { "gold": 700, "xp": 350 }
+    },
+    {
+        "id": "daily_damage_5000",
+        "name_pl": "Demolka",
+        "name_en": "Demolisher",
+        "description_pl": "Zadaj lacznie 5000 obrazen",
+        "minLevel": 50,
+        "goal": { "type": "deal_damage", "count": 5000 },
+        "rewards": { "gold": 1500, "xp": 750 }
+    },
+    {
+        "id": "daily_damage_15000",
+        "name_pl": "Zagrozenie",
+        "name_en": "Menace",
+        "description_pl": "Zadaj lacznie 15000 obrazen",
+        "minLevel": 80,
+        "goal": { "type": "deal_damage", "count": 15000 },
+        "rewards": { "gold": 3000, "xp": 1500 }
+    },
+    {
+        "id": "daily_elixir_hunt",
+        "name_pl": "Eliksirowy Lup",
+        "name_en": "Elixir Hunt",
+        "description_pl": "Zabij 15 potworow (nagroda: eliksir XP)",
+        "minLevel": 25,
+        "goal": { "type": "kill_any", "count": 15 },
+        "rewards": { "gold": 200, "xp": 100, "elixir": "xp_elixir" }
+    },
+    {
+        "id": "daily_skill_elixir",
+        "name_pl": "Trening Bojowy",
+        "name_en": "Combat Training",
+        "description_pl": "Zadaj 3000 obrazen (nagroda: eliksir Skill XP)",
+        "minLevel": 40,
+        "goal": { "type": "deal_damage", "count": 3000 },
+        "rewards": { "gold": 200, "xp": 100, "elixir": "skill_xp_elixir" }
+    },
+    {
+        "id": "daily_quick_fight",
+        "name_pl": "Szybka Walka",
+        "name_en": "Quick Fight",
+        "description_pl": "Uzyj 5 potionow i zabij 8 potworow",
+        "minLevel": 30,
+        "goal": { "type": "kill_any", "count": 8 },
+        "rewards": { "gold": 500, "xp": 250 }
+    },
+    {
+        "id": "daily_survivor",
+        "name_pl": "Przetrwanie",
+        "name_en": "Survivor",
+        "description_pl": "Zadaj 1000 obrazen i uzyj 5 potionow",
+        "minLevel": 30,
+        "goal": { "type": "deal_damage", "count": 1000 },
+        "rewards": { "gold": 400, "xp": 200 }
+    },
+    {
+        "id": "daily_treasure_hunter",
+        "name_pl": "Lowca Skarbow",
+        "name_en": "Treasure Hunter",
+        "description_pl": "Zdobadz 3000 golda z walk",
+        "minLevel": 35,
+        "goal": { "type": "earn_gold", "count": 3000 },
+        "rewards": { "gold": 1500, "xp": 800, "elixir": "xp_elixir" }
+    },
+    {
+        "id": "daily_devastator",
+        "name_pl": "Niszczyciel",
+        "name_en": "Devastator",
+        "description_pl": "Zadaj 10000 obrazen potworom",
+        "minLevel": 50,
+        "goal": { "type": "deal_damage", "count": 10000 },
+        "rewards": { "gold": 2500, "xp": 1500, "elixir": "skill_xp_elixir" }
+    }
+]

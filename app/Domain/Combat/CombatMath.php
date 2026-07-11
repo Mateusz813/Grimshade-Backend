@@ -1,0 +1,287 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Domain\Combat;
+
+/**
+ * Port czystych formuł walki z src/systems/combat.ts.
+ *
+ * WAŻNA różnica vs TS: `calculateDamage` NIE losuje crit/block/dodge. W TS jest
+ * `params.isCrit ?? Math.random() < critChance` — losowanie inline. Na serwerze
+ * losowość należy do orkiestratora (z wstrzykniętym RngInterface), a ta czysta
+ * matematyka bierze WYNIKI (flagi) jako wejście. Golden-vectory zawsze podają
+ * flagi jawnie, więc parytet matematyki jest dowiedziony dla jedynej ścieżki,
+ * której serwer używa.
+ *
+ * Odłożone (inne tier/zależności): rollMonsterDamage (RNG → Tier-2),
+ * resolveSkillRecastMs / REAL_COOLDOWN (zależą od skills.json).
+ */
+final class CombatMath
+{
+    /** @var array<string, array{hp:float, atk:float, def:float, xp:float, gold:float}> */
+    public const MONSTER_STAT_MULTIPLIERS = [
+        'normal' => ['hp' => 1.0, 'atk' => 1.0, 'def' => 1.0, 'xp' => 1.0, 'gold' => 1.0],
+        'strong' => ['hp' => 1.5, 'atk' => 1.2, 'def' => 1.3, 'xp' => 1.8, 'gold' => 2.0],
+        'epic' => ['hp' => 2.5, 'atk' => 1.6, 'def' => 1.5, 'xp' => 3.0, 'gold' => 4.0],
+        'legendary' => ['hp' => 5.0, 'atk' => 1.8, 'def' => 1.8, 'xp' => 5.0, 'gold' => 8.0],
+        'boss' => ['hp' => 10.0, 'atk' => 2.5, 'def' => 2.0, 'xp' => 10.0, 'gold' => 15.0],
+    ];
+
+    /** Koercja do skończonej liczby; fallback dla null/NaN/Inf (jak TS safeN). */
+    private static function safeN(int|float|null $v, float $fallback = 0.0): float
+    {
+        $n = $v ?? $fallback;
+        $n = (float) $n;
+
+        return is_finite($n) ? $n : $fallback;
+    }
+
+    /**
+     * @param  array<string, mixed>  $params
+     * @return array{damage:int, isCrit:bool, isBlocked:bool, isDodged:bool, finalDamage:int}
+     */
+    public static function calculateDamage(array $params): array
+    {
+        $baseAtk = self::safeN($params['baseAtk'] ?? null);
+        $weaponAtk = self::safeN($params['weaponAtk'] ?? null);
+        $skillBonus = self::safeN($params['skillBonus'] ?? null);
+        $classMod = self::safeN($params['classModifier'] ?? null, 1);
+        $enemyDef = self::safeN($params['enemyDefense'] ?? null);
+        $critDmgMult = self::safeN($params['critDmg'] ?? null, 2.0);
+
+        $baseDamage = ($baseAtk + $weaponAtk + $skillBonus) * $classMod;
+        $finalDamage = max(1, $baseDamage - $enemyDef);
+
+        $isDodged = (bool) ($params['isDodged'] ?? false);
+        if ($isDodged) {
+            return [
+                'damage' => (int) max(1, floor($baseDamage - $enemyDef)),
+                'isCrit' => false,
+                'isBlocked' => false,
+                'isDodged' => true,
+                'finalDamage' => 0,
+            ];
+        }
+
+        $isCrit = (bool) ($params['isCrit'] ?? false);
+        $isBlocked = (bool) ($params['isBlocked'] ?? false);
+
+        if ($isCrit) {
+            $finalDamage *= $critDmgMult;
+        }
+        if ($isBlocked) {
+            $finalDamage = floor($finalDamage * 0.5);
+        }
+
+        $dmgMult = self::safeN($params['damageMultiplier'] ?? null, 1);
+        if ($dmgMult !== 1.0) {
+            $finalDamage *= $dmgMult;
+        }
+
+        return [
+            'damage' => (int) max(1, floor($baseDamage - $enemyDef)),
+            'isCrit' => $isCrit,
+            'isBlocked' => $isBlocked,
+            'isDodged' => false,
+            'finalDamage' => (int) max(1, floor($finalDamage)),
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $params  ICombatParams + offHandAtk
+     * @return array{hit1:array, hit2:array, totalDamage:int}
+     */
+    public static function calculateDualWieldDamage(array $params): array
+    {
+        $hit1Params = $params;
+        $hit1Params['weaponAtk'] = floor(self::safeN($params['weaponAtk'] ?? null) * 0.6);
+
+        $hit2Params = $params;
+        $hit2Params['weaponAtk'] = floor(self::safeN($params['offHandAtk'] ?? null) * 0.6);
+
+        $hit1 = self::calculateDamage($hit1Params);
+        $hit2 = self::calculateDamage($hit2Params);
+
+        return [
+            'hit1' => $hit1,
+            'hit2' => $hit2,
+            'totalDamage' => $hit1['finalDamage'] + $hit2['finalDamage'],
+        ];
+    }
+
+    public static function calculateBlockChance(int|float $shieldingLevel, bool $isPhysicalAttack = true): float
+    {
+        if (! $isPhysicalAttack) {
+            return 0.0;
+        }
+
+        $base = 0.05;
+        $perLevel = 0.005;
+        $max = 0.25;
+
+        return min($max, $base + self::safeN($shieldingLevel) * $perLevel);
+    }
+
+    public static function calculateDodgeChance(string $characterClass, int|float $agilityLevel = 0, bool $isPhysicalAttack = true): float
+    {
+        if (! $isPhysicalAttack) {
+            return 0.0;
+        }
+
+        $classConfig = [
+            'Archer' => ['base' => 0.05, 'perLevel' => 0.004, 'max' => 0.20],
+            'Rogue' => ['base' => 0.05, 'perLevel' => 0.005, 'max' => 0.20],
+            'Bard' => ['base' => 0.05, 'perLevel' => 0.003, 'max' => 0.15],
+        ];
+
+        $config = $classConfig[$characterClass] ?? null;
+        if ($config === null) {
+            return 0.0;
+        }
+
+        return min($config['max'], $config['base'] + self::safeN($agilityLevel) * $config['perLevel']);
+    }
+
+    public static function calculateSkillDamageWithMlvl(int|float $baseSkillDmg, int|float $mlvl, int|float $enemyDefense, int|float $classModifier): int
+    {
+        $mlvlMultiplier = 1 + self::safeN($mlvl) * 0.02;
+        $raw = self::safeN($baseSkillDmg) * self::safeN($classModifier, 1) * $mlvlMultiplier;
+
+        return (int) max(1, floor($raw - self::safeN($enemyDefense)));
+    }
+
+    public static function calculateSkillDamage(int|float $baseAtk, int|float $skillMultiplier, int|float $enemyDefense, int|float $classModifier): int
+    {
+        $raw = self::safeN($baseAtk) * self::safeN($classModifier, 1) * self::safeN($skillMultiplier, 1);
+
+        return (int) max(1, floor($raw - self::safeN($enemyDefense)));
+    }
+
+    public static function calculateAttackInterval(int|float $attackSpeed): int
+    {
+        $baseInterval = 2000;
+
+        return (int) max(500, floor($baseInterval / max(1, self::safeN($attackSpeed, 1))));
+    }
+
+    /**
+     * @return array{newLevel:int, newXp:int, xpPercent:int, levelsLost:int, skillXpLoss:int}
+     */
+    public static function calculateDeathPenalty(int|float $currentLevel, int|float $currentXp, int|float $xpToNext, int|float $skillXp): array
+    {
+        $level = self::safeN($currentLevel, 1);
+
+        if ($level <= 1) {
+            return [
+                'newLevel' => 1,
+                'newXp' => (int) max(0, floor(self::safeN($currentXp) * 0.5)),
+                'xpPercent' => 50,
+                'levelsLost' => 0,
+                'skillXpLoss' => (int) floor(self::safeN($skillXp) * 0.01),
+            ];
+        }
+
+        if ($level <= 10) {
+            $levelsLost = 1;
+        } else {
+            $pct = 0.03 + $level * 0.00002;
+            $levelsLost = (int) max(1, floor($level * $pct));
+        }
+        $newLevel = (int) max(1, $level - $levelsLost);
+
+        if ($level <= 5) {
+            $xpPercent = 75;
+        } elseif ($level <= 20) {
+            $xpPercent = 50;
+        } elseif ($level <= 50) {
+            $xpPercent = 30;
+        } elseif ($level <= 100) {
+            $xpPercent = 15;
+        } elseif ($level <= 300) {
+            $xpPercent = 10;
+        } else {
+            $xpPercent = 5;
+        }
+
+        $newXp = (int) floor(self::safeN($xpToNext) * ($xpPercent / 100));
+
+        $skillLossPct = min(0.03, 0.01 + $level * 0.00002);
+        $skillLoss = (int) floor(self::safeN($skillXp) * $skillLossPct);
+
+        return [
+            'newLevel' => $newLevel,
+            'newXp' => $newXp,
+            'xpPercent' => $xpPercent,
+            'levelsLost' => (int) $levelsLost,
+            'skillXpLoss' => $skillLoss,
+        ];
+    }
+
+    /**
+     * Legacy. @return array{newXp:int, newSkillXp:int}
+     */
+    public static function applyDeathPenalty(int|float $currentXp, int|float $levelXp, int|float $skillXp): array
+    {
+        $xpLoss = floor(self::safeN($levelXp) * 0.1);
+        $skillXpLoss = floor(self::safeN($skillXp) * 0.05);
+
+        return [
+            'newXp' => (int) max(0, self::safeN($currentXp) - $xpLoss),
+            'newSkillXp' => (int) max(0, self::safeN($skillXp) - $skillXpLoss),
+        ];
+    }
+
+    /** x1→1, x2→2, x4→4, SKIP→INF (jak TS Infinity). */
+    public static function getSpeedMultiplier(string $speed): float
+    {
+        return match ($speed) {
+            'x1' => 1.0,
+            'x2' => 2.0,
+            'x4' => 4.0,
+            'SKIP' => INF,
+            default => 1.0,
+        };
+    }
+
+    /**
+     * @param  array{attack:int|float, attack_min?:int|float, attack_max?:int|float}  $monster
+     * @return array{min:int, max:int}
+     */
+    public static function getMonsterAttackRange(array $monster): array
+    {
+        $atk = self::safeN($monster['attack'] ?? null);
+        $min = (int) max(1, floor(self::safeN($monster['attack_min'] ?? null, floor($atk * 0.8))));
+        $max = (int) max($min, floor(self::safeN($monster['attack_max'] ?? null, floor($atk * 1.2))));
+
+        return ['min' => $min, 'max' => $max];
+    }
+
+    /**
+     * @param  array{hp:int|float, attack:int|float, attack_min?:int|float, attack_max?:int|float, defense:int|float, xp:int|float, gold:array{0:int|float,1:int|float}}  $baseStats
+     * @return array{hp:int, attack:int, attack_min:int, attack_max:int, defense:int, xp:int, goldMin:int, goldMax:int}
+     */
+    public static function applyMonsterRarity(array $baseStats, string $rarity): array
+    {
+        $mult = self::MONSTER_STAT_MULTIPLIERS[$rarity];
+        $atk = self::safeN($baseStats['attack'] ?? null);
+        $baseMin = self::safeN($baseStats['attack_min'] ?? null, floor($atk * 0.8));
+        $baseMax = self::safeN($baseStats['attack_max'] ?? null, floor($atk * 1.2));
+
+        return [
+            'hp' => (int) floor(self::safeN($baseStats['hp'] ?? null) * $mult['hp']),
+            'attack' => (int) floor($atk * $mult['atk']),
+            'attack_min' => (int) max(1, floor($baseMin * $mult['atk'])),
+            'attack_max' => (int) max(1, floor($baseMax * $mult['atk'])),
+            'defense' => (int) floor(self::safeN($baseStats['defense'] ?? null) * $mult['def']),
+            'xp' => (int) floor(self::safeN($baseStats['xp'] ?? null) * $mult['xp']),
+            'goldMin' => (int) floor(self::safeN($baseStats['gold'][0] ?? null) * $mult['gold']),
+            'goldMax' => (int) floor(self::safeN($baseStats['gold'][1] ?? null) * $mult['gold']),
+        ];
+    }
+
+    public static function getSpeedScaledCooldownMs(int|float $cooldownMs, int|float $speedMult): int
+    {
+        return (int) floor(max(0, $cooldownMs) / max(1, $speedMult));
+    }
+}

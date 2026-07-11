@@ -1,0 +1,732 @@
+{
+  "system": "guildSystem",
+  "note": "Generowane z src/systems/guildSystem.ts. System czysty (zero RNG). NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "constants": {
+    "initialMemberCap": 20,
+    "createCostGold": 1000000,
+    "bossMaxTier": 50,
+    "treasurySlots": 1000,
+    "bossHeroicMaxChance": 0.01,
+    "bossBlockPct": 0.1
+  },
+  "maxLevelIsInfinite": true,
+  "clampGuildBossTier": [
+    {
+      "tier": -5,
+      "value": 1
+    },
+    {
+      "tier": -0.5,
+      "value": 1
+    },
+    {
+      "tier": 0,
+      "value": 1
+    },
+    {
+      "tier": 0.5,
+      "value": 1
+    },
+    {
+      "tier": 1,
+      "value": 1
+    },
+    {
+      "tier": 1.9,
+      "value": 1
+    },
+    {
+      "tier": 2.5,
+      "value": 2
+    },
+    {
+      "tier": 3,
+      "value": 3
+    },
+    {
+      "tier": 25,
+      "value": 25
+    },
+    {
+      "tier": 49,
+      "value": 49
+    },
+    {
+      "tier": 49.9,
+      "value": 49
+    },
+    {
+      "tier": 50,
+      "value": 50
+    },
+    {
+      "tier": 50.9,
+      "value": 50
+    },
+    {
+      "tier": 51,
+      "value": 50
+    },
+    {
+      "tier": 100,
+      "value": 50
+    },
+    {
+      "tier": 1000,
+      "value": 50
+    }
+  ],
+  "getGuildBossMaxHp": [
+    {
+      "tier": -5,
+      "value": 2000000
+    },
+    {
+      "tier": 0,
+      "value": 2000000
+    },
+    {
+      "tier": 1,
+      "value": 2000000
+    },
+    {
+      "tier": 2,
+      "value": 2500000
+    },
+    {
+      "tier": 3,
+      "value": 3125000
+    },
+    {
+      "tier": 5,
+      "value": 4882812
+    },
+    {
+      "tier": 10,
+      "value": 14901161
+    },
+    {
+      "tier": 25,
+      "value": 423516473
+    },
+    {
+      "tier": 49,
+      "value": 89683101716
+    },
+    {
+      "tier": 50,
+      "value": 112103877145
+    }
+  ],
+  "guildXpToNextLevel": [
+    {
+      "level": -3,
+      "value": 0
+    },
+    {
+      "level": 0,
+      "value": 0
+    },
+    {
+      "level": 1,
+      "value": 2000000
+    },
+    {
+      "level": 2,
+      "value": 5000000
+    },
+    {
+      "level": 3,
+      "value": 9375000
+    },
+    {
+      "level": 5,
+      "value": 24414060
+    },
+    {
+      "level": 10,
+      "value": 149011610
+    },
+    {
+      "level": 25,
+      "value": 10587911825
+    },
+    {
+      "level": 49,
+      "value": 4394471984084
+    },
+    {
+      "level": 50,
+      "value": 5605193857250
+    },
+    {
+      "level": 51,
+      "value": 5717297734395
+    },
+    {
+      "level": 52,
+      "value": 5829401611540
+    },
+    {
+      "level": 100,
+      "value": 11210387714500
+    },
+    {
+      "level": 200,
+      "value": 22420775429000
+    },
+    {
+      "level": 500,
+      "value": 56051938572500
+    },
+    {
+      "level": 1000,
+      "value": 112103877145000
+    }
+  ],
+  "guildXpForLevel": [
+    {
+      "level": 1,
+      "value": 0
+    },
+    {
+      "level": 2,
+      "value": 2000000
+    },
+    {
+      "level": 3,
+      "value": 7000000
+    },
+    {
+      "level": 5,
+      "value": 32000000
+    },
+    {
+      "level": 10,
+      "value": 330023204
+    },
+    {
+      "level": 25,
+      "value": 33913317751
+    },
+    {
+      "level": 50,
+      "value": 20178729885666
+    },
+    {
+      "level": 51,
+      "value": 25783923742916
+    },
+    {
+      "level": 100,
+      "value": 437765672250791
+    },
+    {
+      "level": 150,
+      "value": 1135612307478416
+    },
+    {
+      "level": 200,
+      "value": 2113718635568541
+    },
+    {
+      "level": 300,
+      "value": 4910710370336291
+    },
+    {
+      "level": 400,
+      "value": 8828740876554041
+    }
+  ],
+  "guildMemberCap": [
+    {
+      "level": -5,
+      "value": 20
+    },
+    {
+      "level": 0,
+      "value": 20
+    },
+    {
+      "level": 1,
+      "value": 20
+    },
+    {
+      "level": 2,
+      "value": 21
+    },
+    {
+      "level": 3,
+      "value": 22
+    },
+    {
+      "level": 20,
+      "value": 39
+    },
+    {
+      "level": 50,
+      "value": 69
+    },
+    {
+      "level": 100,
+      "value": 119
+    },
+    {
+      "level": 1000,
+      "value": 1019
+    }
+  ],
+  "applyGuildXp": [
+    {
+      "level": 1,
+      "xp": 0,
+      "gain": 0,
+      "result": {
+        "level": 1,
+        "xp": 0,
+        "leveledUp": false
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gain": 2000000,
+      "result": {
+        "level": 2,
+        "xp": 0,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gain": 1999999,
+      "result": {
+        "level": 1,
+        "xp": 1999999,
+        "leveledUp": false
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gain": 7000000,
+      "result": {
+        "level": 3,
+        "xp": 0,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "gain": 10000000,
+      "result": {
+        "level": 3,
+        "xp": 3000000,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 2,
+      "xp": 0,
+      "gain": 5000000,
+      "result": {
+        "level": 3,
+        "xp": 0,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 5,
+      "xp": 0,
+      "gain": 24414060,
+      "result": {
+        "level": 6,
+        "xp": 0,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 10,
+      "xp": 100000000,
+      "gain": 200000000,
+      "result": {
+        "level": 11,
+        "xp": 150988390,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 0,
+      "xp": 0,
+      "gain": 0,
+      "result": {
+        "level": 1,
+        "xp": 0,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 50,
+      "xp": 0,
+      "gain": 5605193857250,
+      "result": {
+        "level": 51,
+        "xp": 0,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 1,
+      "xp": 500,
+      "gain": 0,
+      "result": {
+        "level": 1,
+        "xp": 500,
+        "leveledUp": false
+      }
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "gain": 22420775429000,
+      "result": {
+        "level": 101,
+        "xp": 11210387714500,
+        "leveledUp": true
+      }
+    },
+    {
+      "level": 5,
+      "xp": 100,
+      "gain": -999,
+      "result": {
+        "level": 5,
+        "xp": 100,
+        "leveledUp": false
+      }
+    },
+    {
+      "level": 3,
+      "xp": 1000000,
+      "gain": 50000000,
+      "result": {
+        "level": 6,
+        "xp": 1585940,
+        "leveledUp": true
+      }
+    }
+  ],
+  "computeGuildBossDamage": [
+    {
+      "attack": 0,
+      "level": 0,
+      "tier": 1,
+      "value": 1
+    },
+    {
+      "attack": 1,
+      "level": 1,
+      "tier": 1,
+      "value": 1
+    },
+    {
+      "attack": 50,
+      "level": 1,
+      "tier": 1,
+      "value": 50
+    },
+    {
+      "attack": 100,
+      "level": 50,
+      "tier": 1,
+      "value": 141
+    },
+    {
+      "attack": 500,
+      "level": 400,
+      "tier": 1,
+      "value": 2166
+    },
+    {
+      "attack": 500,
+      "level": 400,
+      "tier": 10,
+      "value": 3141
+    },
+    {
+      "attack": 500,
+      "level": 400,
+      "tier": 25,
+      "value": 4766
+    },
+    {
+      "attack": 500,
+      "level": 400,
+      "tier": 50,
+      "value": 7475
+    },
+    {
+      "attack": 1000000000,
+      "level": 1000,
+      "tier": 1,
+      "value": 100000
+    },
+    {
+      "attack": 0,
+      "level": 0,
+      "tier": 0,
+      "value": 1
+    },
+    {
+      "attack": 10,
+      "level": 10,
+      "tier": -5,
+      "value": 10
+    },
+    {
+      "attack": 200,
+      "level": 120,
+      "tier": 5,
+      "value": 480
+    },
+    {
+      "attack": 1,
+      "level": 1000,
+      "tier": 50,
+      "value": 32
+    },
+    {
+      "attack": -50,
+      "level": 100,
+      "tier": 3,
+      "value": 2
+    },
+    {
+      "attack": 123,
+      "level": 456,
+      "tier": 7,
+      "value": 767
+    }
+  ],
+  "contributionMultiplier": [
+    {
+      "damage": 0,
+      "bossMaxHp": 1000000,
+      "value": 0.1
+    },
+    {
+      "damage": 100000,
+      "bossMaxHp": 1000000,
+      "value": 0.29000000000000004
+    },
+    {
+      "damage": 250000,
+      "bossMaxHp": 1000000,
+      "value": 0.575
+    },
+    {
+      "damage": 500000,
+      "bossMaxHp": 1000000,
+      "value": 1.05
+    },
+    {
+      "damage": 1000000,
+      "bossMaxHp": 1000000,
+      "value": 2
+    },
+    {
+      "damage": 2000000,
+      "bossMaxHp": 1000000,
+      "value": 2
+    },
+    {
+      "damage": 0,
+      "bossMaxHp": 0,
+      "value": 0
+    },
+    {
+      "damage": 50,
+      "bossMaxHp": 0,
+      "value": 0
+    },
+    {
+      "damage": -100,
+      "bossMaxHp": 1000000,
+      "value": 0.09981000000000001
+    },
+    {
+      "damage": 15000000,
+      "bossMaxHp": 15000000,
+      "value": 2
+    },
+    {
+      "damage": 1,
+      "bossMaxHp": 112103877145,
+      "value": 0.10000000001694857
+    }
+  ],
+  "getCurrentWeekStartIso": [
+    {
+      "ms": 1783296000000,
+      "value": "2026-07-06"
+    },
+    {
+      "ms": 1783427400000,
+      "value": "2026-07-06"
+    },
+    {
+      "ms": 1783555140000,
+      "value": "2026-07-06"
+    },
+    {
+      "ms": 1783850400000,
+      "value": "2026-07-06"
+    },
+    {
+      "ms": 1783900860000,
+      "value": "2026-07-13"
+    },
+    {
+      "ms": 1767243600000,
+      "value": "2025-12-29"
+    },
+    {
+      "ms": 1709305200000,
+      "value": "2024-02-26"
+    },
+    {
+      "ms": 1772355600000,
+      "value": "2026-02-23"
+    },
+    {
+      "ms": 1798747200000,
+      "value": "2026-12-28"
+    },
+    {
+      "ms": 1766966400000,
+      "value": "2025-12-29"
+    },
+    {
+      "ms": 1709251140000,
+      "value": "2024-02-26"
+    },
+    {
+      "ms": 946857600000,
+      "value": "2000-01-03"
+    },
+    {
+      "ms": 1799042400000,
+      "value": "2027-01-04"
+    }
+  ],
+  "isGuildBossClaimDay": [
+    {
+      "ms": 1783296000000,
+      "value": false
+    },
+    {
+      "ms": 1783427400000,
+      "value": false
+    },
+    {
+      "ms": 1783555140000,
+      "value": false
+    },
+    {
+      "ms": 1783850400000,
+      "value": true
+    },
+    {
+      "ms": 1783900860000,
+      "value": false
+    },
+    {
+      "ms": 1767243600000,
+      "value": false
+    },
+    {
+      "ms": 1709305200000,
+      "value": false
+    },
+    {
+      "ms": 1772355600000,
+      "value": true
+    },
+    {
+      "ms": 1798747200000,
+      "value": false
+    },
+    {
+      "ms": 1766966400000,
+      "value": false
+    },
+    {
+      "ms": 1709251140000,
+      "value": false
+    },
+    {
+      "ms": 946857600000,
+      "value": false
+    },
+    {
+      "ms": 1799042400000,
+      "value": false
+    }
+  ],
+  "getTodayIso": [
+    {
+      "ms": 1783296000000,
+      "value": "2026-07-06"
+    },
+    {
+      "ms": 1783427400000,
+      "value": "2026-07-07"
+    },
+    {
+      "ms": 1783555140000,
+      "value": "2026-07-08"
+    },
+    {
+      "ms": 1783850400000,
+      "value": "2026-07-12"
+    },
+    {
+      "ms": 1783900860000,
+      "value": "2026-07-13"
+    },
+    {
+      "ms": 1767243600000,
+      "value": "2026-01-01"
+    },
+    {
+      "ms": 1709305200000,
+      "value": "2024-03-01"
+    },
+    {
+      "ms": 1772355600000,
+      "value": "2026-03-01"
+    },
+    {
+      "ms": 1798747200000,
+      "value": "2026-12-31"
+    },
+    {
+      "ms": 1766966400000,
+      "value": "2025-12-29"
+    },
+    {
+      "ms": 1709251140000,
+      "value": "2024-02-29"
+    },
+    {
+      "ms": 946857600000,
+      "value": "2000-01-03"
+    },
+    {
+      "ms": 1799042400000,
+      "value": "2027-01-04"
+    }
+  ]
+}

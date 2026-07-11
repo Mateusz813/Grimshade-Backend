@@ -1,0 +1,339 @@
+{
+  "system": "systemChatMessages",
+  "note": "Generowane z src/systems/systemChatMessages.ts. NIE edytuj ręcznie — regeneruj UPDATE_GOLDEN=1.",
+  "isUpgradeMilestone": [
+    {
+      "level": -5,
+      "value": false
+    },
+    {
+      "level": -1,
+      "value": false
+    },
+    {
+      "level": 0,
+      "value": false
+    },
+    {
+      "level": 1,
+      "value": false
+    },
+    {
+      "level": 4,
+      "value": false
+    },
+    {
+      "level": 5,
+      "value": true
+    },
+    {
+      "level": 6,
+      "value": false
+    },
+    {
+      "level": 7,
+      "value": true
+    },
+    {
+      "level": 8,
+      "value": false
+    },
+    {
+      "level": 9,
+      "value": false
+    },
+    {
+      "level": 10,
+      "value": true
+    },
+    {
+      "level": 11,
+      "value": true
+    },
+    {
+      "level": 12,
+      "value": true
+    },
+    {
+      "level": 50,
+      "value": true
+    },
+    {
+      "level": 100,
+      "value": true
+    },
+    {
+      "level": 1000,
+      "value": true
+    }
+  ],
+  "formatSystemMessage": [
+    {
+      "payload": {
+        "type": "upgrade",
+        "itemId": "luk",
+        "rarity": "common",
+        "upgradeLevel": 5,
+        "itemName": "Krótki Łuk"
+      },
+      "value": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"luk\",\"rarity\":\"common\",\"upgradeLevel\":5,\"itemName\":\"Krótki Łuk\"}"
+    },
+    {
+      "payload": {
+        "type": "upgrade",
+        "itemId": "wlocznia",
+        "rarity": "legendary",
+        "upgradeLevel": 7,
+        "itemName": "Włócznia Śmierci"
+      },
+      "value": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"wlocznia\",\"rarity\":\"legendary\",\"upgradeLevel\":7,\"itemName\":\"Włócznia Śmierci\"}"
+    },
+    {
+      "payload": {
+        "type": "upgrade",
+        "itemId": "miecz",
+        "rarity": "heroic",
+        "upgradeLevel": 30,
+        "itemName": "Miecz \"Zguba\""
+      },
+      "value": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"miecz\",\"rarity\":\"heroic\",\"upgradeLevel\":30,\"itemName\":\"Miecz \\\"Zguba\\\"\"}"
+    },
+    {
+      "payload": {
+        "type": "upgrade",
+        "itemId": "sciezka",
+        "rarity": "epic",
+        "upgradeLevel": 10,
+        "itemName": "Path\\To\\Ostrze"
+      },
+      "value": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"sciezka\",\"rarity\":\"epic\",\"upgradeLevel\":10,\"itemName\":\"Path\\\\To\\\\Ostrze\"}"
+    },
+    {
+      "payload": {
+        "type": "upgrade",
+        "itemId": "wielolinia",
+        "rarity": "rare",
+        "upgradeLevel": 11,
+        "itemName": "Linia\nDruga\tTab"
+      },
+      "value": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"wielolinia\",\"rarity\":\"rare\",\"upgradeLevel\":11,\"itemName\":\"Linia\\nDruga\\tTab\"}"
+    },
+    {
+      "payload": {
+        "type": "upgrade",
+        "itemId": "zero",
+        "rarity": "common",
+        "upgradeLevel": 0,
+        "itemName": "Kij"
+      },
+      "value": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"zero\",\"rarity\":\"common\",\"upgradeLevel\":0,\"itemName\":\"Kij\"}"
+    },
+    {
+      "payload": {
+        "type": "upgrade",
+        "itemId": "ujemny",
+        "rarity": "common",
+        "upgradeLevel": -3,
+        "itemName": "Złamany Kij"
+      },
+      "value": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"ujemny\",\"rarity\":\"common\",\"upgradeLevel\":-3,\"itemName\":\"Złamany Kij\"}"
+    },
+    {
+      "payload": {
+        "type": "skillUpgrade",
+        "skillId": "power_strike",
+        "skillName": "Potężny Cios",
+        "upgradeLevel": 10
+      },
+      "value": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"power_strike\",\"skillName\":\"Potężny Cios\",\"upgradeLevel\":10}"
+    },
+    {
+      "payload": {
+        "type": "skillUpgrade",
+        "skillId": "slash",
+        "skillName": "Cios/Ćma",
+        "upgradeLevel": 100
+      },
+      "value": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"slash\",\"skillName\":\"Cios/Ćma\",\"upgradeLevel\":100}"
+    },
+    {
+      "payload": {
+        "type": "skillUpgrade",
+        "skillId": "zero_skill",
+        "skillName": "Iskra",
+        "upgradeLevel": 0
+      },
+      "value": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"zero_skill\",\"skillName\":\"Iskra\",\"upgradeLevel\":0}"
+    },
+    {
+      "payload": {
+        "type": "skillUpgrade",
+        "skillId": "ognisty",
+        "skillName": "Płomień Zagłady",
+        "upgradeLevel": 777
+      },
+      "value": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"ognisty\",\"skillName\":\"Płomień Zagłady\",\"upgradeLevel\":777}"
+    }
+  ],
+  "parseSystemMessage": [
+    {
+      "content": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"luk\",\"rarity\":\"common\",\"upgradeLevel\":5,\"itemName\":\"Krótki Łuk\"}",
+      "value": {
+        "type": "upgrade",
+        "itemId": "luk",
+        "rarity": "common",
+        "upgradeLevel": 5,
+        "itemName": "Krótki Łuk"
+      }
+    },
+    {
+      "content": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"power_strike\",\"skillName\":\"Potężny Cios\",\"upgradeLevel\":10}",
+      "value": {
+        "type": "skillUpgrade",
+        "skillId": "power_strike",
+        "skillName": "Potężny Cios",
+        "upgradeLevel": 10
+      }
+    },
+    {
+      "content": "[SYS]{\"itemName\":\"Miecz\",\"upgradeLevel\":7,\"rarity\":\"rare\",\"itemId\":\"sword\",\"type\":\"upgrade\"}",
+      "value": {
+        "type": "upgrade",
+        "itemId": "sword",
+        "rarity": "rare",
+        "upgradeLevel": 7,
+        "itemName": "Miecz"
+      }
+    },
+    {
+      "content": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"fire\",\"skillName\":\"Ogień\",\"upgradeLevel\":12,\"extra\":\"x\",\"icon\":\"ikona\"}",
+      "value": {
+        "type": "skillUpgrade",
+        "skillId": "fire",
+        "skillName": "Ogień",
+        "upgradeLevel": 12
+      }
+    },
+    {
+      "content": "[SYS]  {\"type\":\"upgrade\",\"itemId\":\"a\",\"rarity\":\"b\",\"upgradeLevel\":1,\"itemName\":\"c\"}  ",
+      "value": {
+        "type": "upgrade",
+        "itemId": "a",
+        "rarity": "b",
+        "upgradeLevel": 1,
+        "itemName": "c"
+      }
+    },
+    {
+      "content": "[SYS]\n{\"type\":\"upgrade\",\"itemId\":\"a\",\"rarity\":\"b\",\"upgradeLevel\":1,\"itemName\":\"c\"}\n",
+      "value": {
+        "type": "upgrade",
+        "itemId": "a",
+        "rarity": "b",
+        "upgradeLevel": 1,
+        "itemName": "c"
+      }
+    },
+    {
+      "content": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"a\",\"rarity\":\"b\",\"upgradeLevel\":0,\"itemName\":\"c\"}",
+      "value": {
+        "type": "upgrade",
+        "itemId": "a",
+        "rarity": "b",
+        "upgradeLevel": 0,
+        "itemName": "c"
+      }
+    },
+    {
+      "content": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"a\",\"rarity\":\"b\",\"upgradeLevel\":-3,\"itemName\":\"c\"}",
+      "value": {
+        "type": "upgrade",
+        "itemId": "a",
+        "rarity": "b",
+        "upgradeLevel": -3,
+        "itemName": "c"
+      }
+    },
+    {
+      "content": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"s\",\"skillName\":\"Cios/Ćma\",\"upgradeLevel\":100}",
+      "value": {
+        "type": "skillUpgrade",
+        "skillId": "s",
+        "skillName": "Cios/Ćma",
+        "upgradeLevel": 100
+      }
+    },
+    {
+      "content": "zwykła wiadomość bez markera",
+      "value": null
+    },
+    {
+      "content": "",
+      "value": null
+    },
+    {
+      "content": "[SYS]",
+      "value": null
+    },
+    {
+      "content": "[SYS]   ",
+      "value": null
+    },
+    {
+      "content": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"a\"",
+      "value": null
+    },
+    {
+      "content": "[SYS]{nie-json}",
+      "value": null
+    },
+    {
+      "content": "[SYS]5",
+      "value": null
+    },
+    {
+      "content": "[SYS]\"hello\"",
+      "value": null
+    },
+    {
+      "content": "[SYS]null",
+      "value": null
+    },
+    {
+      "content": "[SYS]true",
+      "value": null
+    },
+    {
+      "content": "[SYS][1,2,3]",
+      "value": null
+    },
+    {
+      "content": "[SYS]{\"type\":\"foo\",\"itemId\":\"a\"}",
+      "value": null
+    },
+    {
+      "content": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"a\",\"rarity\":\"b\",\"upgradeLevel\":1}",
+      "value": null
+    },
+    {
+      "content": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"a\",\"rarity\":\"b\",\"upgradeLevel\":\"5\",\"itemName\":\"c\"}",
+      "value": null
+    },
+    {
+      "content": "[SYS]{\"type\":\"upgrade\",\"itemId\":\"a\",\"rarity\":\"b\",\"upgradeLevel\":true,\"itemName\":\"c\"}",
+      "value": null
+    },
+    {
+      "content": "[SYS]{\"type\":\"upgrade\",\"itemId\":5,\"rarity\":\"b\",\"upgradeLevel\":1,\"itemName\":\"c\"}",
+      "value": null
+    },
+    {
+      "content": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"a\",\"upgradeLevel\":5}",
+      "value": null
+    },
+    {
+      "content": "[SYS]{\"type\":\"skillUpgrade\",\"skillId\":\"a\",\"skillName\":\"b\"}",
+      "value": null
+    }
+  ]
+}

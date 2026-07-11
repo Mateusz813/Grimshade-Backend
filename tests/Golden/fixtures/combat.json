@@ -1,0 +1,676 @@
+{
+  "system": "combat",
+  "note": "Generowane z src/systems/combat.ts (czysty podzbiór). NIE edytuj ręcznie.",
+  "calculateDamage": [
+    {
+      "params": {
+        "baseAtk": 50,
+        "weaponAtk": 30,
+        "skillBonus": 0,
+        "classModifier": 1,
+        "enemyDefense": 20,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": false,
+        "critDmg": 2
+      },
+      "result": {
+        "damage": 60,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": false,
+        "finalDamage": 60
+      }
+    },
+    {
+      "params": {
+        "baseAtk": 50,
+        "weaponAtk": 30,
+        "skillBonus": 10,
+        "classModifier": 1,
+        "enemyDefense": 20,
+        "isCrit": true,
+        "isBlocked": false,
+        "isDodged": false,
+        "critDmg": 2
+      },
+      "result": {
+        "damage": 70,
+        "isCrit": true,
+        "isBlocked": false,
+        "isDodged": false,
+        "finalDamage": 140
+      }
+    },
+    {
+      "params": {
+        "baseAtk": 50,
+        "weaponAtk": 30,
+        "skillBonus": 0,
+        "classModifier": 1,
+        "enemyDefense": 20,
+        "isCrit": false,
+        "isBlocked": true,
+        "isDodged": false,
+        "critDmg": 2
+      },
+      "result": {
+        "damage": 60,
+        "isCrit": false,
+        "isBlocked": true,
+        "isDodged": false,
+        "finalDamage": 30
+      }
+    },
+    {
+      "params": {
+        "baseAtk": 50,
+        "weaponAtk": 30,
+        "skillBonus": 0,
+        "classModifier": 1,
+        "enemyDefense": 20,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": true,
+        "critDmg": 2
+      },
+      "result": {
+        "damage": 60,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": true,
+        "finalDamage": 0
+      }
+    },
+    {
+      "params": {
+        "baseAtk": 50,
+        "weaponAtk": 30,
+        "skillBonus": 0,
+        "classModifier": 1,
+        "enemyDefense": 20,
+        "isCrit": true,
+        "isBlocked": true,
+        "isDodged": false,
+        "critDmg": 2.5
+      },
+      "result": {
+        "damage": 60,
+        "isCrit": true,
+        "isBlocked": true,
+        "isDodged": false,
+        "finalDamage": 75
+      }
+    },
+    {
+      "params": {
+        "baseAtk": 10,
+        "weaponAtk": 5,
+        "skillBonus": 0,
+        "classModifier": 1,
+        "enemyDefense": 999,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": false,
+        "critDmg": 2
+      },
+      "result": {
+        "damage": 1,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": false,
+        "finalDamage": 1
+      }
+    },
+    {
+      "params": {
+        "baseAtk": 100,
+        "weaponAtk": 50,
+        "skillBonus": 25,
+        "classModifier": 1.3,
+        "enemyDefense": 40,
+        "isCrit": true,
+        "isBlocked": false,
+        "isDodged": false,
+        "critDmg": 2,
+        "damageMultiplier": 1.5
+      },
+      "result": {
+        "damage": 187,
+        "isCrit": true,
+        "isBlocked": false,
+        "isDodged": false,
+        "finalDamage": 562
+      }
+    },
+    {
+      "params": {
+        "baseAtk": 80,
+        "weaponAtk": 40,
+        "skillBonus": 0,
+        "classModifier": 1,
+        "enemyDefense": 10,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": false,
+        "critDmg": 2,
+        "damageMultiplier": 0.5
+      },
+      "result": {
+        "damage": 110,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": false,
+        "finalDamage": 55
+      }
+    }
+  ],
+  "calculateDualWieldDamage": [
+    {
+      "params": {
+        "baseAtk": 40,
+        "weaponAtk": 60,
+        "offHandAtk": 50,
+        "skillBonus": 0,
+        "classModifier": 1,
+        "enemyDefense": 15,
+        "isCrit": false,
+        "isBlocked": false,
+        "isDodged": false,
+        "critDmg": 2
+      },
+      "result": {
+        "hit1": {
+          "damage": 61,
+          "isCrit": false,
+          "isBlocked": false,
+          "isDodged": false,
+          "finalDamage": 61
+        },
+        "hit2": {
+          "damage": 55,
+          "isCrit": false,
+          "isBlocked": false,
+          "isDodged": false,
+          "finalDamage": 55
+        },
+        "totalDamage": 116
+      }
+    },
+    {
+      "params": {
+        "baseAtk": 40,
+        "weaponAtk": 60,
+        "offHandAtk": 50,
+        "skillBonus": 0,
+        "classModifier": 1,
+        "enemyDefense": 15,
+        "isCrit": true,
+        "isBlocked": false,
+        "isDodged": false,
+        "critDmg": 2
+      },
+      "result": {
+        "hit1": {
+          "damage": 61,
+          "isCrit": true,
+          "isBlocked": false,
+          "isDodged": false,
+          "finalDamage": 122
+        },
+        "hit2": {
+          "damage": 55,
+          "isCrit": true,
+          "isBlocked": false,
+          "isDodged": false,
+          "finalDamage": 110
+        },
+        "totalDamage": 232
+      }
+    }
+  ],
+  "calculateBlockChance": [
+    {
+      "lvl": 0,
+      "phys": true,
+      "value": 0.05
+    },
+    {
+      "lvl": 10,
+      "phys": true,
+      "value": 0.1
+    },
+    {
+      "lvl": 40,
+      "phys": true,
+      "value": 0.25
+    },
+    {
+      "lvl": 100,
+      "phys": true,
+      "value": 0.25
+    },
+    {
+      "lvl": 10,
+      "phys": false,
+      "value": 0
+    }
+  ],
+  "calculateDodgeChance": [
+    {
+      "cls": "Archer",
+      "agi": 0,
+      "phys": true,
+      "value": 0.05
+    },
+    {
+      "cls": "Archer",
+      "agi": 50,
+      "phys": true,
+      "value": 0.2
+    },
+    {
+      "cls": "Rogue",
+      "agi": 30,
+      "phys": true,
+      "value": 0.2
+    },
+    {
+      "cls": "Bard",
+      "agi": 40,
+      "phys": true,
+      "value": 0.15
+    },
+    {
+      "cls": "Knight",
+      "agi": 50,
+      "phys": true,
+      "value": 0
+    },
+    {
+      "cls": "Archer",
+      "agi": 10,
+      "phys": false,
+      "value": 0
+    }
+  ],
+  "calculateSkillDamageWithMlvl": [
+    {
+      "args": [
+        100,
+        50,
+        20,
+        1
+      ],
+      "value": 180
+    },
+    {
+      "args": [
+        100,
+        0,
+        20,
+        1.3
+      ],
+      "value": 110
+    },
+    {
+      "args": [
+        50,
+        25,
+        200,
+        1
+      ],
+      "value": 1
+    }
+  ],
+  "calculateSkillDamage": [
+    {
+      "args": [
+        80,
+        2.5,
+        20,
+        1
+      ],
+      "value": 180
+    },
+    {
+      "args": [
+        80,
+        1,
+        200,
+        1.3
+      ],
+      "value": 1
+    },
+    {
+      "args": [
+        50,
+        3,
+        10,
+        1
+      ],
+      "value": 140
+    }
+  ],
+  "calculateAttackInterval": [
+    {
+      "speed": 0.5,
+      "value": 2000
+    },
+    {
+      "speed": 1,
+      "value": 2000
+    },
+    {
+      "speed": 2,
+      "value": 1000
+    },
+    {
+      "speed": 3,
+      "value": 666
+    },
+    {
+      "speed": 4,
+      "value": 500
+    },
+    {
+      "speed": 8,
+      "value": 500
+    }
+  ],
+  "calculateDeathPenalty": [
+    {
+      "args": [
+        1,
+        1000,
+        300,
+        5000
+      ],
+      "result": {
+        "newLevel": 1,
+        "newXp": 500,
+        "xpPercent": 50,
+        "levelsLost": 0,
+        "skillXpLoss": 50
+      }
+    },
+    {
+      "args": [
+        5,
+        500,
+        3354,
+        2000
+      ],
+      "result": {
+        "newLevel": 4,
+        "newXp": 2515,
+        "xpPercent": 75,
+        "levelsLost": 1,
+        "skillXpLoss": 20
+      }
+    },
+    {
+      "args": [
+        20,
+        0,
+        50000,
+        10000
+      ],
+      "result": {
+        "newLevel": 19,
+        "newXp": 25000,
+        "xpPercent": 50,
+        "levelsLost": 1,
+        "skillXpLoss": 104
+      }
+    },
+    {
+      "args": [
+        50,
+        100,
+        106066,
+        20000
+      ],
+      "result": {
+        "newLevel": 49,
+        "newXp": 31819,
+        "xpPercent": 30,
+        "levelsLost": 1,
+        "skillXpLoss": 220
+      }
+    },
+    {
+      "args": [
+        100,
+        5000,
+        300000,
+        50000
+      ],
+      "result": {
+        "newLevel": 97,
+        "newXp": 45000,
+        "xpPercent": 15,
+        "levelsLost": 3,
+        "skillXpLoss": 600
+      }
+    },
+    {
+      "args": [
+        300,
+        0,
+        25000000,
+        100000
+      ],
+      "result": {
+        "newLevel": 290,
+        "newXp": 2500000,
+        "xpPercent": 10,
+        "levelsLost": 10,
+        "skillXpLoss": 1600
+      }
+    },
+    {
+      "args": [
+        1000,
+        0,
+        897150000,
+        500000
+      ],
+      "result": {
+        "newLevel": 950,
+        "newXp": 44857500,
+        "xpPercent": 5,
+        "levelsLost": 50,
+        "skillXpLoss": 15000
+      }
+    }
+  ],
+  "applyDeathPenalty": [
+    {
+      "args": [
+        1000,
+        5000,
+        20000
+      ],
+      "result": {
+        "newXp": 500,
+        "newSkillXp": 19000
+      }
+    },
+    {
+      "args": [
+        0,
+        300,
+        100
+      ],
+      "result": {
+        "newXp": 0,
+        "newSkillXp": 95
+      }
+    },
+    {
+      "args": [
+        500,
+        1000,
+        5000
+      ],
+      "result": {
+        "newXp": 400,
+        "newSkillXp": 4750
+      }
+    }
+  ],
+  "getSpeedMultiplier": [
+    {
+      "speed": "x1",
+      "value": 1
+    },
+    {
+      "speed": "x2",
+      "value": 2
+    },
+    {
+      "speed": "x4",
+      "value": 4
+    }
+  ],
+  "getMonsterAttackRange": [
+    {
+      "monster": {
+        "attack": 100
+      },
+      "result": {
+        "min": 80,
+        "max": 120
+      }
+    },
+    {
+      "monster": {
+        "attack": 100,
+        "attack_min": 90,
+        "attack_max": 130
+      },
+      "result": {
+        "min": 90,
+        "max": 130
+      }
+    },
+    {
+      "monster": {
+        "attack": 5
+      },
+      "result": {
+        "min": 4,
+        "max": 6
+      }
+    },
+    {
+      "monster": {
+        "attack": 0
+      },
+      "result": {
+        "min": 1,
+        "max": 1
+      }
+    }
+  ],
+  "applyMonsterRarity": [
+    {
+      "rarity": "normal",
+      "result": {
+        "hp": 200,
+        "attack": 50,
+        "attack_min": 40,
+        "attack_max": 60,
+        "defense": 20,
+        "xp": 100,
+        "goldMin": 10,
+        "goldMax": 40
+      }
+    },
+    {
+      "rarity": "strong",
+      "result": {
+        "hp": 300,
+        "attack": 60,
+        "attack_min": 48,
+        "attack_max": 72,
+        "defense": 26,
+        "xp": 180,
+        "goldMin": 20,
+        "goldMax": 80
+      }
+    },
+    {
+      "rarity": "epic",
+      "result": {
+        "hp": 500,
+        "attack": 80,
+        "attack_min": 64,
+        "attack_max": 96,
+        "defense": 30,
+        "xp": 300,
+        "goldMin": 40,
+        "goldMax": 160
+      }
+    },
+    {
+      "rarity": "legendary",
+      "result": {
+        "hp": 1000,
+        "attack": 90,
+        "attack_min": 72,
+        "attack_max": 108,
+        "defense": 36,
+        "xp": 500,
+        "goldMin": 80,
+        "goldMax": 320
+      }
+    },
+    {
+      "rarity": "boss",
+      "result": {
+        "hp": 2000,
+        "attack": 125,
+        "attack_min": 100,
+        "attack_max": 150,
+        "defense": 40,
+        "xp": 1000,
+        "goldMin": 150,
+        "goldMax": 600
+      }
+    }
+  ],
+  "getSpeedScaledCooldownMs": [
+    {
+      "cd": 5000,
+      "mult": 1,
+      "value": 5000
+    },
+    {
+      "cd": 5000,
+      "mult": 2,
+      "value": 2500
+    },
+    {
+      "cd": 5000,
+      "mult": 4,
+      "value": 1250
+    },
+    {
+      "cd": 8000,
+      "mult": 3,
+      "value": 2666
+    },
+    {
+      "cd": 0,
+      "mult": 2,
+      "value": 0
+    },
+    {
+      "cd": 5000,
+      "mult": 0.5,
+      "value": 5000
+    }
+  ]
+}
