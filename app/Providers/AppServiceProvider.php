@@ -8,6 +8,7 @@ use App\Domain\Content\ContentRepository;
 use App\Domain\Support\Rng\RngInterface;
 use App\Domain\Support\Rng\SecureRng;
 use App\Support\Auth\HmacSupabaseTokenVerifier;
+use App\Support\Auth\JwksSupabaseTokenVerifier;
 use App\Support\Auth\SupabaseTokenVerifier;
 use App\Support\Auth\SystemClock;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -32,12 +33,21 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(RngInterface::class, SecureRng::class);
 
         // Weryfikator JWT Supabase — wybierany po SUPABASE_JWT_DRIVER.
-        // 'jwks' (RS256/ES256) dojdzie później jako osobna implementacja.
+        //   'hmac' — legacy HS256 (współdzielony sekret).
+        //   'jwks' — asymetryczne ES256 przez JWKS (+ fallback HS256).
         $this->app->singleton(SupabaseTokenVerifier::class, function ($app): SupabaseTokenVerifier {
             $cfg = $app['config']->get('supabase.jwt');
 
             return match ($cfg['driver']) {
                 'hmac' => new HmacSupabaseTokenVerifier(
+                    secret: (string) $cfg['secret'],
+                    issuer: (string) $cfg['issuer'],
+                    audience: (string) $cfg['audience'],
+                    leewaySeconds: (int) $cfg['leeway'],
+                    clock: new SystemClock,
+                ),
+                'jwks' => new JwksSupabaseTokenVerifier(
+                    jwksUrl: (string) $cfg['jwks_url'],
                     secret: (string) $cfg['secret'],
                     issuer: (string) $cfg['issuer'],
                     audience: (string) $cfg['audience'],

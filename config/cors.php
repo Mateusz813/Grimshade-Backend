@@ -14,7 +14,6 @@ declare(strict_types=1);
  *   CORS_ALLOWED_ORIGINS=https://grimshade.vercel.app,https://grimshade.pl
  * Pusty = '*' (wygodne lokalnie; na produkcji ZAWĘŹ do swoich domen).
  */
-
 $origins = array_values(array_filter(array_map(
     'trim',
     explode(',', (string) env('CORS_ALLOWED_ORIGINS', '')),
