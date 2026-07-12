@@ -86,6 +86,12 @@ jobs:
           tags: |
             type=sha
             type=raw,value=latest
+      # Sterownik docker-container jest wymagany do eksportu cache typu gha.
+      # Bez tego build-push-action używa domyślnego sterownika `docker`, który
+      # NIE wspiera `cache-to: type=gha` → build failuje ("Cache export is not
+      # supported for the docker driver").
+      - name: Setup Buildx
+        uses: docker/setup-buildx-action@v3
       - name: Build & push
         uses: docker/build-push-action@v6
         with:
