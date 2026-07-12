@@ -10,8 +10,8 @@ use Tests\Support\TokenFactory;
 
 uses(RefreshDatabase::class);
 
-const MUN_USER_A = 'cccccccc-cccc-cccc-cccc-cccccccccccc'; // sprzedawca
-const MUN_USER_B = 'dddddddd-dddd-dddd-dddd-dddddddddddd'; // ktoś inny
+const MUN_USER_A = 'cccccccc-cccc-cccc-cccc-cccccccccccc';
+const MUN_USER_B = 'dddddddd-dddd-dddd-dddd-dddddddddddd';
 
 function munChar(string $userId, array $overrides = []): Character
 {
@@ -62,7 +62,6 @@ function munTokenB(): string
     return TokenFactory::forUser(MUN_USER_B);
 }
 
-// ---- PUT update listing -----------------------------------------------------
 
 it('updates price and quantity of my own listing', function () {
     $seller = munChar(MUN_USER_A);
@@ -118,9 +117,8 @@ it('rejects invalid quantity on update (422)', function () {
 it('cannot update someone else\'s listing (403)', function () {
     $seller = munChar(MUN_USER_A);
     $other = munChar(MUN_USER_B);
-    $listing = munListing($other, ['price' => 1000]); // należy do B
+    $listing = munListing($other, ['price' => 1000]);
 
-    // A jest właścicielem trasy (character = seller), ale listing należy do B → 403.
     $this->withToken(munTokenA())->putJson(
         "/api/v1/characters/{$seller->id}/market/listings/{$listing->id}",
         ['price' => 5, 'requestId' => 'upd-forbid'],
@@ -146,7 +144,6 @@ it('update is idempotent per requestId (replay returns cached, no re-apply)', fu
     $this->withToken(munTokenA())->putJson(
         "/api/v1/characters/{$seller->id}/market/listings/{$listing->id}", $body)->assertOk();
 
-    // Zmieniamy wiersz "za plecami" cache — replay musi zwrócić cache (300), nie 999.
     MarketListing::where('id', $listing->id)->update(['price' => 999]);
 
     $this->withToken(munTokenA())->putJson(
@@ -154,15 +151,14 @@ it('update is idempotent per requestId (replay returns cached, no re-apply)', fu
         ->assertOk()->assertJsonPath('listing.price', 300);
 });
 
-// ---- GET notifications ------------------------------------------------------
 
 it('lists my unseen sale notifications, newest first', function () {
     $seller = munChar(MUN_USER_A);
     $other = munChar(MUN_USER_B);
     munNote($seller, ['item_name' => 'Stary', 'sold_at' => now()->subHour()]);
     munNote($seller, ['item_name' => 'Nowy', 'sold_at' => now()]);
-    munNote($seller, ['item_name' => 'Odczytany', 'seen' => true]); // pominięte
-    munNote($other, ['item_name' => 'Cudze']); // inny sprzedawca
+    munNote($seller, ['item_name' => 'Odczytany', 'seen' => true]);
+    munNote($other, ['item_name' => 'Cudze']);
 
     $res = $this->withToken(munTokenA())->getJson("/api/v1/characters/{$seller->id}/market/notifications");
 
@@ -172,7 +168,6 @@ it('lists my unseen sale notifications, newest first', function () {
         ->and($res->json('notifications.0.goldReceived'))->toBe(950);
 });
 
-// ---- POST dismiss notification ----------------------------------------------
 
 it('dismisses my notification (marks it seen)', function () {
     $seller = munChar(MUN_USER_A);
@@ -186,7 +181,6 @@ it('dismisses my notification (marks it seen)', function () {
     $res->assertOk()->assertJsonPath('dismissed', $note->id);
     expect(MarketSaleNotification::find($note->id)->seen)->toBeTrue();
 
-    // Zniknęła z listy nieodczytanych.
     $this->withToken(munTokenA())->getJson("/api/v1/characters/{$seller->id}/market/notifications")
         ->assertOk()->assertJsonCount(0, 'notifications');
 });
@@ -194,7 +188,7 @@ it('dismisses my notification (marks it seen)', function () {
 it('cannot dismiss someone else\'s notification (403)', function () {
     $seller = munChar(MUN_USER_A);
     $other = munChar(MUN_USER_B);
-    $note = munNote($other); // należy do B
+    $note = munNote($other);
 
     $this->withToken(munTokenA())->postJson(
         "/api/v1/characters/{$seller->id}/market/notifications/{$note->id}/dismiss",
@@ -222,7 +216,6 @@ it('dismiss is idempotent per requestId (replay returns cached result)', functio
         "/api/v1/characters/{$seller->id}/market/notifications/{$note->id}/dismiss", $body)
         ->assertOk()->assertJsonPath('dismissed', $note->id);
 
-    // Usuwamy wiersz — replay nie może trafić do DB (byłoby 404), musi zwrócić cache.
     MarketSaleNotification::where('id', $note->id)->delete();
 
     $this->withToken(munTokenA())->postJson(
@@ -233,7 +226,6 @@ it('dismiss is idempotent per requestId (replay returns cached result)', functio
 it('blocks acting on another user\'s character for notifications (403)', function () {
     $seller = munChar(MUN_USER_A);
 
-    // Token B próbuje czytać notyfikacje postaci usera A.
     $this->withToken(munTokenB())->getJson("/api/v1/characters/{$seller->id}/market/notifications")
         ->assertForbidden();
 });

@@ -108,7 +108,6 @@ it('is idempotent: replaying requestId returns cached result with no double-appl
         'dps' => 6000, 'inParty' => false, 'requestId' => 'dup1',
     ])->assertOk()->json();
 
-    // Even a higher dps under the same requestId is ignored (cache hit).
     $second = $this->withToken(rkToken())->postJson("/api/v1/characters/{$c->id}/dps-record", [
         'dps' => 99999, 'inParty' => false, 'requestId' => 'dup1',
     ])->assertOk()->json();

@@ -7,14 +7,6 @@ use App\Domain\Content\ContentRepository;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET botSystem: PHP BotSystem == TS botSystem.ts. Czyste tabele statów
- * (golden bit-exact z classes.json) + funkcje RNG (ten sam seed mulberry32 co
- * TS → identyczna sekwencja → identyczny wynik). Staty klas i pierwsze skille
- * czytane z resources/game-content (to samo źródło co front src/data).
- *
- * toEqual (nie toBe) — JSON nie rozróżnia int/float (np. speed 2.0 == 2).
- */
 beforeEach(function () {
     $this->golden = Golden::load('botSystem.json');
     $content = new ContentRepository(dirname(__DIR__, 2).'/resources/game-content');

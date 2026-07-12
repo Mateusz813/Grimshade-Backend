@@ -12,7 +12,6 @@ uses(RefreshDatabase::class);
 const SHOP_USER = 'cccccccc-cccc-cccc-cccc-cccccccccccc';
 const SHOP_USER_B = 'dddddddd-dddd-dddd-dddd-dddddddddddd';
 
-/** Knight (deterministyczne id sklepu: sword/shield/heavy_*). */
 function shopChar(int $level = 100): Character
 {
     return Character::factory()->forUser(SHOP_USER)->create([
@@ -48,11 +47,10 @@ it('buys a shop weapon: spends gold and adds the generated item to bag', functio
     $res->assertOk()
         ->assertJson([
             'itemId' => 'shop_sword_100_common',
-            'totalPrice' => 3020,   // 30*100+20 = 3020, common ×1
-            'gold' => 1980,         // 5000 - 3020
+            'totalPrice' => 3020,
+            'gold' => 1980,
         ]);
 
-    // Wygenerowany item trafił do torby (itemId z ItemGenerator = sword_lvl100_common).
     expect($res->json('item.itemId'))->toBe('sword_lvl100_common')
         ->and($res->json('item.rarity'))->toBe('common')
         ->and($res->json('item.itemLevel'))->toBe(100);
@@ -65,22 +63,20 @@ it('buys a shop weapon: spends gold and adds the generated item to bag', functio
 
 it('rejects the buy with insufficient gold (422)', function () {
     $c = shopChar(100);
-    shopSave($c, 100); // sword kosztuje 3020
+    shopSave($c, 100);
 
     $this->withToken(shopToken())->postJson("/api/v1/characters/{$c->id}/shop/buy-item", [
         'itemId' => 'shop_sword_100_common', 'requestId' => 'buy-poor',
     ])->assertStatus(422);
 
-    // Nic nie zeszło i torba pusta.
     $inv = GameSave::where('character_id', $c->id)->first()->state['inventory'];
     expect($inv['gold'])->toBe(100)->and($inv['bag'])->toBe([]);
 });
 
 it('rejects buying above the character level (422 level gate)', function () {
-    $c = shopChar(5); // poziom 5
+    $c = shopChar(5);
     shopSave($c, 999999);
 
-    // id koduje poziom 100 (> 5) → level gate.
     $this->withToken(shopToken())->postJson("/api/v1/characters/{$c->id}/shop/buy-item", [
         'itemId' => 'shop_sword_100_common', 'requestId' => 'buy-lowlvl',
     ])->assertStatus(422);
@@ -93,12 +89,10 @@ it('returns 404 for an item id not in this character\'s shop', function () {
     $c = shopChar(100);
     shopSave($c, 999999);
 
-    // staff = broń Mage, nie występuje w katalogu Knighta.
     $this->withToken(shopToken())->postJson("/api/v1/characters/{$c->id}/shop/buy-item", [
         'itemId' => 'shop_staff_100_common', 'requestId' => 'buy-wrongclass',
     ])->assertStatus(404);
 
-    // Śmieciowe id → też 404.
     $this->withToken(shopToken())->postJson("/api/v1/characters/{$c->id}/shop/buy-item", [
         'itemId' => 'totally_bogus', 'requestId' => 'buy-bogus',
     ])->assertStatus(404);
@@ -126,11 +120,10 @@ it('replays the same requestId without buying twice (idempotency)', function () 
     ]);
     $second->assertOk();
 
-    // Identyczna odpowiedź (ten sam uuid itemu z cache), złoto zeszło TYLKO raz.
     expect($second->json())->toBe($first->json())
         ->and($second->json('gold'))->toBe(1980);
 
     $inv = GameSave::where('character_id', $c->id)->first()->state['inventory'];
-    expect($inv['gold'])->toBe(1980)          // 5000 - 3020 raz
-        ->and(count($inv['bag']))->toBe(1);   // dokładnie jeden item, nie dwa
+    expect($inv['gold'])->toBe(1980)
+        ->and(count($inv['bag']))->toBe(1);
 });

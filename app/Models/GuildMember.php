@@ -7,15 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Członek gildii (`guild_members`). Kształt: guildApi.ts (IGuildMemberRow) —
- * denormalizowany snapshot postaci (name/class/level/transform tier).
- *
- * @property string $id
- * @property string $guild_id
- * @property string $character_id
- * @property string $character_name
- */
 class GuildMember extends Model
 {
     use HasUuids;
@@ -26,7 +17,7 @@ class GuildMember extends Model
 
     protected $keyType = 'string';
 
-    public $timestamps = false; // tylko joined_at (ustawiamy jawnie)
+    public $timestamps = false;
 
     protected $fillable = [
         'guild_id', 'character_id', 'character_name', 'character_class',

@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Domain\Items\ItemEconomy;
 use Tests\Support\Golden;
 
-/** PARYTET itemSystem (podzbiór ekonomiczny): PHP ItemEconomy == TS itemSystem.ts. */
 beforeEach(function () {
     $this->golden = Golden::load('itemSystem.json');
 });

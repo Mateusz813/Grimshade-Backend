@@ -10,16 +10,8 @@ use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key\InMemory;
 
-/**
- * Mintuje tokeny HS256 pod testy feature, używając tego samego sekretu/iss/aud
- * co aplikacja (config('supabase.jwt') = wartości z phpunit.xml). Symuluje token
- * wystawiony przez Supabase GoTrue dla danego usera.
- */
 final class TokenFactory
 {
-    /**
-     * @param  array<string, mixed>  $overrides  np. ['exp' => ..., 'aud' => 'anon']
-     */
     public static function forUser(string $userId, array $overrides = []): string
     {
         $jwt = config('supabase.jwt');

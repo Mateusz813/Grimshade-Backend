@@ -18,21 +18,10 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Intent-endpointy itemów. Ceny/koszty/wynik liczy SERWER (ItemEconomy +
- * serwerowy RNG). Klient podaje tylko uuid itemu + requestId.
- *
- * Semantyka 1:1 z frontem (Inventory.tsx):
- *  - sell: gold = getSellPrice (baza + zwrot golda z ulepszeń) ORAZ zwrot
- *    kamieni z getEnhancementRefund; item znika z bag.
- *  - upgrade: koszt (gold+kamienie) schodzi ZAWSZE; sukces = roll < successRate;
- *    sukces → upgradeLevel+1 + licznik item_upgrades_done++.
- */
 final class ItemController extends Controller
 {
     public function sell(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemUuid' => ['required', 'string', 'max:128'],
@@ -51,7 +40,6 @@ final class ItemController extends Controller
                 abort(Response::HTTP_NOT_FOUND, 'Item nie istnieje w torbie.');
             }
 
-            // Generated itemy nie mają wpisu bazowego (basePrice) → ścieżka rarity+level.
             $price = ItemEconomy::getSellPrice($item, null);
             $refund = ItemEconomy::getEnhancementRefund($item['upgradeLevel'] ?? 0, $item['rarity']);
 
@@ -78,7 +66,6 @@ final class ItemController extends Controller
 
     public function upgrade(Request $request, CharacterStateService $state, RngInterface $rng): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemUuid' => ['required', 'string', 'max:128'],
@@ -100,7 +87,6 @@ final class ItemController extends Controller
             $currentLevel = (int) ($item['upgradeLevel'] ?? 0);
             $cost = ItemEconomy::getEnhancementCost($currentLevel + 1, $item['rarity']);
 
-            // Jak na froncie: koszty schodzą ZAWSZE (sukces czy porażka).
             $state->spendGold($save, (int) $cost['gold']);
             $state->useStones($save, $cost['stoneType'], (int) $cost['stones']);
 
@@ -109,7 +95,6 @@ final class ItemController extends Controller
                 $item['upgradeLevel'] = $currentLevel + 1;
                 $state->updateBagItem($save, $data['itemUuid'], $item);
 
-                // Licznik rankingowy — jak front bumpStat('item_upgrades_done').
                 $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
                 $fresh->item_upgrades_done = (int) $fresh->item_upgrades_done + 1;
                 $fresh->save();
@@ -130,14 +115,8 @@ final class ItemController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Rozłóż item na czynniki. Parytet: Inventory.tsx handleDisassemble —
-     * item ZAWSZE znika z torby; roll < 0.20 daje dokładnie 1 kamień typu
-     * getRequiredStoneType(rarity), w przeciwnym razie brak kamienia.
-     */
     public function disassemble(Request $request, CharacterStateService $state, RngInterface $rng): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemUuid' => ['required', 'string', 'max:128'],
@@ -159,7 +138,6 @@ final class ItemController extends Controller
             $stoneType = ItemEconomy::getRequiredStoneType($item['rarity']);
             $gotStone = $rng->nextFloat() < 0.20;
 
-            // Item konsumowany ZAWSZE (sukces i porażka rolla) — jak front.
             $state->removeBagItem($save, $data['itemUuid']);
             if ($gotStone) {
                 $state->addStones($save, $stoneType, 1);
@@ -179,15 +157,8 @@ final class ItemController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Masowy rozkład. Parytet: inventoryStore.ts disassembleMultiple — per item
-     * roll >= 0.20 pomija (brak kamienia), inaczej +1 kamień STONE_FOR_RARITY.
-     * Wszystkie wskazane itemy konsumowane; kamienie agregowane po typie.
-     * Kolejność rolli = kolejność w torbie (jak bag.filter w TS).
-     */
     public function disassembleMass(Request $request, CharacterStateService $state, RngInterface $rng): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemUuids' => ['required', 'array'],
@@ -212,7 +183,7 @@ final class ItemController extends Controller
                 }
                 $toRemove[] = $item['uuid'];
                 if ($rng->nextFloat() >= 0.20) {
-                    continue; // brak kamienia
+                    continue;
                 }
                 $stoneType = ItemEconomy::getRequiredStoneType($item['rarity']);
                 $stonesGained[$stoneType] = ($stonesGained[$stoneType] ?? 0) + 1;
@@ -238,16 +209,8 @@ final class ItemController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Przelosowanie bonusów itemu. Parytet: Inventory.tsx (REROLL_STONE_COST=2)
-     * + itemGenerator.ts rerollItemBonuses. Koszt = 2 kamienie STONE_FOR_RARITY.
-     * Warunki: rarity !== common, RARITY_BONUS_SLOTS[rarity] > 0, posiadane
-     * kamienie >= 2 (inaczej 422). Zachowuje bazowe staty slotu, resztę
-     * losuje od nowa.
-     */
     public function reroll(Request $request, CharacterStateService $state, ContentRepository $content, RngInterface $rng): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemUuid' => ['required', 'string', 'max:128'],
@@ -302,13 +265,8 @@ final class ItemController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Konwersja kamieni: 100 niższych + 1000 golda → 1 wyższy tier. Parytet:
-     * itemSystem.ts STONE_CONVERSION_CHAIN + inventoryStore.ts convertStones.
-     */
     public function convertStones(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'stoneType' => ['required', 'string', 'max:64'],

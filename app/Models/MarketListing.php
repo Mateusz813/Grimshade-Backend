@@ -7,20 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Aukcja gracz→gracz (`market_listings`). Kształt: src/api/v1/marketApi.ts.
- *
- * Wiersz JEST autorytatywnym escrow: przy wystawieniu item schodzi z bloba
- * game_saves i zostaje odwzorowany w snapshot tu; przy kupnie serwer atomowo
- * (lockForUpdate) dekrementuje/usuwa i transferuje kupującemu. Klient NIGDY
- * nie mutuje tej tabeli bezpośrednio — tylko przez intencje kontrolera.
- *
- * @property string $id
- * @property string $seller_id
- * @property string $kind
- * @property int $price
- * @property int $quantity
- */
 class MarketListing extends Model
 {
     use HasUuids;
@@ -31,7 +17,7 @@ class MarketListing extends Model
 
     protected $keyType = 'string';
 
-    public $timestamps = false; // tabela ma tylko listed_at (ustawiamy jawnie)
+    public $timestamps = false;
 
     protected $fillable = [
         'seller_id', 'seller_name', 'kind', 'item_id', 'item_name', 'item_level',

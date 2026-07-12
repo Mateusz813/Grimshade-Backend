@@ -5,12 +5,6 @@ declare(strict_types=1);
 use App\Domain\Guild\GuildSystem;
 use Tests\Support\Golden;
 
-/**
- * PARYTET guildSystem: PHP GuildSystem musi zwrócić DOKŁADNIE to, co TS
- * guildSystem.ts (fixture wygenerowany w grimshade repo, skopiowany tu).
- * System czysty (zero RNG) — bit-parity. toEqual (nie toBe) — JSON nie
- * rozróżnia int/float, więc porównanie luźne.
- */
 beforeEach(function () {
     $this->golden = Golden::load('guildSystem.json');
 });

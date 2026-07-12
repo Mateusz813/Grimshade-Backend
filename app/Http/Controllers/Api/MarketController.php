@@ -19,29 +19,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Aukcje gracz→gracz. SERWER liczy cały przepływ ekonomii (gold/escrow/transfer)
- * — klient wysyła tylko intencje. Prawdziwy gold = blob game_saves inventory.gold
- * (przez CharacterStateService), nigdy characters.gold ani kwoty z body.
- *
- * NAJWAŻNIEJSZE (zamyka duping): kupno bierze lock FOR UPDATE na wierszu aukcji,
- * sprawdza stock/not-self/gold, dekrementuje-lub-usuwa, transferuje item, kredytuje
- * sprzedawcę (netto po 5% podatku) + notyfikacja — wszystko w JEDNEJ transakcji.
- *
- * Semantyka 1:1 z frontem (marketApi.ts / Market.tsx / buy_market_listing RPC):
- *  - escrow przy wystawieniu: item schodzi z bloba ATOMOWO z insertem aukcji,
- *  - buyer płaci price×qty (brutto), seller dostaje price×qty − tax (netto),
- *  - liczniki rankingowe: buyer market_items_bought/market_gold_spent, seller
- *    market_items_sold/market_gold_earned.
- */
 final class MarketController extends Controller
 {
-    /** @var list<string> */
     private const KINDS = ['item', 'potion', 'elixir', 'stone', 'arena_points', 'spell_chest'];
 
-    // ---- Przeglądanie -------------------------------------------------------
 
-    /** GET /market/listings — aktywne aukcje z opcjonalnymi filtrami (DB-level). */
     public function index(Request $request): JsonResponse
     {
         $query = MarketListing::query()->where('quantity', '>', 0);
@@ -74,10 +56,8 @@ final class MarketController extends Controller
         );
     }
 
-    /** GET /characters/{character}/market/mine — aukcje danej postaci. */
     public function mine(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         return response()->json(
@@ -90,16 +70,9 @@ final class MarketController extends Controller
         );
     }
 
-    // ---- Wystawienie (escrow) ----------------------------------------------
 
-    /**
-     * POST /characters/{character}/market/listings — wystawia aukcję.
-     * Escrow: dobro schodzi z bloba game_saves ATOMOWO z insertem (item po uuid
-     * z bag; stacki z consumables/stones/arenaPoints). Idempotencja po requestId.
-     */
     public function store(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $data = $request->validate([
@@ -125,7 +98,6 @@ final class MarketController extends Controller
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Nieprawidłowa cena.');
         }
 
-        // Item = zawsze 1 sztuka; stacki = ilość z body.
         $qty = $data['kind'] === 'item' ? 1 : (int) $data['quantity'];
         if (! MarketMath::isValidQuantity($qty)) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Nieprawidłowa ilość.');
@@ -135,14 +107,12 @@ final class MarketController extends Controller
             $save = $state->lockedFor($character);
 
             if ($data['kind'] === 'item') {
-                // Anty-dupe: removeBagItem rzuca (→404), jeśli itemu nie ma.
                 $item = $state->findBagItem($save, $data['itemUuid']);
                 if ($item === null) {
                     abort(Response::HTTP_NOT_FOUND, 'Item nie istnieje w torbie.');
                 }
                 $state->removeBagItem($save, $data['itemUuid']);
 
-                // Snapshot z REALNEGO itemu (nie z body) — pola ekonomiczne/tożsamość.
                 $listing = MarketListing::create([
                     'seller_id' => $character->id,
                     'seller_name' => $character->name,
@@ -160,7 +130,6 @@ final class MarketController extends Controller
                     'listed_at' => now(),
                 ]);
             } else {
-                // Stacki: escrow schodzi z odpowiedniego stora (rzuca 422 gdy za mało).
                 $this->escrowStack($state, $save, $data['kind'], $data['itemId'], $qty);
 
                 $listing = MarketListing::create([
@@ -195,17 +164,9 @@ final class MarketController extends Controller
         return response()->json($payload, Response::HTTP_CREATED);
     }
 
-    // ---- Kupno (autorytatywne, anty-dupe) ----------------------------------
 
-    /**
-     * POST /characters/{character}/market/listings/{listing}/buy.
-     * SERWER: lock listing FOR UPDATE → stock/not-self/gold → dekrement/usunięcie
-     * → buyer.spendGold + item → seller gold(netto)+notyfikacja+liczniki. Wszystko
-     * w JEDNEJ transakcji. Idempotencja po requestId. NIC client-side.
-     */
     public function buy(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $listingId = (string) $request->route('listing');
 
@@ -225,7 +186,6 @@ final class MarketController extends Controller
         }
 
         $payload = DB::transaction(function () use ($state, $character, $listingId, $qty): array {
-            // Serializuje równoległych kupujących na tym samym wierszu (anty-dupe).
             $listing = MarketListing::query()->lockForUpdate()->find($listingId);
             if ($listing === null) {
                 abort(Response::HTTP_NOT_FOUND, 'Oferta już nie istnieje.');
@@ -241,13 +201,11 @@ final class MarketController extends Controller
             $tax = MarketMath::calculateMarketTax($total);
             $net = $total - $tax;
 
-            // Buyer: prawdziwy gold z bloba; spendGold rzuca 422 gdy za mało.
             $buyer = Character::query()->lockForUpdate()->findOrFail($character->id);
             $buyerSave = $state->lockedFor($buyer);
             $state->spendGold($buyerSave, $total);
             $this->creditBuyer($state, $buyerSave, $listing, $qty);
 
-            // Dekrement/usunięcie aukcji.
             $remaining = (int) $listing->quantity - $qty;
             if ($remaining > 0) {
                 $listing->quantity = $remaining;
@@ -256,13 +214,11 @@ final class MarketController extends Controller
                 $listing->delete();
             }
 
-            // Liczniki buyera + persist bloba PO wszystkich mutacjach serwisu.
             $buyer->market_items_bought = (int) $buyer->market_items_bought + $qty;
             $buyer->market_gold_spent = (int) $buyer->market_gold_spent + $total;
             $buyer->save();
             $state->persist($buyerSave);
 
-            // Seller: gold netto do JEGO bloba + liczniki (jeśli postać istnieje).
             $seller = Character::query()->lockForUpdate()->find($listing->seller_id);
             if ($seller !== null) {
                 $sellerSave = $state->lockedFor($seller);
@@ -274,7 +230,6 @@ final class MarketController extends Controller
                 $seller->save();
             }
 
-            // Notyfikacja sprzedawcy — gold_received = NETTO (faktyczny przychód).
             MarketSaleNotification::create([
                 'seller_id' => $listing->seller_id,
                 'item_id' => $listing->item_id,
@@ -304,16 +259,9 @@ final class MarketController extends Controller
         return response()->json($payload);
     }
 
-    // ---- Edycja własnej oferty ----------------------------------------------
 
-    /**
-     * PUT /characters/{character}/market/listings/{listing} — edycja price/quantity
-     * WŁASNEJ oferty (parity: marketApi.updateListing). Tylko sprzedawca (403/404),
-     * walidacja ceny/ilości SERWER-side (422). Aktualizuje wiersz market_listings.
-     */
     public function update(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $listingId = (string) $request->route('listing');
 
@@ -328,7 +276,6 @@ final class MarketController extends Controller
             return response()->json(Cache::get($cacheKey));
         }
 
-        // Walidacja SERWER-side — nigdy nie ufamy liczbom z body.
         if (array_key_exists('price', $data) && ! MarketMath::isValidPrice((int) $data['price'])) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Nieprawidłowa cena.');
         }
@@ -361,16 +308,9 @@ final class MarketController extends Controller
         return response()->json($payload);
     }
 
-    // ---- Notyfikacje sprzedaży ----------------------------------------------
 
-    /**
-     * GET /characters/{character}/market/notifications — nieodczytane notyfikacje
-     * sprzedaży tej postaci (parity: marketApi.getSaleNotifications — seen=false,
-     * najnowsze pierwsze).
-     */
     public function notifications(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         return response()->json([
@@ -384,14 +324,8 @@ final class MarketController extends Controller
         ]);
     }
 
-    /**
-     * POST /characters/{character}/market/notifications/{id}/dismiss — oznacza
-     * notyfikację jako odczytaną (parity: marketApi.dismissSaleNotification →
-     * seen=true). Tylko właściciel (403/404).
-     */
     public function dismissNotification(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $notificationId = (string) $request->route('id');
 
@@ -424,16 +358,9 @@ final class MarketController extends Controller
         return response()->json($payload);
     }
 
-    // ---- Wycofanie (zwrot escrow) ------------------------------------------
 
-    /**
-     * DELETE /characters/{character}/market/listings/{listing} — wycofuje aukcję
-     * i zwraca escrow (POZOSTAŁĄ ilość) do sprzedawcy. Idempotencja naturalna:
-     * po usunięciu drugi call → 404.
-     */
     public function destroy(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $listingId = (string) $request->route('listing');
 
@@ -462,9 +389,7 @@ final class MarketController extends Controller
         return response()->json($payload);
     }
 
-    // ---- Helpery ------------------------------------------------------------
 
-    /** Escrow stacka z odpowiedniego stora (rzuca InsufficientFundsException → 422). */
     private function escrowStack(CharacterStateService $state, GameSave $save, string $kind, string $itemId, int $qty): void
     {
         switch ($kind) {
@@ -486,10 +411,6 @@ final class MarketController extends Controller
         }
     }
 
-    /**
-     * Dopisuje dobro (item lub stack) do bloba odbiorcy — używane przez kupno
-     * (transfer do kupującego) ORAZ wycofanie (zwrot do sprzedawcy).
-     */
     private function creditBuyer(CharacterStateService $state, GameSave $save, MarketListing $listing, int $qty): void
     {
         switch ($listing->kind) {
@@ -520,7 +441,6 @@ final class MarketController extends Controller
         }
     }
 
-    /** Sortowanie ofert (odpowiednik marketSystem.sortListings — tu na DB). */
     private function applySort(Builder $query, string $sort): void
     {
         match ($sort) {
@@ -532,11 +452,6 @@ final class MarketController extends Controller
         };
     }
 
-    /**
-     * Kształt odpowiedzi 1:1 z IMarketListing (mapDbToListing na froncie).
-     *
-     * @return array<string, mixed>
-     */
     private function snapshot(MarketListing $l): array
     {
         return [
@@ -558,11 +473,6 @@ final class MarketController extends Controller
         ];
     }
 
-    /**
-     * Kształt odpowiedzi 1:1 z IMarketSaleNotification (mapDbToSale na froncie).
-     *
-     * @return array<string, mixed>
-     */
     private function saleSnapshot(MarketSaleNotification $n): array
     {
         return [

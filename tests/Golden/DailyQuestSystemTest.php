@@ -6,12 +6,6 @@ use App\Domain\Content\ContentRepository;
 use App\Domain\Progression\DailyQuestSystem;
 use Tests\Support\Golden;
 
-/**
- * PARYTET dailyQuestSystem: PHP DailyQuestSystem musi zwrocic DOKLADNIE to, co
- * TS dailyQuestSystem.ts (fixture generowany w grimshade repo, skopiowany tu).
- * selectDailyQuests czyta te sama tresc co front (resources/game-content).
- * toEqual (nie toBe) — JSON nie rozroznia int/float.
- */
 beforeEach(function () {
     $this->golden = Golden::load('dailyQuestSystem.json');
     $content = new ContentRepository(dirname(__DIR__, 2).'/resources/game-content');

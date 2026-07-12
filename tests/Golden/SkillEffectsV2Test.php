@@ -6,20 +6,10 @@ use App\Domain\Skills\SkillEffectsV2;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET skillEffectsV2: PHP SkillEffectsV2 musi zwrócić DOKŁADNIE to, co TS
- * skillEffectsV2.ts (fixture wygenerowany w grimshade repo, skopiowany tu).
- *
- * Funkcje mutujące stan: odtwarzamy `before`, wołamy funkcję (stan przez
- * referencję) i asertujemy `result` ORAZ zmutowany stan == `after`.
- * Funkcje RNG: ten sam seed (mulberry32) → identyczna sekwencja → identyczny
- * wynik. toEqual (nie toBe) — JSON nie rozróżnia int/float, porównanie luźne.
- */
 beforeEach(function () {
     $this->golden = Golden::load('skillEffectsV2.json');
 });
 
-// -- Czyste (deterministyczne) ----------------------------------------------
 
 it('matches newStatusState', function () {
     expect(SkillEffectsV2::newStatusState())->toEqual($this->golden['newStatusState']);
@@ -84,7 +74,6 @@ it('matches applyIncomingHeal', function () {
     }
 });
 
-// -- Mutujące stan ----------------------------------------------------------
 
 it('matches tickStatus (mutuje stan)', function () {
     foreach ($this->golden['tickStatus'] as $i => $case) {
@@ -104,7 +93,6 @@ it('matches consumeTargetMarkAmp (mutuje stan)', function () {
     }
 });
 
-// -- Mutujące stan + RNG ----------------------------------------------------
 
 it('matches consumeCasterBasicHitMods (mutuje stan + RNG crit_next ułamkowy)', function () {
     foreach ($this->golden['consumeCasterBasicHitMods'] as $i => $case) {

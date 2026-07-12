@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\Market;
 
-/**
- * Port czystego podzbioru src/systems/marketSystem.ts: walidacja ceny/ilości,
- * podatek marketowy, typy stackowalne. (generateListingId — Date/rand; sort/
- * filter — UI — pominięte.)
- */
 final class MarketMath
 {
     public static function isValidPrice(int|float $price): bool
@@ -21,7 +16,6 @@ final class MarketMath
         return self::isInteger($qty) && $qty >= 1 && $qty <= $max;
     }
 
-    /** 5% ceny, podłoga. */
     public static function calculateMarketTax(int|float $price): int
     {
         return (int) floor($price * 0.05);
@@ -32,7 +26,6 @@ final class MarketMath
         return in_array($kind, ['potion', 'elixir', 'stone', 'arena_points', 'spell_chest'], true);
     }
 
-    /** Odpowiednik Number.isInteger — wartość całkowita i skończona. */
     private static function isInteger(int|float $n): bool
     {
         if (is_int($n)) {

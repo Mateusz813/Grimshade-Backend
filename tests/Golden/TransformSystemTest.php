@@ -7,11 +7,6 @@ use App\Domain\Transform\TransformBonuses;
 use App\Domain\Transform\TransformSystem;
 use Tests\Support\Golden;
 
-/**
- * PARYTET transformSystem + transformBonuses: PHP == TS na tej samej treści
- * (transforms.json / monsters.json z resources/game-content). Metody czyste,
- * treściowe oraz stateful-gettery (store → jawny stan) odtwarzane bajt-w-bajt.
- */
 beforeEach(function () {
     $this->golden = Golden::load('transformSystem.json');
     $content = new ContentRepository(dirname(__DIR__, 2).'/resources/game-content');

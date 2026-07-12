@@ -4,33 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domain\Transform;
 
-/**
- * Port src/systems/transformSystem.ts. Logika progresji transformacji: skalowanie
- * potworów questowych, nagrody, kumulatywne bonusy klasowe, kolejność transformacji.
- *
- * PARYTET: golden-vectory w tests/Golden/fixtures/transformSystem.json (generowane
- * z TS) odtwarzane tu bajt-w-bajt (TransformSystemTest). Metody czyste są static;
- * metody czytające treść gry (transforms.json / monsters.json) są instancyjne —
- * konstruktor bierze te same tablice co front (z ContentRepository).
- *
- * ŚWIADOMIE POMINIĘTE (UI / RNG / inny system — patrz golden test docblock):
- *  - getTransformColor: kolory/CSS wyświetlania (UI),
- *  - getTransformWaveLineup: buduje spriteImageUrl przez getMonsterImage (assety
- *    UI); jego rdzeń liczbowy (skalowanie escortów) pokrywa applyTransformTierStats
- *    + scaleMonsterStats,
- *  - weapon w calculateTransformRewards: generateWeapon = RNG z systemu
- *    itemGenerator (poza zakresem tego systemu). Portujemy część deterministyczną:
- *    calculateTransformRewardsDeterministic (consumables + permanentBonuses).
- *
- * SPELL_CHEST_LEVELS to stała kodu z src/systems/skillSystem.ts (nie treść gry) —
- * trzymana tu jako const z odwołaniem do źródła.
- */
 final class TransformSystem
 {
-    /** Mnożnik BOSS dla potwora questu transformacji (slot 3 fali). */
     public const TRANSFORM_BOSS_MULTIPLIER = ['hp' => 5.0, 'atk' => 3.0, 'def' => 3.0];
 
-    /** @var array<string, array{hp:float, atk:float, def:float}> mnożniki per slot fali */
     public const TRANSFORM_TIER_MULTIPLIERS = [
         'Normal' => ['hp' => 1.0, 'atk' => 1.0, 'def' => 1.0],
         'Strong' => ['hp' => 2.0, 'atk' => 1.5, 'def' => 1.3],
@@ -38,30 +15,16 @@ final class TransformSystem
         'Boss' => ['hp' => 5.0, 'atk' => 3.0, 'def' => 3.0],
     ];
 
-    /** @var list<string> slot index → tier */
     public const TRANSFORM_SLOT_TIERS = ['Normal', 'Strong', 'Epic', 'Boss'];
 
-    /**
-     * Poziomy istniejących spell chestów (z src/systems/skillSystem.ts). Nagroda
-     * spellChestLevel jest „snapowana" w górę do najbliższego istniejącego poziomu.
-     *
-     * @var list<int>
-     */
     public const SPELL_CHEST_LEVELS = [5, 10, 20, 30, 40, 50, 60, 70, 80, 100, 150, 300, 600, 800, 1000];
 
-    /** @var array<string, int|float> wszystkie 14 pól zerowe */
     private const EMPTY_BONUSES = [
         'hpPercent' => 0, 'mpPercent' => 0, 'defPercent' => 0, 'dmgPercent' => 0,
         'atkPercent' => 0, 'flatHp' => 0, 'flatMp' => 0, 'attack' => 0, 'defense' => 0,
         'hpRegen' => 0, 'mpRegen' => 0, 'hpRegenFlat' => 0, 'mpRegenFlat' => 0, 'classSkillBonus' => 0,
     ];
 
-    /**
-     * Bazowe (tier 1) bonusy per klasa. Późniejsze transformacje skalują pola flat
-     * przez getTransformTierMultiplier. Kopia 1:1 CLASS_TRANSFORM_BONUSES z TS.
-     *
-     * @var array<string, array<string, int|float>>
-     */
     private const CLASS_TRANSFORM_BONUSES = [
         'Mage' => [
             'dmgPercent' => 8, 'hpPercent' => 2, 'mpPercent' => 3, 'defPercent' => 1, 'atkPercent' => 0,
@@ -100,34 +63,22 @@ final class TransformSystem
         ],
     ];
 
-    /** @var list<array<string, mixed>> transforms.json */
     private array $transforms;
 
-    /** @var list<array<string, mixed>> monsters.json, posortowane rosnąco po poziomie */
     private array $sortedMonsters;
 
-    /** @var array<int, list<array<string, mixed>>> cache wygenerowanych potworów per transform */
     private array $monsterCache = [];
 
-    /**
-     * @param  list<array<string, mixed>>  $transforms  pełna lista z transforms.json
-     * @param  list<array<string, mixed>>  $monsters  pełna lista z monsters.json
-     */
     public function __construct(array $transforms, array $monsters)
     {
         $this->transforms = array_values($transforms);
 
         $sorted = array_values($monsters);
-        // Stabilny sort (PHP 8+) — tie na level zachowuje kolejność z pliku, jak JS.
         usort($sorted, static fn (array $a, array $b): int => $a['level'] <=> $b['level']);
         $this->sortedMonsters = $sorted;
     }
 
-    // -- Pure (bez treści) -----------------------------------------------------
 
-    /**
-     * Mnożnik tieru dla danego id transformacji. T1 → 1.0, T6 → 2.5, T11 → 4.0.
-     */
     public static function getTransformTierMultiplier(int $transformId): float
     {
         if ($transformId < 1) {
@@ -137,11 +88,6 @@ final class TransformSystem
         return 1 + ($transformId - 1) * 0.3;
     }
 
-    /**
-     * Bonusy per klasa; z transformId pola flat skalowane przez tier. Bez id → baza.
-     *
-     * @return array<string, int|float>
-     */
     public static function getClassTransformBonuses(string $characterClass, ?int $transformId = null): array
     {
         $base = self::CLASS_TRANSFORM_BONUSES[$characterClass];
@@ -161,14 +107,8 @@ final class TransformSystem
         ]);
     }
 
-    /**
-     * Skalowanie statystyk potwora (BAZA, przed mnożnikiem boss). Formuły z CLAUDE.md.
-     *
-     * @return array{hp:int, attack:int, attack_min:int, attack_max:int, defense:int, xp:int}
-     */
     public static function scaleMonsterStats(int|float $level): array
     {
-        // CAPSTONE: finalny transform (T11, poziomy 901-1000) dostaje ×3.5 HP.
         $capstone = $level >= 901 ? 3.5 : 1;
         $hp = (int) floor((95 * ($level ** 1.1) + 30) * $capstone);
         $dmgBase = 8 + $level * 1.0;
@@ -188,33 +128,16 @@ final class TransformSystem
         ];
     }
 
-    /**
-     * Aplikuje mnożniki BOSS na potwora. Zwraca kopię ze skalowanymi statystykami.
-     *
-     * @param  array<string, mixed>  $monster
-     * @return array<string, mixed>
-     */
     public static function applyTransformBossStats(array $monster): array
     {
         return self::applyMultiplier($monster, self::TRANSFORM_BOSS_MULTIPLIER);
     }
 
-    /**
-     * Aplikuje mnożnik tieru (Normal/Strong/Epic/Boss) na bazowego potwora.
-     *
-     * @param  array<string, mixed>  $monster
-     * @return array<string, mixed>
-     */
     public static function applyTransformTierStats(array $monster, string $tier): array
     {
         return self::applyMultiplier($monster, self::TRANSFORM_TIER_MULTIPLIERS[$tier]);
     }
 
-    /**
-     * @param  array<string, mixed>  $monster
-     * @param  array{hp:float, atk:float, def:float}  $mult
-     * @return array<string, mixed>
-     */
     private static function applyMultiplier(array $monster, array $mult): array
     {
         $atkMin = $monster['attack_min'] ?? (int) floor($monster['attack'] * 0.8);
@@ -229,11 +152,6 @@ final class TransformSystem
         return $monster;
     }
 
-    /**
-     * Slot pierwszego żywego escorta (0-2), albo 3 (boss) gdy wszystkie escorty padły.
-     *
-     * @param  list<array{currentHp:int|float}|null>  $escorts
-     */
     public static function resolveActiveOpponentSlot(array $escorts): int
     {
         for ($s = 0; $s < 3; $s++) {
@@ -246,11 +164,6 @@ final class TransformSystem
         return 3;
     }
 
-    /**
-     * Najwyższy numer ukończonej transformacji (0 gdy brak).
-     *
-     * @param  list<int>  $completedTransformIds
-     */
     public static function getHighestCompletedTransform(array $completedTransformIds): int
     {
         if (count($completedTransformIds) === 0) {
@@ -260,19 +173,12 @@ final class TransformSystem
         return (int) max($completedTransformIds);
     }
 
-    // -- Treść (transforms/monsters.json) --------------------------------------
 
-    /**
-     * @return list<array<string, mixed>>
-     */
     public function getAllTransforms(): array
     {
         return $this->transforms;
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public function getTransformById(int $transformId): ?array
     {
         foreach ($this->transforms as $t) {
@@ -284,11 +190,6 @@ final class TransformSystem
         return null;
     }
 
-    /**
-     * Najbliższy potwór na/poniżej poziomu; fallback do najniższego.
-     *
-     * @return array<string, mixed>
-     */
     public function findClosestMonster(int|float $level): array
     {
         $best = $this->sortedMonsters[0];
@@ -303,11 +204,6 @@ final class TransformSystem
         return $best;
     }
 
-    /**
-     * Generuje potwora boss questu transformacji dla danego poziomu.
-     *
-     * @return array<string, mixed>
-     */
     public function generateTransformBossMonster(int $level): array
     {
         $template = $this->findClosestMonster($level);
@@ -331,11 +227,6 @@ final class TransformSystem
         ];
     }
 
-    /**
-     * Lista potworów do pokonania dla transformacji (jeden boss na każdy poziom zakresu).
-     *
-     * @return list<array<string, mixed>>
-     */
     public function getTransformMonsters(int $transformId): array
     {
         $transform = $this->getTransformById($transformId);
@@ -356,10 +247,6 @@ final class TransformSystem
         return $this->monsterCache[$transformId] = $monsters;
     }
 
-    /**
-     * Liczba potworów wymaganych dla transformacji. Deterministycznie = długość
-     * zakresu (max-min+1); 0 dla nieistniejącego id — jak długość listy z TS.
-     */
     public function getTransformMonsterCount(int $transformId): int
     {
         $transform = $this->getTransformById($transformId);
@@ -372,11 +259,6 @@ final class TransformSystem
         return $maxLvl - $minLvl + 1;
     }
 
-    /**
-     * Bonusy per transform: EMPTY gdy id nieistnieje lub brak klasy; inaczej klasowe.
-     *
-     * @return array<string, int|float>
-     */
     public function getTransformBonuses(int $transformId, ?string $characterClass = null): array
     {
         if ($this->getTransformById($transformId) === null) {
@@ -389,12 +271,6 @@ final class TransformSystem
         return self::getClassTransformBonuses($characterClass, $transformId);
     }
 
-    /**
-     * Kumulatywne bonusy ze wszystkich ukończonych transformacji dla klasy.
-     *
-     * @param  list<int>  $completedTransformIds
-     * @return array<string, int|float>
-     */
     public function getCumulativeTransformBonuses(array $completedTransformIds, ?string $characterClass = null): array
     {
         $result = self::EMPTY_BONUSES;
@@ -415,9 +291,6 @@ final class TransformSystem
         return $result;
     }
 
-    /**
-     * Czy poziom postaci wystarcza do transformacji.
-     */
     public function isLevelSufficient(int $characterLevel, int $transformId): bool
     {
         $transform = $this->getTransformById($transformId);
@@ -428,12 +301,6 @@ final class TransformSystem
         return $characterLevel >= $transform['level'];
     }
 
-    /**
-     * Następna dostępna transformacja (kolejność wymuszona) albo null.
-     *
-     * @param  list<int>  $completedTransformIds
-     * @return array<string, mixed>|null
-     */
     public function getNextAvailableTransform(array $completedTransformIds, int $characterLevel): ?array
     {
         foreach ($this->transforms as $transform) {
@@ -449,11 +316,6 @@ final class TransformSystem
         return null;
     }
 
-    /**
-     * Nazwa pliku avatara na bazie klasy + najwyższej ukończonej transformacji.
-     *
-     * @param  list<int>  $completedTransformIds
-     */
     public function getActiveAvatar(string $characterClass, array $completedTransformIds): ?string
     {
         $highest = self::getHighestCompletedTransform($completedTransformIds);
@@ -469,12 +331,6 @@ final class TransformSystem
         return strtolower($characterClass).$transform['avatarSuffix'].'.png';
     }
 
-    /**
-     * Deterministyczna część nagród transformacji: consumables + permanentBonuses.
-     * Broń (generateWeapon = RNG, itemGenerator) świadomie pominięta — poza zakresem.
-     *
-     * @return array{consumables:list<array{id:string, count:int}>, permanentBonuses:array<string, int|float>}
-     */
     public function calculateTransformRewardsDeterministic(int $transformId, string $characterClass): array
     {
         $transform = $this->getTransformById($transformId);
@@ -495,7 +351,6 @@ final class TransformSystem
             $consumables[] = ['id' => $r['mpPotionId'], 'count' => $r['mpPotionCount']];
         }
         if ($r['spellChestCount'] > 0) {
-            // Snap UP do najbliższego istniejącego poziomu spell chestu; brak → pomiń.
             $chestLevel = null;
             foreach (self::SPELL_CHEST_LEVELS as $l) {
                 if ($l >= $r['spellChestLevel']) {
@@ -517,7 +372,6 @@ final class TransformSystem
         ];
     }
 
-    /** Math.round z JS (half-up dla wartości nieujemnych, które tu występują). */
     private static function jsRound(float $x): int
     {
         return (int) floor($x + 0.5);

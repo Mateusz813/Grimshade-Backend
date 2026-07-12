@@ -24,12 +24,6 @@ function scmToken(string $userId = SCM_USER): string
     return TokenFactory::forUser($userId);
 }
 
-/**
- * Pełny blob w kształcie GET /state.state — end-game „god save": 363M golda,
- * mityczny/heroiczny gear, wysoki level. MUSI przejść w trybie SOFT bez 422.
- *
- * @param  array<string, mixed>  $extraBag
- */
 function godBlob(Character $c, int $gold = 363_000_000, array $extraBag = []): array
 {
     return [
@@ -63,15 +57,6 @@ function godBlob(Character $c, int $gold = 363_000_000, array $extraBag = []): a
     ];
 }
 
-/**
- * Kompaktowy, kontrolowany blob do testów zdarzeń (małe, wiarygodne wartości —
- * w przeciwieństwie do god-save'a). $extra scala się rekurencyjnie (np. slice
- * dungeons/bosses/raid). NIE wkładaj tu inventory.bag — od tego jest $bag.
- *
- * @param  list<array<string, mixed>>  $bag
- * @param  array<string, mixed>  $extra
- * @return array<string, mixed>
- */
 function scmBlob(Character $c, int $level = 5, int $gold = 1000, array $bag = [], array $extra = []): array
 {
     return array_replace_recursive([
@@ -92,10 +77,6 @@ function scmBlob(Character $c, int $level = 5, int $gold = 1000, array $bag = []
     ], $extra);
 }
 
-/**
- * @param  array<string, mixed>  $overrides
- * @return array<string, mixed>
- */
 function scmItem(string $uuid, array $overrides = []): array
 {
     return array_replace([
@@ -104,7 +85,6 @@ function scmItem(string $uuid, array $overrides = []): array
     ], $overrides);
 }
 
-// ---- Happy path: persist + round-trip --------------------------------------
 
 it('persists the full blob and character row, gold survives round-trip', function () {
     $c = scmChar();
@@ -119,34 +99,28 @@ it('persists the full blob and character row, gold survives round-trip', functio
         ->assertJsonPath('character.id', $c->id)
         ->assertJsonPath('character.level', 900)
         ->assertJsonPath('character.attack', 120000)
-        ->assertJsonPath('character.gold', 363_000_000); // szczątkowa kolumna = inventory.gold
+        ->assertJsonPath('character.gold', 363_000_000);
 
-    // Blob zapisany w game_saves.
     $save = GameSave::where('character_id', $c->id)->first();
     expect($save->state['inventory']['gold'])->toBe(363_000_000)
         ->and($save->state['inventory']['equipment']['ring1']['itemId'])->toBe('ring_lvl400_mythic');
 
-    // Kolumny characters zapisane z _characterStats.
     $fresh = Character::find($c->id);
     expect($fresh->level)->toBe(900)
         ->and($fresh->attack)->toBe(120000)
         ->and($fresh->magic_level)->toBe(400)
         ->and($fresh->gold)->toBe(363_000_000);
 
-    // GET /state zwraca dokładnie to, co zapisaliśmy (hydracja frontu).
     $this->withToken(scmToken())->getJson("/api/v1/characters/{$c->id}/state")
         ->assertOk()
         ->assertJsonPath('state.inventory.gold', 363_000_000)
         ->assertJsonPath('character.level', 900);
 });
 
-// ---- SOFT mode: over-powered item persists (no 422) ------------------------
 
 it('SOFT mode persists an over-powered item instead of rejecting (no 422)', function () {
     $c = scmChar();
 
-    // Bonus rażąco ponad hojne legalne max dla common lvl1 → naruszenie SOFT (log),
-    // ale zapis MUSI przejść (domyślnie config state_commit_strict = false).
     $overpowered = [
         'uuid' => 'cheat-1', 'itemId' => 'sword_lvl1_common', 'rarity' => 'common',
         'bonuses' => ['attack' => 999_999_999], 'itemLevel' => 1, 'upgradeLevel' => 0,
@@ -157,12 +131,11 @@ it('SOFT mode persists an over-powered item instead of rejecting (no 422)', func
         'state' => godBlob($c, 1000, [$overpowered]),
     ]);
 
-    $res->assertOk(); // NIE 422 — właściciel nie może być fałszywie odrzucony
+    $res->assertOk();
     $save = GameSave::where('character_id', $c->id)->first();
     expect(collect($save->state['inventory']['bag'])->firstWhere('uuid', 'cheat-1'))->not->toBeNull();
 });
 
-// ---- Sanitization ----------------------------------------------------------
 
 it('sanitizes negative gold to zero', function () {
     $c = scmChar();
@@ -177,7 +150,6 @@ it('sanitizes negative gold to zero', function () {
     expect(Character::find($c->id)->gold)->toBe(0);
 });
 
-// ---- Idempotency -----------------------------------------------------------
 
 it('is idempotent per requestId — replay returns the cached first payload', function () {
     $c = scmChar();
@@ -186,7 +158,6 @@ it('is idempotent per requestId — replay returns the cached first payload', fu
         'requestId' => 'commit-idem', 'state' => godBlob($c, 1000),
     ])->assertOk()->assertJsonPath('state.inventory.gold', 1000);
 
-    // Ten sam requestId, INNY gold → serwer zwraca cache (1000), NIE zapisuje 9999.
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'commit-idem', 'state' => godBlob($c, 9999),
     ])->assertOk()->assertJsonPath('state.inventory.gold', 1000);
@@ -194,7 +165,6 @@ it('is idempotent per requestId — replay returns the cached first payload', fu
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(1000);
 });
 
-// ---- Auth / ownership ------------------------------------------------------
 
 it('requires authentication (401)', function () {
     $c = scmChar();
@@ -220,10 +190,9 @@ it('validates the request body (requestId + state required)', function () {
     ])->assertStatus(422);
 });
 
-// ---- Event validation: happy path ------------------------------------------
 
 it('commits WITH an event (dungeon won) and persists the new state + drop', function () {
-    $c = scmChar(); // level 5, fresh (no prev blob)
+    $c = scmChar();
     $today = now()->toDateString();
 
     $blob = scmBlob($c, level: 6, gold: 1500, bag: [scmItem('drop-1')], extra: [
@@ -243,16 +212,14 @@ it('commits WITH an event (dungeon won) and persists the new state + drop', func
         ->and($save->state['dungeons']['dailyAttempts']['dungeon_1']['used'])->toBe(1);
 });
 
-// ---- HARD check: duplicate uuid -> 422 EVEN in default (soft) mode ----------
 
 it('rejects a duplicate item uuid across bag + equipment with 422 in soft mode', function () {
     $c = scmChar();
 
-    // config domyślny: event_validation_strict = false → HARD i tak egzekwowany.
     $dup = scmItem('dup-1');
     $blob = scmBlob($c);
     $blob['inventory']['bag'] = [$dup];
-    $blob['inventory']['equipment']['mainHand'] = $dup; // ten sam uuid w dwóch miejscach
+    $blob['inventory']['equipment']['mainHand'] = $dup;
 
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'ev-dupe',
@@ -260,48 +227,39 @@ it('rejects a duplicate item uuid across bag + equipment with 422 in soft mode',
         'event' => ['type' => 'hunt'],
     ])->assertStatus(422);
 
-    // Transakcja wycofana — nic się nie zapisało.
     expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
 });
 
 it('rejects a duplicate item uuid with 422 EVEN WITHOUT an event (root-cause regression)', function () {
     $c = scmChar();
 
-    // Regresja bypassu: atakujący POMIJA `event`, żeby ominąć walidację. Teraz
-    // ALWAYS-RUN guardInvariants łapie dupe uuid na KAŻDYM commicie → 422, rollback.
     $dup = scmItem('dup-2');
     $blob = scmBlob($c);
     $blob['inventory']['bag'] = [$dup];
-    $blob['inventory']['equipment']['mainHand'] = $dup; // ten sam uuid w dwóch miejscach
+    $blob['inventory']['equipment']['mainHand'] = $dup;
 
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'no-ev-dupe',
         'state' => $blob,
-        // celowo BEZ 'event'
     ])->assertStatus(422);
 
-    // Transakcja wycofana — nic się nie zapisało.
     expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
 });
 
-// ---- ALWAYS-RUN HARD invariants (event obecny czy nie) ----------------------
 
 it('rejects a level jump > 50 WITHOUT an event with 422', function () {
     $c = scmChar();
 
-    // Baseline (bez eventu) ustala prev z poziomem 5.
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'lvljump-base',
         'state' => scmBlob($c, level: 5),
     ])->assertOk();
 
-    // Kolejny commit bez eventu skacze 5 -> 100 (+95 > 50) → HARD 422, rollback.
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'lvljump-big',
         'state' => scmBlob($c, level: 100),
     ])->assertStatus(422);
 
-    // Poprzedni (baseline) blob przetrwał — nadal poziom 5.
     expect(GameSave::where('character_id', $c->id)->first()->state['_characterStats']['level'])->toBe(5);
 });
 
@@ -309,7 +267,7 @@ it('rejects absurd gold (9e15) with 422 WITHOUT an event', function () {
     $c = scmChar();
 
     $blob = scmBlob($c);
-    $blob['inventory']['gold'] = 9_000_000_000_000_000; // 9e15, powyżej sufitu 1e12
+    $blob['inventory']['gold'] = 9_000_000_000_000_000;
     $blob['_characterStats']['gold'] = 9_000_000_000_000_000;
 
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
@@ -359,12 +317,10 @@ it('accepts a normal small commit WITHOUT an event (backward compat)', function 
     expect(GameSave::where('character_id', $c->id)->first())->not->toBeNull();
 });
 
-// ---- SAFETY: realny end-game save właściciela MUSI przejść (zero false-reject) --
 
 it('persists a realistic end-game save (363M gold, level 345, unique-uuid mythic gear) WITHOUT event', function () {
     $c = scmChar();
 
-    // 365 unikatowych itemów w bag.
     $bag = [];
     for ($i = 0; $i < 365; $i++) {
         $bag[] = scmItem("bag-{$i}", [
@@ -373,7 +329,6 @@ it('persists a realistic end-game save (363M gold, level 345, unique-uuid mythic
         ]);
     }
 
-    // 12 założonych mitycznych/heroicznych itemów, każdy z unikatowym uuid.
     $slots = ['helmet', 'armor', 'pants', 'gloves', 'shoulders', 'boots',
         'mainHand', 'offHand', 'ring1', 'ring2', 'earrings', 'necklace'];
     $equipment = [];
@@ -400,7 +355,6 @@ it('persists a realistic end-game save (363M gold, level 345, unique-uuid mythic
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'endgame-safe',
         'state' => $blob,
-        // celowo BEZ 'event' — realny zapis właściciela nie może być fałszywie odrzucony
     ])->assertOk()
         ->assertJsonPath('state.inventory.gold', 363_637_692)
         ->assertJsonPath('character.level', 345);
@@ -414,7 +368,6 @@ it('persists a realistic end-game save (363M gold, level 345, unique-uuid mythic
     expect(Character::find($c->id)->level)->toBe(345);
 });
 
-// ---- HARD check: gold ------------------------------------------------------
 
 it('sanitizes negative gold to zero even with an event present (no 422)', function () {
     $c = scmChar();
@@ -429,18 +382,15 @@ it('sanitizes negative gold to zero even with an event present (no 422)', functi
     ])->assertOk()->assertJsonPath('state.inventory.gold', 0);
 });
 
-// ---- SOFT check: new legal item accepted (no false reject) -----------------
 
 it('accepts a genuinely-new item uuid (new drop) without false-rejecting', function () {
     $c = scmChar();
 
-    // Baseline (bez eventu) ustawia prev z jednym itemem.
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'ev-base',
         'state' => scmBlob($c, bag: [scmItem('old-1')]),
     ])->assertOk();
 
-    // Commit ze zdarzeniem dokłada NOWY uuid (legalny drop) — akceptacja.
     $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
         'requestId' => 'ev-new-item',
         'state' => scmBlob($c, bag: [scmItem('old-1'), scmItem('new-2')]),
@@ -452,7 +402,6 @@ it('accepts a genuinely-new item uuid (new drop) without false-rejecting', funct
         ->toContain('old-1')->toContain('new-2');
 });
 
-// ---- SOFT vs STRICT: over-cap daily attempts -------------------------------
 
 it('SOFT mode persists an over-cap daily-attempt transition (no 422)', function () {
     $c = scmChar();
@@ -466,7 +415,7 @@ it('SOFT mode persists an over-cap daily-attempt transition (no 422)', function 
         'requestId' => 'ev-overcap-soft',
         'state' => $blob,
         'event' => ['type' => 'dungeon', 'sourceId' => 'dungeon_1', 'outcome' => 'won'],
-    ])->assertOk(); // domyślnie SOFT — logujemy, ale zapisujemy
+    ])->assertOk();
 
     expect(GameSave::where('character_id', $c->id)->first()->state['dungeons']['dailyAttempts']['dungeon_1']['used'])
         ->toBe(12);
@@ -488,11 +437,9 @@ it('STRICT mode rejects the same over-cap daily-attempt transition with 422', fu
         'event' => ['type' => 'dungeon', 'sourceId' => 'dungeon_1', 'outcome' => 'won'],
     ])->assertStatus(422);
 
-    // Rollback — nic nie zapisane.
     expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
 });
 
-// ---- Idempotency with an event ---------------------------------------------
 
 it('is idempotent per requestId when an event is present (replay returns cache)', function () {
     $c = scmChar();

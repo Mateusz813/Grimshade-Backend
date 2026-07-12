@@ -7,10 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Wpis w globalnym feedzie śmierci (character_deaths). Kształt: deathsApi.ts.
- * character_name/class/level bierze SERWER z postaci (nie z body) — anty-fałsz.
- */
 class Death extends Model
 {
     use HasUuids;
@@ -21,7 +17,7 @@ class Death extends Model
 
     protected $keyType = 'string';
 
-    public $timestamps = false; // tabela ma tylko died_at
+    public $timestamps = false;
 
     protected $fillable = [
         'character_id', 'character_name', 'character_class', 'character_level',

@@ -6,12 +6,6 @@ use App\Domain\OfflineHunt\OfflineHuntSystem;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET offlineHuntSystem: deterministyczna logika (preview / agregacja
- * nagród / ważone taski / tempo) odtwarzana bit-w-bit z golden-vectorów TS,
- * plus prymityw rzutu rzadkości (seeded mulberry32 → identyczny agregat)
- * z asercjami własnościowymi (suma == kills, poprawne klucze).
- */
 beforeEach(function () {
     $this->golden = Golden::load('offlineHuntSystem.json');
 });

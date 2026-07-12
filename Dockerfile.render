@@ -28,6 +28,8 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction --prefer-dist \
     && chown -R www-data:www-data storage bootstrap/cache
 
+ENV CADDY_GLOBAL_OPTIONS="admin off"
+
 # FrankenPHP (domyślny entrypoint obrazu) serwuje /app/public z dyrektywą php_server
 # (routing frameworkowy do index.php). SERVER_NAME=:8080 => HTTP na porcie 8080.
 ENV SERVER_NAME=:8080

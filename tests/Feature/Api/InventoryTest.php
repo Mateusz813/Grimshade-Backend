@@ -51,7 +51,6 @@ it('equips an item from bag into the slot', function () {
 it('swaps: equipping into occupied slot returns previous item to bag', function () {
     $c = invChar(100);
     $save = invSave($c, 50);
-    // dołóż drugi hełm do bag
     $s = $save->state;
     $s['inventory']['bag'][] = ['uuid' => 'helm-2', 'itemId' => 'heavy_helmet_lvl60_epic', 'rarity' => 'epic', 'bonuses' => ['hp' => 200], 'itemLevel' => 60, 'upgradeLevel' => 0];
     $save->state = $s;
@@ -62,12 +61,12 @@ it('swaps: equipping into occupied slot returns previous item to bag', function 
 
     $inv = GameSave::where('character_id', $c->id)->first()->state['inventory'];
     expect($inv['equipment']['helmet']['uuid'])->toBe('helm-2')
-        ->and(collect($inv['bag'])->pluck('uuid')->all())->toBe(['helm-1']); // stary wrócił
+        ->and(collect($inv['bag'])->pluck('uuid')->all())->toBe(['helm-1']);
 });
 
 it('rejects equipping above the character level (422)', function () {
     $c = invChar(10);
-    invSave($c, 50); // item lvl 50 > char lvl 10
+    invSave($c, 50);
 
     $this->withToken(invToken())->postJson("/api/v1/characters/{$c->id}/inventory/equip", [
         'itemUuid' => 'helm-1', 'slot' => 'helmet',

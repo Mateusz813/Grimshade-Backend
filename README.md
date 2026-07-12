@@ -29,6 +29,9 @@ Kolejne fazy (patrz plan): pipeline treści + golden-vectory → port logiki `sr
 
 ## Setup lokalny
 
+> **Dev loop front + backend z live-edit** (Docker :8088 + `npm run dev` :5170, zmiany w
+> kodzie backendu widoczne od razu) — patrz [LOCAL_DEV.md](LOCAL_DEV.md).
+
 Domyślnie działa **offline na sqlite** (bez creds Supabase) — testy i dev bez bazy zewnętrznej.
 
 ```bash

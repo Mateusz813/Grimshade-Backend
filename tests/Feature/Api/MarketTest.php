@@ -11,15 +11,14 @@ use Tests\Support\TokenFactory;
 
 uses(RefreshDatabase::class);
 
-const MK_USER_A = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'; // sprzedawca
-const MK_USER_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'; // kupujący
+const MK_USER_A = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
+const MK_USER_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
 function mkChar(string $userId, array $overrides = []): Character
 {
     return Character::factory()->forUser($userId)->create(array_merge(['level' => 50], $overrides));
 }
 
-/** Blob z goldem + jednym itemem 'itm-1' w bag + stackami (kształt jak realny). */
 function mkSave(Character $c, int $gold = 0, array $extraInv = []): GameSave
 {
     return GameSave::create([
@@ -44,7 +43,6 @@ function mkSave(Character $c, int $gold = 0, array $extraInv = []): GameSave
     ]);
 }
 
-/** Aukcja bezpośrednio w DB (reprezentuje już-zaescrowany item/stack). */
 function mkListing(Character $seller, array $overrides = []): MarketListing
 {
     return MarketListing::create(array_merge([
@@ -75,12 +73,11 @@ function mkTokenB(): string
     return TokenFactory::forUser(MK_USER_B);
 }
 
-// ---- Browse / mine ----------------------------------------------------------
 
 it('lists active listings and filters out empty ones', function () {
     $seller = mkChar(MK_USER_A);
     mkListing($seller, ['item_name' => 'Miecz', 'price' => 1000]);
-    mkListing($seller, ['item_name' => 'Tarcza', 'price' => 500, 'quantity' => 0]); // wyprzedany
+    mkListing($seller, ['item_name' => 'Tarcza', 'price' => 500, 'quantity' => 0]);
 
     $res = $this->withToken(mkTokenA())->getJson('/api/v1/market/listings');
 
@@ -101,7 +98,6 @@ it('returns only my listings on the mine endpoint', function () {
     expect($res->json('0.itemName'))->toBe('Moje');
 });
 
-// ---- Escrow (wystawienie) ---------------------------------------------------
 
 it('escrows an item: it leaves the bag ATOMICALLY with the listing insert', function () {
     $seller = mkChar(MK_USER_A);
@@ -113,12 +109,12 @@ it('escrows an item: it leaves the bag ATOMICALLY with the listing insert', func
 
     $res->assertCreated()
         ->assertJsonPath('listing.itemId', 'generated_rare_lvl50')
-        ->assertJsonPath('listing.rarity', 'rare')         // snapshot z REALNEGO itemu
+        ->assertJsonPath('listing.rarity', 'rare')
         ->assertJsonPath('listing.upgradeLevel', 2)
         ->assertJsonPath('listing.quantity', 1);
 
     $bag = GameSave::where('character_id', $seller->id)->first()->state['inventory']['bag'];
-    expect($bag)->toBe([]) // item zszedł z bloba
+    expect($bag)->toBe([])
         ->and(MarketListing::where('seller_id', $seller->id)->count())->toBe(1);
 });
 
@@ -130,11 +126,10 @@ it('escrow does NOT duplicate the item: second list of same uuid is 404', functi
     $this->withToken(mkTokenA())->postJson("/api/v1/characters/{$seller->id}/market/listings",
         [...$body, 'requestId' => 'list-a'])->assertCreated();
 
-    // Item już zaescrowany — druga próba (inny requestId) nie znajdzie go w bag.
     $this->withToken(mkTokenA())->postJson("/api/v1/characters/{$seller->id}/market/listings",
         [...$body, 'requestId' => 'list-b'])->assertNotFound();
 
-    expect(MarketListing::where('seller_id', $seller->id)->count())->toBe(1); // nadal 1
+    expect(MarketListing::where('seller_id', $seller->id)->count())->toBe(1);
 });
 
 it('escrows a stone stack, decrementing the blob store', function () {
@@ -170,7 +165,6 @@ it('rejects invalid price (422)', function () {
     ])->assertStatus(422);
 });
 
-// ---- Kupno (autorytatywne) --------------------------------------------------
 
 it('buy recomputes gold SERVER-side: buyer −total, seller +net(after 5% tax)', function () {
     $seller = mkChar(MK_USER_A);
@@ -184,30 +178,25 @@ it('buy recomputes gold SERVER-side: buyer −total, seller +net(after 5% tax)',
         ['quantity' => 1, 'requestId' => 'buy-1'],
     );
 
-    // total=1000, tax=floor(1000*0.05)=50, net=950
     $res->assertOk()
         ->assertJsonPath('totalPaid', 1000)
         ->assertJsonPath('tax', 50)
         ->assertJsonPath('sellerNet', 950)
-        ->assertJsonPath('gold', 4000)          // buyer po zakupie
+        ->assertJsonPath('gold', 4000)
         ->assertJsonPath('quantityPurchased', 1)
         ->assertJsonPath('remainingQty', 0);
 
-    // Buyer gold z bloba + item w bag.
     $buyerBlob = GameSave::where('character_id', $buyer->id)->first()->state['inventory'];
     expect($buyerBlob['gold'])->toBe(4000)
         ->and($buyerBlob['bag'])->toHaveCount(1)
         ->and($buyerBlob['bag'][0]['itemId'])->toBe('generated_rare_lvl50');
 
-    // Seller dostał netto do SWOJEGO bloba.
     expect(GameSave::where('character_id', $seller->id)->first()->state['inventory']['gold'])->toBe(1050);
 
-    // Aukcja zniknęła + notyfikacja z netto.
     expect(MarketListing::find($listing->id))->toBeNull();
     $note = MarketSaleNotification::where('seller_id', $seller->id)->first();
     expect($note->gold_received)->toBe(950)->and($note->quantity_sold)->toBe(1);
 
-    // Liczniki rankingowe.
     expect(Character::find($buyer->id)->market_items_bought)->toBe(1)
         ->and(Character::find($buyer->id)->market_gold_spent)->toBe(1000)
         ->and(Character::find($seller->id)->market_items_sold)->toBe(1)
@@ -226,7 +215,6 @@ it('CANNOT buy without enough gold (422, nothing changes)', function () {
         ['quantity' => 1, 'requestId' => 'buy-poor'],
     )->assertStatus(422);
 
-    // NIC się nie zmieniło: gold, listing, brak notyfikacji, brak itemu.
     expect(GameSave::where('character_id', $buyer->id)->first()->state['inventory']['gold'])->toBe(10)
         ->and(GameSave::where('character_id', $buyer->id)->first()->state['inventory']['bag'])->toBe([])
         ->and(GameSave::where('character_id', $seller->id)->first()->state['inventory']['gold'])->toBe(100)
@@ -246,13 +234,11 @@ it('CANNOT buy the same listing twice — second buy is 404 (no dupe)', function
         ['quantity' => 1, 'requestId' => 'first'],
     )->assertOk();
 
-    // Aukcja usunięta → drugi kupujący dostaje 404 (nie może zduplikować).
     $this->withToken(mkTokenB())->postJson(
         "/api/v1/characters/{$buyer->id}/market/listings/{$listing->id}/buy",
         ['quantity' => 1, 'requestId' => 'second'],
     )->assertNotFound();
 
-    // Kupujący zapłacił dokładnie raz.
     expect(GameSave::where('character_id', $buyer->id)->first()->state['inventory']['gold'])->toBe(4000)
         ->and(GameSave::where('character_id', $buyer->id)->first()->state['inventory']['bag'])->toHaveCount(1);
 });
@@ -262,7 +248,6 @@ it('buy is idempotent per requestId (no double charge / double item)', function 
     mkSave($seller, 0);
     $buyer = mkChar(MK_USER_B);
     mkSave($buyer, 5000, ['bag' => []]);
-    // stack 5 sztuk, żeby drugi (nie-cache'owany) call teoretycznie mógł przejść
     $listing = mkListing($seller, ['kind' => 'stone', 'item_id' => 'rare_stone', 'price' => 100, 'quantity' => 5, 'quantity_initial' => 5]);
     $body = ['quantity' => 2, 'requestId' => 'idem-1'];
 
@@ -271,10 +256,9 @@ it('buy is idempotent per requestId (no double charge / double item)', function 
     $this->withToken(mkTokenB())->postJson(
         "/api/v1/characters/{$buyer->id}/market/listings/{$listing->id}/buy", $body)->assertOk();
 
-    // Ten sam requestId → obciążenie raz: 2×100=200 z 5000 = 4800.
     expect(GameSave::where('character_id', $buyer->id)->first()->state['inventory']['gold'])->toBe(4800)
         ->and(GameSave::where('character_id', $buyer->id)->first()->state['inventory']['stones']['rare_stone'])->toBe(22)
-        ->and((int) MarketListing::find($listing->id)->quantity)->toBe(3); // 5−2, nie 5−4
+        ->and((int) MarketListing::find($listing->id)->quantity)->toBe(3);
 });
 
 it('partial buy decrements the stack and transfers only the bought slice', function () {
@@ -307,7 +291,6 @@ it('CANNOT buy your own listing (422)', function () {
     expect((int) MarketListing::find($listing->id)->quantity)->toBe(1);
 });
 
-// ---- Wycofanie --------------------------------------------------------------
 
 it('cancels a listing and returns the escrowed item to the seller bag', function () {
     $seller = mkChar(MK_USER_A);
@@ -330,18 +313,15 @@ it('cancelling a nonexistent listing is 404', function () {
     )->assertNotFound();
 });
 
-// ---- Autoryzacja ------------------------------------------------------------
 
 it('blocks acting on another user\'s character (403)', function () {
     $seller = mkChar(MK_USER_A);
     $listing = mkListing($seller);
 
-    // Token B próbuje kupić UŻYWAJĄC postaci usera A.
     $this->withToken(mkTokenB())->postJson(
         "/api/v1/characters/{$seller->id}/market/listings/{$listing->id}/buy",
         ['quantity' => 1, 'requestId' => 'x'],
     )->assertForbidden();
 
-    // Token B próbuje czytać cudze 'mine'.
     $this->withToken(mkTokenB())->getJson("/api/v1/characters/{$seller->id}/market/mine")->assertForbidden();
 });

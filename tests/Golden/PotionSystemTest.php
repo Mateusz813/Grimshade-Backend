@@ -5,17 +5,10 @@ declare(strict_types=1);
 use App\Domain\Items\PotionSystem;
 use Tests\Support\Golden;
 
-/**
- * PARYTET potionSystem: PHP PotionSystem musi zwrócić DOKŁADNIE to, co TS
- * (potionSystem.ts + potionConversion.ts + potionGating.ts; fixture wygenerowany
- * w grimshade repo, skopiowany tu). System czysty → golden bit-parity.
- * toEqual (nie toBe) — JSON nie rozróżnia int/float.
- */
 beforeEach(function () {
     $this->golden = Golden::load('potionSystem.json');
 });
 
-/** Nazwa puli z fixture -> pula PHP (ta sama derywacja co TS). */
 function potionPool(string $name): array
 {
     return match ($name) {

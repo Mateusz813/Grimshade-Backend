@@ -6,39 +6,10 @@ namespace App\Domain\Skills;
 
 use App\Domain\Support\Rng\RngInterface;
 
-/**
- * Port 1:1 src/systems/skillEffectsV2.ts (frontend). Ujednolicony runtime
- * efektów skilli: parsowanie stringów efektów, mutacja stanu statusów
- * (DOT/stun/marki/buffy), rozwiązanie trafień podstawowych i redukcja
- * przychodzących obrażeń/leczenia.
- *
- * PARYTET: golden-vectory w tests/Golden/fixtures/skillEffectsV2.json (generowane
- * z TS) są tu odtwarzane 1:1 (SkillEffectsV2Test). Stan combatanta jest
- * reprezentowany jako tablica asocjacyjna (bliźniak TS interfejsu IStatusState);
- * funkcje mutujące biorą stan przez REFERENCJĘ (`array &$s`) tak jak TS mutuje
- * obiekt w miejscu.
- *
- * SEMANTYKA LICZB JS: JS nie rozróżnia int/float, więc porównania `d.mult === m`
- * portujemy jako luźne `==` (dwie liczby są równe wartością bez względu na typ).
- * `Math.floor` → `(int) floor`, `x || 1` → `x ?: 1`.
- *
- * RNG (rule #2 — stała kolejność konsumpcji Math.random):
- *  - applyEffects: `stun_chance` (rzut per cel), `instant_kill_chance` (1 rzut).
- *  - resolveBasicHit: `dodge_buff`, `crit_buff_next`, party instant-kill.
- *  - consumeCasterBasicHitMods: `crit_next` z ułamkowym mult (<1).
- * Każda z tych funkcji bierze RngInterface i konsumuje go w DOKŁADNIE tej samej
- * kolejności co TS, więc z tym samym seedem (mulberry32) daje identyczny wynik.
- *
- * PARYTET ALIASINGU: golden-vectory nie współdzielą tożsamości obiektów (caster
- * nie jest jednocześnie elementem `partyStatus`). Tablice PHP kopiowane są przez
- * wartość, więc niezależne obiekty gwarantują ten sam wynik po obu stronach.
- */
 final class SkillEffectsV2
 {
-    /** Klasy magiczne — pomijane przez `dodge_next` o zakresie `non_magic`. */
     private const MAGIC_CLASSES = ['Mage', 'Cleric', 'Necromancer'];
 
-    /** Głowy atomów, które oznaczają że cast „ląduje" na wrogu (skillTargetsEnemy). */
     private const ENEMY_AFFINITY_HEADS = [
         'aoe', 'def_pen', 'dot', 'stun', 'stun_chance', 'paralyze',
         'instant_kill_chance', 'execute_below', 'mark_amp', 'mark_amp_all',
@@ -46,11 +17,6 @@ final class SkillEffectsV2
         'multistrike', 'dark_ritual', 'death_apocalypse',
     ];
 
-    /**
-     * Parsuje string `skills.json.effect` (np. "aoe;dot:5000:5") na atomy.
-     *
-     * @return list<array{key:string, raw:string, a?:float, b?:float, c?:float, s?:string}>
-     */
     public static function parseEffects(?string $effect): array
     {
         if ($effect === null || $effect === '') {
@@ -98,9 +64,6 @@ final class SkillEffectsV2
         return $out;
     }
 
-    /**
-     * @param  list<array{key:string}>  $effects
-     */
     public static function hasEffect(array $effects, string $key): bool
     {
         foreach ($effects as $e) {
@@ -112,10 +75,6 @@ final class SkillEffectsV2
         return false;
     }
 
-    /**
-     * @param  list<array<string, mixed>>  $effects
-     * @return array<string, mixed>|null
-     */
     public static function findEffect(array $effects, string $key): ?array
     {
         foreach ($effects as $e) {
@@ -127,11 +86,6 @@ final class SkillEffectsV2
         return null;
     }
 
-    /**
-     * Domyślny, pusty stan statusu jednego combatanta (bliźniak newStatusState TS).
-     *
-     * @return array<string, mixed>
-     */
     public static function newStatusState(): array
     {
         return [
@@ -172,21 +126,11 @@ final class SkillEffectsV2
         ];
     }
 
-    /**
-     * @param  array<string, mixed>  $s
-     */
     public static function isStunned(array $s): bool
     {
         return ($s['stunMs'] ?? 0) > 0;
     }
 
-    /**
-     * Dekrementuje timery / usuwa wygasłe efekty. Mutuje `$s` w miejscu.
-     * Zwraca skumulowane obrażenia DOT + obrażenia i flagę Mrocznego Rytuału.
-     *
-     * @param  array<string, mixed>  $s
-     * @return array{dotDamage:int, darkRitualDamage:int, darkRitualTriggered:bool}
-     */
     public static function tickStatus(array &$s, int|float $deltaMs, int|float $targetMaxHp): array
     {
         $drain = static fn (int|float $n): int|float => max(0, $n - $deltaMs);
@@ -260,7 +204,6 @@ final class SkillEffectsV2
             $s['dots'] = $survivors;
         }
 
-        // Necromancer Mroczny Rytuał — drenuj każdy wpis o deltaMs; przy 0 odpal.
         $darkRitualDamage = 0;
         $darkRitualTriggered = false;
         if (count($s['darkRitualPending']) > 0) {
@@ -280,11 +223,6 @@ final class SkillEffectsV2
         return ['dotDamage' => $dotDamage, 'darkRitualDamage' => $darkRitualDamage, 'darkRitualTriggered' => $darkRitualTriggered];
     }
 
-    /**
-     * Domyślny wynik `applyEffects` (bliźniak blank() TS).
-     *
-     * @return array<string, mixed>
-     */
     private static function blank(): array
     {
         return [
@@ -319,18 +257,6 @@ final class SkillEffectsV2
         ];
     }
 
-    /**
-     * Aplikuje listę sparsowanych efektów do stanów (caster/target/party/enemy).
-     * Mutuje przekazane stany w miejscu; zwraca „side effecty" (AOE, mnożniki,
-     * summony, itd.) których nie da się wyrazić samą mutacją statusu.
-     *
-     * @param  list<array<string, mixed>>  $parsed
-     * @param  array<string, mixed>  $casterStatus
-     * @param  array<string, mixed>|null  $targetStatus
-     * @param  list<array<string, mixed>>  $partyStatus
-     * @param  list<array<string, mixed>>  $enemyStatus
-     * @return array<string, mixed>
-     */
     public static function applyEffects(
         RngInterface $rng,
         array $parsed,
@@ -674,14 +600,6 @@ final class SkillEffectsV2
         return $r;
     }
 
-    /**
-     * Rozwiązuje pojedyncze trafienie podstawowe uwzględniając kolejki ampów
-     * atakującego + marki/uniki/immortal celu. Mutuje oba stany w miejscu.
-     *
-     * @param  array<string, mixed>  $attackerStatus
-     * @param  array<string, mixed>  $targetStatus
-     * @return array<string, mixed>
-     */
     public static function resolveBasicHit(
         RngInterface $rng,
         array &$attackerStatus,
@@ -700,7 +618,6 @@ final class SkillEffectsV2
             'healLowestAllyPct' => 0,
         ];
 
-        // Unik — kolejka `dodgeNext` (kolejno konsumowana), potem % dodge buff.
         if (count($targetStatus['dodgeNext']) > 0) {
             $isMagic = in_array($attackerClass ?? '', self::MAGIC_CLASSES, true);
             $dodgesThis = $targetStatus['dodgeNext'][0]['scope'] === 'all' || ! $isMagic;
@@ -724,7 +641,6 @@ final class SkillEffectsV2
             }
         }
 
-        // Krytyk — gwarantowana kolejka `crit_next`, w przeciwnym razie rzut buffem.
         if (count($attackerStatus['critNext']) > 0) {
             if ($attackerStatus['critNext'][0]['count'] > 0) {
                 $mult = $attackerStatus['critNext'][0]['mult'];
@@ -745,7 +661,6 @@ final class SkillEffectsV2
             $attackerStatus['critBuffNext'] = 0;
         }
 
-        // Kolejka dmg_amp_next.
         if (count($attackerStatus['dmgAmpNext']) > 0) {
             $out['damage'] *= $attackerStatus['dmgAmpNext'][0]['mult'];
             $attackerStatus['dmgAmpNext'][0]['count'] -= 1;
@@ -754,12 +669,10 @@ final class SkillEffectsV2
             }
         }
 
-        // ATK buff %.
         if ($attackerStatus['atkBuffMs'] > 0) {
             $out['damage'] *= 1 + $attackerStatus['atkBuffPct'] / 100;
         }
 
-        // Mark amp (count-based).
         if (count($targetStatus['markAmp']) > 0) {
             $out['damage'] *= $targetStatus['markAmp'][0]['mult'];
             $targetStatus['markAmp'][0]['count'] -= 1;
@@ -768,12 +681,10 @@ final class SkillEffectsV2
             }
         }
 
-        // Mark amp-all (duration-based).
         if ($targetStatus['markAmpAll'] !== null && $targetStatus['markAmpAll']['remainingMs'] > 0) {
             $out['damage'] *= $targetStatus['markAmpAll']['mult'];
         }
 
-        // Kolejka lifesteal.
         if (count($attackerStatus['lifestealNext']) > 0) {
             $out['casterHeal'] = (int) floor($out['damage'] * ($attackerStatus['lifestealNext'][0]['pct'] / 100));
             $attackerStatus['lifestealNext'][0]['count'] -= 1;
@@ -782,7 +693,6 @@ final class SkillEffectsV2
             }
         }
 
-        // Kolejka next-ally-heal.
         if (count($attackerStatus['nextAllyHeal']) > 0) {
             $out['healLowestAllyPct'] = max($out['healLowestAllyPct'], $attackerStatus['nextAllyHeal'][0]['pct']);
             $attackerStatus['nextAllyHeal'][0]['count'] -= 1;
@@ -791,7 +701,6 @@ final class SkillEffectsV2
             }
         }
 
-        // Instant-kill chance z party buffa — na sukces skończony execute burst.
         if (count($attackerStatus['nextAllyInstantKillPct']) > 0) {
             if ($rng->nextFloat() * 100 < $attackerStatus['nextAllyInstantKillPct'][0]['pct']) {
                 $out['executeBurstPct'] = 12;
@@ -810,12 +719,6 @@ final class SkillEffectsV2
         return $out;
     }
 
-    /**
-     * Aplikuje przychodzące obrażenia z uwzględnieniem immortal / cannotDie.
-     *
-     * @param  array<string, mixed>  $target
-     * @return array{hpDelta:int|float, absorbed:bool}
-     */
     public static function applyIncomingDamage(array $target, int|float $targetCurrentHp, int|float $rawDamage): array
     {
         if (($target['immortalMs'] ?? 0) > 0) {
@@ -834,13 +737,6 @@ final class SkillEffectsV2
         return ['hpDelta' => $hpDelta, 'absorbed' => false];
     }
 
-    /**
-     * Mage Tarcza Many — drenuje przychodzące obrażenia najpierw z MP (100%),
-     * HP bierze tylko nadmiar.
-     *
-     * @param  array<string, mixed>|null  $s
-     * @return array{mpDmg:int|float, hpDmg:int|float, shieldActive:bool}
-     */
     public static function applyManaShieldRedirect(?array $s, int|float $currentMp, int|float $rawDmg): array
     {
         if ($s === null || ($s['manaShieldMs'] ?? 0) <= 0 || $rawDmg <= 0) {
@@ -852,13 +748,6 @@ final class SkillEffectsV2
         return ['mpDmg' => $mpDmg, 'hpDmg' => $hpDmg, 'shieldActive' => true];
     }
 
-    /**
-     * Leczy combatanta. Jeśli jest oznaczony mark_no_heal — leczenie staje się
-     * obrażeniami. enemyNoHeal całkowicie blokuje leczenie.
-     *
-     * @param  array<string, mixed>  $target
-     * @return array{hpDelta:int|float}
-     */
     public static function applyIncomingHeal(array $target, int|float $rawHeal): array
     {
         if (($target['enemyNoHealMs'] ?? 0) > 0) {
@@ -871,10 +760,6 @@ final class SkillEffectsV2
         return ['hpDelta' => $rawHeal];
     }
 
-    /**
-     * Klasyfikuje string efektu: czy cast „ląduje" na wrogu (dowolny atom
-     * z ENEMY_AFFINITY_HEADS).
-     */
     public static function skillTargetsEnemy(?string $effect): bool
     {
         if ($effect === null || $effect === '') {
@@ -890,13 +775,6 @@ final class SkillEffectsV2
         return false;
     }
 
-    /**
-     * Konsumuje jeden ładunek `mark_amp` (Klątwa Śmierci) z celu + pasywny
-     * `markAmpAll` (Kraina Śmierci). Mutuje cel w miejscu.
-     *
-     * @param  array<string, mixed>|null  $target
-     * @return array{mult:int|float, consumed:bool}
-     */
     public static function consumeTargetMarkAmp(?array &$target): array
     {
         if ($target === null) {
@@ -906,11 +784,9 @@ final class SkillEffectsV2
         $mult = 1;
         $consumed = false;
 
-        // Mark count-based (Klątwa Śmierci).
         if (count($target['markAmp']) > 0) {
             $top = $target['markAmp'][0];
             if ($top['count'] <= 0 || ($top['remainingMs'] ?? 0) <= 0) {
-                // Nieaktualny wpis — usuń i spróbuj następny.
                 array_shift($target['markAmp']);
 
                 return self::consumeTargetMarkAmp($target);
@@ -923,7 +799,6 @@ final class SkillEffectsV2
             }
         }
 
-        // Mark duration-based (Kraina Śmierci) — pasywny, nigdy nie konsumowany.
         if ($target['markAmpAll'] !== null && $target['markAmpAll']['remainingMs'] > 0) {
             $mult *= ($target['markAmpAll']['mult'] ?: 1);
         }
@@ -935,13 +810,6 @@ final class SkillEffectsV2
         return ['mult' => $mult, 'consumed' => $consumed];
     }
 
-    /**
-     * Konsumuje kolejki „następnego trafienia podstawowego" castera dla jednego
-     * uderzenia i zwraca modyfikatory. Mutuje `$s` w miejscu.
-     *
-     * @param  array<string, mixed>|null  $s
-     * @return array<string, mixed>
-     */
     public static function consumeCasterBasicHitMods(RngInterface $rng, ?array &$s): array
     {
         if ($s === null) {
@@ -971,7 +839,6 @@ final class SkillEffectsV2
             'nextAllyHeal' => false,
         ];
 
-        // crit_next:count:chance — `chance >= 1` = gwarantowany krytyk.
         if (count($s['critNext']) > 0) {
             if ($s['critNext'][0]['count'] > 0) {
                 if ($s['critNext'][0]['mult'] >= 1 || $rng->nextFloat() < $s['critNext'][0]['mult']) {
@@ -984,17 +851,14 @@ final class SkillEffectsV2
                 $consumed['critNext'] = true;
             }
         }
-        // crit_buff_next:N — konsumowany w całości.
         if ($s['critBuffNext'] > 0) {
             $extraCritChance += $s['critBuffNext'] / 100;
             $consumed['critBuffNext'] = true;
             $s['critBuffNext'] = 0;
         }
-        // crit_buff:N:durMs — okno czasowe, nie konsumowane (drenowane przez tickStatus).
         if ($s['critBuffMs'] > 0 && $s['critBuffPct'] > 0) {
             $extraCritChance += $s['critBuffPct'] / 100;
         }
-        // dmg_amp_next:M:N — następne N ataków ×M.
         if (count($s['dmgAmpNext']) > 0) {
             if ($s['dmgAmpNext'][0]['count'] > 0) {
                 $dmgMult *= ($s['dmgAmpNext'][0]['mult'] ?: 1);
@@ -1005,11 +869,9 @@ final class SkillEffectsV2
                 $consumed['dmgAmpNext'] = true;
             }
         }
-        // attack_up_pct — okno buffa ATK%.
         if ($s['atkBuffMs'] > 0 && $s['atkBuffPct'] > 0) {
             $dmgMult *= 1 + $s['atkBuffPct'] / 100;
         }
-        // party_lifesteal_next — Boski Filar.
         if (count($s['lifestealNext']) > 0) {
             if ($s['lifestealNext'][0]['count'] > 0) {
                 $lifestealPct = max($lifestealPct, $s['lifestealNext'][0]['pct']);
@@ -1020,7 +882,6 @@ final class SkillEffectsV2
                 $consumed['lifestealNext'] = true;
             }
         }
-        // next_ally_heal — Sąd Boży.
         if (count($s['nextAllyHeal']) > 0) {
             if ($s['nextAllyHeal'][0]['count'] > 0) {
                 $nextAllyHealPct = max($nextAllyHealPct, $s['nextAllyHeal'][0]['pct']);
@@ -1042,12 +903,6 @@ final class SkillEffectsV2
         ];
     }
 
-    /**
-     * Odpowiednik JS `parseFloat` + `Number.isFinite`: parsuje wiodący literał
-     * liczbowy (opcjonalny znak, cyfry, kropka, wykładnik) z początku stringa.
-     * Zwraca NAN gdy brak poprawnego prefiksu — wtedy caller traktuje arg jako
-     * string (np. `skeleton`, `non_magic`).
-     */
     private static function jsParseFloat(string $str): float
     {
         $s = ltrim($str);

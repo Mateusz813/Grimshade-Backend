@@ -9,7 +9,6 @@ use App\Domain\Loot\ItemGenerator;
 use App\Domain\Shop\ShopCatalog;
 use App\Domain\Support\Rng\RngInterface;
 use App\Http\Controllers\Controller;
-use App\Models\Character;
 use App\Services\CharacterStateService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,15 +16,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Sklep (potiony/eliksiry). Katalog + ceny = resources/game-content/shop.json
- * (generowany z shopStore.ts frontu — jedno źródło prawdy). Serwer waliduje
- * minLevel i cenę; klient podaje tylko id + ilość. Semantyka 1:1 z Shop.tsx:
- * spendGold(price*qty) + addConsumable(id, qty).
- */
 final class ShopController extends Controller
 {
-    /** GET /shop/catalog — katalog dla frontu (opcjonalny odczyt). */
     public function catalog(ContentRepository $content): JsonResponse
     {
         return response()->json($content->get('shop'));
@@ -33,7 +25,6 @@ final class ShopController extends Controller
 
     public function buyElixir(Request $request, CharacterStateService $state, ContentRepository $content): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemId' => ['required', 'string', 'max:64'],
@@ -76,27 +67,12 @@ final class ShopController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * POST /shop/buy-item — kupno itemowego (NIE-eliksirowego) towaru sklepu:
-     * bronie / offhandy / pancerz / akcesoria. Katalog jest GENEROWANY per
-     * klasa+poziom (shopStore.ts generateShopItems), więc serwer odtwarza go
-     * przez ShopCatalog żeby autorytatywnie ustalić cenę + parametry generacji.
-     * Item, który gracz dostaje, tworzy ItemGenerator (serwerowy RNG) — dokładnie
-     * jak `buyShopItem` na froncie. Cena/level-gate liczy SERWER; z body czyta
-     * WYŁĄCZNIE itemId + requestId.
-     *
-     * Semantyka 1:1 z frontem (Shop.tsx handleBuyItem → shopStore.buyShopItem):
-     *  - level gate: `character.level >= item.level` (id koduje poziom; sklep
-     *    generuje itemy na poziomie min(charLevel, 100), więc minLevel == level itemu),
-     *  - spendGold(price) → potem generacja itemu → addBagItem.
-     */
     public function buyItem(
         Request $request,
         CharacterStateService $state,
         ContentRepository $content,
         RngInterface $rng,
     ): JsonResponse {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemId' => ['required', 'string', 'max:128'],
@@ -108,8 +84,6 @@ final class ShopController extends Controller
             return response()->json(Cache::get($cacheKey));
         }
 
-        // Odtwórz katalog na poziomie zakodowanym w itemId (rarity + level z prawej),
-        // dla klasy postaci. Membership = jednocześnie walidacja klasy i formatu id.
         $parsedLevel = $this->parseItemLevel($data['itemId']);
         if ($parsedLevel === null) {
             abort(Response::HTTP_NOT_FOUND, 'Nie ma takiego towaru.');
@@ -122,8 +96,6 @@ final class ShopController extends Controller
             abort(Response::HTTP_NOT_FOUND, 'Nie ma takiego towaru.');
         }
 
-        // Level gate: sklep pokazuje itemy na poziomie gracza (cap 100), więc
-        // minLevel itemu == jego poziom. Za niski poziom → 422.
         if ((int) $character->level < (int) $entry['level']) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, "Wymagany poziom {$entry['level']}.");
         }
@@ -155,10 +127,6 @@ final class ShopController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Wyciąga poziom itemu z `shop_..._{level}_{rarity}` (parsuje od prawej:
-     * ostatni token = rarity, przedostatni = level). Zwraca null gdy format zły.
-     */
     private function parseItemLevel(string $itemId): ?int
     {
         $parts = explode('_', $itemId);
@@ -173,13 +141,6 @@ final class ShopController extends Controller
         return (int) $levelPart;
     }
 
-    /**
-     * Generuje item dla wpisu katalogu przez ItemGenerator — mapowanie
-     * templateType → metoda 1:1 z buyShopItem (shopStore.ts).
-     *
-     * @param  array{templateType: string, level: int, rarity: string, type?: string, slot?: string, armorPrefix?: string}  $entry
-     * @return array<string, mixed>|null
-     */
     private function generateItem(ItemGenerator $generator, array $entry): ?array
     {
         return match ($entry['templateType']) {

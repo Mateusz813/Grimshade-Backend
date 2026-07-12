@@ -5,13 +5,6 @@ declare(strict_types=1);
 use App\Domain\Combat\CombatElixirs;
 use Tests\Support\Golden;
 
-/**
- * PARYTET combatElixirs: PHP CombatElixirs == TS combatElixirs.ts.
- *  - gettery: stan = lista aktywnych efektów (hasBuff == in_array),
- *  - tickCombatElixirs: stan = mapa effect => remainingMs (pausable) + ms.
- * Wektory generowane z TS przez ustawienie stanu buffStore i wywołanie
- * realnych funkcji — patrz tests/integration/combatElixirs.golden.test.ts.
- */
 beforeEach(function () {
     $this->golden = Golden::load('combatElixirs.json');
 });

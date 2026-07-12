@@ -14,19 +14,10 @@ uses(RefreshDatabase::class);
 const AR_USER_A = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const AR_USER_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
-// Deterministyczne RNG (ten sam algorytm co front). Symulacja i tak jest
-// rozstrzygana przewagą statów (jeden strike), więc wynik nie zależy od seeda.
 beforeEach(function () {
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(999));
 });
 
-/**
- * Postać z ustawionymi statami + polami areny (arena_* nie są fillable, więc
- * ustawiamy je bezpośrednio na modelu i zapisujemy).
- *
- * @param  array<string, mixed>  $attrs
- * @param  array<string, mixed>  $arena
- */
 function arChar(string $userId, array $attrs = [], array $arena = []): Character
 {
     $c = Character::factory()->forUser($userId)->create($attrs);
@@ -40,7 +31,6 @@ function arChar(string $userId, array $attrs = [], array $arena = []): Character
     return $c->refresh();
 }
 
-/** Napastnik miażdżący — wygrywa w 1. turze niezależnie od RNG. */
 function arWinner(string $userId = AR_USER_A, int $lp = 0): Character
 {
     return arChar($userId, [
@@ -49,7 +39,6 @@ function arWinner(string $userId = AR_USER_A, int $lp = 0): Character
     ], ['arena_league_points' => $lp]);
 }
 
-/** Słaby napastnik/silny obrońca — obrońca miażdży. */
 function arWeak(string $userId, int $lp = 0): Character
 {
     return arChar($userId, [
@@ -79,7 +68,7 @@ function arSave(Character $c, int $arenaPoints = 0): GameSave
 }
 
 it('resolves a match authoritatively and updates BOTH characters', function () {
-    $attacker = arWinner(AR_USER_A, lp: 0);        // niższe LP niż obrońca → higher=true
+    $attacker = arWinner(AR_USER_A, lp: 0);
     $defender = arWeak(AR_USER_B, lp: 100);
     arSave($attacker, arenaPoints: 0);
 
@@ -95,25 +84,21 @@ it('resolves a match authoritatively and updates BOTH characters', function () {
         ->assertJsonPath('reward.attacker.leaguePoints', 2)
         ->assertJsonPath('arenaPoints', 200);
 
-    // Napastnik: +1 kill, LP += 2, arenaPoints (blob) += 200.
     $atk = Character::find($attacker->id);
     expect($atk->arena_kills)->toBe(1)
         ->and($atk->arena_deaths)->toBe(0)
         ->and($atk->arena_league_points)->toBe(2);
 
-    // Obrońca: +1 death, LP bez zmian (defender.leaguePoints = 0 przy wygranej napastnika).
     $def = Character::find($defender->id);
     expect($def->arena_deaths)->toBe(1)
         ->and($def->arena_kills)->toBe(0)
         ->and($def->arena_league_points)->toBe(100);
 
-    // arenaPoints w BLOBIE (prawdziwa waluta), nie w kolumnie.
     $blob = GameSave::where('character_id', $attacker->id)->first()->state;
     expect($blob['inventory']['arenaPoints'])->toBe(200);
 });
 
 it('IGNORES a forged attackerWon in the body (anti-cheat: server simulates)', function () {
-    // Napastnik słaby → serwer policzy PRZEGRANĄ mimo forged attackerWon=true.
     $attacker = arWeak(AR_USER_A, lp: 0);
     $defender = arTough(AR_USER_B, lp: 0);
     arSave($attacker);
@@ -121,18 +106,16 @@ it('IGNORES a forged attackerWon in the body (anti-cheat: server simulates)', fu
     $res = $this->withToken(TokenFactory::forUser(AR_USER_A))
         ->postJson("/api/v1/characters/{$attacker->id}/arena/match", [
             'opponentId' => $defender->id, 'requestId' => 'ar-cheat',
-            'attackerWon' => true,   // fałszywka — serwer NIE czyta
+            'attackerWon' => true,
             'arenaPoints' => 999999, 'leaguePoints' => 999,
         ]);
 
     $res->assertOk()->assertJsonPath('attackerWon', false);
 
-    // Napastnik przegrał: +1 death, 0 kill, brak arenaPoints w blobie.
     $atk = Character::find($attacker->id);
     expect($atk->arena_kills)->toBe(0)
         ->and($atk->arena_deaths)->toBe(1);
 
-    // Obrońca dostał zabójstwo + LP (getMatchReward(false,false) → defender lp=2).
     $def = Character::find($defender->id);
     expect($def->arena_kills)->toBe(1)
         ->and($def->arena_league_points)->toBe(2);
@@ -142,7 +125,7 @@ it('IGNORES a forged attackerWon in the body (anti-cheat: server simulates)', fu
 });
 
 it('rejects a match on another user\'s attacker (403)', function () {
-    $attacker = arWinner(AR_USER_B);       // należy do B
+    $attacker = arWinner(AR_USER_B);
     $defender = arWeak(AR_USER_A, lp: 5);
 
     $this->withToken(TokenFactory::forUser(AR_USER_A))
@@ -186,7 +169,6 @@ it('is idempotent — replaying a requestId does not double-count', function () 
         ->postJson("/api/v1/characters/{$attacker->id}/arena/match", $body);
     $second->assertOk();
 
-    // Odpowiedź identyczna + brak drugiego naliczenia.
     expect($second->json('character.arena_kills'))->toBe($first->json('character.arena_kills'));
     expect(Character::find($attacker->id)->arena_kills)->toBe(1);
     expect(Character::find($defender->id)->arena_deaths)->toBe(1);

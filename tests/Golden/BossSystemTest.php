@@ -7,14 +7,6 @@ use App\Domain\Content\ContentRepository;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET bossSystem: PHP BossSystem musi zwrócić DOKŁADNIE to, co TS
- * bossSystem.ts (fixture wygenerowany w grimshade repo, skopiowany tu).
- *
- * Realne bossy ładowane z resources/game-content/bosses.json (ContentRepository)
- * i indeksowane po id; syntetyczne (gałęzie fallback) wbudowane w fixture.
- * toEqual (nie toBe) — JSON nie rozróżnia int/float, porównanie luźne.
- */
 beforeEach(function () {
     $this->golden = Golden::load('bossSystem.json');
     $content = new ContentRepository(dirname(__DIR__, 2).'/resources/game-content');

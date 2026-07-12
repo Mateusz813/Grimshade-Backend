@@ -10,12 +10,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Dla endpointów per-postać (`/characters/{character}/...`): sprawdza, że
- * postać istnieje i należy do zalogowanego usera (`characters.user_id == sub`).
- * Zamyka „działanie na cudzej postaci". Zakłada, że VerifySupabaseJwt już
- * wstawił `supabase_user`. Rozwiązaną postać wkłada do atrybutu `character`.
- */
 final class EnsureOwnsCharacter
 {
     public function handle(Request $request, Closure $next): Response

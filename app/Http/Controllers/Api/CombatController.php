@@ -19,16 +19,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Autorytatywne rozstrzygnięcie walki solo-hunt. Serwer:
- *  - bierze tożsamość z tokenu, postać ze swojej bazy (nie z body),
- *  - waliduje level gate,
- *  - symuluje walkę + rolluje nagrody WŁASNYM RNG,
- *  - zapisuje autorytatywnie: level/xp/hp/stat_points → characters,
- *    GOLD + dropy (kamienie/potiony) → blob game_saves (inventory.gold to
- *    PRAWDZIWA waluta gry — characters.gold jest szczątkowe),
- *  - idempotencja po requestId.
- */
 final class CombatController extends Controller
 {
     public function resolve(
@@ -37,7 +27,6 @@ final class CombatController extends Controller
         RngInterface $rng,
         CharacterStateService $state,
     ): JsonResponse {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $requestId = (string) $request->validated('requestId');
@@ -79,10 +68,8 @@ final class CombatController extends Controller
                 $fresh->stat_points += (int) $result['statPointsGained'];
                 $fresh->highest_level = max((int) $fresh->highest_level, (int) $result['newLevel']);
 
-                // Gold → blob (prawdziwa waluta gry), NIE characters.gold.
                 $state->addGold($save, (int) $result['goldGained']);
 
-                // Dropy kamieni/potek — serwerowy roll, kolejność jak w engine.
                 $stone = LootSystem::rollStoneDrop($rng, (int) $monster['level'], $result['monsterRarity']);
                 if ($stone !== null) {
                     $state->addStones($save, $stone['type'], $stone['count']);
@@ -93,7 +80,6 @@ final class CombatController extends Controller
                     $drops['potions'][] = $potion;
                 }
 
-                // Dropy itemów (serwerowa generacja — ItemGenerator).
                 $generator = new ItemGenerator($content->get('itemTemplates'), $rng);
                 foreach (LootSystem::rollLoot($rng, (int) $monster['level'], $result['monsterRarity'], 0.0, $generator) as $item) {
                     $state->addBagItem($save, $item);

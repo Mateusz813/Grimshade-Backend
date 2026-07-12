@@ -7,15 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Log operacji skarbca gildii (`guild_treasury_logs`). Kształt: guildApi.ts
- * (IGuildTreasuryLogRow). Wpis deposit/withdraw z nazwą i snapshotem itemu.
- *
- * @property string $id
- * @property string $guild_id
- * @property string $action
- * @property string $character_id
- */
 class GuildTreasuryLog extends Model
 {
     use HasUuids;
@@ -26,7 +17,7 @@ class GuildTreasuryLog extends Model
 
     protected $keyType = 'string';
 
-    public $timestamps = false; // tylko created_at
+    public $timestamps = false;
 
     protected $fillable = [
         'guild_id', 'action', 'character_id', 'character_name',

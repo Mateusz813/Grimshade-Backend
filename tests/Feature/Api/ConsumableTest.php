@@ -13,9 +13,6 @@ uses(RefreshDatabase::class);
 const CN_USER = 'cccccccc-cccc-cccc-cccc-cccccccccccc';
 const CN_USER_B = 'dddddddd-dddd-dddd-dddd-dddddddddddd';
 
-/**
- * @param  array<string, mixed>  $attrs
- */
 function cnChar(array $attrs = []): Character
 {
     return Character::factory()->forUser(CN_USER)->create(array_merge(
@@ -29,9 +26,6 @@ function cnToken(): string
     return TokenFactory::forUser(CN_USER);
 }
 
-/**
- * @param  array<string, int>  $consumables
- */
 function cnSave(Character $c, array $consumables = []): GameSave
 {
     return GameSave::create([
@@ -46,11 +40,10 @@ function cnSave(Character $c, array $consumables = []): GameSave
     ]);
 }
 
-// ---- convert ---------------------------------------------------------------
 
 it('converts potions: consumes inputCount*batches, produces batches (FREE)', function () {
     $c = cnChar();
-    cnSave($c, ['hp_potion_sm' => 12]); // 5 sm -> 1 md
+    cnSave($c, ['hp_potion_sm' => 12]);
 
     $res = $this->withToken(cnToken())->postJson(
         "/api/v1/characters/{$c->id}/potions/convert",
@@ -64,13 +57,13 @@ it('converts potions: consumes inputCount*batches, produces batches (FREE)', fun
         ->assertJsonPath('consumed', 10);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
-    expect($blob['inventory']['consumables']['hp_potion_sm'])->toBe(2)   // 12 - 10
+    expect($blob['inventory']['consumables']['hp_potion_sm'])->toBe(2)
         ->and($blob['inventory']['consumables']['hp_potion_md'])->toBe(2);
 });
 
 it('disambiguates a shared inputId via outputId (lg -> mega branch)', function () {
     $c = cnChar();
-    cnSave($c, ['hp_potion_lg' => 25]); // 25 lg -> 1 mega (alt flat branch)
+    cnSave($c, ['hp_potion_lg' => 25]);
 
     $res = $this->withToken(cnToken())->postJson(
         "/api/v1/characters/{$c->id}/potions/convert",
@@ -89,7 +82,7 @@ it('disambiguates a shared inputId via outputId (lg -> mega branch)', function (
 
 it('rejects convert with insufficient inputs (422) and mutates nothing', function () {
     $c = cnChar();
-    cnSave($c, ['hp_potion_sm' => 9]); // < 10 needed for 2 batches
+    cnSave($c, ['hp_potion_sm' => 9]);
 
     $this->withToken(cnToken())->postJson(
         "/api/v1/characters/{$c->id}/potions/convert",
@@ -102,7 +95,7 @@ it('rejects convert with insufficient inputs (422) and mutates nothing', functio
 });
 
 it('rejects convert when the output tier is level-locked (422)', function () {
-    $c = cnChar(['level' => 1]); // great requires level 100
+    $c = cnChar(['level' => 1]);
     cnSave($c, ['hp_potion_lg' => 334]);
 
     $this->withToken(cnToken())->postJson(
@@ -117,7 +110,7 @@ it('rejects convert when the output tier is level-locked (422)', function () {
 
 it('rejects convert for an unknown recipe (422)', function () {
     $c = cnChar();
-    cnSave($c, ['hp_potion_mega' => 100]); // mega is never a conversion input
+    cnSave($c, ['hp_potion_mega' => 100]);
 
     $this->withToken(cnToken())->postJson(
         "/api/v1/characters/{$c->id}/potions/convert",
@@ -133,10 +126,9 @@ it('convert is idempotent per requestId (no double apply)', function () {
     $two = $this->withToken(cnToken())->postJson("/api/v1/characters/{$c->id}/potions/convert", ['inputId' => 'hp_potion_sm', 'batches' => 2, 'requestId' => 'cv-dup'])->json();
 
     expect($two)->toBe($one);
-    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['hp_potion_sm'])->toBe(2); // single apply
+    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['hp_potion_sm'])->toBe(2);
 });
 
-// ---- use -------------------------------------------------------------------
 
 it('uses a consumable: decrements the stack by exactly 1', function () {
     $c = cnChar();
@@ -173,7 +165,7 @@ it('rejects using the stat_reset elixir via /use (422 → use stat-reset)', func
         ['consumableId' => 'stat_reset', 'requestId' => 'use-sr'],
     )->assertStatus(422);
 
-    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['stat_reset'])->toBe(5); // untouched
+    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['stat_reset'])->toBe(5);
 });
 
 it('use is idempotent per requestId (no double decrement)', function () {
@@ -187,7 +179,6 @@ it('use is idempotent per requestId (no double decrement)', function () {
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['xp_boost'])->toBe(2);
 });
 
-// ---- stat-reset ------------------------------------------------------------
 
 it('resets stats to class base + consumes the stat_reset elixir', function () {
     $c = cnChar(['hp' => 5000, 'mp' => 5000]);
@@ -202,11 +193,11 @@ it('resets stats to class base + consumes the stat_reset elixir', function () {
 
     $res->assertOk()
         ->assertJsonPath('character.attack', $expected['attack'])
-        ->assertJsonPath('character.max_hp', $expected['max_hp'])       // 912
-        ->assertJsonPath('character.max_mp', $expected['max_mp'])       // 228
+        ->assertJsonPath('character.max_hp', $expected['max_hp'])
+        ->assertJsonPath('character.max_mp', $expected['max_mp'])
         ->assertJsonPath('character.hp', $expected['hp'])
         ->assertJsonPath('character.mp', $expected['mp'])
-        ->assertJsonPath('character.stat_points', $expected['stat_points']) // 198
+        ->assertJsonPath('character.stat_points', $expected['stat_points'])
         ->assertJsonPath('consumables.stat_reset', 1);
 
     $fresh = Character::find($c->id);
@@ -220,7 +211,7 @@ it('resets stats to class base + consumes the stat_reset elixir', function () {
 
 it('rejects stat-reset when the elixir stack is empty (422) and mutates nothing', function () {
     $c = cnChar(['hp' => 5000, 'mp' => 5000, 'attack' => 777, 'stat_points' => 3]);
-    cnSave($c, []); // no stat_reset elixir
+    cnSave($c, []);
 
     $this->withToken(cnToken())->postJson(
         "/api/v1/characters/{$c->id}/character/stat-reset",
@@ -228,7 +219,7 @@ it('rejects stat-reset when the elixir stack is empty (422) and mutates nothing'
     )->assertStatus(422);
 
     $fresh = Character::find($c->id);
-    expect($fresh->attack)->toBe(777)          // unchanged
+    expect($fresh->attack)->toBe(777)
         ->and($fresh->stat_points)->toBe(3);
 });
 
@@ -240,10 +231,9 @@ it('stat-reset is idempotent per requestId (no double consume)', function () {
     $two = $this->withToken(cnToken())->postJson("/api/v1/characters/{$c->id}/character/stat-reset", ['consumableId' => 'stat_reset', 'requestId' => 'sr-dup'])->json();
 
     expect($two)->toBe($one);
-    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['stat_reset'])->toBe(1); // single consume
+    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['stat_reset'])->toBe(1);
 });
 
-// ---- authority -------------------------------------------------------------
 
 it('blocks acting on another user\'s character (403)', function () {
     $other = Character::factory()->forUser(CN_USER_B)->create(['class' => 'Knight', 'level' => 100]);

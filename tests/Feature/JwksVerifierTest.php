@@ -21,7 +21,6 @@ function b64url(string $s): string
     return rtrim(strtr(base64_encode($s), '+/', '-_'), '=');
 }
 
-/** @return array{0: string, 1: array<string, mixed>, 2: string} [privatePem, jwk, publicPem] */
 function makeEcKey(string $kid): array
 {
     $res = openssl_pkey_new(['private_key_type' => OPENSSL_KEYTYPE_EC, 'curve_name' => 'prime256v1']);
@@ -36,7 +35,6 @@ function makeEcKey(string $kid): array
     return [$privatePem, $jwk, $d['key']];
 }
 
-/** @param array<string, mixed> $overrides */
 function mintEs256(string $privatePem, string $publicPem, string $kid, array $overrides = []): string
 {
     $config = Configuration::forAsymmetricSigner(new EcdsaSha256, InMemory::plainText($privatePem), InMemory::plainText($publicPem));
@@ -118,7 +116,7 @@ it('falls back to HS256 with the shared secret for legacy tokens', function () {
         ->issuedAt($now)->expiresAt($now->modify('+1 hour'))
         ->getToken($config->signer(), $config->signingKey())->toString();
 
-    Http::fake([JWKS_URL => Http::response(['keys' => []])]); // JWKS not needed for HS256
+    Http::fake([JWKS_URL => Http::response(['keys' => []])]);
     $user = jwksVerifier($secret)->verify($jwt);
 
     expect($user->id)->toBe('user-hs');

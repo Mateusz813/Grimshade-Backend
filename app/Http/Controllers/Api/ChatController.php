@@ -13,37 +13,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Czat miasta / system / party / guild / PM.
- *
- * Autorytet:
- *  - GET /chat/messages?channel=&limit — feed per kanał (odczyt globalny, auth).
- *  - POST /characters/{character}/chat/messages — wysyłka. Tożsamość nadawcy
- *    (character_name/class/level) bierze SERWER z postaci (owns.character), NIE
- *    z body. Serwer waliduje długość (≤300) i prosty rate-limit (cooldown/char).
- *  - POST /characters/{character}/chat/system-event — broadcast zdarzenia
- *    (upgrade/skillUpgrade) w formacie App\Domain\Chat\SystemChatMessages; serwer
- *    egzekwuje regułę progów (isUpgradeMilestone) i sam składa treść `[SYS]{...}`.
- *
- * Realtime broadcast (postgres_changes) robi Supabase po insercie — nie tutaj.
- */
 final class ChatController extends Controller
 {
-    /** Limit długości treści (front slice(0,300)); dłuższa wiadomość → 422. */
     private const MAX_CONTENT_LENGTH = 300;
 
-    /** Prosty rate-limit: minimalny odstęp między wiadomościami tej samej postaci. */
     private const RATE_LIMIT_SECONDS = 2;
 
-    /** Domyślny / maksymalny rozmiar strony feedu. */
     private const DEFAULT_LIMIT = 100;
 
     private const MAX_LIMIT = 500;
 
-    /** Kanał, na którym jadą serwerowe zdarzenia systemowe. */
     private const SYSTEM_CHANNEL = 'system';
 
-    /** Feed kanału — najnowsze pierwsze (front sobie odwraca, jak w chatApi.ts). */
     public function index(Request $request): JsonResponse
     {
         $data = $request->validate([
@@ -62,10 +43,8 @@ final class ChatController extends Controller
         return response()->json($messages);
     }
 
-    /** Wyślij wiadomość — tożsamość z SERWERA, walidacja długości + rate-limit. */
     public function store(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $data = $request->validate([
@@ -85,14 +64,8 @@ final class ChatController extends Controller
         return response()->json($message, Response::HTTP_CREATED);
     }
 
-    /**
-     * Broadcast zdarzenia systemowego (upgrade/skillUpgrade) do kanału `system`.
-     * Serwer sam decyduje, czy poziom to próg broadcastu (isUpgradeMilestone),
-     * i sam składa treść `[SYS]{...}` w formacie parytetowym z frontem.
-     */
     public function systemEvent(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $type = $request->input('type');
@@ -110,7 +83,6 @@ final class ChatController extends Controller
 
             $this->assertMilestone((int) $data['upgradeLevel']);
 
-            // Kolejność kluczy = interfejs TS (ISystemUpgradePayload) — bit-parity.
             $payload = [
                 'type' => 'upgrade',
                 'itemId' => $data['itemId'],
@@ -127,7 +99,6 @@ final class ChatController extends Controller
 
             $this->assertMilestone((int) $data['upgradeLevel']);
 
-            // Kolejność kluczy = interfejs TS (ISystemSkillUpgradePayload).
             $payload = [
                 'type' => 'skillUpgrade',
                 'skillId' => $data['skillId'],
@@ -142,7 +113,6 @@ final class ChatController extends Controller
         return response()->json($message, Response::HTTP_CREATED);
     }
 
-    /** Prosty cooldown per-postać (array cache) — blokuje spam rapid-fire. */
     private function enforceRateLimit(Character $character): void
     {
         $key = "chat.cooldown.{$character->id}";
@@ -158,13 +128,11 @@ final class ChatController extends Controller
         }
     }
 
-    /** Wstawia wiersz z tożsamością postaci wziętą z SERWERA (anty-fałsz). */
     private function insertMessage(Character $character, string $channel, string $content): Message
     {
         return Message::create([
             'user_id' => $character->user_id,
             'channel' => $channel,
-            // Tożsamość z SERWERA — nie z body:
             'character_name' => $character->name,
             'character_class' => $character->class,
             'character_level' => $character->level,

@@ -14,7 +14,6 @@ uses(RefreshDatabase::class);
 const QU_USER = 'cccccccc-cccc-cccc-cccc-cccccccccccc';
 const QU_USER_B = 'dddddddd-dddd-dddd-dddd-dddddddddddd';
 
-// Deterministyczny RNG (generacja itemów: reward-item + „gift").
 beforeEach(function () {
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(777));
 });
@@ -27,7 +26,6 @@ function quChar(int $level = 20, string $userId = QU_USER): Character
     ]);
 }
 
-/** Blob z jednym aktywnym questem. progress>=count → ukończony. */
 function quSaveWithQuest(Character $c, string $questId, int $progress = 1, int $count = 1, int $gold = 0): GameSave
 {
     return GameSave::create([
@@ -59,7 +57,7 @@ function quClaim(Character $c, string $questId)
 
 it('claims gold + elixir: gold to blob, elixir resolved+stacked, quest moved, oneshot bumped', function () {
     $c = quChar(level: 10);
-    quSaveWithQuest($c, 'quest_first_steps'); // gold 100, elixir hp_sm x5
+    quSaveWithQuest($c, 'quest_first_steps');
 
     $res = quClaim($c, 'quest_first_steps');
 
@@ -69,16 +67,16 @@ it('claims gold + elixir: gold to blob, elixir resolved+stacked, quest moved, on
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
     expect($blob['inventory']['gold'])->toBe(100)
-        ->and($blob['inventory']['consumables']['hp_potion_sm'])->toBe(5)   // hp_sm → hp_potion_sm
-        ->and($blob['quests']['activeQuests'])->toBe([])                     // usunięty
+        ->and($blob['inventory']['consumables']['hp_potion_sm'])->toBe(5)
+        ->and($blob['quests']['activeQuests'])->toBe([])
         ->and($blob['quests']['completedQuestIds'])->toBe(['quest_first_steps'])
-        ->and($blob['inventory']['bag'])->toHaveCount(1);                    // gift item (brak jawnego item-rewarda)
+        ->and($blob['inventory']['bag'])->toHaveCount(1);
     expect((int) Character::find($c->id)->quests_oneshot_done)->toBe(1);
 });
 
 it('claims a stone reward (singular stoneType) into the blob', function () {
     $c = quChar(level: 10);
-    quSaveWithQuest($c, 'quest_spider_infestation'); // gold 100, stone common_stone x2
+    quSaveWithQuest($c, 'quest_spider_infestation');
 
     quClaim($c, 'quest_spider_infestation')->assertOk();
 
@@ -89,11 +87,10 @@ it('claims a stone reward (singular stoneType) into the blob', function () {
 
 it('claims xp (to character) + gold + stones (plural stoneId) + elixir', function () {
     $c = quChar(level: 20);
-    quSaveWithQuest($c, 'q_wolfpack_20'); // gold 20000, xp 10000, elixir amulet_of_loss x1, stones rare_stone x5
+    quSaveWithQuest($c, 'q_wolfpack_20');
 
     quClaim($c, 'q_wolfpack_20')->assertOk();
 
-    // xpToNextLevel(20)=26832 > 10000 → brak level-upa, xp na postaci.
     $fresh = Character::find($c->id);
     expect($fresh->xp)->toBe(10000)
         ->and($fresh->level)->toBe(20);
@@ -101,18 +98,18 @@ it('claims xp (to character) + gold + stones (plural stoneId) + elixir', functio
     $blob = GameSave::where('character_id', $c->id)->first()->state;
     expect($blob['inventory']['gold'])->toBe(20000)
         ->and($blob['inventory']['stones']['rare_stone'])->toBe(5)
-        ->and($blob['inventory']['consumables']['amulet_of_loss'])->toBe(1); // brak aliasu → id bez zmiany
+        ->and($blob['inventory']['consumables']['amulet_of_loss'])->toBe(1);
 });
 
 it('claims an explicit item reward: server-generated item in bag, NO gift item', function () {
     $c = quChar(level: 55);
-    quSaveWithQuest($c, 'q_bandit_bounty_55'); // gold 75000, xp 50000, item epic x1, elixir amulet_of_loss x3
+    quSaveWithQuest($c, 'q_bandit_bounty_55');
 
     $res = quClaim($c, 'q_bandit_bounty_55');
-    $res->assertOk()->assertJsonPath('rewards.giftItem', null); // jawny item ⇒ zero giftu
+    $res->assertOk()->assertJsonPath('rewards.giftItem', null);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
-    expect($blob['inventory']['bag'])->toHaveCount(1);                        // sam reward, bez giftu
+    expect($blob['inventory']['bag'])->toHaveCount(1);
     $item = $blob['inventory']['bag'][0];
     expect($item['rarity'])->toBe('epic')
         ->and($item['itemLevel'])->toBe(55)
@@ -123,7 +120,7 @@ it('claims an explicit item reward: server-generated item in bag, NO gift item',
 
 it('claims stat_points reward onto the character (+ xp_elixir alias)', function () {
     $c = quChar(level: 30);
-    quSaveWithQuest($c, 'quest_demon_invasion'); // gold 1200, elixir xp_elixir x2, stat_points 1
+    quSaveWithQuest($c, 'quest_demon_invasion');
 
     quClaim($c, 'quest_demon_invasion')
         ->assertOk()
@@ -131,19 +128,19 @@ it('claims stat_points reward onto the character (+ xp_elixir alias)', function 
 
     expect((int) Character::find($c->id)->stat_points)->toBe(1);
     $blob = GameSave::where('character_id', $c->id)->first()->state;
-    expect($blob['inventory']['consumables']['xp_boost'])->toBe(2)           // xp_elixir → xp_boost
+    expect($blob['inventory']['consumables']['xp_boost'])->toBe(2)
         ->and($blob['inventory']['gold'])->toBe(1200);
 });
 
 it('rejects claiming an unfinished quest (422) and grants nothing', function () {
     $c = quChar(level: 10);
-    quSaveWithQuest($c, 'quest_first_steps', progress: 0, count: 1); // goal nieukończony
+    quSaveWithQuest($c, 'quest_first_steps', progress: 0, count: 1);
 
     quClaim($c, 'quest_first_steps')->assertStatus(422);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
     expect($blob['inventory']['gold'])->toBe(0)
-        ->and($blob['quests']['activeQuests'])->toHaveCount(1)               // nadal aktywny
+        ->and($blob['quests']['activeQuests'])->toHaveCount(1)
         ->and($blob['quests']['completedQuestIds'])->toBe([]);
     expect((int) Character::find($c->id)->quests_oneshot_done)->toBe(0);
 });
@@ -155,7 +152,6 @@ it('is naturally idempotent: second claim is 404 (no double reward)', function (
     quClaim($c, 'quest_first_steps')->assertOk();
     quClaim($c, 'quest_first_steps')->assertNotFound();
 
-    // Gold NIE podwojony, licznik one-shotów NIE podbity drugi raz.
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(100);
     expect((int) Character::find($c->id)->quests_oneshot_done)->toBe(1);
 });

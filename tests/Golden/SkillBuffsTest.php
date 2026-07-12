@@ -6,12 +6,6 @@ use App\Domain\Content\ContentRepository;
 use App\Domain\Skills\SkillBuffs;
 use Tests\Support\Golden;
 
-/**
- * PARYTET skillBuffs: PHP SkillBuffs == TS skillBuffs.ts, na tej samej treści
- * skills.json (getSkillDef) + na czystej matematyce parsowania buffów.
- * toEqual (nie toBe) — JSON nie rozróżnia int/float, więc porównanie luźne
- * (durationMs/healPctPerSec liczone jako float, w fixture jako liczby całk.).
- */
 beforeEach(function () {
     $this->golden = Golden::load('skillBuffs.json');
     $content = new ContentRepository(dirname(__DIR__, 2).'/resources/game-content');

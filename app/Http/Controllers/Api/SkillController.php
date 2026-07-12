@@ -18,21 +18,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Autorytatywne endpointy skilli. SERWER liczy koszt/wynik — klient podaje tylko
- * skillId (+ requestId dla ulepszenia). Semantyka 1:1 z frontem (skillStore.ts):
- *
- *  - upgrade: koszt (spell-chesty + gold) z SkillSystem::getSpellChestUpgradeCost
- *    schodzi ZAWSZE (sukces czy porażka), sukces = rollSkillUpgrade → upgradeLevel+1
- *    + licznik rankingowy skill_upgrades_done++. Brak środków = 422 (nic nie schodzi).
- *  - train/start: wybiera skill treningu offline i stempluje czas startu SERWERA
- *    (poprzedni trening jest najpierw zebrany — jak selectTrainingStat).
- *  - train/collect: XP = calculateOfflineSkillXp(elapsed, level, skillId), gdzie
- *    elapsed to czas SERWERA od trainingStartedAt (capowany 24h w SkillSystem).
- *
- * Blob skills: skillLevels / skillXp / skillUpgradeLevels żyją w state.skills.
- * Spell-chesty to consumables `spell_chest_<level>` (mutowane przez serwis).
- */
 final class SkillController extends Controller
 {
     public function upgrade(
@@ -41,14 +26,12 @@ final class SkillController extends Controller
         CharacterStateService $state,
         RngInterface $rng,
     ): JsonResponse {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $skillId = (string) $request->route('skillId');
         $data = $request->validate([
             'requestId' => ['required', 'string', 'max:64'],
         ]);
 
-        // Poziom odblokowania skilla (chestLevel) — z żywej treści, nie z body.
         $unlockLevel = $this->skillUnlockLevel($content, $skillId);
         if ($unlockLevel === null) {
             abort(Response::HTTP_NOT_FOUND, 'Nie ma takiego skilla.');
@@ -71,30 +54,25 @@ final class SkillController extends Controller
             $cost = SkillSystem::getSpellChestUpgradeCost($targetLevel, $unlockLevel);
             $chestKey = 'spell_chest_'.$cost['chestLevel'];
 
-            // Odmowa gry (brak środków) → 422, ZERO mutacji.
             $haveGold = (int) ($blob['inventory']['gold'] ?? 0);
             $haveChests = (int) ($blob['inventory']['consumables'][$chestKey] ?? 0);
             if ($haveGold < (int) $cost['gold'] || ((int) $cost['chests'] > 0 && $haveChests < (int) $cost['chests'])) {
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Za mało środków na ulepszenie skilla.');
             }
 
-            // Roll sukcesu serwerowym RNG (kolejność jak TS: nextFloat()*100 < successRate).
             $success = SkillSystem::rollSkillUpgrade($rng, $targetLevel);
 
-            // Mutacja slice skills PRZED serwisem (inaczej $save->state=$blob nadpisze koszt).
             if ($success) {
                 $skills['skillUpgradeLevels'][$skillId] = $targetLevel;
             }
             $blob['skills'] = $skills;
             $save->state = $blob;
 
-            // Koszt schodzi ZAWSZE (sukces czy porażka) — jak na froncie.
             if ((int) $cost['chests'] > 0) {
                 $state->useConsumable($save, $chestKey, (int) $cost['chests']);
             }
             $state->spendGold($save, (int) $cost['gold']);
 
-            // Licznik rankingowy — jak front bumpStat('skill_upgrades_done').
             if ($success) {
                 $fresh->skill_upgrades_done = (int) $fresh->skill_upgrades_done + 1;
                 $fresh->save();
@@ -119,20 +97,11 @@ final class SkillController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Odblokowanie active skilla. SERWER liczy koszt (getSpellChestUnlockCost:
-     * 1 spell-chest poziomu unlockLevel + gold = floor(getSkillUnlockCost/5)) i
-     * konsumuje go, po czym stawia flagę skills.unlockedSkills[skillId]=true.
-     *
-     * Parytet: Inventory.tsx confirmUnlock + skillStore unlockSkill. Bramka
-     * poziomu (character.level >= def.unlockLevel) i brak środków → 422.
-     */
     public function unlock(
         Request $request,
         ContentRepository $content,
         CharacterStateService $state,
     ): JsonResponse {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $skillId = (string) $request->route('skillId');
         $data = $request->validate([
@@ -144,7 +113,6 @@ final class SkillController extends Controller
             abort(Response::HTTP_NOT_FOUND, 'Nie ma takiego skilla.');
         }
 
-        // Bramka poziomu — jak na froncie (character.level >= def.unlockLevel).
         if ((int) $character->level < $unlockLevel) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Za niski poziom, by odblokować ten skill.');
         }
@@ -159,7 +127,6 @@ final class SkillController extends Controller
             $blob = $save->state;
             $skills = $blob['skills'] ?? [];
 
-            // Już odblokowany → brak kosztu (jak unlockSkill early-return), zwróć stan.
             if (($skills['unlockedSkills'][$skillId] ?? false) === true) {
                 return [
                     'skillId' => $skillId,
@@ -171,14 +138,12 @@ final class SkillController extends Controller
             $cost = SkillSystem::getSpellChestUnlockCost($unlockLevel);
             $chestKey = 'spell_chest_'.$cost['chestLevel'];
 
-            // Odmowa (brak środków) → 422, ZERO mutacji.
             $haveGold = (int) ($blob['inventory']['gold'] ?? 0);
             $haveChests = (int) ($blob['inventory']['consumables'][$chestKey] ?? 0);
             if ($haveGold < (int) $cost['gold'] || $haveChests < (int) $cost['chests']) {
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Za mało środków, by odblokować skill.');
             }
 
-            // Flaga odblokowania PRZED serwisem (inaczej $save->state=$blob nadpisze koszt).
             $skills['unlockedSkills'][$skillId] = true;
             $blob['skills'] = $skills;
             $save->state = $blob;
@@ -200,15 +165,8 @@ final class SkillController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Przypisanie/wyczyszczenie slotu active-skilla (0-3). Parytet:
-     * Inventory.tsx resolveSwap + skillStore setActiveSkillSlot — skill nie może
-     * zajmować dwóch slotów naraz (poprzednie wystąpienie jest czyszczone).
-     * Przypisać można tylko odblokowany skill; skillId=null czyści slot.
-     */
     public function slot(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'slot' => ['required', 'integer', 'min:0', 'max:3'],
@@ -228,19 +186,16 @@ final class SkillController extends Controller
             $blob = $save->state;
             $skills = $blob['skills'] ?? [];
 
-            // Przypisać można tylko odblokowany skill (czyścić slot zawsze wolno).
             if ($skillId !== null && (($skills['unlockedSkills'][$skillId] ?? false) !== true)) {
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Skill nie jest odblokowany.');
             }
 
-            // Normalizacja do dokładnie 4 slotów (jak activeSkillSlots na froncie).
             $existing = array_values($skills['activeSkillSlots'] ?? []);
             $slots = [];
             for ($i = 0; $i < 4; $i++) {
                 $slots[$i] = $existing[$i] ?? null;
             }
 
-            // Mirror setActiveSkillSlot: usuń skill z innych slotów przed przypisaniem.
             if ($skillId !== null) {
                 for ($i = 0; $i < 4; $i++) {
                     if ($slots[$i] === $skillId && $i !== $slot) {
@@ -269,14 +224,12 @@ final class SkillController extends Controller
 
     public function trainStart(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'skillId' => ['required', 'string', 'max:64'],
         ]);
         $skillId = $data['skillId'];
 
-        // Można trenować tylko staty dostępne dla klasy postaci.
         if (! in_array($skillId, SkillSystem::getTrainableStatsForClass((string) $character->class), true)) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Ten skill nie jest trenowalny dla tej klasy.');
         }
@@ -286,7 +239,6 @@ final class SkillController extends Controller
             $blob = $save->state;
             $skills = $blob['skills'] ?? [];
 
-            // Najpierw zbierz XP z trwającego treningu (jak selectTrainingStat na froncie).
             $collected = $this->collectTraining($skills, new DateTimeImmutable);
 
             $skills['offlineTrainingSkillId'] = $skillId;
@@ -308,7 +260,6 @@ final class SkillController extends Controller
 
     public function trainCollect(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $payload = DB::transaction(function () use ($character, $state): array {
@@ -332,14 +283,6 @@ final class SkillController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Zbiera XP z bieżącego segmentu treningu: elapsed (czas SERWERA) → XP przez
-     * SkillSystem, XP wsiąka w skillLevels/skillXp, timestamp startu resetuje się.
-     * Mutuje $skills przez referencję. Zwraca podsumowanie (xpEarned=0 gdy brak treningu).
-     *
-     * @param  array<string, mixed>  $skills
-     * @return array{skillId:string|null, xpEarned:int, newLevel:int, remainingXp:int, levelsGained:int}
-     */
     private function collectTraining(array &$skills, DateTimeInterface $now): array
     {
         $skillId = $skills['offlineTrainingSkillId'] ?? null;
@@ -371,7 +314,6 @@ final class SkillController extends Controller
         ];
     }
 
-    /** Poziom odblokowania active skilla z treści (skills.json → activeSkills). Null = brak. */
     private function skillUnlockLevel(ContentRepository $content, string $skillId): ?int
     {
         $activeSkills = $content->get('skills')['activeSkills'] ?? [];

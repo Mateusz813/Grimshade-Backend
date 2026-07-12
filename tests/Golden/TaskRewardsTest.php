@@ -6,10 +6,6 @@ use App\Domain\Content\ContentRepository;
 use App\Domain\Progression\TaskRewards;
 use Tests\Support\Golden;
 
-/**
- * PARYTET taskRewards: PHP TaskRewards == TS taskRewards.ts, na tej samej
- * treści monsters.json (mapa override budowana z resources/game-content).
- */
 beforeEach(function () {
     $this->golden = Golden::load('taskRewards.json');
     $content = new ContentRepository(dirname(__DIR__, 2).'/resources/game-content');

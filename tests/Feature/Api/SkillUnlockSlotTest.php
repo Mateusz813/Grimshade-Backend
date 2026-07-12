@@ -22,10 +22,6 @@ function suToken(): string
     return TokenFactory::forUser(SU_USER);
 }
 
-/**
- * @param  array<string, int>  $consumables
- * @param  array<string, mixed>  $skills
- */
 function suSave(Character $c, int $gold, array $consumables = [], array $skills = []): GameSave
 {
     return GameSave::create([
@@ -41,11 +37,9 @@ function suSave(Character $c, int $gold, array $consumables = [], array $skills 
     ]);
 }
 
-// ---- Unlock ----------------------------------------------------------------
 
 it('unlocks a skill: 1 spell chest + gold deducted, flag set', function () {
     $c = suChar();
-    // shield_bash unlockLevel=5 → chestLevel=5, koszt {chests:1, gold:362}.
     suSave($c, gold: 1000, consumables: ['spell_chest_5' => 3]);
 
     $res = $this->withToken(suToken())->postJson(
@@ -55,17 +49,17 @@ it('unlocks a skill: 1 spell chest + gold deducted, flag set', function () {
 
     $res->assertOk()
         ->assertJsonPath('skillId', 'shield_bash')
-        ->assertJsonPath('gold', 638)                               // 1000 - 362
+        ->assertJsonPath('gold', 638)
         ->assertJsonPath('skills.unlockedSkills.shield_bash', true);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
     expect($blob['inventory']['gold'])->toBe(638)
-        ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(2)   // 3 - 1
+        ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(2)
         ->and($blob['skills']['unlockedSkills']['shield_bash'])->toBeTrue();
 });
 
 it('rejects unlock when character level is below unlockLevel (422), mutates nothing', function () {
-    $c = suChar(level: 4); // shield_bash wymaga 5
+    $c = suChar(level: 4);
     suSave($c, gold: 1000, consumables: ['spell_chest_5' => 3]);
 
     $this->withToken(suToken())->postJson(
@@ -81,7 +75,7 @@ it('rejects unlock when character level is below unlockLevel (422), mutates noth
 
 it('rejects unlock with insufficient gold (422), mutates nothing', function () {
     $c = suChar();
-    suSave($c, gold: 100, consumables: ['spell_chest_5' => 3]); // 100 < 362
+    suSave($c, gold: 100, consumables: ['spell_chest_5' => 3]);
 
     $this->withToken(suToken())->postJson(
         "/api/v1/characters/{$c->id}/skills/shield_bash/unlock",
@@ -96,7 +90,7 @@ it('rejects unlock with insufficient gold (422), mutates nothing', function () {
 
 it('rejects unlock with no spell chest (422)', function () {
     $c = suChar();
-    suSave($c, gold: 100000, consumables: []); // brak spell_chest_5
+    suSave($c, gold: 100000, consumables: []);
 
     $this->withToken(suToken())->postJson(
         "/api/v1/characters/{$c->id}/skills/shield_bash/unlock",
@@ -125,7 +119,7 @@ it('unlock is idempotent per requestId (no double spend)', function () {
 
     expect($two)->toBe($one);
     $blob = GameSave::where('character_id', $c->id)->first()->state;
-    expect($blob['inventory']['gold'])->toBe(638)                    // pojedyncze zejście
+    expect($blob['inventory']['gold'])->toBe(638)
         ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(2);
 });
 
@@ -141,11 +135,10 @@ it('already-unlocked skill costs nothing on a fresh request', function () {
     )->assertOk()->assertJsonPath('skills.unlockedSkills.shield_bash', true);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
-    expect($blob['inventory']['gold'])->toBe(1000)                   // nietknięte
+    expect($blob['inventory']['gold'])->toBe(1000)
         ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(3);
 });
 
-// ---- Slot assign -----------------------------------------------------------
 
 it('assigns an unlocked skill to a slot', function () {
     $c = suChar();
@@ -221,7 +214,6 @@ it('slot assignment is idempotent per requestId', function () {
     expect($two)->toBe($one);
 });
 
-// ---- Authority -------------------------------------------------------------
 
 it('blocks unlock/slot on another user\'s character (403)', function () {
     $other = Character::factory()->forUser(SU_USER_B)->create(['class' => 'Knight', 'level' => 100]);

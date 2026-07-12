@@ -24,27 +24,10 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Autorytatywne endpointy gildii. SERWER liczy cały przepływ — klient wysyła
- * tylko intencje. Tożsamość aktualnej postaci pochodzi z {character}
- * (owns.character); postać/stan z BAZY, nigdy z body.
- *
- * Semantyka 1:1 z frontem (guildApi.ts / guildStore.ts / guildSystem.ts):
- *  - create: koszt GUILD_CREATE_COST_GOLD (1 000 000) schodzi z bloba game_saves
- *    (prawdziwy gold), zakładający = pierwszy członek + lider,
- *  - join: prośba ze snapshotem postaci z BAZY,
- *  - accept: WYŁĄCZNIE lider (403 inaczej), respektuje member_cap, czyści prośby,
- *  - leave: lider → sukcesja najstarszego członka lub rozwiązanie gdy pusto,
- *  - boss/damage: obrażenia = computeGuildBossDamage(atk, level, tier) SERWEROWO,
- *    HP bossa z getGuildBossMaxHp, XP gildii = zadane HP (applyGuildXp), kill → +1 tier,
- *  - treasury: item schodzi z bag ATOMOWO z insertem do skarbca (i odwrotnie).
- */
 final class GuildController extends Controller
 {
-    /** Zakłada gildię: koszt z bloba + wiersz guild + zakładający jako lider. */
     public function create(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'name' => ['required', 'string', 'max:32'],
@@ -59,7 +42,6 @@ final class GuildController extends Controller
             return response()->json(Cache::get($cacheKey), Response::HTTP_CREATED);
         }
 
-        // Jedna postać = jedna gildia.
         if (GuildMember::query()->where('character_id', $character->id)->exists()) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Jesteś już w gildii.');
         }
@@ -68,7 +50,6 @@ final class GuildController extends Controller
             $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
             $save = $state->lockedFor($fresh);
 
-            // Koszt założenia z PRAWDZIWEGO golda (blob) — rzuca 422 gdy za mało.
             $state->spendGold($save, GuildSystem::GUILD_CREATE_COST_GOLD);
 
             $guild = Guild::create([
@@ -99,7 +80,6 @@ final class GuildController extends Controller
         return response()->json($payload, Response::HTTP_CREATED);
     }
 
-    /** Podgląd gildii: metadane + roster + prośby (leader-UI). */
     public function show(Request $request): JsonResponse
     {
         $guild = $this->guildFromRoute($request);
@@ -121,14 +101,11 @@ final class GuildController extends Controller
         ]);
     }
 
-    /** Prośba o dołączenie — snapshot postaci z BAZY. Idempotentna. */
     public function join(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
 
-        // Jedna postać = jedna gildia.
         if (GuildMember::query()->where('character_id', $character->id)->exists()) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Jesteś już w gildii.');
         }
@@ -150,10 +127,8 @@ final class GuildController extends Controller
         return response()->json(['ok' => true, 'request' => $this->requestSnapshot($req)]);
     }
 
-    /** Lider akceptuje prośbę {charId} → dodaje członka, czyści prośby. 403 nie-lider. */
     public function accept(Request $request): JsonResponse
     {
-        /** @var Character $leader */
         $leader = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $charId = (string) $request->route('charId');
@@ -173,7 +148,6 @@ final class GuildController extends Controller
                 abort(Response::HTTP_NOT_FOUND, 'Brak takiej prośby o dołączenie.');
             }
 
-            // Idempotencja: jeśli już członek — tylko wyczyść prośby.
             $alreadyMember = GuildMember::query()
                 ->where('guild_id', $locked->id)
                 ->where('character_id', $charId)
@@ -185,7 +159,6 @@ final class GuildController extends Controller
                     abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Gildia jest pełna.');
                 }
 
-                // Snapshot z ŻYWEJ postaci (fallback: dane z prośby).
                 $joiner = Character::query()->find($charId);
                 if ($joiner !== null) {
                     $this->insertMember($locked, $joiner);
@@ -202,7 +175,6 @@ final class GuildController extends Controller
                 }
             }
 
-            // Po dołączeniu znika z prośb WSZYSTKICH gildii (spec purgeRequests).
             GuildJoinRequest::query()->where('character_id', $charId)->delete();
 
             return [
@@ -219,10 +191,8 @@ final class GuildController extends Controller
         return response()->json($payload);
     }
 
-    /** Opuszczenie gildii — lider przekazuje ster najstarszemu lub rozwiązuje. */
     public function leave(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
 
@@ -243,7 +213,6 @@ final class GuildController extends Controller
                 return ['ok' => true, 'disbanded' => false];
             }
 
-            // Lider odszedł: sukcesja najstarszego pozostałego członka.
             $successor = GuildMember::query()
                 ->where('guild_id', $locked->id)
                 ->orderBy('joined_at')
@@ -257,7 +226,6 @@ final class GuildController extends Controller
                 return ['ok' => true, 'disbanded' => false];
             }
 
-            // Brak następcy → rozwiązanie (czyścimy wszystkie powiązane wiersze).
             $this->disband($locked);
 
             return ['ok' => true, 'disbanded' => true];
@@ -266,13 +234,8 @@ final class GuildController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Atak na bossa gildii — SERWER liczy obrażenia/HP/tier/XP. Klient nie podaje
-     * żadnych kwot. Kredytuje wkład + próbę + XP gildii (1 HP = 1 XP). Kill → +1 tier.
-     */
     public function bossDamage(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $this->assertMember($guild, $character);
@@ -288,7 +251,6 @@ final class GuildController extends Controller
         $today = GuildSystem::getTodayIso($epochMs);
 
         $payload = DB::transaction(function () use ($guild, $character, $weekStart, $today): array {
-            // Lock na gildii serializuje równoległe ataki (anty-podwójny-spawn bossa).
             $lockedGuild = Guild::query()->lockForUpdate()->findOrFail($guild->id);
             $tier = GuildSystem::clampGuildBossTier((int) $lockedGuild->boss_tier);
 
@@ -297,7 +259,6 @@ final class GuildController extends Controller
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Boss w tym tygodniu jest już pokonany.');
             }
 
-            // Obrażenia liczone SERWEROWO — atak/poziom z BAZY, nie z body.
             $raw = GuildSystem::computeGuildBossDamage(
                 (int) $character->attack,
                 (int) $character->level,
@@ -315,19 +276,15 @@ final class GuildController extends Controller
             $boss->updated_at = now();
             $boss->save();
 
-            // Wkład tygodniowy (steruje mnożnikiem nagrody).
             $contribution = $this->addContribution($lockedGuild, $character, $weekStart, $actual);
 
-            // Dzienna próba (kumulacja obrażeń w dniu).
             $this->logAttempt($lockedGuild, $character, $today, $actual);
 
-            // XP gildii = zadane HP (1 HP = 1 XP) → applyGuildXp może wbić poziomy.
             $applied = GuildSystem::applyGuildXp((int) $lockedGuild->level, (int) $lockedGuild->xp, $actual);
             $lockedGuild->level = $applied['level'];
             $lockedGuild->xp = $applied['xp'];
             $lockedGuild->member_cap = GuildSystem::guildMemberCap($applied['level']);
             if ($killed) {
-                // Zabity boss → następny tydzień o tier wyżej (clamp do 50).
                 $lockedGuild->boss_tier = min(GuildSystem::GUILD_BOSS_MAX_TIER, $tier + 1);
             }
             $lockedGuild->updated_at = now();
@@ -351,10 +308,8 @@ final class GuildController extends Controller
         return response()->json($payload);
     }
 
-    /** Wpłata do skarbca: item z bag → skarbiec + log. Atomowo, member-only. */
     public function treasuryDeposit(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $this->assertMember($guild, $character);
@@ -372,7 +327,6 @@ final class GuildController extends Controller
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Skarbiec jest pełny.');
             }
 
-            // Escrow: item schodzi z bloba (rzuca gdy nie istnieje — anty-dupe).
             $state->removeBagItem($save, $data['itemUuid']);
             $itemJson = json_encode($item);
             $itemName = (string) ($item['name'] ?? $item['itemId'] ?? 'Przedmiot');
@@ -407,10 +361,8 @@ final class GuildController extends Controller
         return response()->json($payload, Response::HTTP_CREATED);
     }
 
-    /** Wypłata ze skarbca: item → bag odbiorcy + log. Idempotencja naturalna. */
     public function treasuryWithdraw(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $this->assertMember($guild, $character);
@@ -459,10 +411,8 @@ final class GuildController extends Controller
         return response()->json($payload);
     }
 
-    /** Lider wyrzuca członka {charId} z gildii. 403 gdy nie-lider lub cel = lider. */
     public function kick(Request $request): JsonResponse
     {
-        /** @var Character $leader */
         $leader = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $charId = (string) $request->route('charId');
@@ -496,10 +446,8 @@ final class GuildController extends Controller
         return response()->json($payload);
     }
 
-    /** Lider odrzuca prośbę {charId} — kasuje wiersz join-requesta w TEJ gildii. 403 nie-lider. */
     public function reject(Request $request): JsonResponse
     {
-        /** @var Character $leader */
         $leader = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $charId = (string) $request->route('charId');
@@ -530,10 +478,8 @@ final class GuildController extends Controller
         return response()->json($payload);
     }
 
-    /** Lider jawnie rozwiązuje gildię (bez opuszczania). 403 nie-lider. Cała kaskada disband(). */
     public function disbandGuild(Request $request): JsonResponse
     {
-        /** @var Character $leader */
         $leader = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
 
@@ -549,15 +495,8 @@ final class GuildController extends Controller
         return response()->json(['ok' => true, 'disbanded' => true]);
     }
 
-    /**
-     * Odbiór nagród za tygodniowego bossa — SERWER losuje i kredytuje wszystko
-     * (gold/kamienie/potiony do bloba, XP do wiersza postaci). Zastępuje
-     * mintowanie po stronie klienta. Wymaga: boss zabity + nagroda nieodebrana.
-     * Idempotentne per requestId (cache) ORAZ przez flagę rewards_claimed.
-     */
     public function bossClaimReward(Request $request, CharacterStateService $state, RngInterface $rng): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $this->assertMember($guild, $character);
@@ -572,7 +511,6 @@ final class GuildController extends Controller
         $weekStart = GuildSystem::getCurrentWeekStartIso((int) (now()->timestamp * 1000));
 
         $payload = DB::transaction(function () use ($state, $character, $guild, $weekStart, $rng): array {
-            // Lock gildii serializuje claim równolegle z bossDamage (spójny tier/HP).
             $lockedGuild = Guild::query()->lockForUpdate()->findOrFail($guild->id);
 
             $contribution = GuildBossContribution::query()
@@ -596,12 +534,10 @@ final class GuildController extends Controller
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Nagroda już odebrana.');
             }
 
-            // Mnożnik z udziału w obrażeniach + tier z gildii → SERWEROWY roll.
             $tier = GuildSystem::clampGuildBossTier((int) $lockedGuild->boss_tier);
             $mult = GuildSystem::contributionMultiplier((int) $contribution->total_damage, (int) $boss->boss_max_hp);
             $rewards = GuildSystem::rollGuildBossRewards($tier, (int) $character->level, $mult, $rng);
 
-            // Kredytowanie do bloba (gold/kamienie/potiony); item = placeholder (bez bag).
             $save = $state->lockedFor($character);
             $xpGain = 0;
             foreach ($rewards as $reward) {
@@ -622,12 +558,11 @@ final class GuildController extends Controller
                         break;
                     case 'item':
                     default:
-                        break; // parytet: item to tylko label, brak realnego przedmiotu
+                        break;
                 }
             }
             $state->persist($save);
 
-            // XP → wiersz postaci (level-upy, punkty statystyk, highest_level) — jak inne kontrolery.
             $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
             if ($xpGain > 0) {
                 $lvl = LevelSystem::processXpGain((int) $fresh->level, (int) $fresh->xp, $xpGain);
@@ -638,7 +573,6 @@ final class GuildController extends Controller
                 $fresh->save();
             }
 
-            // Kształt widoczny dla klienta + zapis rewards_json (IRolledReward[]: kind/label/icon).
             $display = array_map(fn (array $reward): array => [
                 'kind' => $reward['kind'],
                 'label' => $reward['label'],
@@ -665,13 +599,8 @@ final class GuildController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Widok bossa: stan tygodniowego bossa (fetch-or-create), mój wkład, wkłady
-     * wszystkich, moje dzisiejsze próby oraz próby całego tygodnia. Member-only.
-     */
     public function bossView(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $this->assertMember($guild, $character);
@@ -680,7 +609,6 @@ final class GuildController extends Controller
         $weekStart = GuildSystem::getCurrentWeekStartIso($epochMs);
         $today = GuildSystem::getTodayIso($epochMs);
 
-        // Fetch-or-create bossa pod lockiem gildii (anti-double-spawn, jak bossDamage).
         $boss = DB::transaction(function () use ($guild, $weekStart): GuildBossState {
             $locked = Guild::query()->lockForUpdate()->findOrFail($guild->id);
             $tier = GuildSystem::clampGuildBossTier((int) $locked->boss_tier);
@@ -720,10 +648,8 @@ final class GuildController extends Controller
         ]);
     }
 
-    /** Widok skarbca: przedmioty + logi. Member-only. */
     public function treasuryView(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $guild = $this->guildFromRoute($request);
         $this->assertMember($guild, $character);
@@ -746,10 +672,6 @@ final class GuildController extends Controller
         ]);
     }
 
-    /**
-     * Przeglądarka gildii: paginowana lista (offset/limit/search) + count +
-     * per-gildia {memberCount, leaderName}. Bez postaci (tylko supabase.auth).
-     */
     public function index(Request $request): JsonResponse
     {
         $data = $request->validate([
@@ -763,7 +685,6 @@ final class GuildController extends Controller
 
         $base = Guild::query();
         if ($search !== '') {
-            // Case-insensitive contains — LOWER(...) LIKE działa i na sqlite (testy), i na pgsql.
             $safe = (string) preg_replace('/[%_*]/', '', $search);
             $base->whereRaw('LOWER(name) LIKE ?', ['%'.mb_strtolower($safe).'%']);
         }
@@ -776,7 +697,6 @@ final class GuildController extends Controller
             ->limit($limit)
             ->get();
 
-        // Per-gildia podsumowanie: liczba członków + nick lidera (jeden pull member-rows).
         $summaries = [];
         foreach ($guilds as $g) {
             $summaries[$g->id] = ['memberCount' => 0, 'leaderName' => null];
@@ -808,9 +728,7 @@ final class GuildController extends Controller
         ]);
     }
 
-    // ---- Helpery ------------------------------------------------------------
 
-    /** Gildia z parametru {guild} (Laravel gubi model-binding przy 2 parametrach). */
     private function guildFromRoute(Request $request): Guild
     {
         $guild = Guild::query()->find((string) $request->route('guild'));
@@ -821,7 +739,6 @@ final class GuildController extends Controller
         return $guild;
     }
 
-    /** Wymusza członkostwo aktualnej postaci w gildii (inaczej 403). */
     private function assertMember(Guild $guild, Character $character): void
     {
         $isMember = GuildMember::query()
@@ -833,7 +750,6 @@ final class GuildController extends Controller
         }
     }
 
-    /** Wstawia członka ze snapshotem żywej postaci. */
     private function insertMember(Guild $guild, Character $character): GuildMember
     {
         return GuildMember::create([
@@ -847,7 +763,6 @@ final class GuildController extends Controller
         ]);
     }
 
-    /** Rozwiązuje gildię: usuwa członków/prośby/bossy/skarbiec + sam wiersz gildii. */
     private function disband(Guild $guild): void
     {
         GuildMember::query()->where('guild_id', $guild->id)->delete();
@@ -860,7 +775,6 @@ final class GuildController extends Controller
         $guild->delete();
     }
 
-    /** Bierze (lub leniwie tworzy) tygodniowy wiersz bossa dla gildii. */
     private function fetchOrCreateBoss(Guild $guild, int $tier, string $weekStart): GuildBossState
     {
         $boss = GuildBossState::query()
@@ -886,7 +800,6 @@ final class GuildController extends Controller
         ]);
     }
 
-    /** Dokłada obrażenia do tygodniowego wkładu postaci (fetch-or-create). */
     private function addContribution(Guild $guild, Character $character, string $weekStart, int $damage): GuildBossContribution
     {
         $row = GuildBossContribution::query()
@@ -913,7 +826,6 @@ final class GuildController extends Controller
         return $row;
     }
 
-    /** Kumuluje dzienną próbę postaci (jeden wiersz per dzień). */
     private function logAttempt(Guild $guild, Character $character, string $today, int $damage): void
     {
         $row = GuildBossAttempt::query()
@@ -940,7 +852,6 @@ final class GuildController extends Controller
         $row->save();
     }
 
-    /** @return array<string, mixed> Kształt 1:1 z IGuildRow. */
     private function guildSnapshot(Guild $g): array
     {
         return [
@@ -959,7 +870,6 @@ final class GuildController extends Controller
         ];
     }
 
-    /** @return array<string, mixed> Kształt 1:1 z IGuildMemberRow. */
     private function memberSnapshot(GuildMember $m): array
     {
         return [
@@ -974,7 +884,6 @@ final class GuildController extends Controller
         ];
     }
 
-    /** @return array<string, mixed> Kształt 1:1 z IGuildJoinRequestRow. */
     private function requestSnapshot(GuildJoinRequest $r): array
     {
         return [
@@ -988,7 +897,6 @@ final class GuildController extends Controller
         ];
     }
 
-    /** @return array<string, mixed> Kształt 1:1 z IGuildBossStateRow. */
     private function bossSnapshot(GuildBossState $b): array
     {
         return [
@@ -1005,7 +913,6 @@ final class GuildController extends Controller
         ];
     }
 
-    /** @return array<string, mixed> Kształt 1:1 z IGuildBossContributionRow. */
     private function contributionSnapshot(GuildBossContribution $c): array
     {
         return [
@@ -1020,7 +927,6 @@ final class GuildController extends Controller
         ];
     }
 
-    /** @return array<string, mixed> Kształt 1:1 z IGuildBossAttemptRow. */
     private function attemptSnapshot(GuildBossAttempt $a): array
     {
         return [
@@ -1034,7 +940,6 @@ final class GuildController extends Controller
         ];
     }
 
-    /** @return array<string, mixed> Kształt 1:1 z IGuildTreasuryItemRow. */
     private function treasuryItemSnapshot(GuildTreasuryItem $i): array
     {
         return [
@@ -1047,7 +952,6 @@ final class GuildController extends Controller
         ];
     }
 
-    /** @return array<string, mixed> Kształt 1:1 z IGuildTreasuryLogRow. */
     private function treasuryLogSnapshot(GuildTreasuryLog $l): array
     {
         return [

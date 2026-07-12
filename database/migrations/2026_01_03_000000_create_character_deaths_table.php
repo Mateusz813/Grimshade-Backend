@@ -6,10 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/**
- * character_deaths — feed śmierci (kształt z realnej Supabase). IDEMPOTENTNA:
- * na Supabase istnieje → no-op; służy testom (sqlite).
- */
 return new class extends Migration
 {
     public function up(): void
@@ -33,6 +29,5 @@ return new class extends Migration
 
     public function down(): void
     {
-        // no-op — chroni realną tabelę Supabase.
     }
 };

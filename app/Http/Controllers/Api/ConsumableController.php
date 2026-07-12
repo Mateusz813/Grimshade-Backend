@@ -15,36 +15,16 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Intent-endpointy consumables. SERWER liczy receptury/koszty/wynik (PotionSystem
- * + StatReset). Klient podaje tylko id + requestId — nic z body nie jest ufane.
- *
- * Semantyka 1:1 z frontem (Inventory.tsx):
- *  - convert: alchemia (POTION_CONVERSIONS) — FREE, useConsumable(input) +
- *    addConsumable(output); gating po poziomie i posiadanym stacku.
- *  - use: wypicie 1 sztuki (applyElixirDose) — AUTORYTATYWNE jest wyłącznie
- *    zdjęcie 1 ze stacku; buffy/heale to efemeryczny stan klienta (NIE serwer).
- *  - stat-reset: handleStatReset — reset statystyk postaci do bazy klasy +
- *    przeliczenie puli stat_points z highest_level; konsumuje eliksir stat_reset.
- */
 final class ConsumableController extends Controller
 {
-    /** Id eliksiru resetu statystyk (ELIXIRS w shopStore.ts). */
     private const STAT_RESET_ELIXIR_ID = 'stat_reset';
 
-    /**
-     * POST /characters/{character}/potions/convert
-     * body {inputId, batches, outputId?, requestId}
-     */
     public function convert(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'inputId' => ['required', 'string', 'max:64'],
             'batches' => ['required', 'integer', 'min:1'],
-            // Rozstrzyga wieloznaczność inputId (np. hp_potion_lg → great LUB mega).
-            // Front zawsze przekazuje outputId (handlePotionConvert); opcjonalny.
             'outputId' => ['sometimes', 'string', 'max:64'],
             'requestId' => ['required', 'string', 'max:64'],
         ]);
@@ -103,23 +83,14 @@ final class ConsumableController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * POST /characters/{character}/consumables/use
-     * body {consumableId, requestId}
-     *
-     * AUTORYTATYWNE jest tylko zdjęcie 1 ze stacku. Buffy/heale są efemeryczne
-     * po stronie klienta (z założenia NIE serwerowe) — timerów nie utrwalamy.
-     */
     public function use(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'consumableId' => ['required', 'string', 'max:64'],
             'requestId' => ['required', 'string', 'max:64'],
         ]);
 
-        // Reset statystyk ma dedykowany endpoint (front woła statReset) — tu 422.
         if ($data['consumableId'] === self::STAT_RESET_ELIXIR_ID) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Uzyj /character/stat-reset dla resetu statystyk.');
         }
@@ -132,7 +103,6 @@ final class ConsumableController extends Controller
         $payload = DB::transaction(function () use ($state, $character, $data): array {
             $save = $state->lockedFor($character);
 
-            // Rzuca InsufficientFundsException (→ 422), gdy stack < 1.
             $state->useConsumable($save, $data['consumableId'], 1);
             $state->persist($save);
 
@@ -147,13 +117,8 @@ final class ConsumableController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * POST /characters/{character}/character/stat-reset
-     * body {consumableId?, requestId}
-     */
     public function statReset(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'consumableId' => ['sometimes', 'string', 'max:64'],
@@ -168,7 +133,6 @@ final class ConsumableController extends Controller
         $payload = DB::transaction(function () use ($state, $character, $data): array {
             $save = $state->lockedFor($character);
 
-            // Postać jest osobną tabelą — lock oddzielnie i mutuj po wyliczeniu.
             $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
 
             $reset = StatReset::compute(
@@ -181,7 +145,6 @@ final class ConsumableController extends Controller
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Nieznana klasa postaci.');
             }
 
-            // Eliksir stat_reset (jeśli podany) schodzi ze stacku — jak front.
             if (isset($data['consumableId'])) {
                 $state->useConsumable($save, $data['consumableId'], 1);
                 $state->persist($save);

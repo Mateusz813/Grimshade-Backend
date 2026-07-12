@@ -10,16 +10,12 @@ use Tests\Support\TokenFactory;
 
 uses(RefreshDatabase::class);
 
-// Stałe prefiksowane domeną (PB_) — nie kolidują z PartyTest (PT_) ani innymi.
 const PB_USER_A = 'a1b1c1d1-aaaa-bbbb-cccc-a1b1c1d1e1f1';
 const PB_USER_B = 'a2b2c2d2-aaaa-bbbb-cccc-a2b2c2d2e2f2';
 const PB_USER_C = 'a3b3c3d3-aaaa-bbbb-cccc-a3b3c3d3e3f3';
 const PB_USER_D = 'a4b4c4d4-aaaa-bbbb-cccc-a4b4c4d4e4f4';
 const PB_USER_E = 'a5b5c5d5-aaaa-bbbb-cccc-a5b5c5d5e5f5';
 
-/**
- * @param  array<string, mixed>  $attrs
- */
 function pbChar(string $userId, array $attrs = []): Character
 {
     return Character::factory()->forUser($userId)->create($attrs);
@@ -30,7 +26,6 @@ function pbToken(string $userId): string
     return TokenFactory::forUser($userId);
 }
 
-/** Utwórz party przez API i zwróć [partyId, leaderChar]. */
 function pbCreateParty(string $userId, array $body = []): array
 {
     $leader = pbChar($userId);
@@ -41,7 +36,6 @@ function pbCreateParty(string $userId, array $body = []): array
     return [$partyId, $leader];
 }
 
-// ---- Kick -------------------------------------------------------------------
 
 it('lets the leader kick a member by row id', function () {
     [$partyId, $leader] = pbCreateParty(PB_USER_A);
@@ -52,7 +46,6 @@ it('lets the leader kick a member by row id', function () {
         ->assertOk()
         ->json();
 
-    // Znajdź WIERSZ party_members (members.N.id) danego członka.
     $rowId = collect($joinSnap['members'])->firstWhere('character_id', $member->id)['id'];
 
     $this->withToken(pbToken(PB_USER_A))
@@ -109,22 +102,21 @@ it('returns 404 kicking an unknown member row', function () {
         ->assertNotFound();
 });
 
-// ---- Update meta ------------------------------------------------------------
 
 it('lets the leader edit party meta and clamps values', function () {
     [$partyId, $leader] = pbCreateParty(PB_USER_A, ['password' => 'stare']);
 
     $this->withToken(pbToken(PB_USER_A))
         ->putJson("/api/v1/characters/{$leader->id}/parties/{$partyId}", [
-            'name' => str_repeat('N', 60),         // max granica (60)
-            'description' => str_repeat('D', 140), // max granica (140)
+            'name' => str_repeat('N', 60),
+            'description' => str_repeat('D', 140),
             'isPublic' => false,
             'minJoinLevel' => 15,
         ])
         ->assertOk()
         ->assertJsonPath('is_public', false)
         ->assertJsonPath('min_join_level', 15)
-        ->assertJsonPath('has_password', true) // hasło nietknięte (nie podane)
+        ->assertJsonPath('has_password', true)
         ->assertJsonMissingPath('password');
 
     $party = Party::find($partyId);
@@ -160,13 +152,10 @@ it('rejects a meta edit attempted by a non-leader (403)', function () {
         ->assertForbidden();
 });
 
-// ---- Public browser (index) -------------------------------------------------
 
 it('lists public non-full parties ordered by newest first', function () {
-    // Party 1 (publiczne, niepełne) — postarzone, żeby created_at desc było deterministyczne.
     [$p1] = pbCreateParty(PB_USER_A, ['name' => 'Alpha']);
     Party::where('id', $p1)->update(['created_at' => now()->subMinutes(5)]);
-    // Party 2 (publiczne, niepełne) — nowsze → wyżej w feedzie.
     [$p2] = pbCreateParty(PB_USER_B, ['name' => 'Beta']);
 
     $res = $this->withToken(pbToken(PB_USER_C))
@@ -175,18 +164,14 @@ it('lists public non-full parties ordered by newest first', function () {
 
     $ids = collect($res->json())->pluck('id')->all();
     expect($ids)->toContain($p1)->toContain($p2);
-    // created_at desc → Beta (nowsze) przed Alpha.
     expect(array_search($p2, $ids, true))->toBeLessThan(array_search($p1, $ids, true));
-    // Hasło nie wychodzi, meta obecne.
     $res->assertJsonMissingPath('0.password');
     expect($res->json('0.members'))->toBeArray();
 });
 
 it('excludes private and full parties from the browser', function () {
-    // Prywatne party — nie powinno się pojawić.
     [$priv] = pbCreateParty(PB_USER_A, ['name' => 'Sekret', 'isPublic' => false]);
 
-    // Pełne party (4/4) — nie powinno się pojawić.
     [$full, $leader] = pbCreateParty(PB_USER_B, ['name' => 'Full']);
     foreach ([[PB_USER_C, 'Mage'], [PB_USER_D, 'Cleric'], [PB_USER_E, 'Archer']] as [$uid, $cls]) {
         $c = pbChar($uid, ['class' => $cls]);
@@ -203,7 +188,6 @@ it('excludes private and full parties from the browser', function () {
 });
 
 it('garbage-collects empty parties when listing', function () {
-    // Osierocone puste party (bez członków) — GC ma je skasować przy liście.
     $ghost = Party::create([
         'leader_id' => '00000000-0000-0000-0000-0000000000ff',
         'name' => 'Ghost',
@@ -219,7 +203,6 @@ it('garbage-collects empty parties when listing', function () {
     expect(Party::find($ghost->id))->toBeNull();
 });
 
-// ---- Active -----------------------------------------------------------------
 
 it('returns the active party snapshot for the acting character', function () {
     [$partyId, $leader] = pbCreateParty(PB_USER_A, ['name' => 'Moje']);
@@ -240,10 +223,9 @@ it('returns null when the character is in no party', function () {
         ->getJson("/api/v1/characters/{$solo->id}/parties/active")
         ->assertOk();
 
-    expect($res->getContent())->toBe('null'); // literalny JSON null (brak party)
+    expect($res->getContent())->toBe('null');
 });
 
-// ---- AuthN ------------------------------------------------------------------
 
 it('requires authentication for the public browser (401)', function () {
     $this->getJson('/api/v1/parties')->assertUnauthorized();

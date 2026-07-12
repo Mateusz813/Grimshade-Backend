@@ -12,26 +12,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-/**
- * Ranking DPS — autorytatywny high-water mark na wierszu `characters`.
- *
- * Zastępuje klienckie zapisy z Trenera (Trainer.tsx: bumpStat 'best_dps5_*' +
- * niebramkowany updateCharacter dla 'best_dps5_party_composition'). Klient podaje
- * tylko zmierzony DPS + czy był w party; SERWER zaciska maksa: nowy rekord
- * nadpisuje kolumnę TYLKO gdy jest wyższy niż aktualny. Composition zapisujemy
- * jedynie przy poprawie rekordu party (solo → NULL, nietykany).
- *
- * Kolumny best_dps5_* NIE są fillable — ustawiane bezpośrednio na modelu
- * pod lockForUpdate i zapisywane, jak pola arena_* w ArenaController.
- */
 final class RankingController extends Controller
 {
-    /** Zdroworozsądkowy sufit — odrzuca absurdalne wartości (cheat/overflow). */
-    private const DPS_CAP = 1_000_000_000_000; // 1e12
+    private const DPS_CAP = 1_000_000_000_000;
 
     public function dpsRecord(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'dps' => ['required', 'integer', 'min:1', 'max:'.self::DPS_CAP],
@@ -52,7 +38,6 @@ final class RankingController extends Controller
             if ($data['inParty']) {
                 if ($dps > (int) $fresh->best_dps5_party) {
                     $fresh->best_dps5_party = $dps;
-                    // Composition nadpisujemy TYLKO gdy party-rekord się poprawił.
                     $fresh->best_dps5_party_composition = $data['composition'] ?? null;
                 }
             } else {

@@ -1,0 +1,1027 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<array\{tier\: 1, family\: ''hp'', inputId\: ''hp_potion_sm'', inputCount\: 5, outputId\: ''hp_potion_md'', outputMinLevel\: int\}\|array\{tier\: 1, family\: ''mp'', inputId\: ''mp_potion_sm'', inputCount\: 5, outputId\: ''mp_potion_md'', outputMinLevel\: int\}\|array\{tier\: 2, family\: ''hp'', inputId\: ''hp_potion_md'', inputCount\: 4, outputId\: ''hp_potion_lg'', outputMinLevel\: int\}\|array\{tier\: 2, family\: ''mp'', inputId\: ''mp_potion_md'', inputCount\: 4, outputId\: ''mp_potion_lg'', outputMinLevel\: int\}\|array\{tier\: 3, family\: ''hp'', inputId\: ''hp_potion_lg'', inputCount\: 334, outputId\: ''hp_potion_great'', outputMinLevel\: int\}\|array\{tier\: 3, family\: ''mp'', inputId\: ''mp_potion_lg'', inputCount\: 334, outputId\: ''mp_potion_great'', outputMinLevel\: int\}\|array\{tier\: 4, family\: ''hp'', inputId\: ''hp_potion_great'', inputCount\: 2, outputId\: ''hp_potion_super'', outputMinLevel\: int\}\|array\{tier\: 4, family\: ''mp'', inputId\: ''mp_potion_great'', inputCount\: 2, outputId\: ''mp_potion_super'', outputMinLevel\: int\}\|array\{tier\: 5, family\: ''hp'', inputId\: ''hp_potion_super'', inputCount\: 2, outputId\: ''hp_potion_ultimate'', outputMinLevel\: int\}\|array\{tier\: 5, family\: ''mp'', inputId\: ''mp_potion_super'', inputCount\: 2, outputId\: ''mp_potion_ultimate'', outputMinLevel\: int\}\|array\{tier\: 6, family\: ''hp'', inputId\: ''hp_potion_ultimate'', inputCount\: 2, outputId\: ''hp_potion_divine'', outputMinLevel\: int\}\|array\{tier\: 6, family\: ''mp'', inputId\: ''mp_potion_ultimate'', inputCount\: 2, outputId\: ''mp_potion_divine'', outputMinLevel\: int\}\|array\{tier\: 7, family\: ''hp'', inputId\: ''hp_potion_lg'', inputCount\: 25, outputId\: ''hp_potion_mega'', outputMinLevel\: int\}\|array\{tier\: 7, family\: ''mp'', inputId\: ''mp_potion_lg'', inputCount\: 25, outputId\: ''mp_potion_mega'', outputMinLevel\: int\}\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: app/Domain/Items/PotionSystem.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Domain/Loot/ItemGenerator.php
+
+		-
+			message: '#^Offset ''Archer''\|''Cleric''\|''Knight''\|''Mage'' on array\{Knight\: ''Bot Pancerny'', Cleric\: ''Bot Lecznik'', Archer\: ''Bot Łucznik'', Mage\: ''Bot Mag''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Domain/Party/PartySystem.php
+
+		-
+			message: '#^Binary operation "/" between int\<min, 899\> and \-600\|\-400\|\-200\|0\|100\|200\|300\|400\|500\|600\|700\|800\|900 results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Domain/Progression/LevelSystem.php
+
+		-
+			message: '#^Offset ''arena'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Offset ''inventory'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Offset ''inventory'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 4
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Offset ''league'' does not exist on null\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Offset ''league'' on array\{\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Offset ''pendingRewards'' on array\{\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Offset ''seasonPoints'' on array\{\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of static method Illuminate\\Database\\Connection\:\:transaction\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between null and null will always evaluate to false\.$#'
+			identifier: notIdentical.alwaysFalse
+			count: 2
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Http/Controllers/Api/ArenaController.php
+
+		-
+			message: '#^Call to function is_array\(\) with null will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Http/Controllers/Api/BossController.php
+
+		-
+			message: '#^Cannot assign offset ''bosses'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 1
+			path: app/Http/Controllers/Api/BossController.php
+
+		-
+			message: '#^Offset ''bosses'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/BossController.php
+
+		-
+			message: '#^Offset ''clearedIds'' on array\{dailyAttempts\: non\-empty\-array\<string, array\{used\: 1, date\: string\}\>\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/BossController.php
+
+		-
+			message: '#^Offset ''date'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/BossController.php
+
+		-
+			message: '#^Offset ''used'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/BossController.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/BossController.php
+
+		-
+			message: '#^Cannot assign offset ''inventory'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 1
+			path: app/Http/Controllers/Api/CharacterController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>state" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/Api/CharacterStateController.php
+
+		-
+			message: '#^Offset ''inventory'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 4
+			path: app/Http/Controllers/Api/ConsumableController.php
+
+		-
+			message: '#^Cannot assign offset ''dailyQuests'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Empty array passed to foreach\.$#'
+			identifier: foreach.emptyArray
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Offset ''activeQuests'' on array\{lastRefreshDate\: mixed, todayQuestDefs\: list, activeQuests\: array\<array\{questId\: mixed, progress\: 0, completed\: false, claimed\: false\}\>\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Offset ''activeQuests'' on null on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Offset ''dailyQuests'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Offset ''lastRefreshDate'' on array\{lastRefreshDate\: null, activeQuests\: array\{\}, todayQuestDefs\: array\{\}\} on left side of \?\? always exists and is always null\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Offset ''questId'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Offset ''todayQuestDefs'' on array\{lastRefreshDate\: mixed, todayQuestDefs\: list, activeQuests\: array\<array\{questId\: mixed, progress\: 0, completed\: false, claimed\: false\}\>\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Http/Controllers/Api/DailyQuestController.php
+
+		-
+			message: '#^Call to function is_array\(\) with null will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Http/Controllers/Api/DungeonController.php
+
+		-
+			message: '#^Cannot assign offset ''dungeons'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 1
+			path: app/Http/Controllers/Api/DungeonController.php
+
+		-
+			message: '#^Offset ''date'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/DungeonController.php
+
+		-
+			message: '#^Offset ''dungeons'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/DungeonController.php
+
+		-
+			message: '#^Offset ''used'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/DungeonController.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/DungeonController.php
+
+		-
+			message: '#^Offset ''inventory'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: app/Http/Controllers/Api/GuildController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of static method Illuminate\\Database\\Connection\:\:transaction\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 3
+			path: app/Http/Controllers/Api/GuildController.php
+
+		-
+			message: '#^Property App\\Models\\GuildBossContribution\:\:\$updated_at \(string\|null\) does not accept Illuminate\\Support\\Carbon\.$#'
+			identifier: assign.propertyType
+			count: 2
+			path: app/Http/Controllers/Api/GuildController.php
+
+		-
+			message: '#^Property App\\Models\\GuildBossState\:\:\$updated_at \(string\|null\) does not accept Illuminate\\Support\\Carbon\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Http/Controllers/Api/GuildController.php
+
+		-
+			message: '#^Offset ''inventory'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: app/Http/Controllers/Api/InventoryController.php
+
+		-
+			message: '#^Comparison operation "\<" between 0 and 100 is always true\.$#'
+			identifier: smaller.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Comparison operation "\<" between 0 and 2 is always true\.$#'
+			identifier: smaller.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Empty array passed to foreach\.$#'
+			identifier: foreach.emptyArray
+			count: 3
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Offset ''inventory'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Offset ''inventory'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 4
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Offset ''uuid'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of static method Illuminate\\Database\\Connection\:\:transaction\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 3
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Result of \|\| is always true\.$#'
+			identifier: booleanOr.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 2
+			path: app/Http/Controllers/Api/ItemController.php
+
+		-
+			message: '#^Offset ''inventory'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: app/Http/Controllers/Api/MarketController.php
+
+		-
+			message: '#^Offset ''inventory'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/MarketController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of static method Illuminate\\Database\\Connection\:\:transaction\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 3
+			path: app/Http/Controllers/Api/MarketController.php
+
+		-
+			message: '#^Expression on left side of \?\? is always null\.$#'
+			identifier: nullCoalesce.expr
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^If condition is always false\.$#'
+			identifier: if.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Negated boolean expression is always true\.$#'
+			identifier: booleanNot.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Offset ''isActive'' on null on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Offset ''offlineHunt'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Offset ''startedAt'' on null on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Offset ''targetMonster'' on null on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Result of \|\| is always true\.$#'
+			identifier: booleanOr.alwaysTrue
+			count: 2
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Http/Controllers/Api/OfflineHuntController.php
+
+		-
+			message: '#^Empty array passed to foreach\.$#'
+			identifier: foreach.emptyArray
+			count: 1
+			path: app/Http/Controllers/Api/ProgressionController.php
+
+		-
+			message: '#^Offset ''id'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/ProgressionController.php
+
+		-
+			message: '#^Offset ''tasks'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/ProgressionController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/ProgressionController.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Http/Controllers/Api/ProgressionController.php
+
+		-
+			message: '#^Constant App\\Http\\Controllers\\Api\\QuestController\:\:ELIXIR_ALIASES is unused\.$#'
+			identifier: classConstant.unused
+			count: 1
+			path: app/Http/Controllers/Api/QuestController.php
+
+		-
+			message: '#^Constant App\\Http\\Controllers\\Api\\QuestController\:\:GIFT_RARITIES is unused\.$#'
+			identifier: classConstant.unused
+			count: 1
+			path: app/Http/Controllers/Api/QuestController.php
+
+		-
+			message: '#^Constant App\\Http\\Controllers\\Api\\QuestController\:\:GIFT_WEIGHTS is unused\.$#'
+			identifier: classConstant.unused
+			count: 1
+			path: app/Http/Controllers/Api/QuestController.php
+
+		-
+			message: '#^Empty array passed to foreach\.$#'
+			identifier: foreach.emptyArray
+			count: 1
+			path: app/Http/Controllers/Api/QuestController.php
+
+		-
+			message: '#^Offset ''questId'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/QuestController.php
+
+		-
+			message: '#^Offset ''quests'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: app/Http/Controllers/Api/QuestController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/QuestController.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Http/Controllers/Api/QuestController.php
+
+		-
+			message: '#^Call to function is_array\(\) with null will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Http/Controllers/Api/RaidController.php
+
+		-
+			message: '#^Cannot assign offset ''raid'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 1
+			path: app/Http/Controllers/Api/RaidController.php
+
+		-
+			message: '#^Offset ''count'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/RaidController.php
+
+		-
+			message: '#^Offset ''date'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/RaidController.php
+
+		-
+			message: '#^Offset ''pendingSpellChests'' on array\{attempts\: non\-empty\-array\<string, array\{date\: string, count\: 1\}\>, lastResult\: array\{raidId\: string, cleared\: bool, bossesDefeated\: int\<0, max\>, totalBosses\: int, playerHp\: mixed, xp\: int, gold\: int, drops\: array, \.\.\.\}\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/RaidController.php
+
+		-
+			message: '#^Offset ''raid'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/RaidController.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/RaidController.php
+
+		-
+			message: '#^Offset ''inventory'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: app/Http/Controllers/Api/ShopController.php
+
+		-
+			message: '#^Offset ''inventory'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/ShopController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of static method Illuminate\\Database\\Connection\:\:transaction\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Controllers/Api/ShopController.php
+
+		-
+			message: '#^Cannot assign offset ''skills'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 4
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Comparison operation "\<" between 0 and int\<1, max\> is always true\.$#'
+			identifier: smaller.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Comparison operation "\>" between int\<min, 0\> and 0 is always false\.$#'
+			identifier: greater.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Offset ''activeSkillSlots'' on array\{\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Offset ''inventory'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 5
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Offset ''offlineTrainingSkil…'' on array\{\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Offset ''skillUpgradeLevels'' on array\{\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Offset ''skills'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 8
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Offset ''trainingStartedAt'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Offset ''unlockedSkills'' on array\{\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Offset int\<0, 3\> on array\{\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Parameter \#1 \$array \(array\{\}\) to function array_values is empty, call has no effect\.$#'
+			identifier: arrayValues.empty
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Result of \|\| is always true\.$#'
+			identifier: booleanOr.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between false and true will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between false and true will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and string will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Http/Controllers/Api/SkillController.php
+
+		-
+			message: '#^Call to function in_array\(\) with arguments 1, array\{\} and true will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Http/Controllers/Api/TransformController.php
+
+		-
+			message: '#^Call to function in_array\(\) with arguments int, array\{\} and true will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Http/Controllers/Api/TransformController.php
+
+		-
+			message: '#^Cannot assign offset ''transforms'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 1
+			path: app/Http/Controllers/Api/TransformController.php
+
+		-
+			message: '#^Offset ''transforms'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 3
+			path: app/Http/Controllers/Api/TransformController.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Http/Controllers/Api/TransformController.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Http/Controllers/Api/TransformController.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$arena_deaths\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$arena_kills\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$arena_league\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$arena_league_points\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$attack\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$attack_speed\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$best_dps5_party\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$best_dps5_party_composition\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$best_dps5_solo\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$class\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$crit_chance\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$crit_damage\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$defense\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$gold\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$highest_level\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$hp\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$hp_regen\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$item_upgrades_done\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$level\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$magic_level\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$market_gold_earned\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$market_gold_spent\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$market_items_bought\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$market_items_sold\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$mastery_points\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$max_hp\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$max_mp\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$mp\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$mp_regen\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$quests_daily_done\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$quests_oneshot_done\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$skill_upgrades_done\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$stat_points\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$updated_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$user_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\CharacterResource\:\:\$xp\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/CharacterResource.php
+
+		-
+			message: '#^Call to function is_array\(\) with string\|null will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Cannot assign offset ''inventory'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 11
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Cannot assign offset ''settings'' to string\.$#'
+			identifier: offsetAssign.dimType
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Empty array passed to foreach\.$#'
+			identifier: foreach.emptyArray
+			count: 4
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Method App\\Services\\CharacterStateService\:\:equipFromBag\(\) never returns array so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Method App\\Services\\CharacterStateService\:\:findBagItem\(\) never returns array so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Offset ''bag'' on array\{deposit\: \*NEVER\*\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Offset ''bag'' on array\{equipment\: non\-empty\-array\<string, array\>\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Offset ''inventory'' on string on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 14
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Offset ''uuid'' on \*NEVER\* on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 4
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Property App\\Models\\GameSave\:\:\$state \(string\) does not accept array\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Property App\\Models\\GameSave\:\:\$updated_at \(string\|null\) does not accept Illuminate\\Support\\Carbon\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between null and null will always evaluate to false\.$#'
+			identifier: notIdentical.alwaysFalse
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Services/CharacterStateService.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\<int\|string\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: app/Services/EventValidation.php

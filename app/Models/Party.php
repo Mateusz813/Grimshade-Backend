@@ -8,23 +8,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * Party co-op (`parties`). Kształt: src/api/v1/partyApi.ts (IPartyRow / IRawPartyRow).
- *
- * Wiersz jest autorytatywny: leader_id, pojemność, hasło (plain-text) i gate poziomu
- * trzyma serwer. Klient NIGDY nie mutuje tej tabeli bezpośrednio — tylko przez
- * intencje PartyController. `password` NIE wychodzi w odpowiedzi (snapshot zwraca
- * jedynie `has_password`).
- *
- * @property string $id
- * @property string $leader_id
- * @property string $name
- * @property string|null $description
- * @property string|null $password
- * @property int $max_members
- * @property bool $is_public
- * @property int $min_join_level
- */
 class Party extends Model
 {
     use HasUuids;
@@ -49,7 +32,6 @@ class Party extends Model
         ];
     }
 
-    /** @return HasMany<PartyMember, $this> */
     public function members(): HasMany
     {
         return $this->hasMany(PartyMember::class, 'party_id');

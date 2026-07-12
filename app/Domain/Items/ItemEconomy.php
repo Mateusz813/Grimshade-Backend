@@ -4,30 +4,21 @@ declare(strict_types=1);
 
 namespace App\Domain\Items;
 
-/**
- * Port ekonomicznego podzbioru src/systems/itemSystem.ts: koszty/mnożniki
- * ulepszeń, kara gear-gap, refund, cena sprzedaży. (Ikony/kolory/etykiety oraz
- * helpery zależne od parsowania id itemów pominięte — nie są autorytetem.)
- */
 final class ItemEconomy
 {
-    /** @var array<string, int> */
     public const RARITY_BONUS_SLOTS = [
         'common' => 0, 'rare' => 1, 'epic' => 1, 'legendary' => 2, 'mythic' => 3, 'heroic' => 5,
     ];
 
-    /** @var array<string, string> */
     public const STONE_FOR_RARITY = [
         'common' => 'common_stone', 'rare' => 'rare_stone', 'epic' => 'epic_stone',
         'legendary' => 'legendary_stone', 'mythic' => 'mythic_stone', 'heroic' => 'heroic_stone',
     ];
 
-    /** @var array<string, float> */
     private const RARITY_SELL_MULTIPLIER = [
         'common' => 0.20, 'rare' => 0.35, 'epic' => 0.50, 'legendary' => 0.65, 'mythic' => 0.80, 'heroic' => 1.00,
     ];
 
-    /** @var array<int, array{stones:int, gold:int, successRate:int|float}> */
     private const ENHANCEMENT_TABLE = [
         1 => ['stones' => 1, 'gold' => 100, 'successRate' => 100],
         2 => ['stones' => 1, 'gold' => 500, 'successRate' => 80],
@@ -56,9 +47,6 @@ final class ItemEconomy
         return self::STONE_FOR_RARITY[$itemRarity] ?? 'common_stone';
     }
 
-    /**
-     * @return array{stones:int, gold:int, successRate:int|float, stoneType:string}
-     */
     public static function getEnhancementCost(int $targetLevel, string $itemRarity = 'common'): array
     {
         $stoneType = self::getRequiredStoneType($itemRarity);
@@ -80,7 +68,6 @@ final class ItemEconomy
         ];
     }
 
-    /** +U → ×(1 + 0.10·U). */
     public static function getEnhancementMultiplier(int|float $upgradeLevel): float
     {
         if ($upgradeLevel <= 0) {
@@ -106,7 +93,6 @@ final class ItemEconomy
         return self::getUpgradedBaseStat($baseValue, $upgradeLevel);
     }
 
-    /** dmg × (gearLvl/contentLvl)², podłoga 0.05, gdy pod-gearowany. */
     public static function getGearGapMultiplier(int|float $gearLevel, int|float $contentLevel): float
     {
         if ($contentLevel <= 0 || $gearLevel >= $contentLevel) {
@@ -116,9 +102,6 @@ final class ItemEconomy
         return max(0.05, ($gearLevel / $contentLevel) ** 2);
     }
 
-    /**
-     * @return array{gold:int, stones:int, stoneType:string}
-     */
     public static function getEnhancementRefund(int|float $enhanceLevel, string $itemRarity = 'common'): array
     {
         if (! $enhanceLevel || $enhanceLevel <= 0) {
@@ -137,10 +120,6 @@ final class ItemEconomy
         return ['gold' => $totalGold, 'stones' => $totalStones, 'stoneType' => $stoneType];
     }
 
-    /**
-     * @param  array{rarity:string, itemLevel?:int, upgradeLevel?:int}  $item
-     * @param  array{basePrice:int|float}|null  $baseData
-     */
     public static function getSellPrice(array $item, ?array $baseData = null): int
     {
         $basePrice = 0;
@@ -172,7 +151,6 @@ final class ItemEconomy
         };
     }
 
-    /** Math.round z JS (half-up dla nieujemnych). */
     private static function jsRound(float $x): int
     {
         return (int) floor($x + 0.5);

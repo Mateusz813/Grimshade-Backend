@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Domain\Arena\ArenaMath;
 use Tests\Support\Golden;
 
-/** PARYTET arenaSystem (podzbiór czysty): PHP ArenaMath == TS arenaSystem.ts. */
 beforeEach(function () {
     $this->golden = Golden::load('arenaSystem.json');
 });

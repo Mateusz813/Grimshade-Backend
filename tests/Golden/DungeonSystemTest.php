@@ -8,17 +8,6 @@ use App\Domain\Loot\ItemGenerator;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET dungeonSystem: PHP DungeonSystem == TS dungeonSystem.ts (fixture
- * generowany w grimshade repo, skopiowany tu). toEqual (nie toBe) — JSON nie
- * rozróżnia int/float.
- *
- * Trzy klasy wektorów:
- *  - deterministyczne (bez RNG) → bit-parity;
- *  - RNG stała kolejność (Mulberry32Rng(seed) replay) → bit-parity;
- *  - RNG + ItemGenerator dla lochów common (0 slotów bonusów = brak shuffle) →
- *    bit-parity; ścieżki rare+ (shuffle) → testy WŁASNOŚCIOWE na końcu pliku.
- */
 beforeEach(function () {
     $this->golden = Golden::load('dungeonSystem.json');
     $this->monsters = $this->golden['monsters'];
@@ -186,7 +175,6 @@ it('matches resolveDungeon (common → pełna symulacja bit-parity)', function (
     }
 });
 
-// ---- Własnościowe (rarity > common — shuffle w ItemGenerator, brak bit-parity) -
 
 it('rollDungeonItemDrop honours rarity cap + item level for epic dungeons (property)', function () {
     $dungeon = ['id' => 'ep', 'name_pl' => '', 'name_en' => '', 'level' => 50, 'maxRarity' => 'epic', 'description_pl' => ''];

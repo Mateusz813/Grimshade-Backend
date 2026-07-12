@@ -21,39 +21,19 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Autorytatywny mecz areny (PvP). Serwer:
- *  - bierze NAPASTNIKA z tokenu ({character} + owns.character), OBROŃCĘ z bazy
- *    po `opponentId` z body (dowolna postać, także innego usera),
- *  - SYMULUJE walkę WŁASNYM RNG i sam liczy `attackerWon` — pole `attackerWon`
- *    z body jest IGNOROWANE (anty-forge-win). Uproszczony model jak HuntResolver:
- *    tury napastnik→obrońca, mitygacja max(1, atk-def), obrażenia × ARENA_DAMAGE_MULTIPLIER,
- *  - `attackerIsHigher` = arena_league_points napastnika < obrońcy (z BAZY, nie z body →
- *    zamyka arbitrary-league),
- *  - nagrody z ArenaMath::getMatchReward(won, higher),
- *  - aktualizuje OBIE postaci atomowo: arena_kills/deaths (zwycięzca +kill, przegrany
- *    +death → zamyka grief), arena_league_points += leaguePoints; league bez zmian
- *    (getSeasonOutcome to rozliczenie SEZONU po rankingu — nie dotyczy pojedynczego meczu),
- *  - arenaPoints napastnika → blob (inventory.arenaPoints) przez CharacterStateService,
- *  - idempotencja po (napastnik + requestId) w Cache.
- */
 final class ArenaController extends Controller
 {
-    /** Parytet z frontem: src/systems/arenaSystem.ts ARENA_DAMAGE_MULTIPLIER. */
     private const ARENA_DAMAGE_MULTIPLIER = 0.2;
 
-    /** Bezpiecznik pętli symulacji (obrażenia >= 1/turę → zawsze się kończy). */
     private const MAX_ROUNDS = 100000;
 
     public function match(Request $request, CharacterStateService $state, RngInterface $rng): JsonResponse
     {
-        /** @var Character $attacker */
         $attacker = $request->attributes->get('character');
 
         $data = $request->validate([
             'opponentId' => ['required', 'string', 'max:64'],
             'requestId' => ['required', 'string', 'max:64'],
-            // `attackerWon` może przyjść z klienta, ale serwer go NIE czyta.
         ]);
 
         $opponentId = (string) $data['opponentId'];
@@ -61,7 +41,6 @@ final class ArenaController extends Controller
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Nie można walczyć z samym sobą.');
         }
 
-        // Istnienie obrońcy — bot / nieznane id → 404 (weryfikacja ponownie pod lockiem).
         if (Character::query()->whereKey($opponentId)->doesntExist()) {
             abort(Response::HTTP_NOT_FOUND, 'Przeciwnik nie istnieje.');
         }
@@ -72,7 +51,6 @@ final class ArenaController extends Controller
         }
 
         $payload = DB::transaction(function () use ($attacker, $opponentId, $state, $rng): array {
-            // Lock OBU postaci w stałej kolejności (po id) — brak deadlocka.
             $ids = [$attacker->id, $opponentId];
             sort($ids);
             $locked = Character::query()
@@ -90,16 +68,12 @@ final class ArenaController extends Controller
 
             $save = $state->lockedFor($atk);
 
-            // 1) Wynik walki — WYŁĄCZNIE serwerowa symulacja.
             $attackerWon = $this->simulateAttackerWins($atk, $def, $rng);
 
-            // 2) attackerIsHigher — z arena_league_points w BAZIE (nie z body).
             $attackerIsHigher = (int) $atk->arena_league_points < (int) $def->arena_league_points;
 
-            // 3) Nagrody.
             $reward = ArenaMath::getMatchReward($attackerWon, $attackerIsHigher);
 
-            // 4) Liczniki kill/death — zwycięzca +kill, przegrany +death.
             if ($attackerWon) {
                 $atk->arena_kills = (int) $atk->arena_kills + 1;
                 $def->arena_deaths = (int) $def->arena_deaths + 1;
@@ -108,14 +82,12 @@ final class ArenaController extends Controller
                 $def->arena_kills = (int) $def->arena_kills + 1;
             }
 
-            // 5) Punkty ligowe += leaguePoints (obie strony).
             $atk->arena_league_points = (int) $atk->arena_league_points + (int) $reward['attacker']['leaguePoints'];
             $def->arena_league_points = (int) $def->arena_league_points + (int) $reward['defender']['leaguePoints'];
 
             $atk->save();
             $def->save();
 
-            // 6) arenaPoints NAPASTNIKA → blob (kredyt inwentarza dostaje tylko atakujący).
             $ap = (int) $reward['attacker']['arenaPoints'];
             if ($ap > 0) {
                 $state->addArenaPoints($save, $ap);
@@ -144,13 +116,8 @@ final class ArenaController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * GET /arena/shop — katalog areny (AP) + aktualne arenaPoints postaci.
-     * Katalog liczy ArenaShop z shop.json (eliksiry) — 1:1 z getArenaShopCatalog.
-     */
     public function shop(Request $request, CharacterStateService $state, ContentRepository $content): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $save = $state->lockedFor($character);
@@ -162,13 +129,8 @@ final class ArenaController extends Controller
         ]);
     }
 
-    /**
-     * POST /arena/shop/buy {itemId, requestId} — kup za AP. Cena/gating/typ
-     * broni liczy SERWER (ArenaShop + ItemGenerator). Parytet: buyArenaItem.
-     */
     public function buy(Request $request, CharacterStateService $state, ContentRepository $content, RngInterface $rng): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemId' => ['required', 'string', 'max:64'],
@@ -189,7 +151,6 @@ final class ArenaController extends Controller
         $level = (int) $character->level;
         $price = ArenaShop::apPrice($item, $level);
 
-        // Poteki: bramka poziomu REALNEJ poteki (payloadId) PRZED wydaniem AP.
         if ($item['kind'] === 'potion') {
             $minLevel = ArenaShop::getPotionMinLevel((string) $item['payloadId']);
             if ($level < $minLevel) {
@@ -225,14 +186,6 @@ final class ArenaController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Wydaje kupiony towar do bloba i zwraca deskryptor tego, co przyznano.
-     * Broń mityczna: typ z klasy postaci (fallback = pierwszy szablon).
-     *
-     * @param  array<string, mixed>  $item
-     * @param  array<string, mixed>  $templates
-     * @return array<string, mixed>
-     */
     private function grant(
         CharacterStateService $state,
         GameSave $save,
@@ -256,8 +209,6 @@ final class ArenaController extends Controller
             return ['kind' => $kind, 'consumableId' => (string) $item['payloadId'], 'count' => 1];
         }
 
-        // mythic_weapon / mythic_offhand — generacja przez ItemGenerator (mythic).
-        // Typ broni rozstrzyga klasa postaci (fallback = pierwszy szablon), jak w TS.
         $generator = new ItemGenerator($templates, $rng);
         $lvl = max(1, min(ArenaShop::MYTHIC_LEVEL_CAP, $level));
 
@@ -279,13 +230,8 @@ final class ArenaController extends Controller
         return ['kind' => $kind, 'item' => $generated];
     }
 
-    /**
-     * GET /arena/season — wycinek sezonu z bloba + podgląd nagrody (gdy znany
-     * finalRank z pendingRewards). Parytet: arenaStore.pendingRewards.
-     */
     public function season(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $save = $state->lockedFor($character);
@@ -313,15 +259,8 @@ final class ArenaController extends Controller
         ]);
     }
 
-    /**
-     * POST /arena/season/claim {requestId} — odbierz nagrody sezonu.
-     * Parytet: arenaStore.claimSeasonRewards. Skalowanie ligą, przyznanie
-     * gold/AP/kamieni/potek, awans/spadek (getSeasonOutcome) + reset wycinka.
-     * Idempotentne (requestId) i czyści pendingRewards (brak double-claim).
-     */
     public function claimSeason(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'requestId' => ['required', 'string', 'max:64'],
@@ -343,8 +282,6 @@ final class ArenaController extends Controller
             $finalRank = (int) $pending['finalRank'];
             $league = (string) $pending['league'];
 
-            // Przyznanie nagród — niski finisher może nie mieć kubełka (bucket=null),
-            // ale i tak resetujemy sezon (nie może utknąć).
             $granted = [
                 'gold' => 0, 'arenaPoints' => 0,
                 'commonStones' => 0, 'rareStones' => 0, 'epicStones' => 0,
@@ -393,11 +330,9 @@ final class ArenaController extends Controller
                 ];
             }
 
-            // Awans/spadek na koniec sezonu.
             $outcome = ArenaMath::getSeasonOutcome($league, $finalRank);
             $newLeague = $outcome['toLeague'] ?? $league;
 
-            // Reset wycinka sezonu w blobie (czyści pendingRewards — brak double-claim).
             $stateArr = $save->state;
             $stateArr['arena'] = [
                 'league' => $newLeague,
@@ -406,7 +341,6 @@ final class ArenaController extends Controller
             ];
             $save->state = $stateArr;
 
-            // Kolumna leaderboardowa arena_league na characters — osobny lock.
             $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
             $fresh->arena_league = $newLeague;
             $fresh->save();
@@ -426,11 +360,6 @@ final class ArenaController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Uproszczona, deterministyczna (seeded RNG) symulacja pojedynku areny.
-     * Tura napastnik→obrońca, obaj startują z max_hp, obrażenia × ARENA_DAMAGE_MULTIPLIER.
-     * Zwraca czy WYGRAŁ NAPASTNIK. Obrażenia >= 1/uderzenie ⇒ pętla się kończy.
-     */
     private function simulateAttackerWins(Character $attacker, Character $defender, RngInterface $rng): bool
     {
         $atkHp = (int) $attacker->max_hp > 0 ? (int) $attacker->max_hp : 1;
@@ -440,7 +369,6 @@ final class ArenaController extends Controller
         while ($rounds < self::MAX_ROUNDS) {
             $rounds++;
 
-            // Napastnik → obrońca.
             $aCrit = $rng->nextFloat() < min((float) $attacker->crit_chance, 0.5);
             $aHit = CombatMath::calculateDamage([
                 'baseAtk' => $attacker->attack,
@@ -459,7 +387,6 @@ final class ArenaController extends Controller
                 return true;
             }
 
-            // Obrońca → napastnik.
             $dCrit = $rng->nextFloat() < min((float) $defender->crit_chance, 0.5);
             $dHit = CombatMath::calculateDamage([
                 'baseAtk' => $defender->attack,
@@ -479,8 +406,6 @@ final class ArenaController extends Controller
             }
         }
 
-        // Stalemate (praktycznie nieosiągalny) — rozstrzyga frakcja zostałego HP,
-        // remis na korzyść napastnika (uderza pierwszy).
         return ($atkHp / max(1, (int) $attacker->max_hp)) >= ($defHp / max(1, (int) $defender->max_hp));
     }
 }

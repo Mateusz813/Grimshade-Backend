@@ -24,9 +24,6 @@ function dqChar(int $level = 10): Character
     ]);
 }
 
-/**
- * @param  array<string, mixed>  $dailyQuests  slice state.dailyQuests
- */
 function dqSave(Character $c, array $dailyQuests, int $gold = 0): GameSave
 {
     return GameSave::create([
@@ -39,7 +36,6 @@ function dqSave(Character $c, array $dailyQuests, int $gold = 0): GameSave
     ]);
 }
 
-/** Ukończony quest gotowy do odbioru — daily_kill_5 (base gold 200 / xp 100). */
 function dqCompletedSlice(): array
 {
     return [
@@ -54,8 +50,6 @@ function dqCompletedSlice(): array
 }
 
 it('refresh generates the daily quest set on a new day (capped at 12)', function () {
-    // level 100 → wszystkie 27 questów eligible → wybór 12 (DAILY_QUEST_COUNT).
-    // Brak bloba → lockedFor tworzy szkielet, needsRefresh(null) = true.
     $c = dqChar(level: 100);
 
     $res = $this->withToken(dqToken())
@@ -100,14 +94,12 @@ it('claim on a completed quest grants scaled gold to blob + xp to character and 
     $res = $this->withToken(dqToken())
         ->postJson("/api/v1/characters/{$c->id}/daily-quests/daily_kill_5/claim");
 
-    // scaleRewards lvl 10: gold = floor(200 * (1+10*0.25) * 0.6) = floor(420) = 420
-    //                       xp  = floor(100 * (1+10*0.3))        = floor(400) = 400
     $res->assertOk()
         ->assertJsonPath('rewards.gold', 420)
         ->assertJsonPath('rewards.xp', 400)
-        ->assertJsonPath('gold', 470)            // 50 + 420
+        ->assertJsonPath('gold', 470)
         ->assertJsonPath('questsDailyDone', 1)
-        ->assertJsonPath('newLevel', 10);        // 400 xp < xpToNextLevel(10) → brak level-upa
+        ->assertJsonPath('newLevel', 10);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
     expect($blob['inventory']['gold'])->toBe(470)
@@ -151,8 +143,8 @@ it('rejects a second claim on the same quest (422, no double reward)', function 
     $this->withToken(dqToken())->postJson("/api/v1/characters/{$c->id}/daily-quests/daily_kill_5/claim")->assertOk();
     $this->withToken(dqToken())->postJson("/api/v1/characters/{$c->id}/daily-quests/daily_kill_5/claim")->assertStatus(422);
 
-    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(420); // nie 840
-    expect(Character::find($c->id)->quests_daily_done)->toBe(1);                                      // nie 2
+    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(420);
+    expect(Character::find($c->id)->quests_daily_done)->toBe(1);
 });
 
 it("blocks acting on another user's character (403)", function () {

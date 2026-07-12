@@ -22,7 +22,6 @@ it('returns the authenticated user\'s characters as a raw array', function () {
     expect($response->json())->toBeArray()->toHaveCount(2);
     $response->assertJsonFragment(['name' => 'Krasek', 'user_id' => USER_A])
         ->assertJsonFragment(['name' => 'Zael']);
-    // surowa tablica (withoutWrapping) — brak klucza `data`
     expect(array_is_list($response->json()))->toBeTrue();
 });
 

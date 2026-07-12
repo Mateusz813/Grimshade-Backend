@@ -8,39 +8,12 @@ use App\Domain\Loot\ItemGenerator;
 use App\Domain\Support\Rng\RngInterface;
 use DateTimeImmutable;
 
-/**
- * Port 1:1 src/systems/dungeonSystem.ts (frontend). Skalowanie fal lochów,
- * kompozycje potworów, limity dziennych prób / cooldown / min-level, symulacja
- * fali (deterministyczna) oraz dropy (RNG).
- *
- * PARYTET (tests/Golden/fixtures/dungeonSystem.json — generowane z TS):
- *  - DETERMINISTYCZNE (bez RNG) → bit-parity: getDungeon*, skalowania, kompozycje,
- *    pick po poziomie (sort deterministyczny), resolveWave, estimateDungeonRewards,
- *    formatCooldown, canEnterDungeon/getDungeonRemainingMs (czas parametryzowany).
- *  - RNG STAŁA KOLEJNOŚĆ (1 rzut) → seeded bit-parity: rollDungeonRarity,
- *    rollDungeonGold (RngInterface konsumowany w tej samej kolejności co TS
- *    Math.random → Mulberry32Rng(seed) daje identyczny wynik).
- *  - RNG + ItemGenerator: rollDungeonItemDrop / resolveDungeon. Dla lochów o
- *    maxRarity 'common' rarity itemów zawsze 'common' → 0 slotów bonusów → BRAK
- *    sort-shuffle w ItemGenerator → CAŁA sekwencja RNG deterministyczna → wektory
- *    bit-parity (IGeneratedItem nie zawiera uuid). Ścieżki rare+ (shuffle w
- *    generateBonusStats) NIE są bit-parity — patrz ItemGenerator; tam własnościowe.
- *
- * Czas: TS używa Date.now()/new Date(str). Tu now przekazywany jako $nowMs (reguła
- * parametryzacji), a lastCompletedAt (ISO-8601 UTC 'Z') parsowany do epoch-ms
- * identycznie jak JS Date.getTime() (format 'Uv' = sekundy + 3-cyfrowe ms).
- *
- * ZERO Eloquent/mt_rand/now(): losowość WYŁĄCZNIE przez RngInterface.
- */
 final class DungeonSystem
 {
-    /** @var list<string> */
     public const DUNGEON_RARITY_ORDER = ['common', 'rare', 'epic', 'legendary', 'mythic', 'heroic'];
 
-    /** Wagi rzadkości (do maxRarity) — indeksowane jak DUNGEON_RARITY_ORDER. */
     private const RARITY_WEIGHTS = [50, 25, 15, 7, 2.5, 0.5];
 
-    /** @var array<string, array{hp:float, atk:float, def:float}> */
     public const DUNGEON_MONSTER_TYPE_MULTIPLIERS = [
         'Normal' => ['hp' => 1.0, 'atk' => 1.0, 'def' => 1.0],
         'Strong' => ['hp' => 1.5, 'atk' => 1.3, 'def' => 1.2],
@@ -49,30 +22,19 @@ final class DungeonSystem
         'Boss' => ['hp' => 5.0, 'atk' => 2.5, 'def' => 2.0],
     ];
 
-    /** @var list<string> kolejność tierów typu do step-down w kompozycji fali */
     private const TYPE_ORDER = ['Normal', 'Strong', 'Epic', 'Legendary', 'Boss'];
 
-    // ---- Helpery lochu (deterministyczne) -----------------------------------
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     */
     public static function getDungeonMinLevel(array $dungeon): int
     {
         return (int) ($dungeon['minLevel'] ?? $dungeon['level']);
     }
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     */
     public static function getDungeonWaves(array $dungeon): int
     {
         return (int) ($dungeon['waves'] ?? max(3, min(10, (int) floor($dungeon['level'] / 15) + 3)));
     }
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     */
     public static function getDungeonCooldown(array $dungeon): int
     {
         $dailyAttempts = $dungeon['dailyAttempts'] ?? 0;
@@ -80,10 +42,6 @@ final class DungeonSystem
         return (int) ($dungeon['cooldown'] ?? ($dailyAttempts ? (int) floor(86400 / $dailyAttempts) : 17280));
     }
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     * @return array{0:int, 1:int}
-     */
     public static function getDungeonRewardGold(array $dungeon): array
     {
         if (isset($dungeon['rewardGold'])) {
@@ -93,19 +51,11 @@ final class DungeonSystem
         return [(int) $dungeon['level'] * 10, (int) $dungeon['level'] * 25];
     }
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     */
     public static function getDungeonRewardXp(array $dungeon): int
     {
         return (int) ($dungeon['rewardXp'] ?? $dungeon['level'] * 50);
     }
 
-    /**
-     * Czy postać może wejść: min-level + cooldown. Czas parametryzowany.
-     *
-     * @param  array<string, mixed>  $dungeon
-     */
     public static function canEnterDungeon(
         array $dungeon,
         int $characterLevel,
@@ -123,9 +73,6 @@ final class DungeonSystem
         return $elapsed >= self::getDungeonCooldown($dungeon) * 1000;
     }
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     */
     public static function getDungeonRemainingMs(array $dungeon, ?string $lastCompletedAt, int $nowMs): int
     {
         if ($lastCompletedAt === null) {
@@ -136,7 +83,6 @@ final class DungeonSystem
         return (int) max(0, self::getDungeonCooldown($dungeon) * 1000 - $elapsed);
     }
 
-    /** Format cooldownu jak TS: "5s" / "3m 20s" / "1h 5m" (Math.ceil ms→s). */
     public static function formatCooldown(int $ms): string
     {
         $totalSec = (int) ceil($ms / 1000);
@@ -150,7 +96,6 @@ final class DungeonSystem
         return (int) floor($totalSec / 3600).'h '.(int) floor(($totalSec % 3600) / 60).'m';
     }
 
-    // ---- Typy/kompozycje fal (deterministyczne) -----------------------------
 
     public static function getFinalWaveMonsterType(int $dungeonLevel): string
     {
@@ -189,10 +134,6 @@ final class DungeonSystem
         return self::getMidWaveMonsterType($dungeonLevel, $wave, $totalWaves);
     }
 
-    /**
-     * Ile potworów spawnuje się w fali (boss zawsze zatłoczony; regularne 1→2→3;
-     * lochy 30+ dobijają +1). Cap 4.
-     */
     public static function getWaveMonsterCount(int $dungeonLevel, int $wave, int $totalWaves): int
     {
         $isBossWave = $wave === $totalWaves - 1;
@@ -209,11 +150,6 @@ final class DungeonSystem
         return (int) max(1, min(4, $count));
     }
 
-    /**
-     * Kompozycja typów fali: lead (najtwardszy) + wypełniacze wg tieru lochu.
-     *
-     * @return list<string>
-     */
     public static function getWaveComposition(int $dungeonLevel, int $wave, int $totalWaves): array
     {
         $lead = self::getWaveMonsterType($wave, $totalWaves, $dungeonLevel);
@@ -224,7 +160,6 @@ final class DungeonSystem
 
         $out = [$lead];
 
-        // Top tier (800+): wszyscy równi lidera.
         if ($dungeonLevel >= 800) {
             while (count($out) < $count) {
                 $out[] = $lead;
@@ -233,7 +168,6 @@ final class DungeonSystem
             return $out;
         }
 
-        // Low tier (1-14): schodkowa drabinka w dół do Normal.
         if ($dungeonLevel <= 14) {
             $current = $lead;
             while (count($out) < $count) {
@@ -244,7 +178,6 @@ final class DungeonSystem
             return $out;
         }
 
-        // Mid + high (15-799): 1 lead + (count-1) o jeden tier niżej.
         $filler = self::stepDownType($lead);
         while (count($out) < $count) {
             $out[] = $filler;
@@ -253,13 +186,7 @@ final class DungeonSystem
         return $out;
     }
 
-    // ---- Pick potworów po poziomie (sort deterministyczny) ------------------
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     * @param  list<array<string, mixed>>  $allMonsters
-     * @return array<string, mixed>
-     */
     public static function pickWaveMonster(array $dungeon, array $allMonsters, int $wave, int $totalWaves): array
     {
         $isBossWave = $wave === $totalWaves - 1;
@@ -288,14 +215,6 @@ final class DungeonSystem
         return $sorted[$offset] ?? $allMonsters[0];
     }
 
-    /**
-     * Pick 1–4 potworów fali: lead przez pickWaveMonster, eskorty z puli po
-     * poziomie (lead wykluczony, powtarzany gdy pula za mała).
-     *
-     * @param  array<string, mixed>  $dungeon
-     * @param  list<array<string, mixed>>  $allMonsters
-     * @return list<array<string, mixed>>
-     */
     public static function pickWaveMonsters(array $dungeon, array $allMonsters, int $wave, int $totalWaves): array
     {
         $dLvl = self::getDungeonMinLevel($dungeon);
@@ -316,15 +235,7 @@ final class DungeonSystem
         return $result;
     }
 
-    // ---- Skalowanie potworów -------------------------------------------------
 
-    /**
-     * Skaluje statystyki potwora dla fali lochu (tiery 1-8 / 9-18 / 20+),
-     * a na wierzch mnożniki typu (Epic/Legendary/Boss/Strong).
-     *
-     * @param  array<string, mixed>  $monster
-     * @return array<string, mixed>
-     */
     public static function scaleDungeonMonster(array $monster, int $wave, int $totalWaves, ?int $dungeonLevel = null): array
     {
         $dLvl = $dungeonLevel ?? (int) $monster['level'];
@@ -359,13 +270,6 @@ final class DungeonSystem
         ]);
     }
 
-    /**
-     * Skaluje potwora jako inny typ niż lead (eskorty). Re-baza przez podział
-     * przez mnożnik leada i mnożenie przez mnożnik docelowy.
-     *
-     * @param  array<string, mixed>  $monster
-     * @return array<string, mixed>
-     */
     public static function scaleDungeonMonsterAsType(
         array $monster,
         int $wave,
@@ -389,11 +293,7 @@ final class DungeonSystem
         ]);
     }
 
-    // ---- Symulacja fali (czysta, deterministyczna) --------------------------
 
-    /**
-     * @return array{playerHpLeft:int, won:bool}
-     */
     public static function resolveWave(
         int $playerHp,
         int $playerAtk,
@@ -407,7 +307,6 @@ final class DungeonSystem
         $pDmg = max(1, $playerAtk - $monsterDef);
         $mDmg = max(1, $monsterAtk - $playerDef);
 
-        // Bezpiecznik: max 10 000 ciosów.
         for ($i = 0; $i < 10000; $i++) {
             $mHp -= $pDmg;
             if ($mHp <= 0) {
@@ -422,9 +321,7 @@ final class DungeonSystem
         return ['playerHpLeft' => (int) max(0, $pHp), 'won' => $pHp > 0];
     }
 
-    // ---- Dropy (RNG) ---------------------------------------------------------
 
-    /** Rzut rzadkości dropu lochu (ważony, capowany maxRarity). 1 rzut RNG. */
     public static function rollDungeonRarity(RngInterface $rng, string $maxRarity): string
     {
         $maxIdx = array_search($maxRarity, self::DUNGEON_RARITY_ORDER, true);
@@ -442,21 +339,11 @@ final class DungeonSystem
         return self::DUNGEON_RARITY_ORDER[$maxIdx];
     }
 
-    /**
-     * @param  array{0:int, 1:int}  $range
-     */
     public static function rollDungeonGold(RngInterface $rng, array $range): int
     {
         return $range[0] + (int) floor($rng->nextFloat() * ($range[1] - $range[0] + 1));
     }
 
-    /**
-     * Rzut dropu itemu z fali lochu. Item level = poziom lochu (nie postaci).
-     * Konsumpcja RNG jak TS: [drop-check] → [rarity] → [generateRandomItem].
-     *
-     * @param  array<string, mixed>  $dungeon
-     * @return array<string, mixed>|null
-     */
     public static function rollDungeonItemDrop(
         RngInterface $rng,
         ItemGenerator $items,
@@ -484,14 +371,7 @@ final class DungeonSystem
         ];
     }
 
-    // ---- Pełna symulacja lochu (per-wave) -----------------------------------
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     * @param  array{attack:int, defense:int, max_hp:int, level:int}  $character
-     * @param  list<array<string, mixed>>  $allMonsters
-     * @return array{waveResults:list<array<string, mixed>>, result:array<string, mixed>}
-     */
     public static function resolveDungeon(
         array $dungeon,
         array $character,
@@ -563,14 +443,7 @@ final class DungeonSystem
         ];
     }
 
-    // ---- Estymacja nagród (spawny × 4 + bonus poziomu) ----------------------
 
-    /**
-     * @param  array<string, mixed>  $dungeon
-     * @param  list<array<string, mixed>>  $allMonsters
-     * @param  list<array{id:string, gold:array{0:int, 1:int}}>  $monstersRawData
-     * @return array{goldMin:int, goldMax:int, xp:int}
-     */
     public static function estimateDungeonRewards(array $dungeon, array $allMonsters, array $monstersRawData): array
     {
         $multiplier = 4;
@@ -608,7 +481,6 @@ final class DungeonSystem
         ];
     }
 
-    // ---- Prywatne helpery ----------------------------------------------------
 
     private static function stepDownType(string $type): string
     {
@@ -620,13 +492,6 @@ final class DungeonSystem
         return self::TYPE_ORDER[$idx - 1];
     }
 
-    /**
-     * Sort stabilny po |level - dungeonLevel| (jak TS `[...].sort(...)`).
-     * PHP 8 usort jest stabilny — remis zachowuje kolejność wejścia.
-     *
-     * @param  list<array<string, mixed>>  $monsters
-     * @return list<array<string, mixed>>
-     */
     private static function sortByLevelDistance(array $monsters, int $dungeonLevel): array
     {
         $sorted = array_values($monsters);
@@ -638,7 +503,6 @@ final class DungeonSystem
         return $sorted;
     }
 
-    /** Epoch-ms z ISO-8601 UTC — jak JS `new Date(str).getTime()` ('Uv'=s+ms). */
     private static function isoToMs(string $iso): int
     {
         return (int) (new DateTimeImmutable($iso))->format('Uv');

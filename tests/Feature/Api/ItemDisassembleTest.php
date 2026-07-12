@@ -14,12 +14,6 @@ uses(RefreshDatabase::class);
 const ITM_USER = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const ITM_USER_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
-/**
- * Mulberry32 (ten sam algorytm co front). Wartości nextFloat() dla seedów:
- *  - seed 7  → 0.0117, 0.062,  0.9769, 0.699  (pierwszy roll < 0.20 → kamień)
- *  - seed 1  → 0.6271, 0.0027, 0.5274, 0.9811 (pierwszy roll >= 0.20 → brak)
- *  - seed 3  → 0.7202, 0.0387, 0.4562, 0.0749 (skip, kamień, ...)
- */
 function itmBind(int $seed): void
 {
     app()->bind(RngInterface::class, fn () => new Mulberry32Rng($seed));
@@ -30,10 +24,6 @@ function itmChar(int $level = 100, string $userId = ITM_USER): Character
     return Character::factory()->forUser($userId)->create(['level' => $level]);
 }
 
-/**
- * @param  array<int, array<string, mixed>>  $bag
- * @param  array<string, int>  $stones
- */
 function itmSave(Character $c, array $bag, array $stones = [], int $gold = 0): GameSave
 {
     return GameSave::create([
@@ -55,10 +45,9 @@ function itmToken(): string
     return TokenFactory::forUser(ITM_USER);
 }
 
-// ---- disassemble (single) ---------------------------------------------------
 
 it('disassembles an item and grants a stone on a low roll', function () {
-    itmBind(7); // pierwszy roll 0.0117 < 0.20 → kamień
+    itmBind(7);
     $c = itmChar();
     itmSave($c, [itmItem('itm-1', 'rare')]);
 
@@ -74,7 +63,7 @@ it('disassembles an item and grants a stone on a low roll', function () {
 });
 
 it('disassembles an item without a stone on a high roll (item still consumed)', function () {
-    itmBind(1); // pierwszy roll 0.6271 >= 0.20 → brak kamienia
+    itmBind(1);
     $c = itmChar();
     itmSave($c, [itmItem('itm-1', 'epic')]);
 
@@ -113,14 +102,12 @@ it('replays disassemble idempotently without double-applying', function () {
 
     expect($second)->toBe($first);
     $inv = GameSave::where('character_id', $c->id)->first()->state['inventory'];
-    // Kamień naliczony DOKŁADNIE raz (replay z cache, brak podwójnej aplikacji).
     expect($inv['stones']['rare_stone'])->toBe(1);
 });
 
-// ---- disassemble-mass -------------------------------------------------------
 
 it('mass-disassembles: consumes all listed items and aggregates stones', function () {
-    itmBind(3); // rolls: 0.7202 (skip), 0.0387 (kamień) — kolejność torby
+    itmBind(3);
     $c = itmChar();
     itmSave($c, [itmItem('a', 'rare'), itmItem('b', 'rare')]);
 
@@ -134,7 +121,6 @@ it('mass-disassembles: consumes all listed items and aggregates stones', functio
         ->and($inv['stones']['rare_stone'])->toBe(1);
 });
 
-// ---- reroll -----------------------------------------------------------------
 
 it('rerolls item bonuses, preserves base stat, and consumes 2 stones', function () {
     itmBind(7);
@@ -147,10 +133,10 @@ it('rerolls item bonuses, preserves base stat, and consumes 2 stones', function 
 
     $res->assertOk()->assertJson(['stonesUsed' => 2, 'stoneType' => 'rare_stone']);
     $item = $res->json('item');
-    expect($item['bonuses']['hp'])->toBe(100)   // bazowy stat slotu 'helmet' zachowany
-        ->and(count($item['bonuses']))->toBe(2); // hp + 1 nowy bonus (rare → 1 slot)
+    expect($item['bonuses']['hp'])->toBe(100)
+        ->and(count($item['bonuses']))->toBe(2);
     $inv = GameSave::where('character_id', $c->id)->first()->state['inventory'];
-    expect($inv['stones']['rare_stone'])->toBe(1); // 3 - 2
+    expect($inv['stones']['rare_stone'])->toBe(1);
 });
 
 it('rejects reroll for a common item (422)', function () {
@@ -166,14 +152,13 @@ it('rejects reroll for a common item (422)', function () {
 it('rejects reroll with insufficient stones (422)', function () {
     itmBind(7);
     $c = itmChar();
-    itmSave($c, [itmItem('itm-1', 'rare')], ['rare_stone' => 1]); // < 2
+    itmSave($c, [itmItem('itm-1', 'rare')], ['rare_stone' => 1]);
 
     $this->withToken(itmToken())->postJson("/api/v1/characters/{$c->id}/items/reroll", [
         'itemUuid' => 'itm-1', 'requestId' => 'req-r3',
     ])->assertStatus(422);
 });
 
-// ---- stones/convert ---------------------------------------------------------
 
 it('converts 100 stones + 1000 gold into 1 higher-tier stone', function () {
     $c = itmChar();

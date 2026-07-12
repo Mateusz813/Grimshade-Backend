@@ -6,13 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/**
- * `market_sale_notifications` — powiadomienie sprzedawcy o sprzedaży (kształt
- * z src/api/v1/marketApi.ts). Tworzone atomowo w transakcji kupna; gold_received
- * to kwota NETTO (po 5% podatku marketowym), którą sprzedawca faktycznie dostał.
- *
- * IDEMPOTENTNA: guard hasTable → no-op na Supabase. down() no-op.
- */
 return new class extends Migration
 {
     public function up(): void
@@ -36,6 +29,5 @@ return new class extends Migration
 
     public function down(): void
     {
-        // Świadomie no-op — chroni realną tabelę Supabase.
     }
 };

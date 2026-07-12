@@ -14,10 +14,6 @@ const TEST_SECRET = 'test-super-secret-jwt-key-for-testing-only-min-256-bits-lon
 const TEST_ISS = 'https://test-project.supabase.co/auth/v1';
 const TEST_AUD = 'authenticated';
 
-/**
- * Buduje token HS256 pod testy. Domyślnie ważny; parametry pozwalają
- * wyprodukować warianty złe (inny sekret/iss/aud/exp/sub).
- */
 function makeToken(array $overrides = []): string
 {
     $secret = $overrides['secret'] ?? TEST_SECRET;
@@ -32,7 +28,6 @@ function makeToken(array $overrides = []): string
         ->withClaim('email', $overrides['email'] ?? 'player@grimshade.pl')
         ->withClaim('role', $overrides['role'] ?? 'authenticated');
 
-    // array_key_exists, nie ??, bo `sub => null` ma ZNACZYĆ „usuń claim".
     $sub = array_key_exists('sub', $overrides)
         ? $overrides['sub']
         : '11111111-1111-1111-1111-111111111111';

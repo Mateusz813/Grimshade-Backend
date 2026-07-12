@@ -5,23 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Character;
 use App\Services\CharacterStateService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Zarządzanie inwentarzem: equip/unequip + skrytka (deposit). Wszystko mutuje
- * blob game_saves przez CharacterStateService (serwer = właściciel).
- *
- * Walidacja v1: slot musi być prawidłowy + itemLevel <= poziom postaci.
- * TODO: pełny canEquip (zgodność klasy/broni) — po porcie itemSystem.canEquip.
- */
 final class InventoryController extends Controller
 {
-    /** @var list<string> */
     private const SLOTS = [
         'helmet', 'armor', 'pants', 'gloves', 'shoulders', 'boots',
         'mainHand', 'offHand', 'ring1', 'ring2', 'earrings', 'necklace',
@@ -29,7 +20,6 @@ final class InventoryController extends Controller
 
     public function equip(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'itemUuid' => ['required', 'string', 'max:128'],
@@ -57,7 +47,6 @@ final class InventoryController extends Controller
 
     public function unequip(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate([
             'slot' => ['required', 'string', 'in:'.implode(',', self::SLOTS)],
@@ -86,7 +75,6 @@ final class InventoryController extends Controller
 
     private function move(Request $request, CharacterStateService $state, bool $deposit): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $data = $request->validate(['itemUuid' => ['required', 'string', 'max:128']]);
 

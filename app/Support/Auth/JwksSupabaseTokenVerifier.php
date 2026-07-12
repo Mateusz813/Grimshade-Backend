@@ -8,10 +8,8 @@ use DateInterval;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Lcobucci\JWT\Encoding\JoseEncoder;
-use Lcobucci\JWT\Signer;
 use Lcobucci\JWT\Signer\Ecdsa\Sha256 as EcdsaSha256;
 use Lcobucci\JWT\Signer\Hmac\Sha256 as HmacSha256;
-use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Token\Parser;
 use Lcobucci\JWT\Token\Plain;
@@ -23,25 +21,13 @@ use Lcobucci\JWT\Validation\Validator;
 use Psr\Clock\ClockInterface;
 use Throwable;
 
-/**
- * Weryfikator ASYMETRYCZNY (ES256 przez JWKS Supabase) + fallback HS256.
- *
- * Po włączeniu asymetrycznych kluczy JWT Supabase (GoTrue) podpisuje tokeny
- * algorytmem ES256 kluczem, którego publiczna część jest w
- * `${SUPABASE_URL}/auth/v1/.well-known/jwks.json`. Legacy tokeny HS256 (jeszcze
- * aktywne sesje) weryfikujemy współdzielonym sekretem — dzięki temu przełączenie
- * na asymetrię nie wylogowuje graczy z aktywnymi tokenami.
- *
- * Waliduje: podpis, exp/nbf/iat (z leeway), iss (${SUPABASE_URL}/auth/v1) oraz
- * aud (`authenticated`). Każdy błąd → InvalidTokenException → HTTP 401.
- */
 final class JwksSupabaseTokenVerifier implements SupabaseTokenVerifier
 {
     private const CACHE_KEY = 'supabase.jwks.keys';
 
     public function __construct(
         private readonly string $jwksUrl,
-        private readonly string $secret, // fallback HS256 (legacy)
+        private readonly string $secret,
         private readonly string $issuer,
         private readonly string $audience,
         private readonly int $leewaySeconds,
@@ -100,9 +86,6 @@ final class JwksSupabaseTokenVerifier implements SupabaseTokenVerifier
         );
     }
 
-    /**
-     * @return array{0: Signer, 1: Key}
-     */
     private function signerAndKey(string $alg, Plain $token): array
     {
         if ($alg === 'HS256') {
@@ -129,7 +112,6 @@ final class JwksSupabaseTokenVerifier implements SupabaseTokenVerifier
     {
         $jwk = $this->findJwk($kid);
         if ($jwk === null) {
-            // Klucz mógł się zrotować — odśwież JWKS raz i spróbuj ponownie.
             Cache::forget(self::CACHE_KEY);
             $jwk = $this->findJwk($kid);
         }
@@ -146,8 +128,6 @@ final class JwksSupabaseTokenVerifier implements SupabaseTokenVerifier
             throw new InvalidTokenException('Nieprawidłowe współrzędne klucza EC.');
         }
 
-        // SubjectPublicKeyInfo dla P-256 = stały prefiks DER (OID ecPublicKey +
-        // OID prime256v1 + BIT STRING) + punkt nieskompresowany: 0x04 || x || y.
         $der = hex2bin('3059301306072a8648ce3d020106082a8648ce3d030107034200')."\x04".$x.$y;
 
         return "-----BEGIN PUBLIC KEY-----\n"
@@ -155,9 +135,6 @@ final class JwksSupabaseTokenVerifier implements SupabaseTokenVerifier
             .'-----END PUBLIC KEY-----'."\n";
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     private function findJwk(string $kid): ?array
     {
         foreach ($this->jwks() as $jwk) {
@@ -169,16 +146,12 @@ final class JwksSupabaseTokenVerifier implements SupabaseTokenVerifier
         return null;
     }
 
-    /**
-     * @return array<int, array<string, mixed>>
-     */
     private function jwks(): array
     {
         if ($this->jwksUrl === '') {
             throw new InvalidTokenException('SUPABASE_JWKS_URL nie jest ustawiony.');
         }
 
-        /** @var array<int, array<string, mixed>> $keys */
         $keys = Cache::remember(self::CACHE_KEY, now()->addHour(), function (): array {
             try {
                 $res = Http::timeout(10)->acceptJson()->get($this->jwksUrl);

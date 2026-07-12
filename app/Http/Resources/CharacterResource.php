@@ -4,22 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/**
- * Kształt odpowiedzi = ICharacter z frontu (src/types/character.ts).
- * snake_case, wszystkie kolumny rankingowe — żeby store'y/widoki frontu
- * nie musiały się zmieniać po repoincie.
- *
- * @mixin Character
- */
 final class CharacterResource extends JsonResource
 {
-    /**
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         return [
@@ -48,7 +37,6 @@ final class CharacterResource extends JsonResource
             'created_at' => optional($this->created_at)->toIso8601String(),
             'updated_at' => optional($this->updated_at)->toIso8601String(),
 
-            // Liczniki rankingowe
             'arena_kills' => $this->arena_kills,
             'arena_deaths' => $this->arena_deaths,
             'arena_league' => $this->arena_league,

@@ -6,21 +6,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Intencja walki. Klient mówi CO robi (monsterId) + klucz idempotencji.
- * Świadomie NIE ma tu pól nagród — XP/gold/level liczy serwer. Nawet jeśli
- * klient dorzuci `gold`/`xp` do body, kontroler ich nie czyta.
- */
 final class ResolveCombatRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true; // autoryzacja: middleware supabase.auth + owns.character
+        return true;
     }
 
-    /**
-     * @return array<string, mixed>
-     */
     public function rules(): array
     {
         return [

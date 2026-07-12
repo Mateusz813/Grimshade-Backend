@@ -7,29 +7,10 @@ namespace App\Domain\Loot;
 use App\Domain\Items\ItemEconomy;
 use App\Domain\Support\Rng\RngInterface;
 
-/**
- * Port src/systems/itemGenerator.ts — serwerowa generacja itemów (dropy).
- *
- * PARYTET: rarity 'common' ma 0 bonus-slotów → generateBonusStats wraca []
- * BEZ konsumowania RNG (early return, jak w TS), więc wszystkie ścieżki common
- * są seedowalne bit-w-bit (golden). KOLEJNOŚĆ konsumpcji RNG odwzorowana 1:1
- * z TS (włącznie z 1 rollem na uuid po statach), więc sekwencje zostają
- * zsynchronizowane nawet przy łańcuchu wywołań.
- *
- * BRAK BIT-PARITY (świadomie): generateBonusStats dla rarity>common używa w TS
- * `[...pool].sort(() => Math.random()-0.5)` — komparator wołany różną liczbę
- * razy w V8 vs PHP. Tu: $rng->shuffle() (Fisher-Yates). Testy własnościowe
- * pilnują liczby bonusów (RARITY_BONUS_SLOTS), zakresów i wykluczeń.
- *
- * uuid: TS używa Date.now() — serwer generuje własny sufiks z RNG (1 roll,
- * jak TS). Ikony/legacy-display: pomijamy pole icon (UI); parser nazw/slotów
- * portowany (walidacja itemów).
- */
 final class ItemGenerator
 {
     private const BONUS_STAT_POOL = ['hp', 'mp', 'attack', 'defense', 'speed', 'critChance', 'critDmg'];
 
-    /** @var array<string, array{min:int, max:int}> */
     private const BONUS_STAT_RANGES = [
         'common' => ['min' => 1, 'max' => 5],
         'rare' => ['min' => 3, 'max' => 12],
@@ -39,13 +20,11 @@ final class ItemGenerator
         'heroic' => ['min' => 40, 'max' => 100],
     ];
 
-    /** @var array<string, float> */
     private const STAT_RANGE_MULTIPLIER = [
         'hp' => 1.0, 'mp' => 1.0, 'attack' => 1.0, 'defense' => 1.0, 'speed' => 1.0,
         'critChance' => 0.3, 'critDmg' => 1.5,
     ];
 
-    /** @var array<string, string> */
     private const ARMOR_SLOT_BASE_STAT = [
         'helmet' => 'hp', 'armor' => 'hp', 'pants' => 'hp', 'shoulders' => 'hp',
         'boots' => 'hp', 'gloves' => 'attack',
@@ -53,12 +32,10 @@ final class ItemGenerator
 
     private const ARMOR_HP_MULTIPLIER = 6;
 
-    /** @var array<string, string> */
     private const ACCESSORY_SLOT_BASE_STAT = [
         'ring1' => 'attack', 'ring2' => 'attack', 'necklace' => 'defense', 'earrings' => 'defense',
     ];
 
-    /** @var array<string, float> kolejność = kolejność iteracji w TS */
     private const ITEM_CATEGORY_WEIGHTS = [
         'weapon' => 0.20, 'offhand' => 0.15, 'armor' => 0.45, 'accessory' => 0.20,
     ];
@@ -67,22 +44,17 @@ final class ItemGenerator
 
     private const CLASSES = ['Knight', 'Mage', 'Cleric', 'Archer', 'Rogue', 'Necromancer', 'Bard'];
 
-    /**
-     * @param  array<string, mixed>  $templates  zawartość itemTemplates.json
-     */
     public function __construct(
         private readonly array $templates,
         private readonly RngInterface $rng,
     ) {}
 
-    // ---- Prywatne helpery (1:1 z TS) ----------------------------------------
 
     private function randInt(int|float $min, int|float $max): int
     {
         return (int) ($min + floor($this->rng->nextFloat() * ($max - $min + 1)));
     }
 
-    /** 1 roll RNG — jak Math.random().toString(36) w TS (treść inna, liczba rolli ta sama). */
     private function uuidSuffix(string $itemId): string
     {
         return $itemId.'_srv_'.dechex((int) floor($this->rng->nextFloat() * 0xFFFFFFF));
@@ -93,9 +65,6 @@ final class ItemGenerator
         return (float) ($this->templates['rarityMultipliers'][$rarity]['statMultiplier'] ?? 1.0);
     }
 
-    /**
-     * @param  array{baseMin:int|float, baseMax:int|float, perLevel:int|float}  $scaling
-     */
     private function calculateBaseStat(array $scaling, int $level, string $rarity): int
     {
         $mult = $this->rarityStatMultiplier($rarity);
@@ -105,9 +74,6 @@ final class ItemGenerator
         return (int) max(1, floor(($baseValue + $levelBonus) * $mult));
     }
 
-    /**
-     * @return array{min:int, max:int}
-     */
     private function getWeaponBaseDamage(array $scaling, int $level, string $rarity): array
     {
         $mult = $this->rarityStatMultiplier($rarity);
@@ -118,15 +84,11 @@ final class ItemGenerator
         return ['min' => $min, 'max' => $max];
     }
 
-    /**
-     * @param  list<string>  $excludeStats
-     * @return array<string, int>
-     */
     private function generateBonusStats(string $rarity, array $excludeStats = []): array
     {
         $numBonuses = ItemEconomy::RARITY_BONUS_SLOTS[$rarity] ?? 0;
         if ($numBonuses === 0) {
-            return []; // jak TS: zero konsumpcji RNG
+            return [];
         }
 
         $range = self::BONUS_STAT_RANGES[$rarity];
@@ -142,16 +104,7 @@ final class ItemGenerator
         return $bonuses;
     }
 
-    // ---- Reroll bonusów (Bonus Change) --------------------------------------
 
-    /**
-     * Klucze bonusów będących "bazowym" statem danego slotu — port
-     * getBaseStatKeysForSlot z src/systems/itemSystem.ts. Tylko te klucze są
-     * zachowywane przy rerollu (skalowane przez upgradeLevel), reszta = losowe
-     * bonusy do przelosowania.
-     *
-     * @return list<string>
-     */
     public static function getBaseStatKeysForSlot(?string $slot): array
     {
         return match ($slot) {
@@ -164,25 +117,15 @@ final class ItemGenerator
         };
     }
 
-    /**
-     * Port rerollItemBonuses z src/systems/itemGenerator.ts. Zachowuje bazowe
-     * staty slotu, a pozostałe (losowe) bonusy generuje od nowa przez
-     * generateBonusStats. Zwraca NOWĄ mapę bonusów (nie mutuje itemu).
-     *
-     * @param  array<string, mixed>  $item  item z bag (rarity + bonuses)
-     * @return array<string, int>
-     */
     public function rerollItemBonuses(array $item, ?string $slot): array
     {
-        /** @var array<string, int> $bonuses */
         $bonuses = $item['bonuses'] ?? [];
         if ($slot === null) {
-            return $bonuses; // jak TS: brak slotu → bonusy bez zmian
+            return $bonuses;
         }
 
         $baseKeys = self::getBaseStatKeysForSlot($slot);
 
-        // Zachowaj wartości bazowych statów.
         $baseStats = [];
         foreach ($baseKeys as $key) {
             if (array_key_exists($key, $bonuses)) {
@@ -190,17 +133,12 @@ final class ItemGenerator
             }
         }
 
-        // Świeże losowe bonusy (z wykluczeniem bazowych kluczy).
         $newRandomBonuses = $this->generateBonusStats((string) $item['rarity'], $baseKeys);
 
         return [...$baseStats, ...$newRandomBonuses];
     }
 
-    // ---- Publiczne generatory ------------------------------------------------
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public function generateWeapon(string $weaponType, int $level, string $rarity): ?array
     {
         $template = collect($this->templates['weapons'])->firstWhere('type', $weaponType);
@@ -225,9 +163,6 @@ final class ItemGenerator
         ];
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public function generateOffhand(string $offhandType, int $level, string $rarity): ?array
     {
         $template = collect($this->templates['offhands'])->firstWhere('type', $offhandType);
@@ -235,7 +170,6 @@ final class ItemGenerator
             return null;
         }
 
-        // Precedencja jak w TS: dagger LUB (offHand && attack && Rogue).
         $isRogueDualWield = $template['type'] === 'dagger'
             || ($template['slot'] === 'offHand'
                 && ($template['baseStatType'] ?? '') === 'attack'
@@ -266,9 +200,6 @@ final class ItemGenerator
         ];
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public function generateArmor(string $armorPrefix, string $slot, int $level, string $rarity): ?array
     {
         $category = $this->templates['armor'][$armorPrefix] ?? null;
@@ -298,9 +229,6 @@ final class ItemGenerator
         ];
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public function generateAccessory(string $accessoryType, int $level, string $rarity): ?array
     {
         $template = collect($this->templates['accessories'])->firstWhere('type', $accessoryType);
@@ -323,9 +251,6 @@ final class ItemGenerator
         ];
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public function generateRandomItemForClass(string $characterClass, int $level, string $rarity): ?array
     {
         $roll = $this->rng->nextFloat();
@@ -372,9 +297,6 @@ final class ItemGenerator
         return null;
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public function generateRandomItem(int $level, string $rarity): ?array
     {
         $class = self::CLASSES[(int) floor($this->rng->nextFloat() * count(self::CLASSES))];
@@ -382,9 +304,6 @@ final class ItemGenerator
         return $this->generateRandomItemForClass($class, $level, $rarity);
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public function generateStarterWeapon(string $characterClass): ?array
     {
         $starter = $this->templates['starterWeapons'][$characterClass] ?? null;
@@ -402,11 +321,6 @@ final class ItemGenerator
         ];
     }
 
-    /**
-     * Parser itemId → info (walidacja/nazwy). Pole `icon` pominięte (UI).
-     *
-     * @return array{name_pl:string, name_en:string, type:string, slot:string}|null
-     */
     public function getItemDisplayInfo(string $itemId): ?array
     {
         $parts = explode('_lvl', $itemId);
@@ -446,9 +360,6 @@ final class ItemGenerator
         return null;
     }
 
-    /**
-     * @return array{name_pl:string, name_en:string, type:string, slot:string}|null
-     */
     private static function legacyItemInfo(string $itemId): ?array
     {
         $map = [

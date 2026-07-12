@@ -4,22 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Combat;
 
-/**
- * Port czystych formuł walki z src/systems/combat.ts.
- *
- * WAŻNA różnica vs TS: `calculateDamage` NIE losuje crit/block/dodge. W TS jest
- * `params.isCrit ?? Math.random() < critChance` — losowanie inline. Na serwerze
- * losowość należy do orkiestratora (z wstrzykniętym RngInterface), a ta czysta
- * matematyka bierze WYNIKI (flagi) jako wejście. Golden-vectory zawsze podają
- * flagi jawnie, więc parytet matematyki jest dowiedziony dla jedynej ścieżki,
- * której serwer używa.
- *
- * Odłożone (inne tier/zależności): rollMonsterDamage (RNG → Tier-2),
- * resolveSkillRecastMs / REAL_COOLDOWN (zależą od skills.json).
- */
 final class CombatMath
 {
-    /** @var array<string, array{hp:float, atk:float, def:float, xp:float, gold:float}> */
     public const MONSTER_STAT_MULTIPLIERS = [
         'normal' => ['hp' => 1.0, 'atk' => 1.0, 'def' => 1.0, 'xp' => 1.0, 'gold' => 1.0],
         'strong' => ['hp' => 1.5, 'atk' => 1.2, 'def' => 1.3, 'xp' => 1.8, 'gold' => 2.0],
@@ -28,7 +14,6 @@ final class CombatMath
         'boss' => ['hp' => 10.0, 'atk' => 2.5, 'def' => 2.0, 'xp' => 10.0, 'gold' => 15.0],
     ];
 
-    /** Koercja do skończonej liczby; fallback dla null/NaN/Inf (jak TS safeN). */
     private static function safeN(int|float|null $v, float $fallback = 0.0): float
     {
         $n = $v ?? $fallback;
@@ -37,10 +22,6 @@ final class CombatMath
         return is_finite($n) ? $n : $fallback;
     }
 
-    /**
-     * @param  array<string, mixed>  $params
-     * @return array{damage:int, isCrit:bool, isBlocked:bool, isDodged:bool, finalDamage:int}
-     */
     public static function calculateDamage(array $params): array
     {
         $baseAtk = self::safeN($params['baseAtk'] ?? null);
@@ -88,10 +69,6 @@ final class CombatMath
         ];
     }
 
-    /**
-     * @param  array<string, mixed>  $params  ICombatParams + offHandAtk
-     * @return array{hit1:array, hit2:array, totalDamage:int}
-     */
     public static function calculateDualWieldDamage(array $params): array
     {
         $hit1Params = $params;
@@ -165,9 +142,6 @@ final class CombatMath
         return (int) max(500, floor($baseInterval / max(1, self::safeN($attackSpeed, 1))));
     }
 
-    /**
-     * @return array{newLevel:int, newXp:int, xpPercent:int, levelsLost:int, skillXpLoss:int}
-     */
     public static function calculateDeathPenalty(int|float $currentLevel, int|float $currentXp, int|float $xpToNext, int|float $skillXp): array
     {
         $level = self::safeN($currentLevel, 1);
@@ -218,9 +192,6 @@ final class CombatMath
         ];
     }
 
-    /**
-     * Legacy. @return array{newXp:int, newSkillXp:int}
-     */
     public static function applyDeathPenalty(int|float $currentXp, int|float $levelXp, int|float $skillXp): array
     {
         $xpLoss = floor(self::safeN($levelXp) * 0.1);
@@ -232,7 +203,6 @@ final class CombatMath
         ];
     }
 
-    /** x1→1, x2→2, x4→4, SKIP→INF (jak TS Infinity). */
     public static function getSpeedMultiplier(string $speed): float
     {
         return match ($speed) {
@@ -244,10 +214,6 @@ final class CombatMath
         };
     }
 
-    /**
-     * @param  array{attack:int|float, attack_min?:int|float, attack_max?:int|float}  $monster
-     * @return array{min:int, max:int}
-     */
     public static function getMonsterAttackRange(array $monster): array
     {
         $atk = self::safeN($monster['attack'] ?? null);
@@ -257,10 +223,6 @@ final class CombatMath
         return ['min' => $min, 'max' => $max];
     }
 
-    /**
-     * @param  array{hp:int|float, attack:int|float, attack_min?:int|float, attack_max?:int|float, defense:int|float, xp:int|float, gold:array{0:int|float,1:int|float}}  $baseStats
-     * @return array{hp:int, attack:int, attack_min:int, attack_max:int, defense:int, xp:int, goldMin:int, goldMax:int}
-     */
     public static function applyMonsterRarity(array $baseStats, string $rarity): array
     {
         $mult = self::MONSTER_STAT_MULTIPLIERS[$rarity];

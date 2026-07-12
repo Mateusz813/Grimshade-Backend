@@ -4,26 +4,12 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Database\Factories\CharacterFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Postać gracza. Kanoniczny kształt: src/types/character.ts (ICharacter).
- *
- * UWAGA: klucz to UUID (string), nie auto-increment. Autorytatywne zapisy
- * (gold/level/loot) NIGDY nie przychodzą z body — liczy je serwer i zapisuje
- * przez dedykowane serwisy. Ten model to na razie odczyt + tworzenie postaci.
- *
- * @property string $id
- * @property string $user_id
- * @property string $name
- * @property string $class
- */
 class Character extends Model
 {
-    /** @use HasFactory<CharacterFactory> */
     use HasFactory;
 
     use HasUuids;
@@ -34,12 +20,6 @@ class Character extends Model
 
     protected $keyType = 'string';
 
-    /**
-     * Kolumny masowo przypisywalne przy tworzeniu postaci. Statystyki bazowe
-     * ustawia serwer z katalogu klas (nie ufamy wartościom z body poza name/class).
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'user_id', 'name', 'class',
         'level', 'xp', 'hp', 'max_hp', 'mp', 'max_mp', 'attack', 'defense',

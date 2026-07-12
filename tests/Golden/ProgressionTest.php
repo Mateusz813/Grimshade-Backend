@@ -5,10 +5,8 @@ declare(strict_types=1);
 use App\Domain\Progression\Progression;
 use Tests\Support\Golden;
 
-/** PARYTET progression: PHP Progression == TS progression.ts (bramkowanie). */
 it('matches getMonsterUnlockStatus (level + mastery gate)', function () {
     $golden = Golden::load('progression.json');
-    // Ta sama lista co generator TS.
     $monsters = [
         ['id' => 'rat', 'level' => 1],
         ['id' => 'wolf', 'level' => 5],

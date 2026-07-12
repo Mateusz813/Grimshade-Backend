@@ -11,14 +11,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Weryfikuje nagłówek `Authorization: Bearer <token>` (token GoTrue Supabase).
- * Po sukcesie wstawia SupabaseUser do atrybutów requestu (`supabase_user`)
- * i ustawia user-resolver. Każdy błąd → 401.
- *
- * Zasada: to jedyne zaufane źródło tożsamości. Kontrolery NIGDY nie ufają
- * user_id/gold/level z body — czytają stan z bazy.
- */
 final class VerifySupabaseJwt
 {
     public function __construct(private readonly SupabaseTokenVerifier $verifier) {}
@@ -34,7 +26,6 @@ final class VerifySupabaseJwt
         try {
             $user = $this->verifier->verify($matches[1]);
         } catch (InvalidTokenException) {
-            // Świadomie generyczny komunikat — nie zdradzamy, dlaczego token padł.
             return $this->unauthorized('Nieprawidłowy lub wygasły token.');
         }
 

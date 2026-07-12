@@ -6,10 +6,6 @@ use App\Domain\Loot\LootSystem;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET lootSystem: deterministyczne helpery + funkcje RNG (z tym samym
- * seedem mulberry32 co TS → identyczna sekwencja → identyczny wynik).
- */
 beforeEach(function () {
     $this->golden = Golden::load('lootSystem.json');
 });

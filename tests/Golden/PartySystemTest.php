@@ -6,14 +6,6 @@ use App\Domain\Party\PartySystem;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET partySystem: PHP PartySystem musi zwrócić DOKŁADNIE to co TS
- * partySystem.ts (fixture wygenerowany w grimshade repo, skopiowany tu).
- * Deterministyczne formuły + pickWeightedAggroTarget (seed mulberry32 →
- * identyczna sekwencja → identyczny wynik).
- *
- * toEqual (nie toBe) — JSON nie rozróżnia int/float, porównanie luźne.
- */
 beforeEach(function () {
     $this->golden = Golden::load('partySystem.json');
 });

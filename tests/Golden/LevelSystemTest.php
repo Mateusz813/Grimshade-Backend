@@ -5,11 +5,6 @@ declare(strict_types=1);
 use App\Domain\Progression\LevelSystem;
 use Tests\Support\Golden;
 
-/**
- * PARYTET levelSystem: PHP LevelSystem musi zwrócić DOKŁADNIE to, co TS
- * levelSystem.ts (fixture wygenerowany w grimshade repo, skopiowany tu).
- * toEqual (nie toBe) — JSON nie rozróżnia int/float, więc porównanie luźne.
- */
 beforeEach(function () {
     $this->golden = Golden::load('levelSystem.json');
 });

@@ -14,7 +14,6 @@ uses(RefreshDatabase::class);
 const CR_USER_A = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const CR_USER_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
-// Deterministyczne RNG w testach (ten sam algorytm co front) + potęga na 1-shot.
 beforeEach(function () {
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(12345));
 });
@@ -48,10 +47,9 @@ it('resolves a hunt authoritatively and grants server-computed rewards', functio
     expect($res->json('result.goldGained'))->toBeGreaterThan(0)
         ->and($res->json('result.xpGained'))->toBeGreaterThan(0);
 
-    // Gold ląduje w BLOBIE (prawdziwa waluta gry), nie w characters.gold.
     $blobGold = GameSave::where('character_id', $char->id)->first()->state['inventory']['gold'];
     expect($blobGold)->toBe($res->json('result.goldGained'))
-        ->and(Character::find($char->id)->gold)->toBe(0); // szczątkowa kolumna nietknięta
+        ->and(Character::find($char->id)->gold)->toBe(0);
 });
 
 it('IGNORES forged reward fields in the body (anti-cheat)', function () {
@@ -60,12 +58,10 @@ it('IGNORES forged reward fields in the body (anti-cheat)', function () {
     $res = $this->withToken(TokenFactory::forUser(CR_USER_A))
         ->postJson("/api/v1/characters/{$char->id}/combat/resolve", [
             'monsterId' => 'rat', 'requestId' => 'req-cheat',
-            // Próba oszustwa — serwer tego NIE czyta:
             'gold' => 999999999, 'xp' => 999999999, 'level' => 999, 'goldGained' => 999999999,
         ]);
 
     $res->assertOk();
-    // Gold = serwerowa nagroda w blobie, NIE sfałszowane 999999999.
     $blobGold = GameSave::where('character_id', $char->id)->first()->state['inventory']['gold'];
     expect($blobGold)->toBe($res->json('result.goldGained'))
         ->and($blobGold)->toBeLessThan(999999999)
@@ -83,8 +79,8 @@ it('rejects resolving combat on another user\'s character (403)', function () {
 });
 
 it('rejects a monster above the character level (422)', function () {
-    $char = strongChar(); // level 5
-    $boss = highestMonsterId(); // level >> 5
+    $char = strongChar();
+    $boss = highestMonsterId();
 
     $this->withToken(TokenFactory::forUser(CR_USER_A))
         ->postJson("/api/v1/characters/{$char->id}/combat/resolve", [
@@ -116,7 +112,6 @@ it('is idempotent — replaying a requestId does not double-grant rewards', func
 
     $second->assertOk();
     expect($second->json('result.goldGained'))->toBe($first->json('result.goldGained'));
-    // Gold NIE podwojony — druga odpowiedź z cache, brak drugiego zapisu.
     expect(GameSave::where('character_id', $char->id)->first()->state['inventory']['gold'])->toBe($goldAfterFirst);
 });
 

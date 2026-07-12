@@ -5,19 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Character;
 use App\Models\Death;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-/**
- * Globalny feed śmierci. Odczyt publiczny (dla zalogowanych). Zapis: tożsamość
- * postaci (name/class/level) SERWER bierze z bazy — klient podaje tylko źródło
- * śmierci (co go zabiło). Zamyka fałszowanie „zabił mnie boss lvl 1000".
- */
 final class DeathController extends Controller
 {
-    /** @var list<string> */
     private const SOURCES = ['monster', 'dungeon', 'boss', 'transform', 'raid'];
 
     public function index(Request $request): JsonResponse
@@ -31,7 +24,6 @@ final class DeathController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $data = $request->validate([
@@ -43,14 +35,12 @@ final class DeathController extends Controller
 
         $death = Death::create([
             'character_id' => $character->id,
-            // Tożsamość z SERWERA (nie z body):
             'character_name' => $character->name,
             'character_class' => $character->class,
             'character_level' => $character->level,
             'source' => $data['source'],
             'source_name' => $data['source_name'],
             'source_level' => $data['source_level'],
-            // killed = realna śmierć (HP=0), fled = ucieczka (Ucieknij). Domyślnie killed.
             'result' => $data['result'] ?? 'killed',
             'died_at' => now(),
         ]);

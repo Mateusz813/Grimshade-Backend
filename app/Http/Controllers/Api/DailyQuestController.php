@@ -15,29 +15,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Autorytatywne endpointy dziennych questów. Semantyka 1:1 z frontem
- * (dailyQuestStore.refreshIfNeeded / claimReward). Serwer:
- *  - tożsamość bierze z tokenu, postać/stan z BAZY (nie z body),
- *  - wybiera questy dnia DETERMINISTYCZNIE (DailyQuestSystem — klucz dnia +
- *    poziom postaci), więc dwaj klienci tego samego dnia dostaną ten sam zestaw,
- *  - przelicza nagrody skalą poziomu (scaleRewards) — klient NIE podaje kwot,
- *  - zapisuje autorytatywnie: GOLD (+ elixir) → blob game_saves.dailyQuests /
- *    inventory, XP/level/stat_points → characters, licznik quests_daily_done.
- *
- * Slice w blobie: state.dailyQuests = { lastRefreshDate, activeQuests[
- *   {questId, progress, completed, claimed} ], todayQuestDefs[] }.
- */
 final class DailyQuestController extends Controller
 {
-    /**
-     * Odśwież questy dnia, jeśli to nowy dzień. Klucz dnia z body `date`
-     * (YYYY-MM-DD) albo z now() serwera. Idempotencja NATURALNA: gdy
-     * lastRefreshDate == dzisiaj → no-op (nie regeneruje, nie kasuje progresu).
-     */
     public function refresh(Request $request, ContentRepository $content, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $data = $request->validate([
@@ -98,17 +79,8 @@ final class DailyQuestController extends Controller
         return response()->json($payload);
     }
 
-    /**
-     * Odbierz nagrodę za UKOŃCZONY dzienny quest. Serwer waliduje ukończenie i
-     * przelicza nagrodę (scaleRewards, skala poziomem). Gold + ewentualny elixir
-     * → blob; XP → postać (processXpGain → level-upy). Bump quests_daily_done.
-     * Idempotencja: flaga `claimed` w slice (drugi claim → 422, brak podwójnej
-     * nagrody). {questId} czytamy przez route() — Laravel gubi wiązanie przy 2
-     * parametrach trasy.
-     */
     public function claim(Request $request, ContentRepository $content, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $questId = (string) $request->route('questId');
 
@@ -139,33 +111,26 @@ final class DailyQuestController extends Controller
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Nagroda za ten quest już odebrana.');
             }
 
-            // Definicja questa — z zapisanych todayQuestDefs, fallback do żywej treści.
             $def = collect($slice['todayQuestDefs'] ?? [])->firstWhere('id', $questId)
                 ?? collect($content->get('dailyQuests'))->firstWhere('id', $questId);
             if ($def === null || ! isset($def['rewards'])) {
                 abort(Response::HTTP_NOT_FOUND, 'Brak definicji questa dziennego.');
             }
 
-            // Serwer PRZELICZA nagrody skalą poziomu — klient nie podaje kwot.
             $rewards = DailyQuestSystem::scaleRewards($def['rewards'], (int) $fresh->level);
 
-            // XP → postać (może wywołać wiele level-upów naraz).
             $lvl = LevelSystem::processXpGain((int) $fresh->level, (int) $fresh->xp, (int) $rewards['xp']);
             $fresh->level = $lvl['newLevel'];
             $fresh->xp = $lvl['remainingXp'];
             $fresh->stat_points += $lvl['statPointsGained'];
             $fresh->highest_level = max((int) $fresh->highest_level, $lvl['newLevel']);
 
-            // Licznik rankingowy — jak front bumpStat('quests_daily_done').
             $fresh->quests_daily_done = (int) $fresh->quests_daily_done + 1;
 
-            // Quest → claimed w slice (naturalna idempotencja).
             $activeQuests[$idx]['claimed'] = true;
             $blob['dailyQuests']['activeQuests'] = array_values($activeQuests);
             $save->state = $blob;
 
-            // Gold + ewentualny elixir → blob PO ostatnim $save->state = $blob
-            // (bug kolejności: inaczej mutacja inventory zostałaby nadpisana).
             $state->addGold($save, (int) $rewards['gold']);
             if (isset($rewards['elixir']) && $rewards['elixir'] !== '') {
                 $state->addConsumable($save, (string) $rewards['elixir'], 1);

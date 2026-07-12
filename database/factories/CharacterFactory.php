@@ -8,9 +8,6 @@ use App\Models\Character;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-/**
- * @extends Factory<Character>
- */
 class CharacterFactory extends Factory
 {
     protected $model = Character::class;
@@ -44,9 +41,6 @@ class CharacterFactory extends Factory
         ];
     }
 
-    /**
-     * Powiąż postać z konkretnym userem (Supabase sub).
-     */
     public function forUser(string $userId): static
     {
         return $this->state(fn (): array => ['user_id' => $userId]);

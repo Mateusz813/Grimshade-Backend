@@ -24,10 +24,6 @@ function skToken(): string
     return TokenFactory::forUser(SK_USER);
 }
 
-/**
- * @param  array<string, int>  $consumables
- * @param  array<string, mixed>  $skills
- */
 function skSave(Character $c, int $gold, array $consumables = [], array $skills = []): GameSave
 {
     return GameSave::create([
@@ -43,7 +39,6 @@ function skSave(Character $c, int $gold, array $consumables = [], array $skills 
     ]);
 }
 
-/** RNG o ustalonym nextFloat — deterministyczny roll ulepszenia. */
 function skFixedRng(float $value): RngInterface
 {
     return new class($value) implements RngInterface
@@ -67,11 +62,9 @@ function skFixedRng(float $value): RngInterface
     };
 }
 
-// ---- Upgrade ---------------------------------------------------------------
 
 it('upgrades a skill: chest + gold deducted, level bumped, ranking counter++', function () {
     $c = skChar();
-    // shield_bash unlockLevel=5 → chestLevel=5; target lvl1 cost {chests:1, gold:100, rate:100}.
     skSave($c, gold: 1000, consumables: ['spell_chest_5' => 3]);
 
     $res = $this->withToken(skToken())->postJson(
@@ -86,15 +79,15 @@ it('upgrades a skill: chest + gold deducted, level bumped, ranking counter++', f
         ->assertJsonPath('chestsSpent', 1);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
-    expect($blob['inventory']['gold'])->toBe(900)                                  // 1000 - 100
-        ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(2)         // 3 - 1
+    expect($blob['inventory']['gold'])->toBe(900)
+        ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(2)
         ->and($blob['skills']['skillUpgradeLevels']['shield_bash'])->toBe(1);
     expect(Character::find($c->id)->skill_upgrades_done)->toBe(1);
 });
 
 it('rejects upgrade with insufficient gold (422) and mutates nothing', function () {
     $c = skChar();
-    skSave($c, gold: 50, consumables: ['spell_chest_5' => 5]); // 50 < 100 gold cost
+    skSave($c, gold: 50, consumables: ['spell_chest_5' => 5]);
 
     $this->withToken(skToken())->postJson(
         "/api/v1/characters/{$c->id}/skills/shield_bash/upgrade",
@@ -102,7 +95,7 @@ it('rejects upgrade with insufficient gold (422) and mutates nothing', function 
     )->assertStatus(422);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
-    expect($blob['inventory']['gold'])->toBe(50)                                   // nietknięte
+    expect($blob['inventory']['gold'])->toBe(50)
         ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(5)
         ->and($blob['skills']['skillUpgradeLevels'] ?? [])->toBe([]);
     expect(Character::find($c->id)->skill_upgrades_done)->toBe(0);
@@ -110,7 +103,7 @@ it('rejects upgrade with insufficient gold (422) and mutates nothing', function 
 
 it('rejects upgrade with no spell chests (422)', function () {
     $c = skChar();
-    skSave($c, gold: 100000, consumables: []); // brak spell_chest_5
+    skSave($c, gold: 100000, consumables: []);
 
     $this->withToken(skToken())->postJson(
         "/api/v1/characters/{$c->id}/skills/shield_bash/upgrade",
@@ -122,12 +115,10 @@ it('rejects upgrade with no spell chests (422)', function () {
 
 it('failed roll still deducts cost but does not bump level or counter', function () {
     $c = skChar();
-    // Start na upgradeLevel 1 → target lvl2 cost {chests:1, gold:500, rate:90}.
     skSave($c, gold: 1000, consumables: ['spell_chest_5' => 3], skills: [
         'skillUpgradeLevels' => ['shield_bash' => 1],
     ]);
 
-    // nextFloat=0.999 → 99.9 < 90 == false → porażka.
     $this->app->bind(RngInterface::class, fn () => skFixedRng(0.999));
 
     $res = $this->withToken(skToken())->postJson(
@@ -137,14 +128,14 @@ it('failed roll still deducts cost but does not bump level or counter', function
 
     $res->assertOk()
         ->assertJsonPath('success', false)
-        ->assertJsonPath('newLevel', 1)          // bez zmiany
+        ->assertJsonPath('newLevel', 1)
         ->assertJsonPath('goldSpent', 500)
         ->assertJsonPath('chestsSpent', 1);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
-    expect($blob['inventory']['gold'])->toBe(500)                                  // koszt zszedł mimo porażki
+    expect($blob['inventory']['gold'])->toBe(500)
         ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(2)
-        ->and($blob['skills']['skillUpgradeLevels']['shield_bash'])->toBe(1);       // level bez zmiany
+        ->and($blob['skills']['skillUpgradeLevels']['shield_bash'])->toBe(1);
     expect(Character::find($c->id)->skill_upgrades_done)->toBe(0);
 });
 
@@ -156,7 +147,7 @@ it('upgrade is idempotent per requestId (no double spend)', function () {
     $two = $this->withToken(skToken())->postJson("/api/v1/characters/{$c->id}/skills/shield_bash/upgrade", ['requestId' => 'dup'])->json();
 
     expect($two)->toBe($one);
-    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(900); // pojedyncze zejście
+    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(900);
 });
 
 it('404 for an unknown skill id', function () {
@@ -169,11 +160,9 @@ it('404 for an unknown skill id', function () {
     )->assertNotFound();
 });
 
-// ---- Offline training ------------------------------------------------------
 
 it('collects offline training XP computed from server elapsed time', function () {
     $c = skChar();
-    // Start > 24h temu → elapsed capowany do MAX (deterministyczne, bez dryfu zegara).
     skSave($c, gold: 0, skills: [
         'offlineTrainingSkillId' => 'sword_fighting',
         'trainingStartedAt' => now()->subDays(2)->toIso8601String(),
@@ -222,7 +211,7 @@ it('starts training: selects the skill and stamps a server start time', function
 });
 
 it('rejects training a stat not trainable for the class (422)', function () {
-    $c = skChar(); // Knight → dagger_fighting nie jest jego weapon skillem
+    $c = skChar();
     skSave($c, gold: 0, skills: []);
 
     $this->withToken(skToken())->postJson(
@@ -231,7 +220,6 @@ it('rejects training a stat not trainable for the class (422)', function () {
     )->assertStatus(422);
 });
 
-// ---- Authority -------------------------------------------------------------
 
 it('blocks acting on another user\'s character (403)', function () {
     $other = Character::factory()->forUser(SK_USER_B)->create(['class' => 'Knight']);

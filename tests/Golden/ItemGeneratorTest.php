@@ -8,11 +8,6 @@ use App\Domain\Loot\ItemGenerator;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET itemGenerator: ścieżki common (0 bonus-slotów = brak shuffle) —
- * bit-w-bit vs TS (uuid wycięty). Rarity > common — testy WŁASNOŚCIOWE
- * (shuffle nieportowalny — patrz docblock ItemGenerator).
- */
 function makeGenerator(int $seed): ItemGenerator
 {
     $content = new ContentRepository(dirname(__DIR__, 2).'/resources/game-content');
@@ -90,7 +85,6 @@ it('matches getItemDisplayInfo parser (incl. legacy + unknown)', function () {
     }
 });
 
-// ---- Własnościowe (rarity > common — shuffle bez bit-parity) ----------------
 
 it('generates correct bonus counts and ranges for higher rarities (property)', function () {
     $ranges = [
@@ -104,11 +98,9 @@ it('generates correct bonus counts and ranges for higher rarities (property)', f
             $item = $gen->generateWeapon('sword', 100, $rarity);
             $random = array_diff_key($item['bonuses'], ['dmg_min' => 1, 'dmg_max' => 1]);
 
-            // liczba losowych bonusów = RARITY_BONUS_SLOTS; attack wykluczony (broń)
             expect(count($random))->toBe($expectedSlots, "{$rarity} seed {$seed}")
                 ->and(array_key_exists('attack', $random))->toBeFalse();
 
-            // wartości w granicach range × stat-multiplier (critChance ×0.3, critDmg ×1.5)
             [$min, $max] = $ranges[$rarity];
             foreach ($random as $stat => $value) {
                 $mult = ['critChance' => 0.3, 'critDmg' => 1.5][$stat] ?? 1.0;

@@ -20,26 +20,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Autorytatywne rozstrzygnięcie fal lochu. Serwer:
- *  - bierze tożsamość z tokenu, postać ze swojej bazy (nie z body),
- *  - waliduje min-level lochu (DungeonSystem::getDungeonMinLevel),
- *  - egzekwuje dzienny limit prób (blob game_saves state.dungeons.dailyAttempts),
- *  - symuluje CAŁY loch WŁASNYM RNG (DungeonSystem::resolveDungeon: skalowanie fal
- *    wg tieru lochu + mnożniki typu, deterministyczna pętla resolveWave, dropy
- *    itemów/gold rollowane serwerowo),
- *  - zapisuje autorytatywnie: xp/level/stat_points/hp → characters; GOLD + loot →
- *    blob game_saves (inventory.gold = PRAWDZIWA waluta); slice dungeons
- *    (dailyAttempts/clearedDungeonIds/lastResult) → blob,
- *  - idempotencja po requestId.
- *
- * Semantyka 1:1 z frontem (dungeonStore + dungeonSystem.resolveDungeon): atrybut
- * dzienny liczony PER UKOŃCZENIE (setDungeonCompleted woła się tylko przy sukcesie),
- * limit MAX_DAILY_ATTEMPTS = 5. Porażka (nie wszystkie fale) NIE konsumuje próby.
- */
 final class DungeonController extends Controller
 {
-    /** Domyślny dzienny limit ukończeń lochu (dungeonStore.MAX_DAILY_ATTEMPTS). */
     private const MAX_DAILY_ATTEMPTS = 5;
 
     public function resolve(
@@ -48,7 +30,6 @@ final class DungeonController extends Controller
         RngInterface $rng,
         CharacterStateService $state,
     ): JsonResponse {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
 
         $data = $request->validate([
@@ -61,14 +42,12 @@ final class DungeonController extends Controller
             return response()->json(Cache::get($cacheKey));
         }
 
-        // 2 parametry trasy — {dungeonId} czytamy jawnie (Laravel gubi wiązanie).
         $dungeonId = (string) $request->route('dungeonId');
         $dungeon = collect($content->get('dungeons'))->firstWhere('id', $dungeonId);
         if ($dungeon === null) {
             abort(Response::HTTP_NOT_FOUND, 'Nie ma takiego lochu.');
         }
 
-        // Min-level (canEnterDungeon: level postaci >= minLevel lochu).
         $minLevel = DungeonSystem::getDungeonMinLevel($dungeon);
         if ((int) $character->level < $minLevel) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Za niski poziom postaci na ten loch.');
@@ -80,7 +59,6 @@ final class DungeonController extends Controller
             $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
             $save = $state->lockedFor($fresh);
 
-            // Dzienny limit — liczony z zablokowanego blobu (race-safe).
             $today = now()->toDateString();
             $entry = $save->state['dungeons']['dailyAttempts'][$dungeonId] ?? null;
             $usedToday = (is_array($entry) && ($entry['date'] ?? null) === $today)
@@ -90,7 +68,6 @@ final class DungeonController extends Controller
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Wyczerpany dzienny limit prób na ten loch.');
             }
 
-            // Pełna symulacja lochu (skalowanie fal + resolveWave + dropy/gold roll).
             $generator = new ItemGenerator($content->get('itemTemplates'), $rng);
             $sim = DungeonSystem::resolveDungeon(
                 $dungeon,
@@ -111,7 +88,6 @@ final class DungeonController extends Controller
             $grantedItems = [];
 
             if ($result['success']) {
-                // Loot: materializacja dropów lochu jako itemy do torby (uuid serwerowy).
                 foreach ($result['items'] as $drop) {
                     $grantedItems[] = [
                         'uuid' => (string) Str::uuid(),
@@ -123,7 +99,6 @@ final class DungeonController extends Controller
                     ];
                 }
 
-                // XP → postać (level-upy, punkty statystyk, highest_level).
                 $lvl = LevelSystem::processXpGain((int) $fresh->level, (int) $fresh->xp, (int) $result['xp']);
                 $fresh->level = $lvl['newLevel'];
                 $fresh->xp = $lvl['remainingXp'];
@@ -134,8 +109,6 @@ final class DungeonController extends Controller
                 $newLevel = $lvl['newLevel'];
                 $fresh->save();
 
-                // Slice dungeons (dailyAttempts/clearedDungeonIds/lastResult) → blob.
-                // clearedDungeonIds = Record<id,true> (jak dungeonStore, nie lista).
                 $blob = $save->state;
                 $blob['dungeons']['dailyAttempts'][$dungeonId] = ['used' => $usedToday + 1, 'date' => $today];
                 $blob['dungeons']['clearedDungeonIds'][$dungeonId] = true;
@@ -150,8 +123,6 @@ final class DungeonController extends Controller
                 ];
                 $save->state = $blob;
 
-                // ⚠️ Serwisowe mutacje PO ostatnim $save->state = $blob (bug kolejności):
-                // gold → blob, loot → bag.
                 $state->addGold($save, (int) $result['gold']);
                 foreach ($grantedItems as $item) {
                     $state->addBagItem($save, $item);

@@ -14,7 +14,6 @@ function rerollGenerator(int $seed): ItemGenerator
     return new ItemGenerator($content->get('itemTemplates'), new Mulberry32Rng($seed));
 }
 
-// ---- StoneSystem ------------------------------------------------------------
 
 it('maps the stone conversion chain and costs (parity itemSystem.ts)', function () {
     expect(StoneSystem::higherTier('common_stone'))->toBe('rare_stone')
@@ -27,7 +26,6 @@ it('maps the stone conversion chain and costs (parity itemSystem.ts)', function 
         ->and(StoneSystem::STONE_CONVERSION_GOLD)->toBe(1000);
 });
 
-// ---- getBaseStatKeysForSlot -------------------------------------------------
 
 it('returns the base stat keys per slot (parity itemSystem.ts)', function () {
     expect(ItemGenerator::getBaseStatKeysForSlot('mainHand'))->toBe(['dmg_min', 'dmg_max', 'attack', 'defense'])
@@ -41,18 +39,16 @@ it('returns the base stat keys per slot (parity itemSystem.ts)', function () {
         ->and(ItemGenerator::getBaseStatKeysForSlot(null))->toBe([]);
 });
 
-// ---- rerollItemBonuses ------------------------------------------------------
 
 it('preserves base stats and regenerates the right number of random bonuses', function () {
     $gen = rerollGenerator(7);
     $item = ['rarity' => 'rare', 'bonuses' => ['hp' => 123, 'speed' => 9]];
 
-    $new = $gen->rerollItemBonuses($item, 'helmet'); // rare → 1 random bonus, base = hp
+    $new = $gen->rerollItemBonuses($item, 'helmet');
 
-    expect($new['hp'])->toBe(123)          // bazowy stat zachowany
-        ->and(count($new))->toBe(2)        // hp + 1 nowy bonus
+    expect($new['hp'])->toBe(123)
+        ->and(count($new))->toBe(2)
         ->and(array_key_exists('hp', $new))->toBeTrue();
-    // Nowy bonus nie jest bazowym kluczem (hp).
     $randomKeys = array_values(array_diff(array_keys($new), ['hp']));
     expect($randomKeys)->toHaveCount(1)
         ->and($randomKeys[0])->not->toBe('hp');

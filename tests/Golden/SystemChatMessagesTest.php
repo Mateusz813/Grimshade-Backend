@@ -5,14 +5,6 @@ declare(strict_types=1);
 use App\Domain\Chat\SystemChatMessages;
 use Tests\Support\Golden;
 
-/**
- * PARYTET systemChatMessages: PHP SystemChatMessages musi zwrócić DOKŁADNIE to,
- * co TS systemChatMessages.ts (fixture wygenerowany w grimshade repo, skopiowany
- * tu). Protokół czatu systemowego — format/parse `[SYS]{...}` bit-w-bit, łącznie
- * z polskimi znakami, slashami, cudzysłowami i escapami.
- *
- * toEqual (nie toBe) — JSON nie rozróżnia int/float, więc porównanie luźne.
- */
 beforeEach(function () {
     $this->golden = Golden::load('systemChatMessages.json');
 });

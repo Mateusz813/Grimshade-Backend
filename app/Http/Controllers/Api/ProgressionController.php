@@ -15,20 +15,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Odbiór nagród za progresję. Serwer waliduje UKOŃCZENIE (progress >= cel)
- * i PRZELICZA nagrody z żywej treści (TaskRewards) — klient nie podaje kwot.
- * Idempotencja naturalna: task znika z activeTasks po odbiorze (drugi claim → 404).
- *
- * Semantyka 1:1 z taskStore.claimReward: recompute computeTaskRewards z monstera,
- * addGold(rewardGold) → blob, addXp(rewardXp) → postać (processXpGain), task
- * active→completed (max 20).
- */
 final class ProgressionController extends Controller
 {
     public function claimTask(Request $request, ContentRepository $content, CharacterStateService $state): JsonResponse
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $taskId = (string) $request->route('taskId');
 
@@ -55,20 +45,17 @@ final class ProgressionController extends Controller
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Task jeszcze nieukończony.');
             }
 
-            // Przelicz z żywej treści (jak front — koryguje stare wartości).
             $monster = collect($content->get('monsters'))->firstWhere('id', $task['monsterId'] ?? null);
             $rewards = $monster !== null
                 ? (new TaskRewards($content->get('monsters')))->computeTaskRewards($monster, (int) $task['killCount'])
                 : ['rewardGold' => (int) ($task['rewardGold'] ?? 0), 'rewardXp' => (int) ($task['rewardXp'] ?? 0)];
 
-            // XP → postać (level-upy).
             $lvl = LevelSystem::processXpGain((int) $fresh->level, (int) $fresh->xp, (int) $rewards['rewardXp']);
             $fresh->level = $lvl['newLevel'];
             $fresh->xp = $lvl['remainingXp'];
             $fresh->stat_points += $lvl['statPointsGained'];
             $fresh->highest_level = max((int) $fresh->highest_level, $lvl['newLevel']);
 
-            // Task active → completed (max 20).
             array_splice($activeTasks, $idx, 1);
             $completed = [
                 'id' => 'completed_'.$taskId,
@@ -86,7 +73,6 @@ final class ProgressionController extends Controller
             );
             $save->state = $blob;
 
-            // Gold → blob (PO ustawieniu $save->state, żeby nie zostało nadpisane).
             $state->addGold($save, (int) $rewards['rewardGold']);
 
             $state->persist($save);

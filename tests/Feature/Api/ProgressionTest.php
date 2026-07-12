@@ -17,7 +17,6 @@ function prChar(): Character
     return Character::factory()->forUser(PR_USER)->create(['level' => 50, 'xp' => 0, 'stat_points' => 0]);
 }
 
-/** Task na 'rat' (xp 3, gold [1,1]); progress steruje ukończeniem. */
 function prSaveWithTask(Character $c, int $progress, int $killCount = 10, int $gold = 0): GameSave
 {
     return GameSave::create([
@@ -44,16 +43,15 @@ it('claims a completed task: server-recomputed gold to blob + xp to character', 
 
     $res = $this->withToken(prToken())->postJson("/api/v1/characters/{$c->id}/tasks/task-1/claim");
 
-    // rat: xp/kill=3, gold[1]=1. reward = floor(3*10*1.5)=45 xp, floor(1*10*3)=30 gold.
     $res->assertOk()
         ->assertJsonPath('rewards.rewardXp', 45)
         ->assertJsonPath('rewards.rewardGold', 30);
 
     $blob = GameSave::where('character_id', $c->id)->first()->state;
     expect($blob['inventory']['gold'])->toBe(30)
-        ->and($blob['tasks']['activeTasks'])->toBe([])                      // usunięty
+        ->and($blob['tasks']['activeTasks'])->toBe([])
         ->and($blob['tasks']['completedTasks'])->toHaveCount(1);
-    expect(Character::find($c->id)->xp)->toBe(45);                           // xp na postaci
+    expect(Character::find($c->id)->xp)->toBe(45);
 });
 
 it('rejects claiming an unfinished task (422)', function () {
@@ -71,7 +69,7 @@ it('is naturally idempotent: second claim is 404 (no double reward)', function (
     $this->withToken(prToken())->postJson("/api/v1/characters/{$c->id}/tasks/task-1/claim")->assertOk();
     $this->withToken(prToken())->postJson("/api/v1/characters/{$c->id}/tasks/task-1/claim")->assertNotFound();
 
-    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(30); // nie 60
+    expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(30);
 });
 
 it('404 for unknown task', function () {

@@ -18,16 +18,15 @@ it('logs a death with server-sourced character identity (anti-forge)', function 
     $res = $this->withToken(TokenFactory::forUser(DTH_USER))
         ->postJson("/api/v1/characters/{$c->id}/deaths", [
             'source' => 'boss', 'source_name' => 'Smoczy Wladca', 'source_level' => 350,
-            // Próba fałszu tożsamości — serwer NIE czyta:
             'character_name' => 'HACKER', 'character_level' => 1,
         ]);
 
     $res->assertCreated()
-        ->assertJsonPath('character_name', 'Krasek')   // z serwera
+        ->assertJsonPath('character_name', 'Krasek')
         ->assertJsonPath('character_class', 'Archer')
         ->assertJsonPath('character_level', 308)
         ->assertJsonPath('source', 'boss')
-        ->assertJsonPath('result', 'killed');          // domyślnie killed
+        ->assertJsonPath('result', 'killed');
 
     expect(Death::count())->toBe(1);
 });

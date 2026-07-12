@@ -13,7 +13,6 @@ uses(RefreshDatabase::class);
 const OH_USER = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const OH_USER_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
-// Zamrożony zegar serwera — elapsed = now - startedAt jest deterministyczny.
 beforeEach(function () {
     Carbon::setTestNow(Carbon::create(2026, 7, 9, 12, 0, 0, 'UTC'));
 });
@@ -22,7 +21,6 @@ afterEach(function () {
     Carbon::setTestNow();
 });
 
-/** Postać lvl 50 (nagroda XP nie wywoła level-upów → czyste asercje na xp). */
 function ohChar(string $userId = OH_USER): Character
 {
     return Character::factory()->forUser($userId)->create([
@@ -35,10 +33,6 @@ function ohToken(string $userId = OH_USER): string
     return TokenFactory::forUser($userId);
 }
 
-/**
- * Blob z AKTYWNYM polowaniem na 'rat' (xp 3, gold [1,1]).
- * $startedAt — ISO kotwicy czasu; $masteryLevel skaluje tempo/XP/gold.
- */
 function ohSaveWithHunt(Character $c, string $startedAt, int $masteryLevel = 0, int $gold = 0): GameSave
 {
     return GameSave::create([
@@ -67,8 +61,6 @@ it('settles offline hunt and grants server-computed rewards by elapsed time', fu
     $res = $this->withToken(ohToken())
         ->postJson("/api/v1/characters/{$c->id}/offline-hunt/settle", ['requestId' => 'oh-1']);
 
-    // mastery 0 → speed x1 → 1 kill/10s → 7200s/10 = 720 kills.
-    // rat: xp/kill = floor(3*1*1*1) = 3 → 2160 xp; gold/kill = floor(1*1*1) = 1 → 720 gold.
     $res->assertOk()
         ->assertJsonPath('settled', true)
         ->assertJsonPath('kills', 720)
@@ -76,12 +68,10 @@ it('settles offline hunt and grants server-computed rewards by elapsed time', fu
         ->assertJsonPath('goldGained', 720)
         ->assertJsonPath('cappedSeconds', 7200);
 
-    // XP → postać (bez level-upów na lvl 50), gold → blob (prawdziwa waluta).
     expect(Character::find($c->id)->xp)->toBe(2160)
         ->and(Character::find($c->id)->level)->toBe(50)
-        ->and(Character::find($c->id)->gold)->toBe(0); // szczątkowa kolumna nietknięta
+        ->and(Character::find($c->id)->gold)->toBe(0);
 
-    // Marker offline wyczyszczony (anty-dupe).
     $save = GameSave::where('character_id', $c->id)->first();
     expect($save->state['inventory']['gold'])->toBe(720)
         ->and($save->state['offlineHunt']['isActive'])->toBeFalse()
@@ -96,7 +86,6 @@ it('caps elapsed hunt time at 12h', function () {
     $res = $this->withToken(ohToken())
         ->postJson("/api/v1/characters/{$c->id}/offline-hunt/settle", ['requestId' => 'oh-cap']);
 
-    // 24h ścięte do 12h = 43200s → 43200/10 = 4320 kills.
     $res->assertOk()
         ->assertJsonPath('cappedSeconds', 43200)
         ->assertJsonPath('kills', 4320);
@@ -109,7 +98,6 @@ it('applies mastery speed + reward multipliers', function () {
     $res = $this->withToken(ohToken())
         ->postJson("/api/v1/characters/{$c->id}/offline-hunt/settle", ['requestId' => 'oh-mastery']);
 
-    // mastery 20 → speed x4 → 7200*4/10 = 2880 kills; xpMult 1.4 → xp/kill floor(3*1.4)=4 → 11520 xp.
     $res->assertOk()
         ->assertJsonPath('kills', 2880)
         ->assertJsonPath('xpGained', 11520);
@@ -124,7 +112,6 @@ it('does not double-grant when the same requestId is replayed (idempotent)', fun
     $first->assertOk()->assertJsonPath('goldGained', 720);
 
     $second = $this->withToken(ohToken())->postJson("/api/v1/characters/{$c->id}/offline-hunt/settle", $body);
-    // Druga odpowiedź z cache — identyczna, brak drugiego zapisu.
     $second->assertOk()->assertJsonPath('goldGained', 720)->assertJsonPath('kills', 720);
 
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(720)
@@ -139,12 +126,10 @@ it('clears the offline marker so a fresh settle grants nothing (natural anti-dup
         ->postJson("/api/v1/characters/{$c->id}/offline-hunt/settle", ['requestId' => 'oh-a'])
         ->assertOk()->assertJsonPath('settled', true);
 
-    // Inny requestId → cache miss, ale polowanie już zatrzymane → nic do rozliczenia.
     $this->withToken(ohToken())
         ->postJson("/api/v1/characters/{$c->id}/offline-hunt/settle", ['requestId' => 'oh-b'])
         ->assertOk()->assertJsonPath('settled', false)->assertJsonPath('kills', 0);
 
-    // Nagroda z pierwszego rozliczenia bez zmian.
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(720)
         ->and(Character::find($c->id)->xp)->toBe(2160);
 });

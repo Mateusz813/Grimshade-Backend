@@ -5,11 +5,6 @@ declare(strict_types=1);
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET RNG: PHP Mulberry32Rng musi odtworzyć bajt-w-bajt sekwencję
- * kanonicznego mulberry32 z JS. To fundament — jak to trzyma, golden-vectory
- * systemów zależnych od losowości (loot, itemGenerator) też będą wiarygodne.
- */
 it('reproduces the canonical JS mulberry32 uint32 sequence for every seed', function () {
     $golden = Golden::load('prng/mulberry32.json');
 

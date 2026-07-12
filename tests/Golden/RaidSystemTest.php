@@ -7,16 +7,6 @@ use App\Domain\Raid\RaidSystem;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET raidSystem: PHP RaidSystem == TS raidSystem.ts na tej samej treści
- * (dungeons/monsters z resources/game-content). Formuły raidów (fale,
- * skalowanie bossów, nagrody) odtwarzane bit-w-bit; selektory rzadkości dropów
- * dowiedzione wektorami roll→rzadkość + seedami mulberry32.
- *
- * rollMemberDrops (serwer-autorytatywne losowanie — brak bit-parity z TS, patrz
- * RaidSystem.php docblock) testowane WŁASNOŚCIOWO: poprawne rzadkości/liczności,
- * determinizm replayu.
- */
 beforeEach(function () {
     $this->golden = Golden::load('raidSystem.json');
     $content = new ContentRepository(dirname(__DIR__, 2).'/resources/game-content');
@@ -95,8 +85,6 @@ it('matches seeded selectors (mulberry32 float → rarity)', function () {
     }
 });
 
-// -- Serwer-autorytatywne losowanie dropów: testy WŁASNOŚCIOWE (brak bit-parity)
-// ---------------------------------------------------------------------------
 
 $itemRarities = ['heroic', 'mythic', 'legendary', 'epic', 'rare', 'common'];
 $stoneIds = ['heroic_stone', 'mythic_stone', 'legendary_stone', 'epic_stone', 'rare_stone', 'common_stone'];
@@ -147,7 +135,6 @@ it('rollMemberDrops emits valid rarities, stone ids and eligible chest levels', 
 });
 
 it('rollMemberDrops never emits chest levels above the raid level', function () {
-    // Raid lvl 5 → tylko skrzynia lvl 5 kwalifikuje się.
     foreach ([1, 2, 3, 7, 13, 42, 99, 777] as $seed) {
         $lines = $this->raid->rollMemberDrops(new Mulberry32Rng($seed), ['level' => 5, 'waves' => 1], 4);
         foreach ($lines as $line) {

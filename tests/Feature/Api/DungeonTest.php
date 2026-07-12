@@ -14,17 +14,13 @@ uses(RefreshDatabase::class);
 const DG_USER_A = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const DG_USER_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
-// dungeons.json: dungeon_1 → level 1, minLevel 1, dailyAttempts 5, maxRarity epic.
 const DG_DUNGEON_ID = 'dungeon_1';
-// dungeon_40 → minLevel 40 (bramka poziomu dla postaci level 5).
 const DG_HIGH_DUNGEON_ID = 'dungeon_40';
 
-// Deterministyczne RNG (ten sam algorytm co front) + potęga na 1-shot fal.
 beforeEach(function () {
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(12345));
 });
 
-/** Postać zdolna wyczyścić loch (level >= minLevel, ogromny atak = 1-shot fal). */
 function dungeonChar(string $userId = DG_USER_A, int $level = 5): Character
 {
     return Character::factory()->forUser($userId)->create([
@@ -34,7 +30,6 @@ function dungeonChar(string $userId = DG_USER_A, int $level = 5): Character
     ]);
 }
 
-/** Blob z gotowym wpisem dungeons.dailyAttempts (do testu limitu). */
 function dungeonSaveWithAttempts(Character $c, int $used, string $date): GameSave
 {
     return GameSave::create([
@@ -62,12 +57,10 @@ it('resolves a dungeon authoritatively and grants server-computed rewards', func
     expect($res->json('result.gold'))->toBeGreaterThan(0)
         ->and($res->json('result.xp'))->toBeGreaterThan(0);
 
-    // Gold ląduje w BLOBIE (prawdziwa waluta), nie w characters.gold.
     $save = GameSave::where('character_id', $char->id)->first();
     expect($save->state['inventory']['gold'])->toBe($res->json('result.gold'))
         ->and(Character::find($char->id)->gold)->toBe(0);
 
-    // XP na postaci; slice dungeons zaktualizowany (dailyAttempts + clearedDungeonIds).
     expect(Character::find($char->id)->xp)->toBeGreaterThan(0)
         ->and($save->state['dungeons']['dailyAttempts'][DG_DUNGEON_ID]['used'])->toBe(1)
         ->and($save->state['dungeons']['clearedDungeonIds'][DG_DUNGEON_ID])->toBeTrue();
@@ -90,7 +83,7 @@ it('IGNORES forged reward fields in the body (anti-cheat)', function () {
 });
 
 it('rejects a dungeon above the character min-level (422)', function () {
-    $char = dungeonChar(DG_USER_A, level: 5); // < dungeon_40 minLevel 40
+    $char = dungeonChar(DG_USER_A, level: 5);
 
     $this->withToken(TokenFactory::forUser(DG_USER_A))
         ->postJson("/api/v1/characters/{$char->id}/dungeon/".DG_HIGH_DUNGEON_ID.'/resolve', [
@@ -98,7 +91,6 @@ it('rejects a dungeon above the character min-level (422)', function () {
         ])
         ->assertStatus(422);
 
-    // Brak nagrody — żaden blob nie powstał.
     expect(GameSave::where('character_id', $char->id)->exists())->toBeFalse();
 });
 
@@ -112,7 +104,6 @@ it('rejects a dungeon when the daily attempt limit is exhausted (422)', function
         ])
         ->assertStatus(422);
 
-    // Gold nietknięty — limit blokuje przed jakąkolwiek mutacją.
     expect(GameSave::where('character_id', $char->id)->first()->state['inventory']['gold'])->toBe(0);
 });
 
@@ -161,7 +152,6 @@ it('is idempotent — replaying a requestId does not double-grant rewards', func
 
     $second->assertOk();
     expect($second->json('result.gold'))->toBe($first->json('result.gold'));
-    // Gold NIE podwojony + attempt NIE podbity drugi raz (cache short-circuit).
     $save = GameSave::where('character_id', $char->id)->first();
     expect($save->state['inventory']['gold'])->toBe($goldAfterFirst)
         ->and($save->state['dungeons']['dailyAttempts'][DG_DUNGEON_ID]['used'])->toBe(1);

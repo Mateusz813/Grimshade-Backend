@@ -13,7 +13,6 @@ uses(RefreshDatabase::class);
 const CH_USER = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const CH_USER_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
-/** @param array<string, mixed> $attrs */
 function chChar(array $attrs = []): Character
 {
     return Character::factory()->forUser(CH_USER)->create(array_merge([
@@ -26,7 +25,6 @@ function chToken(string $userId = CH_USER): string
     return TokenFactory::forUser($userId);
 }
 
-/** @param array<string, mixed> $attrs */
 function chSeed(string $channel, string $content, string $name, mixed $createdAt, array $attrs = []): Message
 {
     return Message::create(array_merge([
@@ -40,7 +38,6 @@ function chSeed(string $channel, string $content, string $name, mixed $createdAt
     ], $attrs));
 }
 
-// ---- POST message -----------------------------------------------------------
 
 it('posts a message with server-sourced identity (anti-forge)', function () {
     $c = chChar();
@@ -48,12 +45,11 @@ it('posts a message with server-sourced identity (anti-forge)', function () {
     $res = $this->withToken(chToken())->postJson("/api/v1/characters/{$c->id}/chat/messages", [
         'channel' => 'city',
         'content' => 'Witajcie w Grimshade!',
-        // próba fałszu — serwer IGNORUJE te pola:
         'character_name' => 'HACKER', 'character_level' => 999, 'user_id' => CH_USER_B,
     ]);
 
     $res->assertCreated()
-        ->assertJsonPath('character_name', 'Krasek')   // z serwera
+        ->assertJsonPath('character_name', 'Krasek')
         ->assertJsonPath('character_class', 'Archer')
         ->assertJsonPath('character_level', 42)
         ->assertJsonPath('channel', 'city')
@@ -92,14 +88,12 @@ it('enforces a simple rate limit (429) on rapid posts', function () {
     $this->withToken(chToken())->postJson($url, $body)->assertCreated();
     $this->withToken(chToken())->postJson($url, $body)->assertStatus(429);
 
-    // Po wygaśnięciu cooldownu można znów pisać.
     $this->travel(5)->seconds();
     $this->withToken(chToken())->postJson($url, $body)->assertCreated();
 
     expect(Message::count())->toBe(2);
 });
 
-// ---- GET feed ---------------------------------------------------------------
 
 it('reads the channel feed newest-first, filtered by channel', function () {
     chSeed('city', 'stary', 'A', now()->subMinutes(2));
@@ -126,7 +120,6 @@ it('requires a channel on the feed (422)', function () {
     $this->withToken(chToken())->getJson('/api/v1/chat/messages')->assertStatus(422);
 });
 
-// ---- System events ----------------------------------------------------------
 
 it('broadcasts an upgrade system event in SystemChatMessages format', function () {
     $c = chChar();
@@ -152,7 +145,6 @@ it('broadcasts an upgrade system event in SystemChatMessages format', function (
         ->assertJsonPath('character_name', 'Krasek')
         ->assertJsonPath('content', $expected);
 
-    // Parytet: parser czyta z powrotem dokładnie to, co serwer wstawił.
     expect(SystemChatMessages::parseSystemMessage($res->json('content')))->toBe([
         'type' => 'upgrade',
         'itemId' => 'luk',
@@ -201,7 +193,6 @@ it('rejects an unknown system event type (422)', function () {
     ])->assertStatus(422);
 });
 
-// ---- Auth / ownership -------------------------------------------------------
 
 it('cannot post to another user\'s character (403)', function () {
     $other = Character::factory()->forUser(CH_USER_B)->create();

@@ -16,13 +16,6 @@ use Lcobucci\JWT\Validation\Constraint\SignedWith;
 use Psr\Clock\ClockInterface;
 use Throwable;
 
-/**
- * Weryfikator HS256 dla dzisiejszych (legacy) tokenów Supabase GoTrue,
- * podpisanych symetrycznym sekretem projektu (SUPABASE_JWT_SECRET).
- *
- * Waliduje: podpis, exp/nbf/iat (z leeway), iss (${SUPABASE_URL}/auth/v1)
- * oraz aud (`authenticated`). Każdy błąd → InvalidTokenException → HTTP 401.
- */
 final class HmacSupabaseTokenVerifier implements SupabaseTokenVerifier
 {
     private ?Configuration $config = null;
@@ -34,9 +27,6 @@ final class HmacSupabaseTokenVerifier implements SupabaseTokenVerifier
         private readonly int $leewaySeconds,
         private readonly ClockInterface $clock,
     ) {
-        // Świadomie NIE budujemy Configuration tutaj: przy pustym sekrecie
-        // (np. lokalnie bez Supabase) instancja ma powstać bez wyjątku, a
-        // dopiero verify() ma odrzucić — inaczej routes z auth dają 500 zamiast 401.
     }
 
     private function config(): Configuration

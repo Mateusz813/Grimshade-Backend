@@ -10,16 +10,12 @@ use Tests\Support\TokenFactory;
 
 uses(RefreshDatabase::class);
 
-// Stałe prefiksowane domeną (PT_) — nie kolidują z innymi plikami testów.
 const PT_USER_A = 'a1a1a1a1-aaaa-aaaa-aaaa-a1a1a1a1a1a1';
 const PT_USER_B = 'b2b2b2b2-bbbb-bbbb-bbbb-b2b2b2b2b2b2';
 const PT_USER_C = 'c3c3c3c3-cccc-cccc-cccc-c3c3c3c3c3c3';
 const PT_USER_D = 'd4d4d4d4-dddd-dddd-dddd-d4d4d4d4d4d4';
 const PT_USER_E = 'e5e5e5e5-eeee-eeee-eeee-e5e5e5e5e5e5';
 
-/**
- * @param  array<string, mixed>  $attrs
- */
 function ptChar(string $userId, array $attrs = []): Character
 {
     return Character::factory()->forUser($userId)->create($attrs);
@@ -30,7 +26,6 @@ function ptToken(string $userId): string
     return TokenFactory::forUser($userId);
 }
 
-// ---- Create -----------------------------------------------------------------
 
 it('creates a party with the leader as the first member (max 4)', function () {
     $leader = ptChar(PT_USER_A, ['name' => 'Aldric', 'class' => 'Knight', 'level' => 10]);
@@ -80,7 +75,6 @@ it('rejects creating a second party while already in one (422)', function () {
     expect(Party::query()->count())->toBe(1);
 });
 
-// ---- Join + capacity --------------------------------------------------------
 
 it('lets characters join and enforces the max of 4 members', function () {
     $leader = ptChar(PT_USER_A, ['class' => 'Knight']);
@@ -88,7 +82,6 @@ it('lets characters join and enforces the max of 4 members', function () {
         ->postJson("/api/v1/characters/{$leader->id}/parties", ['name' => 'Rajd'])
         ->json('id');
 
-    // 3 dolaczajacych → lacznie 4 czlonkow.
     foreach ([[PT_USER_B, 'Mage'], [PT_USER_C, 'Cleric'], [PT_USER_D, 'Archer']] as [$uid, $cls]) {
         $c = ptChar($uid, ['class' => $cls]);
         $this->withToken(ptToken($uid))
@@ -98,7 +91,6 @@ it('lets characters join and enforces the max of 4 members', function () {
 
     expect(PartyMember::where('party_id', $partyId)->count())->toBe(4);
 
-    // 5. postac → party pelne (422).
     $fifth = ptChar(PT_USER_E, ['class' => 'Rogue']);
     $this->withToken(ptToken(PT_USER_E))
         ->postJson("/api/v1/characters/{$fifth->id}/parties/{$partyId}/join")
@@ -129,7 +121,6 @@ it('rejects joining an unknown party (404)', function () {
         ->assertNotFound();
 });
 
-// ---- Password + level gate --------------------------------------------------
 
 it('gates joining behind the party password (422 wrong, 200 right)', function () {
     $leader = ptChar(PT_USER_A);
@@ -172,7 +163,6 @@ it('enforces the minimum join level (422 too low, 200 ok)', function () {
     expect(PartyMember::where('party_id', $partyId)->count())->toBe(2);
 });
 
-// ---- Handover ---------------------------------------------------------------
 
 it('hands over leadership to another member', function () {
     $leader = ptChar(PT_USER_A);
@@ -204,7 +194,6 @@ it('rejects a handover attempted by a non-leader (403)', function () {
     $this->withToken(ptToken(PT_USER_B))
         ->postJson("/api/v1/characters/{$member->id}/parties/{$partyId}/join")->assertOk();
 
-    // Nie-lider probuje przekazac dowodzenie → 403.
     $this->withToken(ptToken(PT_USER_B))
         ->postJson("/api/v1/characters/{$member->id}/parties/{$partyId}/handover", [
             'newLeaderId' => $member->id,
@@ -227,7 +216,6 @@ it('rejects a handover to a character that is not a member (422)', function () {
         ->assertStatus(422);
 });
 
-// ---- Leave ------------------------------------------------------------------
 
 it('lets a member leave without dissolving the party', function () {
     $leader = ptChar(PT_USER_A);
@@ -265,14 +253,12 @@ it('dissolves the party when the leader leaves', function () {
     expect(Party::find($partyId))->toBeNull();
     expect(PartyMember::where('party_id', $partyId)->count())->toBe(0);
 
-    // Podglad rozwiazanego party → 404.
     $this->withToken(ptToken(PT_USER_B))
         ->getJson("/api/v1/characters/{$member->id}/parties/{$partyId}")
         ->assertNotFound();
 });
 
 it('dissolves the party when the last member leaves', function () {
-    // Lider tworzy solo, potem sam wychodzi jako lider → party znika.
     $leader = ptChar(PT_USER_A);
     $partyId = $this->withToken(ptToken(PT_USER_A))
         ->postJson("/api/v1/characters/{$leader->id}/parties", ['name' => 'Solo'])->json('id');
@@ -285,7 +271,6 @@ it('dissolves the party when the last member leaves', function () {
     expect(Party::find($partyId))->toBeNull();
 });
 
-// ---- Show -------------------------------------------------------------------
 
 it('returns a party snapshot and 404 for an unknown party', function () {
     $leader = ptChar(PT_USER_A, ['class' => 'Cleric']);
@@ -305,7 +290,6 @@ it('returns a party snapshot and 404 for an unknown party', function () {
         ->assertNotFound();
 });
 
-// ---- AuthZ / AuthN ----------------------------------------------------------
 
 it('blocks acting on another user\'s character (403)', function () {
     $charA = ptChar(PT_USER_A);

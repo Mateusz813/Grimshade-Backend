@@ -20,15 +20,14 @@ use Tests\Support\TokenFactory;
 
 uses(RefreshDatabase::class);
 
-const GRE_USER_A = '11111111-1111-1111-1111-111111111111'; // lider
-const GRE_USER_B = '22222222-2222-2222-2222-222222222222'; // inny gracz
+const GRE_USER_A = '11111111-1111-1111-1111-111111111111';
+const GRE_USER_B = '22222222-2222-2222-2222-222222222222';
 
 function greChar(string $userId, array $overrides = []): Character
 {
     return Character::factory()->forUser($userId)->create(array_merge(['level' => 10], $overrides));
 }
 
-/** Blob z goldem — kształt jak realny game_saves. */
 function greSave(Character $c, int $gold = 0): GameSave
 {
     return GameSave::create([
@@ -47,7 +46,6 @@ function greSave(Character $c, int $gold = 0): GameSave
     ]);
 }
 
-/** Gildia + wiersz członka dla lidera. */
 function greGuild(Character $leader, array $overrides = []): Guild
 {
     $guild = Guild::create(array_merge([
@@ -92,7 +90,6 @@ function greWeekStart(): string
     return GuildSystem::getCurrentWeekStartIso((int) (now()->timestamp * 1000));
 }
 
-/** Zabity boss + wkład postaci dla bieżącego tygodnia (pod claim). */
 function greKilledBossWithContribution(Guild $guild, Character $char, int $totalDamage): void
 {
     GuildBossState::create([
@@ -106,7 +103,6 @@ function greKilledBossWithContribution(Guild $guild, Character $char, int $total
     ]);
 }
 
-// ---- Kick -------------------------------------------------------------------
 
 it('lets the leader kick a member and returns the updated roster', function () {
     $leader = greChar(GRE_USER_A);
@@ -155,7 +151,6 @@ it('forbids the leader from kicking themselves (403)', function () {
     expect(GuildMember::where('guild_id', $guild->id)->where('character_id', $leader->id)->exists())->toBeTrue();
 });
 
-// ---- Reject -----------------------------------------------------------------
 
 it('lets the leader reject a join request and returns remaining requests', function () {
     $leader = greChar(GRE_USER_A);
@@ -191,12 +186,10 @@ it('forbids a non-leader from rejecting requests (403)', function () {
     expect(GuildJoinRequest::where('guild_id', $guild->id)->count())->toBe(1);
 });
 
-// ---- Disband ----------------------------------------------------------------
 
 it('lets the leader disband the guild with the full cascade', function () {
     $leader = greChar(GRE_USER_A);
     $guild = greGuild($leader);
-    // Dorzuć powiązane wiersze — mają zniknąć razem z gildią.
     GuildJoinRequest::create([
         'guild_id' => $guild->id, 'character_id' => 'ffffffff-ffff-ffff-ffff-ffffffffffff', 'character_name' => 'X',
         'character_class' => 'Mage', 'character_level' => 1, 'requested_at' => now(),
@@ -235,7 +228,6 @@ it('forbids a non-leader from disbanding the guild (403)', function () {
     expect(Guild::find($guild->id))->not->toBeNull();
 });
 
-// ---- Boss claim-reward (server-authoritative) ------------------------------
 
 it('claims boss rewards server-side, crediting gold/stones/potions to the blob and XP to the character', function () {
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(999));
@@ -254,7 +246,6 @@ it('claims boss rewards server-side, crediting gold/stones/potions to the blob a
     $rewards = $res->json('rewards');
     $kinds = collect($rewards)->pluck('kind')->all();
 
-    // Gold + XP + kamień zwykły + potiony są zawsze przyznawane.
     expect($kinds)->toContain('gold')
         ->and($kinds)->toContain('xp')
         ->and($kinds)->toContain('stones')
@@ -262,14 +253,12 @@ it('claims boss rewards server-side, crediting gold/stones/potions to the blob a
         ->and((int) $res->json('gold'))->toBeGreaterThan(0)
         ->and((int) $res->json('xp'))->toBeGreaterThan(0);
 
-    // Blob faktycznie skredytowany.
     $inv = GameSave::where('character_id', $leader->id)->first()->state['inventory'];
     expect((int) $inv['gold'])->toBe((int) $res->json('gold'))
         ->and((int) ($inv['stones']['common_stone'] ?? 0))->toBeGreaterThan(0)
         ->and((int) ($inv['consumables']['hp_potion_small'] ?? 0))->toBeGreaterThan(0)
         ->and((int) ($inv['consumables']['mp_potion_small'] ?? 0))->toBeGreaterThan(0);
 
-    // Wkład oznaczony jako odebrany + rewards_json zapisany.
     $contribution = GuildBossContribution::where('guild_id', $guild->id)->where('character_id', $leader->id)->first();
     expect((bool) $contribution->rewards_claimed)->toBeTrue()
         ->and($contribution->rewards_json)->not->toBeNull();
@@ -295,7 +284,6 @@ it('is idempotent per requestId — replaying returns the identical result witho
         ['requestId' => 'claim-replay'],
     )->assertOk();
 
-    // Identyczny payload (z cache) + brak podwójnego kredytu w blobie.
     expect($second->json('gold'))->toBe($first->json('gold'))
         ->and($second->json('rewards'))->toBe($first->json('rewards'))
         ->and((int) GameSave::where('character_id', $leader->id)->first()->state['inventory']['gold'])->toBe($goldAfterFirst);
@@ -305,7 +293,6 @@ it('rejects claiming when the boss was not killed this week (422)', function () 
     $leader = greChar(GRE_USER_A);
     greSave($leader, 0);
     $guild = greGuild($leader);
-    // Boss żywy + wkład istnieje.
     GuildBossState::create([
         'guild_id' => $guild->id, 'week_start' => greWeekStart(), 'boss_tier' => 1,
         'boss_max_hp' => 2_000_000, 'boss_current_hp' => 1_000_000, 'boss_killed' => false,
@@ -354,7 +341,6 @@ it('forbids a non-member from claiming boss rewards (403)', function () {
     )->assertForbidden();
 });
 
-// ---- Boss view --------------------------------------------------------------
 
 it('returns the weekly boss view (fetch-or-create) with contributions and attempts', function () {
     $leader = greChar(GRE_USER_A);
@@ -379,7 +365,6 @@ it('returns the weekly boss view (fetch-or-create) with contributions and attemp
         ->assertJsonPath('attemptsToday.0.damage_dealt', 1234)
         ->assertJsonPath('weeklyAttempts.0.damage_dealt', 1234);
 
-    // Boss faktycznie utworzony (fetch-or-create).
     expect(GuildBossState::where('guild_id', $guild->id)->where('week_start', greWeekStart())->exists())->toBeTrue();
 });
 
@@ -392,7 +377,6 @@ it('forbids a non-member from viewing the guild boss (403)', function () {
         ->assertForbidden();
 });
 
-// ---- Treasury view ----------------------------------------------------------
 
 it('returns treasury items and logs', function () {
     $leader = greChar(GRE_USER_A);
@@ -423,12 +407,10 @@ it('forbids a non-member from viewing the treasury (403)', function () {
         ->assertForbidden();
 });
 
-// ---- Guild browser (GET /guilds) -------------------------------------------
 
 it('lists guilds paginated with member counts, leader names and total count', function () {
     $leaderA = greChar(GRE_USER_A, ['name' => 'Krasek']);
     $guildA = greGuild($leaderA, ['name' => 'Alfa', 'level' => 5]);
-    // Drugi członek w Alfa.
     GuildMember::create([
         'guild_id' => $guildA->id, 'character_id' => 'dddddddd-dddd-dddd-dddd-dddddddddddd',
         'character_name' => 'Drugi', 'character_class' => 'Mage', 'character_level' => 5,
@@ -439,7 +421,6 @@ it('lists guilds paginated with member counts, leader names and total count', fu
 
     $res = $this->withToken(greTokenA())->getJson('/api/v1/guilds?offset=0&limit=10');
 
-    // Sort: level.desc → Beta (9) przed Alfa (5).
     $res->assertOk()
         ->assertJsonPath('total', 2)
         ->assertJsonPath('guilds.0.name', 'Beta')

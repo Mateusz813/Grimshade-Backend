@@ -36,7 +36,7 @@ it('produces a stable 16-char version hash', function () {
 
     $version = $repo->version();
     expect($version)->toBeString()->toHaveLength(16)
-        ->and($repo->version())->toBe($version); // memoized, stable
+        ->and($repo->version())->toBe($version);
 });
 
 it('produces a different version for different content', function () {

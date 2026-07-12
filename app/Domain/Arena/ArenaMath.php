@@ -4,19 +4,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Arena;
 
-/**
- * Port czystego podzbioru src/systems/arenaSystem.ts: ligi, nagrody za mecz,
- * awans/spadek na koniec sezonu, kubełki nagród. (generateBotsForArena — RNG,
- * rankCompetitors/sezonowe daty — odłożone.)
- */
 final class ArenaMath
 {
-    /** @var list<string> */
     public const ARENA_LEAGUES = [
         'bronze', 'silver', 'gold', 'platinum', 'emerald', 'diamond', 'master', 'grand_master', 'legend',
     ];
 
-    /** @var array<string, array{promotedTop:?int, relegatedBottom:?int}> */
     public const LEAGUE_BOUNDARIES = [
         'bronze' => ['promotedTop' => 40, 'relegatedBottom' => null],
         'silver' => ['promotedTop' => 35, 'relegatedBottom' => 20],
@@ -29,7 +22,6 @@ final class ArenaMath
         'legend' => ['promotedTop' => null, 'relegatedBottom' => null],
     ];
 
-    /** @var list<array<string, mixed>> */
     private const REWARD_BUCKETS = [
         ['positionLabel' => '1', 'range' => [1, 1], 'arenaPoints' => 1000, 'gold' => 100000, 'mythicStones' => 10, 'legendaryStones' => 20, 'epicStones' => 30, 'rareStones' => 40, 'commonStones' => 50, 'pctHpPotion' => 100, 'pctMpPotion' => 100],
         ['positionLabel' => '2', 'range' => [2, 2], 'arenaPoints' => 800, 'gold' => 80000, 'mythicStones' => 8, 'legendaryStones' => 15, 'epicStones' => 20, 'rareStones' => 30, 'commonStones' => 40, 'pctHpPotion' => 50, 'pctMpPotion' => 50],
@@ -65,9 +57,6 @@ final class ArenaMath
         return self::ARENA_LEAGUES[max(0, $idx - 1)];
     }
 
-    /**
-     * @return array{attacker:array{arenaPoints:int, leaguePoints:int}, defender:array{arenaPoints:int, leaguePoints:int}}
-     */
     public static function getMatchReward(bool $won, bool $attackerIsHigher): array
     {
         if ($won) {
@@ -81,9 +70,6 @@ final class ArenaMath
             : ['attacker' => ['arenaPoints' => 0, 'leaguePoints' => 0], 'defender' => ['arenaPoints' => 250, 'leaguePoints' => 2]];
     }
 
-    /**
-     * @return array{type:string, toLeague?:string}
-     */
     public static function getSeasonOutcome(string $league, int $finalRank): array
     {
         $b = self::LEAGUE_BOUNDARIES[$league];
@@ -100,17 +86,11 @@ final class ArenaMath
         return ['type' => 'stay'];
     }
 
-    /**
-     * @return list<array<string, mixed>>
-     */
     public static function getRewardBuckets(): array
     {
         return self::REWARD_BUCKETS;
     }
 
-    /**
-     * @return array<string, mixed>|null
-     */
     public static function findRewardBucket(int $rank): ?array
     {
         foreach (self::REWARD_BUCKETS as $b) {
@@ -122,10 +102,6 @@ final class ArenaMath
         return null;
     }
 
-    /**
-     * @param  array<string, mixed>  $bucket
-     * @return array<string, mixed>
-     */
     public static function applyLeagueMultiplier(array $bucket, string $league): array
     {
         $m = self::getLeagueMultiplier($league);

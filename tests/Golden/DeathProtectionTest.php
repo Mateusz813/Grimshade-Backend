@@ -6,12 +6,6 @@ use App\Domain\Combat\CombatLeavePenalty;
 use App\Domain\Combat\DeathProtection;
 use Tests\Support\Golden;
 
-/**
- * PARYTET deathProtection: PHP DeathProtection + CombatLeavePenalty muszą
- * zwrócić DOKŁADNIE to, co TS deathProtection.ts (przez realny inventoryStore)
- * oraz rdzeń combatLeavePenalty.ts. Fixture wygenerowany w grimshade repo,
- * skopiowany tu. toEqual (nie toBe) — JSON nie rozróżnia int/float.
- */
 beforeEach(function () {
     $this->golden = Golden::load('deathProtection.json');
 });

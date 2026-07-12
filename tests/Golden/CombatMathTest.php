@@ -5,10 +5,6 @@ declare(strict_types=1);
 use App\Domain\Combat\CombatMath;
 use Tests\Support\Golden;
 
-/**
- * PARYTET combat: PHP CombatMath == TS combat.ts (podzbiór czystych formuł).
- * calculateDamage zawsze z jawnymi flagami — parytet matematyki.
- */
 beforeEach(function () {
     $this->golden = Golden::load('combat.json');
 });
@@ -92,7 +88,6 @@ it('matches getMonsterAttackRange', function () {
 });
 
 it('matches applyMonsterRarity', function () {
-    // Ta sama baza co w generatorze TS (RARITY_BASE).
     $base = ['hp' => 200, 'attack' => 50, 'defense' => 20, 'xp' => 100, 'gold' => [10, 40]];
     foreach ($this->golden['applyMonsterRarity'] as $case) {
         expect(CombatMath::applyMonsterRarity($base, $case['rarity']))

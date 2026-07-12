@@ -14,14 +14,10 @@ uses(RefreshDatabase::class);
 const TR_USER_A = 'a1a1a1a1-a1a1-a1a1-a1a1-a1a1a1a1a1a1';
 const TR_USER_B = 'b2b2b2b2-b2b2-b2b2-b2b2-b2b2b2b2b2b2';
 
-// Deterministyczne RNG w testach (ten sam algorytm co front).
 beforeEach(function () {
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(12345));
 });
 
-/**
- * Postać zdolna 1-shotować transform-bossa (ogromny attack), na zadanym poziomie.
- */
 function transformChar(int $level = 30, string $userId = TR_USER_A, string $class = 'Knight'): Character
 {
     return Character::factory()->forUser($userId)->create([
@@ -33,7 +29,7 @@ function transformChar(int $level = 30, string $userId = TR_USER_A, string $clas
 }
 
 it('resolves a transform boss fight authoritatively and locks a pending claim', function () {
-    $char = transformChar(); // level 30 → transform 1 (level 30) available
+    $char = transformChar();
 
     $res = $this->withToken(TokenFactory::forUser(TR_USER_A))
         ->postJson("/api/v1/characters/{$char->id}/transform/1/resolve", [
@@ -44,17 +40,15 @@ it('resolves a transform boss fight authoritatively and locks a pending claim', 
         ->assertJsonPath('result.won', true)
         ->assertJsonPath('pendingClaimTransformId', 1);
 
-    // Boss = scaleMonsterStats(30) × TRANSFORM_BOSS_MULTIPLIER (hp ×5).
     expect($res->json('result.boss.hp'))->toBeGreaterThan(0);
 
-    // Pending claim wylądował w blobie (slice transforms), completed jeszcze puste.
     $blob = GameSave::where('character_id', $char->id)->first()->state;
     expect($blob['transforms']['pendingClaimTransformId'])->toBe(1)
         ->and($blob['transforms']['completedTransforms'] ?? [])->toBe([]);
 });
 
 it('rejects a transform above the character level (422)', function () {
-    $char = transformChar(5); // level 5 < transform 1 (level 30)
+    $char = transformChar(5);
 
     $this->withToken(TokenFactory::forUser(TR_USER_A))
         ->postJson("/api/v1/characters/{$char->id}/transform/1/resolve", [
@@ -64,7 +58,6 @@ it('rejects a transform above the character level (422)', function () {
 });
 
 it('rejects an out-of-order transform (422)', function () {
-    // Wysoki poziom (spełnia próg 2), ale transform 1 NIEukończony → kolejność.
     $char = transformChar(1000);
 
     $this->withToken(TokenFactory::forUser(TR_USER_A))
@@ -95,7 +88,6 @@ it('is idempotent — replaying a resolve requestId returns the cached result', 
 
     $second->assertOk();
     expect($second->json('pendingClaimTransformId'))->toBe($first->json('pendingClaimTransformId'));
-    // Pending nadal pojedynczy — brak podwójnego zapisu.
     $blob = GameSave::where('character_id', $char->id)->first()->state;
     expect($blob['transforms']['pendingClaimTransformId'])->toBe(1);
 });
@@ -103,13 +95,11 @@ it('is idempotent — replaying a resolve requestId returns the cached result', 
 it('claim appends completedTransforms and grants deterministic consumables', function () {
     $char = transformChar(30, TR_USER_A, 'Knight');
 
-    // 1) Wygraj walkę → pending claim.
     $this->withToken(TokenFactory::forUser(TR_USER_A))
         ->postJson("/api/v1/characters/{$char->id}/transform/1/resolve", [
             'requestId' => 'tr-claim-fight',
         ])->assertOk();
 
-    // 2) Odbierz nagrody.
     $claim = $this->withToken(TokenFactory::forUser(TR_USER_A))
         ->postJson("/api/v1/characters/{$char->id}/transform/claim");
 
@@ -117,13 +107,11 @@ it('claim appends completedTransforms and grants deterministic consumables', fun
         ->assertJsonPath('transformId', 1)
         ->assertJsonPath('completedTransforms', [1]);
 
-    // Consumables z transforms.json (transform 1): hp/mp potiony, elixiry, chest, kamień.
     expect($claim->json('consumables.hp_potion_sm'))->toBe(50)
         ->and($claim->json('consumables.mp_potion_sm'))->toBe(50)
         ->and($claim->json('consumables.premium_xp_elixir'))->toBe(5)
         ->and($claim->json('consumables.mythic_stone'))->toBe(1);
 
-    // Zapisane w blobie: completedTransforms + wyczyszczony pending.
     $blob = GameSave::where('character_id', $char->id)->first()->state;
     expect($blob['transforms']['completedTransforms'])->toBe([1])
         ->and($blob['transforms']['pendingClaimTransformId'])->toBeNull();
@@ -141,7 +129,6 @@ it('claim is idempotent — a second claim with no pending reward is 404', funct
         ->postJson("/api/v1/characters/{$char->id}/transform/claim")
         ->assertOk();
 
-    // Drugi claim — pending już zdjęty → 404.
     $this->withToken(TokenFactory::forUser(TR_USER_A))
         ->postJson("/api/v1/characters/{$char->id}/transform/claim")
         ->assertNotFound();

@@ -9,7 +9,6 @@ use App\Http\Resources\CharacterResource;
 use App\Models\Character;
 use App\Repositories\CharacterRepository;
 use App\Services\CharacterStateService;
-use App\Support\Auth\SupabaseUser;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -19,38 +18,17 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Endpointy postaci. Odczyt listy (index), tworzenie (store) i usuwanie
- * (destroy) postaci zalogowanego usera. Tożsamość bierze się WYŁĄCZNIE z tokenu
- * (supabase_user), nigdy z query/body.
- *
- * store/destroy zastępują klienta (grimshade/src/api/v1/characterApi.ts
- * createCharacter + deleteCharacter, gameStorage.deleteGameSave). Serwer jest
- * jedynym autorytetem: DERYWUJE staty startowe z katalogu klas i SEEDUJE
- * startowy blob game_saves — nic ze statów w body nie jest ufane.
- */
 final class CharacterController extends Controller
 {
-    /** Twarde limity — parytet z frontem (max 7 postaci na usera). */
     private const MAX_CHARACTERS = 7;
 
-    /** Dozwolone klasy (grimshade CharacterCreate.tsx). */
     private const CLASSES = ['Knight', 'Mage', 'Cleric', 'Archer', 'Rogue', 'Necromancer', 'Bard'];
 
-    /** Wszystkie sloty EQ (parytet z EMPTY_EQUIPMENT na froncie). */
     private const EQUIPMENT_SLOTS = [
         'helmet', 'armor', 'pants', 'gloves', 'shoulders', 'boots',
         'mainHand', 'offHand', 'ring1', 'ring2', 'earrings', 'necklace',
     ];
 
-    /**
-     * Staty bazowe per klasa. PORT 1:1 z CLASS_BASE_STATS w
-     * grimshade/src/views/CharacterCreate/CharacterCreate.tsx — to ta mapa
-     * (nie classes.json!) opisuje wartości którymi realne wiersze zostały
-     * utworzone, więc istniejące + nowe postaci są spójne.
-     *
-     * @var array<string, array<string, int|float>>
-     */
     private const CLASS_BASE_STATS = [
         'Knight' => ['hp' => 120, 'max_hp' => 120, 'mp' => 30, 'max_mp' => 30, 'attack' => 10, 'defense' => 5, 'attack_speed' => 1.5, 'crit_chance' => 0.03, 'crit_damage' => 2.0, 'magic_level' => 0],
         'Mage' => ['hp' => 80, 'max_hp' => 80, 'mp' => 200, 'max_mp' => 200, 'attack' => 6, 'defense' => 2, 'attack_speed' => 2.0, 'crit_chance' => 0.05, 'crit_damage' => 2.0, 'magic_level' => 5],
@@ -61,13 +39,6 @@ final class CharacterController extends Controller
         'Bard' => ['hp' => 95, 'max_hp' => 95, 'mp' => 120, 'max_mp' => 120, 'attack' => 8, 'defense' => 3, 'attack_speed' => 2.0, 'crit_chance' => 0.07, 'crit_damage' => 2.0, 'magic_level' => 3],
     ];
 
-    /**
-     * Startowa broń per klasa. PORT 1:1 z STARTER_WEAPONS + onSubmit buildItem
-     * (CharacterCreate.tsx ~line 162-192): rarity common, itemLevel 1,
-     * bonuses { attack: dmg_min, dmg_min, dmg_max }, założona w mainHand.
-     *
-     * @var array<string, array<string, int|string>>
-     */
     private const STARTER_WEAPONS = [
         'Knight' => ['id' => 'sword_of_beginnings', 'dmg_min' => 4, 'dmg_max' => 8],
         'Mage' => ['id' => 'apprentice_staff', 'dmg_min' => 3, 'dmg_max' => 6],
@@ -80,7 +51,6 @@ final class CharacterController extends Controller
 
     public function index(Request $request, CharacterRepository $characters): AnonymousResourceCollection
     {
-        /** @var SupabaseUser $user */
         $user = $request->attributes->get('supabase_user');
 
         return CharacterResource::collection(
@@ -88,26 +58,16 @@ final class CharacterController extends Controller
         );
     }
 
-    /**
-     * Utwórz postać. Middleware: TYLKO supabase.auth (postaci jeszcze nie ma).
-     * Serwer waliduje name+class, egzekwuje limit 7, DERYWUJE staty startowe z
-     * katalogu klas (IGNORUJE staty z body) i SEEDUJE startowy blob game_saves
-     * (broń w mainHand + 30× hp_potion_sm + 30× mp_potion_sm).
-     */
     public function store(Request $request, CharacterStateService $state): JsonResponse
     {
-        /** @var SupabaseUser $user */
         $user = $request->attributes->get('supabase_user');
 
-        // Trim przed walidacją (jak z.string().trim() na froncie).
         $request->merge(['name' => is_string($request->input('name')) ? trim($request->input('name')) : $request->input('name')]);
 
         $data = $request->validate([
             'requestId' => ['required', 'string', 'max:64'],
-            // Regex = mirror getCreateSchema (CharacterCreate.tsx): 3..18, litery/cyfry, max jedna spacja.
             'name' => ['required', 'string', 'min:3', 'max:18', 'regex:/^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)?$/'],
             'class' => ['required', 'string', Rule::in(self::CLASSES)],
-            // Ewentualne staty w body są IGNOROWANE — serwer liczy sam.
         ]);
 
         $cacheKey = "characters.store.{$user->id}.{$data['requestId']}";
@@ -115,7 +75,6 @@ final class CharacterController extends Controller
             return response()->json(Cache::get($cacheKey), Response::HTTP_CREATED);
         }
 
-        // Limit 7 postaci na usera — odrzuć 8. postać.
         if (Character::query()->where('user_id', $user->id)->count() >= self::MAX_CHARACTERS) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Osiągnięto limit 7 postaci.');
         }
@@ -146,7 +105,6 @@ final class CharacterController extends Controller
                 'stat_points' => 0,
                 'highest_level' => 1,
                 'equipment' => [],
-                // Liczniki rankingowe (arena_*, quests_*, market_*, ...) zostają na DB defaults.
             ]);
 
             $this->seedStarterSave($state, $character, $class);
@@ -159,32 +117,21 @@ final class CharacterController extends Controller
         return response()->json($payload, Response::HTTP_CREATED);
     }
 
-    /**
-     * Usuń postać. Middleware: supabase.auth + owns.character (własność
-     * udowodniona → brak hasła w body). W JEDNEJ transakcji kasuje wiersze
-     * roster/market powiązane z character_id, blob game_saves oraz wiersz
-     * characters. ZOSTAWIA chat (messages) + logi gildii (per komentarz klienta).
-     * Idempotentne — deletes to no-opy gdy wierszy już nie ma; zawsze 204.
-     */
     public function destroy(Request $request): Response
     {
-        /** @var Character $character */
         $character = $request->attributes->get('character');
         $id = $character->id;
 
         DB::transaction(function () use ($id): void {
-            // Roster / gildia (brak FK-cascade w DB — sprzątamy ręcznie).
             DB::table('party_members')->where('character_id', $id)->delete();
             DB::table('guild_members')->where('character_id', $id)->delete();
             DB::table('guild_join_requests')->where('character_id', $id)->delete();
             DB::table('guild_boss_attempts')->where('character_id', $id)->delete();
             DB::table('guild_boss_contributions')->where('character_id', $id)->delete();
 
-            // Market — tabele używają seller_id = CHARACTER id.
             DB::table('market_listings')->where('seller_id', $id)->delete();
             DB::table('market_sale_notifications')->where('seller_id', $id)->delete();
 
-            // Blob zapisu gry + sam wiersz postaci.
             DB::table('game_saves')->where('character_id', $id)->delete();
             DB::table('characters')->where('id', $id)->delete();
         });
@@ -192,13 +139,6 @@ final class CharacterController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * Seeduje startowy blob game_saves SERWEROWO. Parytet z onSubmit
-     * (CharacterCreate.tsx): broń klasy założona w mainHand (buildItem: rarity
-     * common, itemLevel 1, bonuses {attack, dmg_min, dmg_max}, upgradeLevel 0)
-     * + 30× hp_potion_sm + 30× mp_potion_sm. Reszta inwentarza = defaults
-     * (characterScope.ts).
-     */
     private function seedStarterSave(CharacterStateService $state, Character $character, string $class): void
     {
         $weapon = self::STARTER_WEAPONS[$class];

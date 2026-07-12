@@ -6,12 +6,6 @@ use App\Domain\Skills\SkillSystem;
 use App\Domain\Support\Rng\Mulberry32Rng;
 use Tests\Support\Golden;
 
-/**
- * PARYTET skillSystem: PHP SkillSystem musi zwrócić DOKŁADNIE to, co TS
- * skillSystem.ts (fixture wygenerowany w grimshade repo, skopiowany tu).
- * toEqual (nie toBe) — JSON nie rozróżnia int/float, więc porównanie luźne.
- * rollSkillUpgrade: replay Mulberry32Rng(seed) → ta sama sekwencja co TS.
- */
 beforeEach(function () {
     $this->golden = Golden::load('skillSystem.json');
 });

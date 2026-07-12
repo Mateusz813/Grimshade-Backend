@@ -7,21 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Tygodniowy stan bossa gildii (`guild_boss_state`). Jeden wiersz per
- * (guild_id, week_start). Kształt: guildApi.ts (IGuildBossStateRow).
- *
- * Autorytatywne: HP/tier/killed liczy SERWER (GuildSystem::getGuildBossMaxHp +
- * computeGuildBossDamage). Klient nigdy nie ustawia HP.
- *
- * @property string $id
- * @property string $guild_id
- * @property string $week_start
- * @property int $boss_tier
- * @property int $boss_max_hp
- * @property int $boss_current_hp
- * @property bool $boss_killed
- */
 class GuildBossState extends Model
 {
     use HasUuids;
@@ -32,7 +17,7 @@ class GuildBossState extends Model
 
     protected $keyType = 'string';
 
-    public $timestamps = false; // created_at/updated_at ustawiamy jawnie
+    public $timestamps = false;
 
     protected $fillable = [
         'guild_id', 'week_start', 'boss_tier', 'boss_max_hp', 'boss_current_hp',

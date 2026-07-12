@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Domain\Market\MarketMath;
 use Tests\Support\Golden;
 
-/** PARYTET marketSystem (walidatory + tax): PHP MarketMath == TS marketSystem.ts. */
 beforeEach(function () {
     $this->golden = Golden::load('marketSystem.json');
 });

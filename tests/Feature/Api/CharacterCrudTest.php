@@ -19,7 +19,6 @@ function ccToken(string $user = CC_USER): string
     return TokenFactory::forUser($user);
 }
 
-// ---- store: happy path -------------------------------------------------------
 
 it('creates a character with server-derived stats and seeds the starter save', function () {
     $res = $this->withToken(ccToken())->postJson('/api/v1/characters', [
@@ -32,7 +31,6 @@ it('creates a character with server-derived stats and seeds the starter save', f
         ->assertJsonPath('name', 'Krasek')
         ->assertJsonPath('class', 'Knight')
         ->assertJsonPath('user_id', CC_USER)
-        // Staty Knight z CLASS_BASE_STATS (nie z classes.json).
         ->assertJsonPath('hp', 120)
         ->assertJsonPath('max_hp', 120)
         ->assertJsonPath('mp', 30)
@@ -48,7 +46,6 @@ it('creates a character with server-derived stats and seeds the starter save', f
 
     $id = $res->json('id');
 
-    // Startowy blob: broń w mainHand + 30× hp/mp potiony.
     $state = GameSave::where('character_id', $id)->firstOrFail()->state;
     expect($state['inventory']['equipment']['mainHand']['itemId'])->toBe('sword_of_beginnings');
     expect($state['inventory']['equipment']['mainHand']['rarity'])->toBe('common');
@@ -80,7 +77,6 @@ it('ignores stat fields from the body and derives them server-side', function ()
         ->assertJsonPath('level', 1);
 });
 
-// ---- store: validation -------------------------------------------------------
 
 it('rejects a name that is too short', function () {
     $this->withToken(ccToken())->postJson('/api/v1/characters', [
@@ -104,7 +100,6 @@ it('rejects an unknown class', function () {
     ])->assertStatus(422)->assertJsonValidationErrors('class');
 });
 
-// ---- store: per-user cap -----------------------------------------------------
 
 it('enforces the 7-character cap and rejects the 8th', function () {
     Character::factory()->count(7)->forUser(CC_USER)->create();
@@ -116,7 +111,6 @@ it('enforces the 7-character cap and rejects the 8th', function () {
     expect(Character::where('user_id', CC_USER)->count())->toBe(7);
 });
 
-// ---- store: idempotency ------------------------------------------------------
 
 it('replays the same requestId without creating a second character', function () {
     $first = $this->withToken(ccToken())->postJson('/api/v1/characters', [
@@ -127,13 +121,11 @@ it('replays the same requestId without creating a second character', function ()
         'requestId' => 'req-idem', 'name' => 'Once', 'class' => 'Archer',
     ])->assertCreated();
 
-    // Identyczny cached wynik, brak podwójnego utworzenia / podwójnego bloba.
     expect($second->json())->toBe($first->json());
     expect(Character::where('user_id', CC_USER)->count())->toBe(1);
     expect(GameSave::where('character_id', $first->json('id'))->count())->toBe(1);
 });
 
-// ---- destroy -----------------------------------------------------------------
 
 it('deletes the character with its roster/market rows and game save, keeping chat + guild logs', function () {
     $c = Character::factory()->forUser(CC_USER)->create();
@@ -145,7 +137,6 @@ it('deletes the character with its roster/market rows and game save, keeping cha
     DB::table('market_listings')->insert(['id' => (string) Str::uuid(), 'seller_id' => $c->id, 'seller_name' => 'X', 'item_id' => 'i', 'price' => 10]);
     DB::table('market_sale_notifications')->insert(['id' => (string) Str::uuid(), 'seller_id' => $c->id, 'item_id' => 'i']);
 
-    // ZOSTAJE: chat + logi gildii.
     DB::table('messages')->insert(['id' => (string) Str::uuid(), 'user_id' => CC_USER, 'channel' => 'city', 'character_name' => $c->name, 'content' => 'hi']);
     DB::table('guild_treasury_logs')->insert(['id' => (string) Str::uuid(), 'guild_id' => (string) Str::uuid(), 'action' => 'deposit', 'character_id' => $c->id, 'character_name' => $c->name, 'item_name' => 'sword']);
 
@@ -158,7 +149,6 @@ it('deletes the character with its roster/market rows and game save, keeping cha
     expect(DB::table('guild_boss_contributions')->where('character_id', $c->id)->exists())->toBeFalse();
     expect(DB::table('market_listings')->where('seller_id', $c->id)->exists())->toBeFalse();
     expect(DB::table('market_sale_notifications')->where('seller_id', $c->id)->exists())->toBeFalse();
-    // Zachowane:
     expect(DB::table('messages')->where('user_id', CC_USER)->exists())->toBeTrue();
     expect(DB::table('guild_treasury_logs')->where('character_id', $c->id)->exists())->toBeTrue();
 });

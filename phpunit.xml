@@ -25,13 +25,10 @@
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_STORE" value="array" force="true"/>
-        <!-- KRYTYCZNE: force="true" — testy ZAWSZE na sqlite in-memory, NIGDY na realnej
-             bazie z .env (inaczej RefreshDatabase mógłby zrobić migrate:fresh na Supabase!). -->
         <env name="DB_CONNECTION" value="sqlite" force="true"/>
         <env name="DB_DATABASE" value=":memory:" force="true"/>
         <env name="DB_HOST" value="127.0.0.1" force="true"/>
         <env name="DB_SSLMODE" value="prefer" force="true"/>
-        <!-- Testowe wartości Supabase — deterministyczny sekret dla testów JWT. -->
         <env name="SUPABASE_URL" value="https://test-project.supabase.co" force="true"/>
         <env name="SUPABASE_JWT_DRIVER" value="hmac" force="true"/>
         <env name="SUPABASE_JWT_SECRET" value="test-super-secret-jwt-key-for-testing-only-min-256-bits-long!!" force="true"/>

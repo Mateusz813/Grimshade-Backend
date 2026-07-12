@@ -19,7 +19,6 @@ function seChar(int $level = 50): Character
     return Character::factory()->forUser(SE_USER)->create(['level' => $level]);
 }
 
-/** Seeduje blob z goldem/itemem/kamieniami — kształt jak realny game_saves. */
 function seSave(Character $c, int $gold = 100000, array $extraInv = []): GameSave
 {
     return GameSave::create([
@@ -48,7 +47,6 @@ function seToken(): string
     return TokenFactory::forUser(SE_USER);
 }
 
-// ---- GET state --------------------------------------------------------------
 
 it('returns blob-shaped state with character', function () {
     $c = seChar();
@@ -67,7 +65,6 @@ it('blocks reading another user\'s state (403)', function () {
     $this->withToken(seToken())->getJson("/api/v1/characters/{$other->id}/state")->assertForbidden();
 });
 
-// ---- Prefs ------------------------------------------------------------------
 
 it('writes ONLY the settings slice via prefs', function () {
     $c = seChar();
@@ -79,10 +76,9 @@ it('writes ONLY the settings slice via prefs', function () {
 
     $state = GameSave::where('character_id', $c->id)->first()->state;
     expect($state['settings'])->toBe(['language' => 'en', 'combatSpeed' => 'x2'])
-        ->and($state['inventory']['gold'])->toBe(777); // ekonomia NIETKNIĘTA
+        ->and($state['inventory']['gold'])->toBe(777);
 });
 
-// ---- Sell -------------------------------------------------------------------
 
 it('sells an item: server-computed gold + stone refund, item removed', function () {
     $c = seChar();
@@ -92,7 +88,6 @@ it('sells an item: server-computed gold + stone refund, item removed', function 
         'itemUuid' => 'itm-1', 'requestId' => 'sell-1',
     ]);
 
-    // rare lvl50 +2: baza floor(50*20+50)=1050; refund golda z +1,+2 = 100+500=600 → 1650; kamienie: 1+1=2
     $res->assertOk()
         ->assertJsonPath('goldGained', 1650)
         ->assertJsonPath('stonesRefunded', 2)
@@ -124,13 +119,11 @@ it('selling a nonexistent item is 404 (and cannot dupe)', function () {
     ])->assertNotFound();
 });
 
-// ---- Upgrade ----------------------------------------------------------------
 
 it('upgrade deducts cost ALWAYS and rolls success server-side', function () {
-    // seed 12345 → pierwszy nextFloat=0.9797... → 97.97 < 60 (rare +3 rate) = FAIL
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(12345));
     $c = seChar();
-    seSave($c, 10000); // koszt +3: 2000 gold, 2 kamienie (rare_stone)
+    seSave($c, 10000);
 
     $res = $this->withToken(seToken())->postJson("/api/v1/characters/{$c->id}/items/upgrade", [
         'itemUuid' => 'itm-1', 'requestId' => 'up-1',
@@ -138,13 +131,12 @@ it('upgrade deducts cost ALWAYS and rolls success server-side', function () {
 
     $res->assertOk()->assertJsonPath('success', false)->assertJsonPath('gold', 8000);
     $state = GameSave::where('character_id', $c->id)->first()->state;
-    expect($state['inventory']['stones']['rare_stone'])->toBe(48)      // koszt zszedł
-        ->and($state['inventory']['bag'][0]['upgradeLevel'])->toBe(2); // level BEZ zmian
+    expect($state['inventory']['stones']['rare_stone'])->toBe(48)
+        ->and($state['inventory']['bag'][0]['upgradeLevel'])->toBe(2);
     expect(Character::find($c->id)->item_upgrades_done)->toBe(0);
 });
 
 it('successful upgrade bumps level and the leaderboard counter', function () {
-    // seed 7 → pierwszy nextFloat ~0.548 → 54.8 < 60 = SUCCESS
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(7));
     $c = seChar();
     seSave($c, 10000);
@@ -159,7 +151,7 @@ it('successful upgrade bumps level and the leaderboard counter', function () {
 
 it('upgrade with insufficient gold is 422 and deducts NOTHING', function () {
     $c = seChar();
-    seSave($c, 100); // koszt +3 = 2000
+    seSave($c, 100);
 
     $this->withToken(seToken())->postJson("/api/v1/characters/{$c->id}/items/upgrade", [
         'itemUuid' => 'itm-1', 'requestId' => 'up-3',
@@ -170,7 +162,6 @@ it('upgrade with insufficient gold is 422 and deducts NOTHING', function () {
         ->and($state['inventory']['stones']['rare_stone'])->toBe(50);
 });
 
-// ---- Shop -------------------------------------------------------------------
 
 it('buys elixirs at server price with level gate', function () {
     $c = seChar(50);
@@ -185,7 +176,7 @@ it('buys elixirs at server price with level gate', function () {
 });
 
 it('rejects buying above-level elixirs (422) and unknown items (404)', function () {
-    $c = seChar(10); // hp_potion_mega wymaga 100
+    $c = seChar(10);
     seSave($c, 10_000_000);
 
     $this->withToken(seToken())->postJson("/api/v1/characters/{$c->id}/shop/buy-elixir", [

@@ -6,15 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/**
- * Tabela `characters` — kanoniczny kształt z frontu (src/types/character.ts ICharacter).
- *
- * IDEMPOTENTNA: na realnej bazie Supabase tabela już istnieje (utworzona w
- * dashboardzie), więc guard `Schema::hasTable` czyni to no-opem. Migracja służy
- * lokalnym/testowym bazom (sqlite in-memory) oraz jako dokumentacja schematu.
- *
- * NIE modyfikuje istniejącej tabeli Supabase — tylko tworzy brakującą.
- */
 return new class extends Migration
 {
     public function up(): void
@@ -29,7 +20,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('class');
 
-            // Statystyki bazowe
             $table->integer('level')->default(1);
             $table->bigInteger('xp')->default(0);
             $table->integer('hp')->default(0);
@@ -44,12 +34,11 @@ return new class extends Migration
             $table->integer('magic_level')->default(0);
             $table->float('hp_regen')->default(0);
             $table->float('mp_regen')->default(0);
-            $table->bigInteger('gold')->default(0); // vestigial (real gold = game_saves blob)
+            $table->bigInteger('gold')->default(0);
             $table->integer('stat_points')->default(0);
             $table->integer('highest_level')->default(1);
             $table->json('equipment')->nullable();
 
-            // Liczniki rankingowe (leaderboard_migration.sql) — DEFAULT 0 / 'bronze'
             $table->integer('arena_kills')->default(0);
             $table->integer('arena_deaths')->default(0);
             $table->string('arena_league')->default('bronze');
@@ -73,7 +62,5 @@ return new class extends Migration
 
     public function down(): void
     {
-        // Świadomie NIE dropujemy — chroni realną tabelę Supabase przed
-        // przypadkowym `migrate:rollback`. Lokalne bazy testowe są efemeryczne.
     }
 };
