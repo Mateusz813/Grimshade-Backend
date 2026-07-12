@@ -8,7 +8,7 @@ Route::get('/', function (ContentRepository $content) {
 
     try {
         $contentVersion = $content->version();
-    } catch (\Throwable $e) {
+    } catch (Throwable $e) {
         $contentVersion = '—';
     }
 

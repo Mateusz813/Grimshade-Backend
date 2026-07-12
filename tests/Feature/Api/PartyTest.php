@@ -26,7 +26,6 @@ function ptToken(string $userId): string
     return TokenFactory::forUser($userId);
 }
 
-
 it('creates a party with the leader as the first member (max 4)', function () {
     $leader = ptChar(PT_USER_A, ['name' => 'Aldric', 'class' => 'Knight', 'level' => 10]);
 
@@ -75,7 +74,6 @@ it('rejects creating a second party while already in one (422)', function () {
     expect(Party::query()->count())->toBe(1);
 });
 
-
 it('lets characters join and enforces the max of 4 members', function () {
     $leader = ptChar(PT_USER_A, ['class' => 'Knight']);
     $partyId = $this->withToken(ptToken(PT_USER_A))
@@ -121,7 +119,6 @@ it('rejects joining an unknown party (404)', function () {
         ->assertNotFound();
 });
 
-
 it('gates joining behind the party password (422 wrong, 200 right)', function () {
     $leader = ptChar(PT_USER_A);
     $create = $this->withToken(ptToken(PT_USER_A))
@@ -162,7 +159,6 @@ it('enforces the minimum join level (422 too low, 200 ok)', function () {
 
     expect(PartyMember::where('party_id', $partyId)->count())->toBe(2);
 });
-
 
 it('hands over leadership to another member', function () {
     $leader = ptChar(PT_USER_A);
@@ -215,7 +211,6 @@ it('rejects a handover to a character that is not a member (422)', function () {
         ])
         ->assertStatus(422);
 });
-
 
 it('lets a member leave without dissolving the party', function () {
     $leader = ptChar(PT_USER_A);
@@ -271,7 +266,6 @@ it('dissolves the party when the last member leaves', function () {
     expect(Party::find($partyId))->toBeNull();
 });
 
-
 it('returns a party snapshot and 404 for an unknown party', function () {
     $leader = ptChar(PT_USER_A, ['class' => 'Cleric']);
     $partyId = $this->withToken(ptToken(PT_USER_A))
@@ -289,7 +283,6 @@ it('returns a party snapshot and 404 for an unknown party', function () {
         ->getJson("/api/v1/characters/{$leader->id}/parties/00000000-0000-0000-0000-000000000000")
         ->assertNotFound();
 });
-
 
 it('blocks acting on another user\'s character (403)', function () {
     $charA = ptChar(PT_USER_A);

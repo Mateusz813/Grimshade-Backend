@@ -85,7 +85,6 @@ function scmItem(string $uuid, array $overrides = []): array
     ], $overrides);
 }
 
-
 it('persists the full blob and character row, gold survives round-trip', function () {
     $c = scmChar();
 
@@ -117,7 +116,6 @@ it('persists the full blob and character row, gold survives round-trip', functio
         ->assertJsonPath('character.level', 900);
 });
 
-
 it('SOFT mode persists an over-powered item instead of rejecting (no 422)', function () {
     $c = scmChar();
 
@@ -136,7 +134,6 @@ it('SOFT mode persists an over-powered item instead of rejecting (no 422)', func
     expect(collect($save->state['inventory']['bag'])->firstWhere('uuid', 'cheat-1'))->not->toBeNull();
 });
 
-
 it('sanitizes negative gold to zero', function () {
     $c = scmChar();
     $blob = godBlob($c);
@@ -149,7 +146,6 @@ it('sanitizes negative gold to zero', function () {
 
     expect(Character::find($c->id)->gold)->toBe(0);
 });
-
 
 it('is idempotent per requestId — replay returns the cached first payload', function () {
     $c = scmChar();
@@ -164,7 +160,6 @@ it('is idempotent per requestId — replay returns the cached first payload', fu
 
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(1000);
 });
-
 
 it('requires authentication (401)', function () {
     $c = scmChar();
@@ -190,7 +185,6 @@ it('validates the request body (requestId + state required)', function () {
     ])->assertStatus(422);
 });
 
-
 it('commits WITH an event (dungeon won) and persists the new state + drop', function () {
     $c = scmChar();
     $today = now()->toDateString();
@@ -211,7 +205,6 @@ it('commits WITH an event (dungeon won) and persists the new state + drop', func
     expect(collect($save->state['inventory']['bag'])->firstWhere('uuid', 'drop-1'))->not->toBeNull()
         ->and($save->state['dungeons']['dailyAttempts']['dungeon_1']['used'])->toBe(1);
 });
-
 
 it('rejects a duplicate item uuid across bag + equipment with 422 in soft mode', function () {
     $c = scmChar();
@@ -245,7 +238,6 @@ it('rejects a duplicate item uuid with 422 EVEN WITHOUT an event (root-cause reg
 
     expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
 });
-
 
 it('rejects a level jump > 50 WITHOUT an event with 422', function () {
     $c = scmChar();
@@ -317,7 +309,6 @@ it('accepts a normal small commit WITHOUT an event (backward compat)', function 
     expect(GameSave::where('character_id', $c->id)->first())->not->toBeNull();
 });
 
-
 it('persists a realistic end-game save (363M gold, level 345, unique-uuid mythic gear) WITHOUT event', function () {
     $c = scmChar();
 
@@ -368,7 +359,6 @@ it('persists a realistic end-game save (363M gold, level 345, unique-uuid mythic
     expect(Character::find($c->id)->level)->toBe(345);
 });
 
-
 it('sanitizes negative gold to zero even with an event present (no 422)', function () {
     $c = scmChar();
     $blob = scmBlob($c);
@@ -381,7 +371,6 @@ it('sanitizes negative gold to zero even with an event present (no 422)', functi
         'event' => ['type' => 'hunt', 'outcome' => 'won'],
     ])->assertOk()->assertJsonPath('state.inventory.gold', 0);
 });
-
 
 it('accepts a genuinely-new item uuid (new drop) without false-rejecting', function () {
     $c = scmChar();
@@ -401,7 +390,6 @@ it('accepts a genuinely-new item uuid (new drop) without false-rejecting', funct
     expect(collect($save->state['inventory']['bag'])->pluck('uuid')->all())
         ->toContain('old-1')->toContain('new-2');
 });
-
 
 it('SOFT mode persists an over-cap daily-attempt transition (no 422)', function () {
     $c = scmChar();
@@ -439,7 +427,6 @@ it('STRICT mode rejects the same over-cap daily-attempt transition with 422', fu
 
     expect(GameSave::where('character_id', $c->id)->first())->toBeNull();
 });
-
 
 it('is idempotent per requestId when an event is present (replay returns cache)', function () {
     $c = scmChar();

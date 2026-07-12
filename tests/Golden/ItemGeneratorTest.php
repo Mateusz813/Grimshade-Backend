@@ -85,7 +85,6 @@ it('matches getItemDisplayInfo parser (incl. legacy + unknown)', function () {
     }
 });
 
-
 it('generates correct bonus counts and ranges for higher rarities (property)', function () {
     $ranges = [
         'rare' => [3, 12], 'epic' => [5, 18], 'legendary' => [10, 35],

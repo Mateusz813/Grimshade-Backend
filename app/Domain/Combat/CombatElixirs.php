@@ -20,7 +20,6 @@ final class CombatElixirs
 
     private const SPELL_TIERS_HIGH_FIRST = ['spell_dmg_100', 'spell_dmg_50', 'spell_dmg_25'];
 
-
     public static function getAtkDamageMultiplier(array $activeEffects): float
     {
         if (self::hasBuff($activeEffects, 'atk_dmg_100')) {
@@ -85,7 +84,6 @@ final class CombatElixirs
     {
         return self::hasBuff($activeEffects, 'attack_speed') ? 1.20 : 1.0;
     }
-
 
     public static function tickCombatElixirs(array $buffs, int|float $ms): array
     {

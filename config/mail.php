@@ -2,9 +2,7 @@
 
 return [
 
-
     'default' => env('MAIL_MAILER', 'log'),
-
 
     'mailers' => [
 
@@ -63,7 +61,6 @@ return [
         ],
 
     ],
-
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),

@@ -45,7 +45,6 @@ function itmToken(): string
     return TokenFactory::forUser(ITM_USER);
 }
 
-
 it('disassembles an item and grants a stone on a low roll', function () {
     itmBind(7);
     $c = itmChar();
@@ -105,7 +104,6 @@ it('replays disassemble idempotently without double-applying', function () {
     expect($inv['stones']['rare_stone'])->toBe(1);
 });
 
-
 it('mass-disassembles: consumes all listed items and aggregates stones', function () {
     itmBind(3);
     $c = itmChar();
@@ -120,7 +118,6 @@ it('mass-disassembles: consumes all listed items and aggregates stones', functio
     expect($inv['bag'])->toBe([])
         ->and($inv['stones']['rare_stone'])->toBe(1);
 });
-
 
 it('rerolls item bonuses, preserves base stat, and consumes 2 stones', function () {
     itmBind(7);
@@ -158,7 +155,6 @@ it('rejects reroll with insufficient stones (422)', function () {
         'itemUuid' => 'itm-1', 'requestId' => 'req-r3',
     ])->assertStatus(422);
 });
-
 
 it('converts 100 stones + 1000 gold into 1 higher-tier stone', function () {
     $c = itmChar();

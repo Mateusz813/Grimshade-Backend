@@ -91,7 +91,6 @@ final class SkillSystem
         'Rogue' => 0.06, 'Necromancer' => 0.18, 'Bard' => 0.15,
     ];
 
-
     public static function skillXpToNextLevel(int $skillLevel): int
     {
         if ($skillLevel <= 0) {
@@ -111,7 +110,6 @@ final class SkillSystem
         return max(1, (int) floor(15 / (1 + $skillLevel * 0.05)));
     }
 
-
     public static function mlvlXpPerAttack(int $mlvl): int
     {
         return max(1, (int) floor(8 / (1 + $mlvl * 0.04)));
@@ -130,7 +128,6 @@ final class SkillSystem
         return in_array($cls, self::MLVL_FROM_ATTACKS_CLASSES, true);
     }
 
-
     public static function shieldingXpPerBlock(int $shieldingLevel): int
     {
         return max(1, (int) floor(15 / (1 + $shieldingLevel * 0.06)));
@@ -145,7 +142,6 @@ final class SkillSystem
     {
         return $shieldingLevel * 0.005;
     }
-
 
     public static function offlineXpRate(int|float $skillLevel): float
     {
@@ -192,7 +188,6 @@ final class SkillSystem
         return (int) floor($totalXpGained);
     }
 
-
     public static function processSkillXp(int $currentLevel, int $currentXp, int $xpGained): array
     {
         $level = $currentLevel;
@@ -219,7 +214,6 @@ final class SkillSystem
     {
         return $skillLevel * $damageBonus;
     }
-
 
     public static function getClassWeaponSkills(string $cls): array
     {
@@ -257,7 +251,6 @@ final class SkillSystem
 
         return $needed > 0 ? min(1, $currentXp / $needed) : 0;
     }
-
 
     public static function getSkillUnlockCost(int $unlockLevel): int
     {
@@ -300,7 +293,6 @@ final class SkillSystem
             ? 1
             : 1 + min($upgradeLevel, 10) * 0.02 + max(0, $upgradeLevel - 10) * 0.01;
     }
-
 
     public static function getSpellChestUnlockCost(int $unlockLevel): array
     {

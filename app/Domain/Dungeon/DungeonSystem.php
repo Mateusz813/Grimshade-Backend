@@ -24,7 +24,6 @@ final class DungeonSystem
 
     private const TYPE_ORDER = ['Normal', 'Strong', 'Epic', 'Legendary', 'Boss'];
 
-
     public static function getDungeonMinLevel(array $dungeon): int
     {
         return (int) ($dungeon['minLevel'] ?? $dungeon['level']);
@@ -95,7 +94,6 @@ final class DungeonSystem
 
         return (int) floor($totalSec / 3600).'h '.(int) floor(($totalSec % 3600) / 60).'m';
     }
-
 
     public static function getFinalWaveMonsterType(int $dungeonLevel): string
     {
@@ -186,7 +184,6 @@ final class DungeonSystem
         return $out;
     }
 
-
     public static function pickWaveMonster(array $dungeon, array $allMonsters, int $wave, int $totalWaves): array
     {
         $isBossWave = $wave === $totalWaves - 1;
@@ -234,7 +231,6 @@ final class DungeonSystem
 
         return $result;
     }
-
 
     public static function scaleDungeonMonster(array $monster, int $wave, int $totalWaves, ?int $dungeonLevel = null): array
     {
@@ -293,7 +289,6 @@ final class DungeonSystem
         ]);
     }
 
-
     public static function resolveWave(
         int $playerHp,
         int $playerAtk,
@@ -320,7 +315,6 @@ final class DungeonSystem
 
         return ['playerHpLeft' => (int) max(0, $pHp), 'won' => $pHp > 0];
     }
-
 
     public static function rollDungeonRarity(RngInterface $rng, string $maxRarity): string
     {
@@ -370,7 +364,6 @@ final class DungeonSystem
             'itemLevel' => $dungeonLevel,
         ];
     }
-
 
     public static function resolveDungeon(
         array $dungeon,
@@ -443,7 +436,6 @@ final class DungeonSystem
         ];
     }
 
-
     public static function estimateDungeonRewards(array $dungeon, array $allMonsters, array $monstersRawData): array
     {
         $multiplier = 4;
@@ -480,7 +472,6 @@ final class DungeonSystem
             'xp' => (int) ($totalXpEst * $multiplier + $xpBonus),
         ];
     }
-
 
     private static function stepDownType(string $type): string
     {

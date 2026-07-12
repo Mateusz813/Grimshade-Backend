@@ -37,7 +37,6 @@ function aseSave(Character $c, string $league = 'bronze', int $seasonPoints = 0,
     ]);
 }
 
-
 it('returns the season slice with a reward preview when a rank is pending', function () {
     $c = aseChar();
     aseSave($c, league: 'silver', seasonPoints: 420, pending: ['league' => 'silver', 'finalRank' => 3]);
@@ -66,7 +65,6 @@ it('returns a null preview and null rank when nothing is pending', function () {
         ->assertJsonPath('pendingRewards', null)
         ->assertJsonPath('rewardPreview', null);
 });
-
 
 it('claims season rewards: grants scaled loot, promotes, and clears pending', function () {
     $c = aseChar();

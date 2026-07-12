@@ -47,7 +47,6 @@ function seToken(): string
     return TokenFactory::forUser(SE_USER);
 }
 
-
 it('returns blob-shaped state with character', function () {
     $c = seChar();
     seSave($c, 12345);
@@ -65,7 +64,6 @@ it('blocks reading another user\'s state (403)', function () {
     $this->withToken(seToken())->getJson("/api/v1/characters/{$other->id}/state")->assertForbidden();
 });
 
-
 it('writes ONLY the settings slice via prefs', function () {
     $c = seChar();
     seSave($c, 777);
@@ -78,7 +76,6 @@ it('writes ONLY the settings slice via prefs', function () {
     expect($state['settings'])->toBe(['language' => 'en', 'combatSpeed' => 'x2'])
         ->and($state['inventory']['gold'])->toBe(777);
 });
-
 
 it('sells an item: server-computed gold + stone refund, item removed', function () {
     $c = seChar();
@@ -118,7 +115,6 @@ it('selling a nonexistent item is 404 (and cannot dupe)', function () {
         'itemUuid' => 'no-such', 'requestId' => 'sell-404',
     ])->assertNotFound();
 });
-
 
 it('upgrade deducts cost ALWAYS and rolls success server-side', function () {
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(12345));
@@ -161,7 +157,6 @@ it('upgrade with insufficient gold is 422 and deducts NOTHING', function () {
     expect($state['inventory']['gold'])->toBe(100)
         ->and($state['inventory']['stones']['rare_stone'])->toBe(50);
 });
-
 
 it('buys elixirs at server price with level gate', function () {
     $c = seChar(50);

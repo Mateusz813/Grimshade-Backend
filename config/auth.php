@@ -4,12 +4,10 @@ use App\Models\User;
 
 return [
 
-
     'defaults' => [
         'guard' => env('AUTH_GUARD', 'web'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
-
 
     'guards' => [
         'web' => [
@@ -17,7 +15,6 @@ return [
             'provider' => 'users',
         ],
     ],
-
 
     'providers' => [
         'users' => [
@@ -27,7 +24,6 @@ return [
 
     ],
 
-
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -36,7 +32,6 @@ return [
             'throttle' => 60,
         ],
     ],
-
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 

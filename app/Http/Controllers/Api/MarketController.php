@@ -23,7 +23,6 @@ final class MarketController extends Controller
 {
     private const KINDS = ['item', 'potion', 'elixir', 'stone', 'arena_points', 'spell_chest'];
 
-
     public function index(Request $request): JsonResponse
     {
         $query = MarketListing::query()->where('quantity', '>', 0);
@@ -69,7 +68,6 @@ final class MarketController extends Controller
                 ->all()
         );
     }
-
 
     public function store(Request $request, CharacterStateService $state): JsonResponse
     {
@@ -163,7 +161,6 @@ final class MarketController extends Controller
 
         return response()->json($payload, Response::HTTP_CREATED);
     }
-
 
     public function buy(Request $request, CharacterStateService $state): JsonResponse
     {
@@ -259,7 +256,6 @@ final class MarketController extends Controller
         return response()->json($payload);
     }
 
-
     public function update(Request $request): JsonResponse
     {
         $character = $request->attributes->get('character');
@@ -307,7 +303,6 @@ final class MarketController extends Controller
 
         return response()->json($payload);
     }
-
 
     public function notifications(Request $request): JsonResponse
     {
@@ -358,7 +353,6 @@ final class MarketController extends Controller
         return response()->json($payload);
     }
 
-
     public function destroy(Request $request, CharacterStateService $state): JsonResponse
     {
         $character = $request->attributes->get('character');
@@ -388,7 +382,6 @@ final class MarketController extends Controller
 
         return response()->json($payload);
     }
-
 
     private function escrowStack(CharacterStateService $state, GameSave $save, string $kind, string $itemId, int $qty): void
     {

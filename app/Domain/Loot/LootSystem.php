@@ -37,7 +37,6 @@ final class LootSystem
 
     private const BASE_PRICE = ['common' => 10, 'rare' => 50, 'epic' => 200, 'legendary' => 500, 'mythic' => 2000, 'heroic' => 5000];
 
-
     public static function scaleHeroicDropRate(float $baseRate, int|float $monsterLevel): float
     {
         if ($baseRate <= 0) {
@@ -91,7 +90,6 @@ final class LootSystem
             'boss' => ['base' => self::MONSTER_RARITY_CHANCES['boss'], 'bonus' => $bossBonus, 'total' => $bossTotal],
         ];
     }
-
 
     public const ROLL_COUNTS = [
         'normal' => 2, 'strong' => 3, 'epic' => 4, 'legendary' => 5, 'boss' => 6,

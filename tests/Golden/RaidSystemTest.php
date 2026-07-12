@@ -85,7 +85,6 @@ it('matches seeded selectors (mulberry32 float → rarity)', function () {
     }
 });
 
-
 $itemRarities = ['heroic', 'mythic', 'legendary', 'epic', 'rare', 'common'];
 $stoneIds = ['heroic_stone', 'mythic_stone', 'legendary_stone', 'epic_stone', 'rare_stone', 'common_stone'];
 

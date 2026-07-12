@@ -19,7 +19,6 @@ function ccToken(string $user = CC_USER): string
     return TokenFactory::forUser($user);
 }
 
-
 it('creates a character with server-derived stats and seeds the starter save', function () {
     $res = $this->withToken(ccToken())->postJson('/api/v1/characters', [
         'requestId' => 'req-1',
@@ -77,7 +76,6 @@ it('ignores stat fields from the body and derives them server-side', function ()
         ->assertJsonPath('level', 1);
 });
 
-
 it('rejects a name that is too short', function () {
     $this->withToken(ccToken())->postJson('/api/v1/characters', [
         'requestId' => 'req-x', 'name' => 'ab', 'class' => 'Knight',
@@ -100,7 +98,6 @@ it('rejects an unknown class', function () {
     ])->assertStatus(422)->assertJsonValidationErrors('class');
 });
 
-
 it('enforces the 7-character cap and rejects the 8th', function () {
     Character::factory()->count(7)->forUser(CC_USER)->create();
 
@@ -110,7 +107,6 @@ it('enforces the 7-character cap and rejects the 8th', function () {
 
     expect(Character::where('user_id', CC_USER)->count())->toBe(7);
 });
-
 
 it('replays the same requestId without creating a second character', function () {
     $first = $this->withToken(ccToken())->postJson('/api/v1/characters', [
@@ -125,7 +121,6 @@ it('replays the same requestId without creating a second character', function ()
     expect(Character::where('user_id', CC_USER)->count())->toBe(1);
     expect(GameSave::where('character_id', $first->json('id'))->count())->toBe(1);
 });
-
 
 it('deletes the character with its roster/market rows and game save, keeping chat + guild logs', function () {
     $c = Character::factory()->forUser(CC_USER)->create();

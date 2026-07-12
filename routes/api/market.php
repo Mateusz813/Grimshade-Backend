@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\MarketController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::middleware('supabase.auth')->group(function (): void {
     Route::get('/market/listings', [MarketController::class, 'index']);
 

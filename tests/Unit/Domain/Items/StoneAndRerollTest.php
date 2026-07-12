@@ -14,7 +14,6 @@ function rerollGenerator(int $seed): ItemGenerator
     return new ItemGenerator($content->get('itemTemplates'), new Mulberry32Rng($seed));
 }
 
-
 it('maps the stone conversion chain and costs (parity itemSystem.ts)', function () {
     expect(StoneSystem::higherTier('common_stone'))->toBe('rare_stone')
         ->and(StoneSystem::higherTier('rare_stone'))->toBe('epic_stone')
@@ -25,7 +24,6 @@ it('maps the stone conversion chain and costs (parity itemSystem.ts)', function 
         ->and(StoneSystem::STONE_CONVERSION_COST)->toBe(100)
         ->and(StoneSystem::STONE_CONVERSION_GOLD)->toBe(1000);
 });
-
 
 it('returns the base stat keys per slot (parity itemSystem.ts)', function () {
     expect(ItemGenerator::getBaseStatKeysForSlot('mainHand'))->toBe(['dmg_min', 'dmg_max', 'attack', 'defense'])
@@ -38,7 +36,6 @@ it('returns the base stat keys per slot (parity itemSystem.ts)', function () {
         ->and(ItemGenerator::getBaseStatKeysForSlot('earrings'))->toBe(['defense'])
         ->and(ItemGenerator::getBaseStatKeysForSlot(null))->toBe([]);
 });
-
 
 it('preserves base stats and regenerates the right number of random bonuses', function () {
     $gen = rerollGenerator(7);

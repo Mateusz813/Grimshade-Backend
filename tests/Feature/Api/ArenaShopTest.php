@@ -38,7 +38,6 @@ function asSave(Character $c, int $arenaPoints = 0): GameSave
     ]);
 }
 
-
 it('returns the arena shop catalog with current arenaPoints', function () {
     $c = asChar();
     asSave($c, arenaPoints: 1234);
@@ -63,7 +62,6 @@ it('returns the arena shop catalog with current arenaPoints', function () {
     expect($hp25['payloadId'])->toBe('hp_potion_great');
 });
 
-
 it('buys a stone: spends AP and grants one stone', function () {
     $c = asChar();
     asSave($c, arenaPoints: 500);
@@ -82,7 +80,6 @@ it('buys a stone: spends AP and grants one stone', function () {
     expect($blob['inventory']['stones']['rare_stone'])->toBe(1)
         ->and($blob['inventory']['arenaPoints'])->toBe(300);
 });
-
 
 it('rejects a potion above the character level (422) BEFORE spending AP', function () {
     $c = asChar(level: 300);
@@ -115,7 +112,6 @@ it('buys a potion when the level is high enough', function () {
     expect($blob['inventory']['consumables']['hp_potion_great'])->toBe(1);
 });
 
-
 it('buys a mythic weapon of the class type, priced level*1000, into the bag', function () {
     $c = asChar(level: 5, class: 'Knight');
     asSave($c, arenaPoints: 10000);
@@ -137,7 +133,6 @@ it('buys a mythic weapon of the class type, priced level*1000, into the bag', fu
     $blob = GameSave::where('character_id', $c->id)->first()->state;
     expect($blob['inventory']['bag'])->toHaveCount(1);
 });
-
 
 it('rejects a buy with insufficient arena points (422)', function () {
     $c = asChar();

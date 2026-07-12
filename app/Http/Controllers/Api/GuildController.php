@@ -728,7 +728,6 @@ final class GuildController extends Controller
         ]);
     }
 
-
     private function guildFromRoute(Request $request): Guild
     {
         $guild = Guild::query()->find((string) $request->route('guild'));

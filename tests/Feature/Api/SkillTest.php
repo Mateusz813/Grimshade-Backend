@@ -62,7 +62,6 @@ function skFixedRng(float $value): RngInterface
     };
 }
 
-
 it('upgrades a skill: chest + gold deducted, level bumped, ranking counter++', function () {
     $c = skChar();
     skSave($c, gold: 1000, consumables: ['spell_chest_5' => 3]);
@@ -160,7 +159,6 @@ it('404 for an unknown skill id', function () {
     )->assertNotFound();
 });
 
-
 it('collects offline training XP computed from server elapsed time', function () {
     $c = skChar();
     skSave($c, gold: 0, skills: [
@@ -219,7 +217,6 @@ it('rejects training a stat not trainable for the class (422)', function () {
         ['skillId' => 'dagger_fighting'],
     )->assertStatus(422);
 });
-
 
 it('blocks acting on another user\'s character (403)', function () {
     $other = Character::factory()->forUser(SK_USER_B)->create(['class' => 'Knight']);

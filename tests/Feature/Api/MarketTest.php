@@ -73,7 +73,6 @@ function mkTokenB(): string
     return TokenFactory::forUser(MK_USER_B);
 }
 
-
 it('lists active listings and filters out empty ones', function () {
     $seller = mkChar(MK_USER_A);
     mkListing($seller, ['item_name' => 'Miecz', 'price' => 1000]);
@@ -97,7 +96,6 @@ it('returns only my listings on the mine endpoint', function () {
     $res->assertOk()->assertJsonCount(1);
     expect($res->json('0.itemName'))->toBe('Moje');
 });
-
 
 it('escrows an item: it leaves the bag ATOMICALLY with the listing insert', function () {
     $seller = mkChar(MK_USER_A);
@@ -164,7 +162,6 @@ it('rejects invalid price (422)', function () {
         'kind' => 'item', 'itemUuid' => 'itm-1', 'price' => 0, 'quantity' => 1, 'requestId' => 'list-p',
     ])->assertStatus(422);
 });
-
 
 it('buy recomputes gold SERVER-side: buyer −total, seller +net(after 5% tax)', function () {
     $seller = mkChar(MK_USER_A);
@@ -291,7 +288,6 @@ it('CANNOT buy your own listing (422)', function () {
     expect((int) MarketListing::find($listing->id)->quantity)->toBe(1);
 });
 
-
 it('cancels a listing and returns the escrowed item to the seller bag', function () {
     $seller = mkChar(MK_USER_A);
     mkSave($seller, 0, ['bag' => []]);
@@ -312,7 +308,6 @@ it('cancelling a nonexistent listing is 404', function () {
         "/api/v1/characters/{$seller->id}/market/listings/00000000-0000-0000-0000-000000000000"
     )->assertNotFound();
 });
-
 
 it('blocks acting on another user\'s character (403)', function () {
     $seller = mkChar(MK_USER_A);

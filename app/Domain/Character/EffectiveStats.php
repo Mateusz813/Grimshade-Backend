@@ -49,7 +49,6 @@ final class EffectiveStats
         );
     }
 
-
     public function getGeneratedItemInfo(string $itemId): ?array
     {
         if (array_key_exists($itemId, $this->genInfoCache)) {
@@ -96,7 +95,6 @@ final class EffectiveStats
         return $this->genInfoCache[$itemId] = null;
     }
 
-
     public function getItemStats(array $item, ?array $baseData): array
     {
         $upgradeLevel = (int) ($item['upgradeLevel'] ?? 0);
@@ -127,7 +125,6 @@ final class EffectiveStats
 
         return $stats;
     }
-
 
     public function getTotalEquipmentStats(array $equipment): array
     {
@@ -162,7 +159,6 @@ final class EffectiveStats
 
         return $levels === [] ? 1 : self::jsRound(array_sum($levels) / count($levels));
     }
-
 
     public static function getClassSkillBonus(string $characterClass, array $skillLevels): array
     {
@@ -202,7 +198,6 @@ final class EffectiveStats
     {
         return self::CLASS_MODIFIER[$characterClass] ?? 1.0;
     }
-
 
     public function getEffectiveChar(
         array $baseRow,
@@ -264,7 +259,6 @@ final class EffectiveStats
             'mp_regen' => self::num($baseRow['mp_regen'] ?? 0) + $tb['mp_regen'] + $transformMpRegenFlat,
         ];
     }
-
 
     private function findBaseItem(string $itemId): ?array
     {

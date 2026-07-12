@@ -33,7 +33,6 @@ final class PartySystem
         'Mage' => 'Bot Mag',
     ];
 
-
     private static function clampSize(int $partySize): int
     {
         return (int) max(1, min($partySize, self::MAX_PARTY_SIZE));
@@ -60,7 +59,6 @@ final class PartySystem
         return 1 + ($size - 1) * 0.2;
     }
 
-
     public static function canJoinParty(int $currentSize): bool
     {
         return $currentSize < self::MAX_PARTY_SIZE;
@@ -85,7 +83,6 @@ final class PartySystem
     {
         return self::getHumanCount($members) < 2;
     }
-
 
     public static function createBotHelper(array $members): array
     {
@@ -118,7 +115,6 @@ final class PartySystem
         ];
     }
 
-
     public static function getXpShare(int $totalXp, int $partySize): int
     {
         return (int) floor($totalXp / max(1, $partySize));
@@ -128,7 +124,6 @@ final class PartySystem
     {
         return (int) floor($totalGold / max(1, $partySize));
     }
-
 
     public static function getPartySummary(array $members): array
     {
@@ -147,7 +142,6 @@ final class PartySystem
             'difficultyMultiplier' => self::calculateDifficultyMultiplier($size),
         ];
     }
-
 
     public static function calculateHelpDamage(int|float $finishedMemberAttack, int|float $remainingMonsterHp): int
     {
@@ -207,7 +201,6 @@ final class PartySystem
         return 1.0;
     }
 
-
     public static function getPartyGateLevel(int $myLevel, ?array $members): int
     {
         if ($members === null || count($members) === 0) {
@@ -261,7 +254,6 @@ final class PartySystem
 
         return $cap;
     }
-
 
     public static function getAggroWeight(string $cls): int
     {

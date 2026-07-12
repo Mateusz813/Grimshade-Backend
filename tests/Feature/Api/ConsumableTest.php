@@ -40,7 +40,6 @@ function cnSave(Character $c, array $consumables = []): GameSave
     ]);
 }
 
-
 it('converts potions: consumes inputCount*batches, produces batches (FREE)', function () {
     $c = cnChar();
     cnSave($c, ['hp_potion_sm' => 12]);
@@ -129,7 +128,6 @@ it('convert is idempotent per requestId (no double apply)', function () {
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['hp_potion_sm'])->toBe(2);
 });
 
-
 it('uses a consumable: decrements the stack by exactly 1', function () {
     $c = cnChar();
     cnSave($c, ['xp_boost' => 3]);
@@ -178,7 +176,6 @@ it('use is idempotent per requestId (no double decrement)', function () {
     expect($two)->toBe($one);
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['xp_boost'])->toBe(2);
 });
-
 
 it('resets stats to class base + consumes the stat_reset elixir', function () {
     $c = cnChar(['hp' => 5000, 'mp' => 5000]);
@@ -233,7 +230,6 @@ it('stat-reset is idempotent per requestId (no double consume)', function () {
     expect($two)->toBe($one);
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['stat_reset'])->toBe(1);
 });
-
 
 it('blocks acting on another user\'s character (403)', function () {
     $other = Character::factory()->forUser(CN_USER_B)->create(['class' => 'Knight', 'level' => 100]);

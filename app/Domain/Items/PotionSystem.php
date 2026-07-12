@@ -6,7 +6,6 @@ namespace App\Domain\Items;
 
 final class PotionSystem
 {
-
     public const TIER_MIN_LEVEL = [
         'sm' => 1,
         'md' => 20,
@@ -19,7 +18,6 @@ final class PotionSystem
     ];
 
     public const PCT_POTION_MIN_LEVEL = 100;
-
 
     public const PCT_HP_POTION_IDS = ['hp_potion_great', 'hp_potion_super', 'hp_potion_ultimate', 'hp_potion_divine'];
 
@@ -67,7 +65,6 @@ final class PotionSystem
         'stat_reset', 'offline_training_boost', 'utamo_vita', 'premium_xp_boost',
     ];
 
-
     private const FAMILY_ORDER = ['hp' => 0, 'mp' => 1];
 
     private const RAW_POTION_CONVERSIONS = [
@@ -86,7 +83,6 @@ final class PotionSystem
         ['tier' => 6, 'family' => 'mp', 'inputId' => 'mp_potion_ultimate', 'inputCount' => 2, 'outputId' => 'mp_potion_divine'],
         ['tier' => 7, 'family' => 'mp', 'inputId' => 'mp_potion_lg', 'inputCount' => 25, 'outputId' => 'mp_potion_mega'],
     ];
-
 
     public static function isHpMpPotionId(string $id): bool
     {
@@ -107,7 +103,6 @@ final class PotionSystem
     {
         return $level >= self::getPotionMinLevel($id);
     }
-
 
     public static function isPctPotion(string $effect): bool
     {
@@ -142,7 +137,6 @@ final class PotionSystem
 
         return $effect;
     }
-
 
     public static function allHpPotions(): array
     {
@@ -192,7 +186,6 @@ final class PotionSystem
         ));
     }
 
-
     public static function getBestPotion(array $potions, array $consumables, int|float $characterLevel = INF): ?string
     {
         $reversed = array_reverse(array_values($potions));
@@ -239,7 +232,6 @@ final class PotionSystem
 
         return null;
     }
-
 
     public static function potionConversions(): array
     {

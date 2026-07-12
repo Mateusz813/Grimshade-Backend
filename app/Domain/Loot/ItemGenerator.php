@@ -49,7 +49,6 @@ final class ItemGenerator
         private readonly RngInterface $rng,
     ) {}
 
-
     private function randInt(int|float $min, int|float $max): int
     {
         return (int) ($min + floor($this->rng->nextFloat() * ($max - $min + 1)));
@@ -104,7 +103,6 @@ final class ItemGenerator
         return $bonuses;
     }
 
-
     public static function getBaseStatKeysForSlot(?string $slot): array
     {
         return match ($slot) {
@@ -137,7 +135,6 @@ final class ItemGenerator
 
         return [...$baseStats, ...$newRandomBonuses];
     }
-
 
     public function generateWeapon(string $weaponType, int $level, string $rarity): ?array
     {

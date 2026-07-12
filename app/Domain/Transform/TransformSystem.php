@@ -78,7 +78,6 @@ final class TransformSystem
         $this->sortedMonsters = $sorted;
     }
 
-
     public static function getTransformTierMultiplier(int $transformId): float
     {
         if ($transformId < 1) {
@@ -172,7 +171,6 @@ final class TransformSystem
 
         return (int) max($completedTransformIds);
     }
-
 
     public function getAllTransforms(): array
     {

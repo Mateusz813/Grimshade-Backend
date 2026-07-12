@@ -38,7 +38,6 @@ function chSeed(string $channel, string $content, string $name, mixed $createdAt
     ], $attrs));
 }
 
-
 it('posts a message with server-sourced identity (anti-forge)', function () {
     $c = chChar();
 
@@ -94,7 +93,6 @@ it('enforces a simple rate limit (429) on rapid posts', function () {
     expect(Message::count())->toBe(2);
 });
 
-
 it('reads the channel feed newest-first, filtered by channel', function () {
     chSeed('city', 'stary', 'A', now()->subMinutes(2));
     chSeed('city', 'nowy', 'B', now());
@@ -119,7 +117,6 @@ it('honours the limit parameter (newest N)', function () {
 it('requires a channel on the feed (422)', function () {
     $this->withToken(chToken())->getJson('/api/v1/chat/messages')->assertStatus(422);
 });
-
 
 it('broadcasts an upgrade system event in SystemChatMessages format', function () {
     $c = chChar();
@@ -192,7 +189,6 @@ it('rejects an unknown system event type (422)', function () {
         'type' => 'god_mode', 'upgradeLevel' => 10,
     ])->assertStatus(422);
 });
-
 
 it('cannot post to another user\'s character (403)', function () {
     $other = Character::factory()->forUser(CH_USER_B)->create();

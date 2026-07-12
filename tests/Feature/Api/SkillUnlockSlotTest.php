@@ -37,7 +37,6 @@ function suSave(Character $c, int $gold, array $consumables = [], array $skills 
     ]);
 }
 
-
 it('unlocks a skill: 1 spell chest + gold deducted, flag set', function () {
     $c = suChar();
     suSave($c, gold: 1000, consumables: ['spell_chest_5' => 3]);
@@ -139,7 +138,6 @@ it('already-unlocked skill costs nothing on a fresh request', function () {
         ->and($blob['inventory']['consumables']['spell_chest_5'])->toBe(3);
 });
 
-
 it('assigns an unlocked skill to a slot', function () {
     $c = suChar();
     suSave($c, gold: 0, skills: ['unlockedSkills' => ['shield_bash' => true]]);
@@ -213,7 +211,6 @@ it('slot assignment is idempotent per requestId', function () {
 
     expect($two)->toBe($one);
 });
-
 
 it('blocks unlock/slot on another user\'s character (403)', function () {
     $other = Character::factory()->forUser(SU_USER_B)->create(['class' => 'Knight', 'level' => 100]);

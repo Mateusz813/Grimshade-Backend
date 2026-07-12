@@ -10,7 +10,6 @@ beforeEach(function () {
     $this->golden = Golden::load('skillEffectsV2.json');
 });
 
-
 it('matches newStatusState', function () {
     expect(SkillEffectsV2::newStatusState())->toEqual($this->golden['newStatusState']);
 });
@@ -74,7 +73,6 @@ it('matches applyIncomingHeal', function () {
     }
 });
 
-
 it('matches tickStatus (mutuje stan)', function () {
     foreach ($this->golden['tickStatus'] as $i => $case) {
         $s = $case['before'];
@@ -92,7 +90,6 @@ it('matches consumeTargetMarkAmp (mutuje stan)', function () {
         expect($t)->toEqual($case['after'], "consumeTargetMarkAmp #{$i} state");
     }
 });
-
 
 it('matches consumeCasterBasicHitMods (mutuje stan + RNG crit_next ułamkowy)', function () {
     foreach ($this->golden['consumeCasterBasicHitMods'] as $i => $case) {

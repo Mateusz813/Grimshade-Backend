@@ -73,7 +73,6 @@ final class BotSystem
         return $result;
     }
 
-
     public function calculateBotStats(int $level, string $cls): array
     {
         $data = $this->classData[$cls] ?? null;
@@ -91,7 +90,6 @@ final class BotSystem
 
         return ['hp' => $hp, 'mp' => $mp, 'attack' => $attack, 'defense' => $defense, 'speed' => $speed, 'magicLevel' => $magicLevel];
     }
-
 
     public function generateBot(
         RngInterface $rng,
@@ -184,7 +182,6 @@ final class BotSystem
         ];
     }
 
-
     public function calculateBotAction(RngInterface $rng, array $bot, int|float $bossDefense, bool $canUseSkill): array
     {
         $baseDmg = max(1, $bot['attack'] - $bossDefense);
@@ -212,7 +209,6 @@ final class BotSystem
         ];
     }
 
-
     public static function pickAggroTarget(RngInterface $rng, array $arg): string
     {
         if (count($arg) === 0) {
@@ -227,7 +223,6 @@ final class BotSystem
 
         return PartySystem::pickWeightedAggroTarget($rng, $arg) ?? 'player';
     }
-
 
     public static function calculateAoeDamage(int|float $bossAttack, int|float $targetDefense): int
     {

@@ -26,8 +26,7 @@ final class HmacSupabaseTokenVerifier implements SupabaseTokenVerifier
         private readonly string $audience,
         private readonly int $leewaySeconds,
         private readonly ClockInterface $clock,
-    ) {
-    }
+    ) {}
 
     private function config(): Configuration
     {

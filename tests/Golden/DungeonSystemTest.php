@@ -175,7 +175,6 @@ it('matches resolveDungeon (common → pełna symulacja bit-parity)', function (
     }
 });
 
-
 it('rollDungeonItemDrop honours rarity cap + item level for epic dungeons (property)', function () {
     $dungeon = ['id' => 'ep', 'name_pl' => '', 'name_en' => '', 'level' => 50, 'maxRarity' => 'epic', 'description_pl' => ''];
     $order = DungeonSystem::DUNGEON_RARITY_ORDER;

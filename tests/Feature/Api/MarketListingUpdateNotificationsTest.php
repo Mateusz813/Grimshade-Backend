@@ -62,7 +62,6 @@ function munTokenB(): string
     return TokenFactory::forUser(MUN_USER_B);
 }
 
-
 it('updates price and quantity of my own listing', function () {
     $seller = munChar(MUN_USER_A);
     $listing = munListing($seller, ['kind' => 'stone', 'item_id' => 'rare_stone', 'price' => 100, 'quantity' => 5, 'quantity_initial' => 5]);
@@ -151,7 +150,6 @@ it('update is idempotent per requestId (replay returns cached, no re-apply)', fu
         ->assertOk()->assertJsonPath('listing.price', 300);
 });
 
-
 it('lists my unseen sale notifications, newest first', function () {
     $seller = munChar(MUN_USER_A);
     $other = munChar(MUN_USER_B);
@@ -167,7 +165,6 @@ it('lists my unseen sale notifications, newest first', function () {
         ->and($res->json('notifications.1.itemName'))->toBe('Stary')
         ->and($res->json('notifications.0.goldReceived'))->toBe(950);
 });
-
 
 it('dismisses my notification (marks it seen)', function () {
     $seller = munChar(MUN_USER_A);

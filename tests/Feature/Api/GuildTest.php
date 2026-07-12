@@ -85,7 +85,6 @@ function gdWeekStart(): string
     return GuildSystem::getCurrentWeekStartIso((int) (now()->timestamp * 1000));
 }
 
-
 it('creates a guild and charges the cost from the blob gold', function () {
     $leader = gdChar(GD_USER_A);
     gdSave($leader, 2_000_000);
@@ -130,7 +129,6 @@ it('create is idempotent per requestId (no double charge)', function () {
         ->and(GameSave::where('character_id', $leader->id)->first()->state['inventory']['gold'])->toBe(1_000_000);
 });
 
-
 it('runs the full create + join + accept flow', function () {
     $leader = gdChar(GD_USER_A);
     gdSave($leader, 2_000_000);
@@ -169,7 +167,6 @@ it('forbids a non-leader from accepting join requests (403)', function () {
 
     expect(GuildMember::where('guild_id', $guild->id)->where('character_id', $joiner->id)->exists())->toBeFalse();
 });
-
 
 it('computes boss damage server-side and credits guild XP (1 HP = 1 XP)', function () {
     $leader = gdChar(GD_USER_A, ['attack' => 1000, 'level' => 10]);
@@ -241,7 +238,6 @@ it('forbids a non-member from attacking the guild boss (403)', function () {
         ->assertForbidden();
 });
 
-
 it('disbands the guild when the last (leader) member leaves', function () {
     $leader = gdChar(GD_USER_A);
     $guild = gdGuild($leader);
@@ -267,7 +263,6 @@ it('hands leadership to the oldest remaining member when the leader leaves', fun
 
     expect(Guild::find($guild->id)->leader_id)->toBe('cccccccc-cccc-cccc-cccc-cccccccccccc');
 });
-
 
 it('deposits an item from the bag into the treasury and withdraws it back', function () {
     $leader = gdChar(GD_USER_A);
@@ -307,7 +302,6 @@ it('forbids a non-member from depositing into the treasury (403)', function () {
         'itemUuid' => 'x-1',
     ])->assertForbidden();
 });
-
 
 it('shows guild metadata + roster + requests', function () {
     $leader = gdChar(GD_USER_A);

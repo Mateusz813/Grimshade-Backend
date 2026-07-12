@@ -48,7 +48,6 @@ final class EventValidation
             }
         }
 
-
         if (isset(self::ATTEMPT_PATHS[$type]) && $sourceId !== '') {
             $prevUsed = $this->attemptCount($prev, $type, $sourceId, $today);
             $nextUsed = $this->attemptCount($next, $type, $sourceId, $today);

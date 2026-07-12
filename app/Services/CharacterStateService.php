@@ -38,7 +38,6 @@ final class CharacterStateService
         $save->save();
     }
 
-
     public function commit(
         Character $character,
         GameSave $save,
@@ -248,7 +247,6 @@ final class CharacterStateService
         return $violations;
     }
 
-
     private const STAT_INT_FIELDS = [
         'level', 'xp', 'hp', 'max_hp', 'mp', 'max_mp', 'attack', 'defense',
         'magic_level', 'stat_points', 'highest_level',
@@ -260,7 +258,6 @@ final class CharacterStateService
         'common' => 5, 'rare' => 12, 'epic' => 18, 'legendary' => 35, 'mythic' => 60, 'heroic' => 100,
     ];
 
-
     private const ABSURD_GOLD_CAP = 1_000_000_000_000;
 
     private const ABSURD_STACK_CAP = 100_000;
@@ -268,7 +265,6 @@ final class CharacterStateService
     private const ABSURD_ARENA_CAP = 1_000_000_000;
 
     private const ABSURD_SKILL_CAP = 500;
-
 
     private const SOFT_GOLD_DELTA = 2_000_000_000;
 
@@ -357,7 +353,6 @@ final class CharacterStateService
         return is_finite((float) $n) ? $n : 0;
     }
 
-
     public function gold(GameSave $save): int
     {
         return (int) ($save->state['inventory']['gold'] ?? 0);
@@ -386,7 +381,6 @@ final class CharacterStateService
         $state['inventory']['gold'] = $current - $amount;
         $save->state = $state;
     }
-
 
     public function findBagItem(GameSave $save, string $uuid): ?array
     {
@@ -494,7 +488,6 @@ final class CharacterStateService
         throw new RuntimeException("Item {$uuid} nie istnieje w skrytce.");
     }
 
-
     public function addConsumable(GameSave $save, string $id, int $count): void
     {
         $state = $save->state;
@@ -533,7 +526,6 @@ final class CharacterStateService
         $state['inventory']['arenaPoints'] = max(0, (int) ($state['inventory']['arenaPoints'] ?? 0) + $amount);
         $save->state = $state;
     }
-
 
     public function writeClientPrefs(GameSave $save, array $settings): void
     {

@@ -341,7 +341,6 @@ final class PartyController extends Controller
         return response()->json($this->snapshot($party));
     }
 
-
     private function addMember(Party $party, Character $character, string $role): PartyMember
     {
         return PartyMember::create([

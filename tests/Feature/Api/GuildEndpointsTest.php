@@ -103,7 +103,6 @@ function greKilledBossWithContribution(Guild $guild, Character $char, int $total
     ]);
 }
 
-
 it('lets the leader kick a member and returns the updated roster', function () {
     $leader = greChar(GRE_USER_A);
     $guild = greGuild($leader);
@@ -151,7 +150,6 @@ it('forbids the leader from kicking themselves (403)', function () {
     expect(GuildMember::where('guild_id', $guild->id)->where('character_id', $leader->id)->exists())->toBeTrue();
 });
 
-
 it('lets the leader reject a join request and returns remaining requests', function () {
     $leader = greChar(GRE_USER_A);
     $guild = greGuild($leader);
@@ -185,7 +183,6 @@ it('forbids a non-leader from rejecting requests (403)', function () {
 
     expect(GuildJoinRequest::where('guild_id', $guild->id)->count())->toBe(1);
 });
-
 
 it('lets the leader disband the guild with the full cascade', function () {
     $leader = greChar(GRE_USER_A);
@@ -227,7 +224,6 @@ it('forbids a non-leader from disbanding the guild (403)', function () {
 
     expect(Guild::find($guild->id))->not->toBeNull();
 });
-
 
 it('claims boss rewards server-side, crediting gold/stones/potions to the blob and XP to the character', function () {
     $this->app->bind(RngInterface::class, fn () => new Mulberry32Rng(999));
@@ -341,7 +337,6 @@ it('forbids a non-member from claiming boss rewards (403)', function () {
     )->assertForbidden();
 });
 
-
 it('returns the weekly boss view (fetch-or-create) with contributions and attempts', function () {
     $leader = greChar(GRE_USER_A);
     $guild = greGuild($leader, ['boss_tier' => 3]);
@@ -377,7 +372,6 @@ it('forbids a non-member from viewing the guild boss (403)', function () {
         ->assertForbidden();
 });
 
-
 it('returns treasury items and logs', function () {
     $leader = greChar(GRE_USER_A);
     $guild = greGuild($leader);
@@ -406,7 +400,6 @@ it('forbids a non-member from viewing the treasury (403)', function () {
     $this->withToken(greTokenB())->getJson("/api/v1/characters/{$outsider->id}/guilds/{$guild->id}/treasury")
         ->assertForbidden();
 });
-
 
 it('lists guilds paginated with member counts, leader names and total count', function () {
     $leaderA = greChar(GRE_USER_A, ['name' => 'Krasek']);

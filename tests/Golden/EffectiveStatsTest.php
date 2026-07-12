@@ -9,7 +9,6 @@ beforeEach(function () {
     $this->eff = EffectiveStats::fromContent(new ContentRepository(dirname(__DIR__, 2).'/resources/game-content'));
 });
 
-
 it('parses generated item ids into {type, slot, itemLevel}', function () {
     expect($this->eff->getGeneratedItemInfo('sword_lvl10_epic'))
         ->toEqual(['type' => 'sword', 'slot' => 'mainHand', 'itemLevel' => 10]);
@@ -25,7 +24,6 @@ it('parses generated item ids into {type, slot, itemLevel}', function () {
 
     expect($this->eff->getGeneratedItemInfo('sword_of_beginnings'))->toBeNull();
 });
-
 
 it('sums generated equipment stats: base-stat keys scale with upgrade, extras flat', function () {
     $equipment = [
@@ -61,7 +59,6 @@ it('scales only the base stat of a slot by upgrade level (getUpgradedBaseStat)',
         ->and($eq['defense'])->toBe(10);
 });
 
-
 it('averages equipped generated item levels (Math.round)', function () {
     $equipment = [
         'mainHand' => ['itemId' => 'sword_lvl10_common', 'bonuses' => []],
@@ -70,7 +67,6 @@ it('averages equipped generated item levels (Math.round)', function () {
     expect($this->eff->getEquippedGearLevel($equipment))->toBe(15);
     expect($this->eff->getEquippedGearLevel([]))->toBe(1);
 });
-
 
 it('computes class skill bonus + extra crit per class table', function () {
     expect(EffectiveStats::getClassSkillBonus('Knight', ['sword_fighting' => 21]))
@@ -83,7 +79,6 @@ it('computes class skill bonus + extra crit per class table', function () {
     expect($rogue['skillBonus'])->toBe(15)
         ->and($rogue['extraCritChance'])->toEqualWithDelta(0.25, 1e-9);
 });
-
 
 it('aggregates effective char: equipment crit + attack, no elixir/transform', function () {
     $baseRow = [

@@ -13,7 +13,6 @@ use App\Http\Controllers\Api\ProgressionController;
 use App\Http\Controllers\Api\ShopController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/content/version', [ContentController::class, 'version']);
 
 Route::middleware('supabase.auth')->group(function (): void {

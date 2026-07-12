@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\PartyController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::middleware('supabase.auth')->group(function (): void {
     Route::get('/parties', [PartyController::class, 'index']);
 

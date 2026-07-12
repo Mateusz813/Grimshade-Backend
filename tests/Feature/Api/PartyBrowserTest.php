@@ -36,7 +36,6 @@ function pbCreateParty(string $userId, array $body = []): array
     return [$partyId, $leader];
 }
 
-
 it('lets the leader kick a member by row id', function () {
     [$partyId, $leader] = pbCreateParty(PB_USER_A);
 
@@ -102,7 +101,6 @@ it('returns 404 kicking an unknown member row', function () {
         ->assertNotFound();
 });
 
-
 it('lets the leader edit party meta and clamps values', function () {
     [$partyId, $leader] = pbCreateParty(PB_USER_A, ['password' => 'stare']);
 
@@ -151,7 +149,6 @@ it('rejects a meta edit attempted by a non-leader (403)', function () {
         ])
         ->assertForbidden();
 });
-
 
 it('lists public non-full parties ordered by newest first', function () {
     [$p1] = pbCreateParty(PB_USER_A, ['name' => 'Alpha']);
@@ -203,7 +200,6 @@ it('garbage-collects empty parties when listing', function () {
     expect(Party::find($ghost->id))->toBeNull();
 });
 
-
 it('returns the active party snapshot for the acting character', function () {
     [$partyId, $leader] = pbCreateParty(PB_USER_A, ['name' => 'Moje']);
 
@@ -225,7 +221,6 @@ it('returns null when the character is in no party', function () {
 
     expect($res->getContent())->toBe('null');
 });
-
 
 it('requires authentication for the public browser (401)', function () {
     $this->getJson('/api/v1/parties')->assertUnauthorized();
