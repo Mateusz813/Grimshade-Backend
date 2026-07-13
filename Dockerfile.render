@@ -28,8 +28,6 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction --prefer-dist \
     && chown -R www-data:www-data storage bootstrap/cache
 
-RUN printf '{\n\tadmin off\n\tservers {\n\t\tprotocols h1 h2c\n\t}\n\tfrankenphp\n}\n\n:8080 {\n\troot * public/\n\tencode zstd br gzip\n\tphp_server\n}\n' > /etc/frankenphp/Caddyfile
+RUN printf '{\n\tservers {\n\t\tprotocols h1 h2c\n\t}\n\tfrankenphp\n}\n\n:8080 {\n\troot * public/\n\tencode zstd br gzip\n\tphp_server\n}\n' > /etc/frankenphp/Caddyfile
 
-ENV CADDY_GLOBAL_OPTIONS="admin off"
-ENV SERVER_NAME=:8080
 EXPOSE 8080

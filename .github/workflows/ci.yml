@@ -116,9 +116,7 @@ jobs:
       - name: Status konfiguracji
         run: |
           if [ -z "$DEPLOY_HOST" ]; then
-            echo "::notice::Deploy pominięty — brak sekretu DEPLOY_HOST."
-            echo "Aby włączyć: Settings → Secrets and variables → Actions → dodaj"
-            echo "DEPLOY_HOST, DEPLOY_USER, DEPLOY_SSH_KEY (i opcjonalnie DEPLOY_PATH)."
+            echo "Deploy SSH nieaktywny — produkcja idzie przez Render auto-deploy. Aby włączyć SSH-deploy dodaj sekrety DEPLOY_HOST/DEPLOY_USER/DEPLOY_SSH_KEY."
           else
             echo "Deploy na $DEPLOY_HOST..."
           fi
