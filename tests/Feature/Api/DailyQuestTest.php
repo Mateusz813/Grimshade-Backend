@@ -69,22 +69,23 @@ it('refresh generates the daily quest set on a new day (capped at 12)', function
         ->and($slice['activeQuests'][0]['claimed'])->toBeFalse();
 });
 
-it('refresh is a no-op when already refreshed today (keeps progress)', function () {
+it('same-day refresh never resets progress of a quest that stays in the set', function () {
     $c = dqChar(level: 100);
     dqSave($c, [
         'lastRefreshDate' => '2026-07-09',
-        'activeQuests' => [['questId' => 'daily_kill_5', 'progress' => 3, 'completed' => false, 'claimed' => false]],
-        'todayQuestDefs' => [['id' => 'daily_kill_5', 'rewards' => ['gold' => 200, 'xp' => 100]]],
+        'activeQuests' => [['questId' => 'daily_kill_10', 'progress' => 3, 'completed' => false, 'claimed' => false]],
+        'todayQuestDefs' => [['id' => 'daily_kill_10', 'rewards' => ['gold' => 200, 'xp' => 100]]],
     ]);
 
     $res = $this->withToken(dqToken())
         ->postJson("/api/v1/characters/{$c->id}/daily-quests/refresh", ['date' => '2026-07-09']);
 
-    $res->assertOk()->assertJsonPath('refreshed', false);
+    $res->assertOk()->assertJsonPath('lastRefreshDate', '2026-07-09');
 
     $slice = GameSave::where('character_id', $c->id)->first()->state['dailyQuests'];
-    expect($slice['activeQuests'])->toHaveCount(1)
-        ->and($slice['activeQuests'][0]['progress'])->toBe(3);
+    $entry = collect($slice['activeQuests'])->firstWhere('questId', 'daily_kill_10');
+    expect($entry)->not->toBeNull()
+        ->and($entry['progress'])->toBe(3);
 });
 
 it('claim on a completed quest grants scaled gold to blob + xp to character and bumps counter', function () {
@@ -157,4 +158,56 @@ it("blocks acting on another user's character (403)", function () {
     $this->withToken(dqToken())
         ->postJson("/api/v1/characters/{$other->id}/daily-quests/daily_kill_5/claim")
         ->assertForbidden();
+});
+
+it('repairs a degraded slice on the same day and preserves progress', function () {
+    $c = dqChar(level: 100);
+
+    $seed = $this->withToken(dqToken())
+        ->postJson("/api/v1/characters/{$c->id}/daily-quests/refresh", ['date' => '2026-07-09']);
+    $seed->assertOk()->assertJsonPath('refreshed', true);
+
+    $fullDefs = $seed->json('todayQuestDefs');
+    expect($fullDefs)->toHaveCount(12);
+
+    $keptDefs = array_slice($fullDefs, 0, 2);
+    $save = GameSave::where('character_id', $c->id)->firstOrFail();
+    $blob = $save->state;
+    $blob['dailyQuests'] = [
+        'lastRefreshDate' => '2026-07-09',
+        'todayQuestDefs' => $keptDefs,
+        'activeQuests' => [
+            ['questId' => $keptDefs[0]['id'], 'progress' => 3, 'completed' => false, 'claimed' => false],
+            ['questId' => $keptDefs[1]['id'], 'progress' => 0, 'completed' => false, 'claimed' => false],
+        ],
+    ];
+    $save->state = $blob;
+    $save->save();
+
+    $res = $this->withToken(dqToken())
+        ->postJson("/api/v1/characters/{$c->id}/daily-quests/refresh", ['date' => '2026-07-09']);
+
+    $res->assertOk()
+        ->assertJsonPath('refreshed', true)
+        ->assertJsonPath('lastRefreshDate', '2026-07-09');
+
+    expect($res->json('todayQuestDefs'))->toHaveCount(12);
+    expect($res->json('activeQuests'))->toHaveCount(12);
+
+    $preserved = collect($res->json('activeQuests'))->firstWhere('questId', $keptDefs[0]['id']);
+    expect($preserved['progress'])->toEqual(3);
+});
+
+it('leaves a healthy slice untouched on the same day', function () {
+    $c = dqChar(level: 100);
+
+    $this->withToken(dqToken())
+        ->postJson("/api/v1/characters/{$c->id}/daily-quests/refresh", ['date' => '2026-07-09'])
+        ->assertOk();
+
+    $res = $this->withToken(dqToken())
+        ->postJson("/api/v1/characters/{$c->id}/daily-quests/refresh", ['date' => '2026-07-09']);
+
+    $res->assertOk()->assertJsonPath('refreshed', false);
+    expect($res->json('todayQuestDefs'))->toHaveCount(12);
 });

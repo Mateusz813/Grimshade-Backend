@@ -52,6 +52,74 @@ final class DailyQuestSystem
         return array_slice($shuffled, 0, self::DAILY_QUEST_COUNT);
     }
 
+    public static function reconcileDailyQuests(
+        array $allQuests,
+        int $playerLevel,
+        string $todayKey,
+        array $activeQuests,
+    ): array {
+        $defs = self::selectDailyQuests($allQuests, $playerLevel, $todayKey);
+
+        $byId = [];
+        foreach ($activeQuests as $aq) {
+            if (is_array($aq) && isset($aq['questId'])) {
+                $byId[(string) $aq['questId']] = $aq;
+            }
+        }
+
+        return [
+            'todayQuestDefs' => array_values($defs),
+            'activeQuests' => array_values(array_map(
+                static fn (array $def): array => $byId[(string) $def['id']] ?? [
+                    'questId' => $def['id'],
+                    'progress' => 0,
+                    'completed' => false,
+                    'claimed' => false,
+                ],
+                $defs,
+            )),
+        ];
+    }
+
+    public static function isSliceDegraded(
+        array $allQuests,
+        int $playerLevel,
+        string $todayKey,
+        array $todayQuestDefs,
+        array $activeQuests,
+    ): bool {
+        $expected = self::selectDailyQuests($allQuests, $playerLevel, $todayKey);
+        if (count($todayQuestDefs) !== count($expected)) {
+            return true;
+        }
+
+        $presentIds = [];
+        foreach ($todayQuestDefs as $def) {
+            if (is_array($def) && isset($def['id'])) {
+                $presentIds[(string) $def['id']] = true;
+            }
+        }
+        foreach ($expected as $def) {
+            if (! isset($presentIds[(string) $def['id']])) {
+                return true;
+            }
+        }
+
+        $activeIds = [];
+        foreach ($activeQuests as $aq) {
+            if (is_array($aq) && isset($aq['questId'])) {
+                $activeIds[(string) $aq['questId']] = true;
+            }
+        }
+        foreach ($todayQuestDefs as $def) {
+            if (! isset($activeIds[(string) $def['id']])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static function scaleRewards(array $base, int $playerLevel): array
     {
         $goldMultiplier = 1 + $playerLevel * 0.25;

@@ -44,13 +44,12 @@ final class DailyQuestController extends Controller
                 'todayQuestDefs' => [],
             ];
 
+            $allQuests = $content->get('dailyQuests');
+            $level = (int) $fresh->level;
+
             $refreshed = false;
             if (DailyQuestSystem::needsRefresh($slice['lastRefreshDate'] ?? null, $todayKey)) {
-                $defs = DailyQuestSystem::selectDailyQuests(
-                    $content->get('dailyQuests'),
-                    (int) $fresh->level,
-                    $todayKey,
-                );
+                $defs = DailyQuestSystem::selectDailyQuests($allQuests, $level, $todayKey);
 
                 $slice = [
                     'lastRefreshDate' => $todayKey,
@@ -61,6 +60,30 @@ final class DailyQuestController extends Controller
                         'completed' => false,
                         'claimed' => false,
                     ], $defs),
+                ];
+
+                $blob['dailyQuests'] = $slice;
+                $save->state = $blob;
+                $state->persist($save);
+                $refreshed = true;
+            } elseif (DailyQuestSystem::isSliceDegraded(
+                $allQuests,
+                $level,
+                $todayKey,
+                $slice['todayQuestDefs'] ?? [],
+                $slice['activeQuests'] ?? [],
+            )) {
+                $repaired = DailyQuestSystem::reconcileDailyQuests(
+                    $allQuests,
+                    $level,
+                    $todayKey,
+                    $slice['activeQuests'] ?? [],
+                );
+
+                $slice = [
+                    'lastRefreshDate' => $slice['lastRefreshDate'] ?? $todayKey,
+                    'todayQuestDefs' => $repaired['todayQuestDefs'],
+                    'activeQuests' => $repaired['activeQuests'],
                 ];
 
                 $blob['dailyQuests'] = $slice;
