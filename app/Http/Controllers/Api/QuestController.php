@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Domain\Combat\CombatElixirs;
 use App\Domain\Content\ContentRepository;
 use App\Domain\Loot\ItemGenerator;
 use App\Domain\Progression\LevelSystem;
@@ -113,6 +114,12 @@ final class QuestController extends Controller
                         break;
                 }
             }
+
+            $nowMs = (int) round(microtime(true) * 1000);
+            $xpMult = CombatElixirs::getXpBoostMultiplier(
+                CombatElixirs::activeBuffEffects($blob, (string) $fresh->id, $nowMs),
+            );
+            $xpTotal = (int) floor($xpTotal * $xpMult);
 
             $xpResult = LevelSystem::processXpGain((int) $fresh->level, (int) $fresh->xp, $xpTotal);
             $fresh->level = $xpResult['newLevel'];

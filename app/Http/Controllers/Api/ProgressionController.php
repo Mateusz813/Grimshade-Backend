@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Domain\Combat\CombatElixirs;
 use App\Domain\Content\ContentRepository;
 use App\Domain\Progression\LevelSystem;
 use App\Domain\Progression\TaskRewards;
@@ -49,6 +50,12 @@ final class ProgressionController extends Controller
             $rewards = $monster !== null
                 ? (new TaskRewards($content->get('monsters')))->computeTaskRewards($monster, (int) $task['killCount'])
                 : ['rewardGold' => (int) ($task['rewardGold'] ?? 0), 'rewardXp' => (int) ($task['rewardXp'] ?? 0)];
+
+            $nowMs = (int) round(microtime(true) * 1000);
+            $xpMult = CombatElixirs::getXpBoostMultiplier(
+                CombatElixirs::activeBuffEffects($blob, (string) $fresh->id, $nowMs),
+            );
+            $rewards['rewardXp'] = (int) floor((int) $rewards['rewardXp'] * $xpMult);
 
             $lvl = LevelSystem::processXpGain((int) $fresh->level, (int) $fresh->xp, (int) $rewards['rewardXp']);
             $fresh->level = $lvl['newLevel'];

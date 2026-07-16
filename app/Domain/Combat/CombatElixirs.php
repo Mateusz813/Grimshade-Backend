@@ -50,6 +50,61 @@ final class CombatElixirs
         return 1.0;
     }
 
+    public static function getXpBoostMultiplier(array $activeEffects): float
+    {
+        $base = self::hasBuff($activeEffects, 'xp_boost_100')
+            ? 2.0
+            : (self::hasBuff($activeEffects, 'xp_boost') ? 1.5 : 1.0);
+        $premium = self::hasBuff($activeEffects, 'premium_xp_boost') ? 2.0 : 1.0;
+
+        return $base * $premium;
+    }
+
+    public static function getSkillXpBoostMultiplier(array $activeEffects): float
+    {
+        return self::hasBuff($activeEffects, 'skill_xp_boost_100')
+            ? 2.0
+            : (self::hasBuff($activeEffects, 'skill_xp_boost') ? 1.5 : 1.0);
+    }
+
+    public static function activeBuffEffects(array $blob, ?string $characterId, int|float $nowMs): array
+    {
+        $out = [];
+        foreach (($blob['buffs']['allBuffs'] ?? []) as $buff) {
+            if (! is_array($buff)) {
+                continue;
+            }
+            $effect = $buff['effect'] ?? null;
+            if (! is_string($effect) || $effect === '') {
+                continue;
+            }
+            if ($characterId !== null && isset($buff['characterId']) && (string) $buff['characterId'] !== $characterId) {
+                continue;
+            }
+            if (self::isBuffActive($buff, $nowMs)) {
+                $out[] = $effect;
+            }
+        }
+
+        return $out;
+    }
+
+    private static function isBuffActive(array $buff, int|float $nowMs): bool
+    {
+        if ((int) ($buff['charges'] ?? 0) > 0) {
+            return true;
+        }
+        $mode = $buff['timerMode'] ?? 'realtime';
+        if ($mode === 'game') {
+            return (float) ($buff['gameMsRemaining'] ?? 0) > 0;
+        }
+        if ($mode === 'pausable') {
+            return (float) ($buff['remainingMs'] ?? 0) > 0;
+        }
+
+        return (float) ($buff['expiresAt'] ?? 0) > $nowMs;
+    }
+
     public static function getElixirHpBonus(array $activeEffects): int
     {
         return self::hasBuff($activeEffects, 'hp_boost_500') ? 500 : 0;

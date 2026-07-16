@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Domain\Combat\CombatElixirs;
 use App\Domain\OfflineHunt\OfflineHuntSystem;
 use App\Domain\Progression\LevelSystem;
 use App\Http\Controllers\Controller;
@@ -79,11 +80,16 @@ final class OfflineHuntController extends Controller
                 ], false];
             }
 
+            $nowMs = (int) round(microtime(true) * 1000);
+            $xpBuffMult = CombatElixirs::getXpBoostMultiplier(
+                CombatElixirs::activeBuffEffects($blob, (string) $fresh->id, $nowMs),
+            );
+
             $rewards = OfflineHuntSystem::aggregateClaimRewards([
                 'monsterXp' => $monsterXp,
                 'goldMin' => $goldMin, 'goldMax' => $goldMax,
                 'masteryLevel' => $masteryLevel,
-                'xpBuffMult' => 1.0, 'premiumXpMult' => 1.0,
+                'xpBuffMult' => $xpBuffMult, 'premiumXpMult' => 1.0,
                 'killsByRarity' => ['normal' => $kills, 'strong' => 0, 'epic' => 0, 'legendary' => 0, 'boss' => 0],
             ]);
             $xpGained = (int) $rewards['xpGained'];

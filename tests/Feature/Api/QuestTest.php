@@ -74,6 +74,22 @@ it('claims gold + elixir: gold to blob, elixir resolved+stacked, quest moved, on
     expect((int) Character::find($c->id)->quests_oneshot_done)->toBe(1);
 });
 
+it('applies an active xp_boost elixir to quest XP (chokepoint parity with frontend)', function () {
+    $c = quChar(level: 20);
+    $save = quSaveWithQuest($c, 'q_wolfpack_20');
+    $blob = $save->state;
+    $blob['buffs'] = ['allBuffs' => [[
+        'effect' => 'xp_boost', 'characterId' => $c->id,
+        'timerMode' => 'realtime', 'expiresAt' => ((int) round(microtime(true) * 1000)) + 3_600_000,
+    ]]];
+    $save->state = $blob;
+    $save->save();
+
+    quClaim($c, 'q_wolfpack_20')
+        ->assertOk()
+        ->assertJsonPath('rewards.xp.gained', 15000);
+});
+
 it('claims a stone reward (singular stoneType) into the blob', function () {
     $c = quChar(level: 10);
     quSaveWithQuest($c, 'quest_spider_infestation');

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Domain\Combat\CombatElixirs;
 use App\Domain\Content\ContentRepository;
 use App\Domain\Progression\DailyQuestSystem;
 use App\Domain\Progression\LevelSystem;
@@ -118,6 +119,12 @@ final class DailyQuestController extends Controller
             }
 
             $rewards = DailyQuestSystem::scaleRewards($def['rewards'], (int) $fresh->level);
+
+            $nowMs = (int) round(microtime(true) * 1000);
+            $xpMult = CombatElixirs::getXpBoostMultiplier(
+                CombatElixirs::activeBuffEffects($blob, (string) $fresh->id, $nowMs),
+            );
+            $rewards['xp'] = (int) floor((int) $rewards['xp'] * $xpMult);
 
             $lvl = LevelSystem::processXpGain((int) $fresh->level, (int) $fresh->xp, (int) $rewards['xp']);
             $fresh->level = $lvl['newLevel'];
