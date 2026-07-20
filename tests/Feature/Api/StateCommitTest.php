@@ -445,3 +445,82 @@ it('is idempotent per requestId when an event is present (replay returns cache)'
 
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['gold'])->toBe(1000);
 });
+
+it('does NOT let a stale full-state commit revert a claimed daily quest (same day)', function () {
+    $c = scmChar();
+    $today = now()->toDateString();
+
+    GameSave::updateOrCreate(['character_id' => $c->id], [
+        'user_id' => $c->user_id,
+        'state' => [
+            '_ownerCharacterId' => $c->id,
+            'dailyQuests' => [
+                'lastRefreshDate' => $today,
+                'todayQuestDefs' => [],
+                'activeQuests' => [
+                    ['questId' => 'dq_kill', 'progress' => 5, 'completed' => true, 'claimed' => true],
+                    ['questId' => 'dq_gold', 'progress' => 0, 'completed' => false, 'claimed' => false],
+                ],
+            ],
+        ],
+    ]);
+
+    $blob = scmBlob($c, extra: [
+        'dailyQuests' => [
+            'lastRefreshDate' => $today,
+            'todayQuestDefs' => [],
+            'activeQuests' => [
+                ['questId' => 'dq_kill', 'progress' => 5, 'completed' => true, 'claimed' => false],
+                ['questId' => 'dq_gold', 'progress' => 0, 'completed' => false, 'claimed' => false],
+            ],
+        ],
+    ]);
+
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'dq-preserve',
+        'state' => $blob,
+    ])->assertOk();
+
+    $save = GameSave::where('character_id', $c->id)->first();
+    $kill = collect($save->state['dailyQuests']['activeQuests'])->firstWhere('questId', 'dq_kill');
+    expect($kill['claimed'])->toBeTrue();
+});
+
+it('lets a new daily refresh (different date) reset claimed to false', function () {
+    $c = scmChar();
+    $yesterday = now()->subDay()->toDateString();
+    $today = now()->toDateString();
+
+    GameSave::updateOrCreate(['character_id' => $c->id], [
+        'user_id' => $c->user_id,
+        'state' => [
+            '_ownerCharacterId' => $c->id,
+            'dailyQuests' => [
+                'lastRefreshDate' => $yesterday,
+                'todayQuestDefs' => [],
+                'activeQuests' => [
+                    ['questId' => 'dq_kill', 'progress' => 5, 'completed' => true, 'claimed' => true],
+                ],
+            ],
+        ],
+    ]);
+
+    $blob = scmBlob($c, extra: [
+        'dailyQuests' => [
+            'lastRefreshDate' => $today,
+            'todayQuestDefs' => [],
+            'activeQuests' => [
+                ['questId' => 'dq_kill', 'progress' => 0, 'completed' => false, 'claimed' => false],
+            ],
+        ],
+    ]);
+
+    $this->withToken(scmToken())->putJson("/api/v1/characters/{$c->id}/state", [
+        'requestId' => 'dq-newday',
+        'state' => $blob,
+    ])->assertOk();
+
+    $save = GameSave::where('character_id', $c->id)->first();
+    $kill = collect($save->state['dailyQuests']['activeQuests'])->firstWhere('questId', 'dq_kill');
+    expect($kill['claimed'])->toBeFalse();
+});

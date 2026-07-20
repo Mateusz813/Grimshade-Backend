@@ -88,7 +88,7 @@
       "cls": "Knight",
       "id": null,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -108,7 +108,7 @@
       "cls": "Knight",
       "id": 1,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -128,7 +128,7 @@
       "cls": "Knight",
       "id": 2,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -148,7 +148,7 @@
       "cls": "Knight",
       "id": 5,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -168,7 +168,7 @@
       "cls": "Knight",
       "id": 6,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -188,7 +188,7 @@
       "cls": "Knight",
       "id": 11,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -208,7 +208,7 @@
       "cls": "Mage",
       "id": null,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -228,7 +228,7 @@
       "cls": "Mage",
       "id": 1,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -248,7 +248,7 @@
       "cls": "Mage",
       "id": 2,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -268,7 +268,7 @@
       "cls": "Mage",
       "id": 5,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -288,7 +288,7 @@
       "cls": "Mage",
       "id": 6,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -308,7 +308,7 @@
       "cls": "Mage",
       "id": 11,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -328,7 +328,7 @@
       "cls": "Cleric",
       "id": null,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -348,7 +348,7 @@
       "cls": "Cleric",
       "id": 1,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -368,7 +368,7 @@
       "cls": "Cleric",
       "id": 2,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -388,7 +388,7 @@
       "cls": "Cleric",
       "id": 5,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -408,7 +408,7 @@
       "cls": "Cleric",
       "id": 6,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -428,7 +428,7 @@
       "cls": "Cleric",
       "id": 11,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -448,7 +448,7 @@
       "cls": "Archer",
       "id": null,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -468,7 +468,7 @@
       "cls": "Archer",
       "id": 1,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -488,7 +488,7 @@
       "cls": "Archer",
       "id": 2,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -508,7 +508,7 @@
       "cls": "Archer",
       "id": 5,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -528,7 +528,7 @@
       "cls": "Archer",
       "id": 6,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -548,7 +548,7 @@
       "cls": "Archer",
       "id": 11,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -568,7 +568,7 @@
       "cls": "Rogue",
       "id": null,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -588,7 +588,7 @@
       "cls": "Rogue",
       "id": 1,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -608,7 +608,7 @@
       "cls": "Rogue",
       "id": 2,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -628,7 +628,7 @@
       "cls": "Rogue",
       "id": 5,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -648,7 +648,7 @@
       "cls": "Rogue",
       "id": 6,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -668,7 +668,7 @@
       "cls": "Rogue",
       "id": 11,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -688,7 +688,7 @@
       "cls": "Necromancer",
       "id": null,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -708,7 +708,7 @@
       "cls": "Necromancer",
       "id": 1,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -728,7 +728,7 @@
       "cls": "Necromancer",
       "id": 2,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -748,7 +748,7 @@
       "cls": "Necromancer",
       "id": 5,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -768,7 +768,7 @@
       "cls": "Necromancer",
       "id": 6,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -788,7 +788,7 @@
       "cls": "Necromancer",
       "id": 11,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -808,7 +808,7 @@
       "cls": "Bard",
       "id": null,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -828,7 +828,7 @@
       "cls": "Bard",
       "id": 1,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -848,7 +848,7 @@
       "cls": "Bard",
       "id": 2,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -868,7 +868,7 @@
       "cls": "Bard",
       "id": 5,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -888,7 +888,7 @@
       "cls": "Bard",
       "id": 6,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -908,7 +908,7 @@
       "cls": "Bard",
       "id": 11,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -2553,7 +2553,7 @@
       "cls": "Knight",
       "id": 1,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -2573,7 +2573,7 @@
       "cls": "Knight",
       "id": 6,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -2593,7 +2593,7 @@
       "cls": "Knight",
       "id": 11,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -2653,7 +2653,7 @@
       "cls": "Mage",
       "id": 1,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -2673,7 +2673,7 @@
       "cls": "Mage",
       "id": 6,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -2693,7 +2693,7 @@
       "cls": "Mage",
       "id": 11,
       "value": {
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -2753,7 +2753,7 @@
       "cls": "Cleric",
       "id": 1,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -2773,7 +2773,7 @@
       "cls": "Cleric",
       "id": 6,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -2793,7 +2793,7 @@
       "cls": "Cleric",
       "id": 11,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -2853,7 +2853,7 @@
       "cls": "Archer",
       "id": 1,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -2873,7 +2873,7 @@
       "cls": "Archer",
       "id": 6,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -2893,7 +2893,7 @@
       "cls": "Archer",
       "id": 11,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -2953,7 +2953,7 @@
       "cls": "Rogue",
       "id": 1,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -2973,7 +2973,7 @@
       "cls": "Rogue",
       "id": 6,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -2993,7 +2993,7 @@
       "cls": "Rogue",
       "id": 11,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
@@ -3053,7 +3053,7 @@
       "cls": "Necromancer",
       "id": 1,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -3073,7 +3073,7 @@
       "cls": "Necromancer",
       "id": 6,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -3093,7 +3093,7 @@
       "cls": "Necromancer",
       "id": 11,
       "value": {
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
@@ -3153,7 +3153,7 @@
       "cls": "Bard",
       "id": 1,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -3173,7 +3173,7 @@
       "cls": "Bard",
       "id": 6,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -3193,7 +3193,7 @@
       "cls": "Bard",
       "id": 11,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -3319,7 +3319,7 @@
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "atkPercent": 0,
         "flatHp": 420,
         "flatMp": 70,
@@ -3343,7 +3343,7 @@
         "hpPercent": 12,
         "mpPercent": 3,
         "defPercent": 9,
-        "dmgPercent": 9,
+        "dmgPercent": 3,
         "atkPercent": 0,
         "flatHp": 1638,
         "flatMp": 273,
@@ -3368,7 +3368,7 @@
         "hpPercent": 16,
         "mpPercent": 4,
         "defPercent": 12,
-        "dmgPercent": 12,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 3318,
         "flatMp": 553,
@@ -3391,7 +3391,7 @@
         "hpPercent": 8,
         "mpPercent": 2,
         "defPercent": 6,
-        "dmgPercent": 6,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 1848,
         "flatMp": 308,
@@ -3415,7 +3415,7 @@
         "hpPercent": 8,
         "mpPercent": 2,
         "defPercent": 6,
-        "dmgPercent": 6,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 1092,
         "flatMp": 182,
@@ -3437,7 +3437,7 @@
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "atkPercent": 0,
         "flatHp": 1680,
         "flatMp": 280,
@@ -3479,7 +3479,7 @@
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "atkPercent": 0,
         "flatHp": 150,
         "flatMp": 400,
@@ -3503,7 +3503,7 @@
         "hpPercent": 6,
         "mpPercent": 9,
         "defPercent": 3,
-        "dmgPercent": 24,
+        "dmgPercent": 9,
         "atkPercent": 0,
         "flatHp": 585,
         "flatMp": 1560,
@@ -3528,7 +3528,7 @@
         "hpPercent": 8,
         "mpPercent": 12,
         "defPercent": 4,
-        "dmgPercent": 32,
+        "dmgPercent": 12,
         "atkPercent": 0,
         "flatHp": 1185,
         "flatMp": 3160,
@@ -3551,7 +3551,7 @@
         "hpPercent": 4,
         "mpPercent": 6,
         "defPercent": 2,
-        "dmgPercent": 16,
+        "dmgPercent": 6,
         "atkPercent": 0,
         "flatHp": 660,
         "flatMp": 1760,
@@ -3575,7 +3575,7 @@
         "hpPercent": 4,
         "mpPercent": 6,
         "defPercent": 2,
-        "dmgPercent": 16,
+        "dmgPercent": 6,
         "atkPercent": 0,
         "flatHp": 390,
         "flatMp": 1040,
@@ -3597,7 +3597,7 @@
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
-        "dmgPercent": 8,
+        "dmgPercent": 3,
         "atkPercent": 0,
         "flatHp": 600,
         "flatMp": 1600,
@@ -3639,7 +3639,7 @@
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 220,
         "flatMp": 380,
@@ -3663,7 +3663,7 @@
         "hpPercent": 9,
         "mpPercent": 9,
         "defPercent": 6,
-        "dmgPercent": 15,
+        "dmgPercent": 6,
         "atkPercent": 0,
         "flatHp": 858,
         "flatMp": 1482,
@@ -3688,7 +3688,7 @@
         "hpPercent": 12,
         "mpPercent": 12,
         "defPercent": 8,
-        "dmgPercent": 20,
+        "dmgPercent": 8,
         "atkPercent": 0,
         "flatHp": 1738,
         "flatMp": 3002,
@@ -3711,7 +3711,7 @@
         "hpPercent": 6,
         "mpPercent": 6,
         "defPercent": 4,
-        "dmgPercent": 10,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 968,
         "flatMp": 1672,
@@ -3735,7 +3735,7 @@
         "hpPercent": 6,
         "mpPercent": 6,
         "defPercent": 4,
-        "dmgPercent": 10,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 572,
         "flatMp": 988,
@@ -3757,7 +3757,7 @@
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 880,
         "flatMp": 1520,
@@ -3799,7 +3799,7 @@
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "atkPercent": 7,
         "flatHp": 220,
         "flatMp": 150,
@@ -3823,7 +3823,7 @@
         "hpPercent": 6,
         "mpPercent": 3,
         "defPercent": 3,
-        "dmgPercent": 21,
+        "dmgPercent": 6,
         "atkPercent": 21,
         "flatHp": 858,
         "flatMp": 585,
@@ -3848,7 +3848,7 @@
         "hpPercent": 8,
         "mpPercent": 4,
         "defPercent": 4,
-        "dmgPercent": 28,
+        "dmgPercent": 8,
         "atkPercent": 28,
         "flatHp": 1738,
         "flatMp": 1185,
@@ -3871,7 +3871,7 @@
         "hpPercent": 4,
         "mpPercent": 2,
         "defPercent": 2,
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "atkPercent": 14,
         "flatHp": 968,
         "flatMp": 660,
@@ -3895,7 +3895,7 @@
         "hpPercent": 4,
         "mpPercent": 2,
         "defPercent": 2,
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "atkPercent": 14,
         "flatHp": 572,
         "flatMp": 390,
@@ -3917,7 +3917,7 @@
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "atkPercent": 7,
         "flatHp": 880,
         "flatMp": 600,
@@ -3959,7 +3959,7 @@
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 190,
         "flatMp": 150,
@@ -3983,7 +3983,7 @@
         "hpPercent": 6,
         "mpPercent": 3,
         "defPercent": 3,
-        "dmgPercent": 21,
+        "dmgPercent": 6,
         "atkPercent": 0,
         "flatHp": 741,
         "flatMp": 585,
@@ -4008,7 +4008,7 @@
         "hpPercent": 8,
         "mpPercent": 4,
         "defPercent": 4,
-        "dmgPercent": 28,
+        "dmgPercent": 8,
         "atkPercent": 0,
         "flatHp": 1501,
         "flatMp": 1185,
@@ -4031,7 +4031,7 @@
         "hpPercent": 4,
         "mpPercent": 2,
         "defPercent": 2,
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 836,
         "flatMp": 660,
@@ -4055,7 +4055,7 @@
         "hpPercent": 4,
         "mpPercent": 2,
         "defPercent": 2,
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 494,
         "flatMp": 390,
@@ -4077,7 +4077,7 @@
         "hpPercent": 2,
         "mpPercent": 1,
         "defPercent": 1,
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 760,
         "flatMp": 600,
@@ -4119,7 +4119,7 @@
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 180,
         "flatMp": 380,
@@ -4143,7 +4143,7 @@
         "hpPercent": 6,
         "mpPercent": 9,
         "defPercent": 3,
-        "dmgPercent": 21,
+        "dmgPercent": 6,
         "atkPercent": 0,
         "flatHp": 702,
         "flatMp": 1482,
@@ -4168,7 +4168,7 @@
         "hpPercent": 8,
         "mpPercent": 12,
         "defPercent": 4,
-        "dmgPercent": 28,
+        "dmgPercent": 8,
         "atkPercent": 0,
         "flatHp": 1422,
         "flatMp": 3002,
@@ -4191,7 +4191,7 @@
         "hpPercent": 4,
         "mpPercent": 6,
         "defPercent": 2,
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 792,
         "flatMp": 1672,
@@ -4215,7 +4215,7 @@
         "hpPercent": 4,
         "mpPercent": 6,
         "defPercent": 2,
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 468,
         "flatMp": 988,
@@ -4237,7 +4237,7 @@
         "hpPercent": 2,
         "mpPercent": 3,
         "defPercent": 1,
-        "dmgPercent": 7,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 720,
         "flatMp": 1520,
@@ -4279,7 +4279,7 @@
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 230,
         "flatMp": 260,
@@ -4303,7 +4303,7 @@
         "hpPercent": 9,
         "mpPercent": 9,
         "defPercent": 6,
-        "dmgPercent": 15,
+        "dmgPercent": 6,
         "atkPercent": 0,
         "flatHp": 897,
         "flatMp": 1014,
@@ -4328,7 +4328,7 @@
         "hpPercent": 12,
         "mpPercent": 12,
         "defPercent": 8,
-        "dmgPercent": 20,
+        "dmgPercent": 8,
         "atkPercent": 0,
         "flatHp": 1817,
         "flatMp": 2054,
@@ -4351,7 +4351,7 @@
         "hpPercent": 6,
         "mpPercent": 6,
         "defPercent": 4,
-        "dmgPercent": 10,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 1012,
         "flatMp": 1144,
@@ -4375,7 +4375,7 @@
         "hpPercent": 6,
         "mpPercent": 6,
         "defPercent": 4,
-        "dmgPercent": 10,
+        "dmgPercent": 4,
         "atkPercent": 0,
         "flatHp": 598,
         "flatMp": 676,
@@ -4397,7 +4397,7 @@
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "atkPercent": 0,
         "flatHp": 920,
         "flatMp": 1040,
@@ -5095,7 +5095,7 @@
           }
         ],
         "permanentBonuses": {
-          "dmgPercent": 3,
+          "dmgPercent": 1,
           "hpPercent": 4,
           "mpPercent": 1,
           "defPercent": 3,
@@ -5139,7 +5139,7 @@
           }
         ],
         "permanentBonuses": {
-          "dmgPercent": 8,
+          "dmgPercent": 3,
           "hpPercent": 2,
           "mpPercent": 3,
           "defPercent": 1,
@@ -5183,7 +5183,7 @@
           }
         ],
         "permanentBonuses": {
-          "dmgPercent": 7,
+          "dmgPercent": 2,
           "hpPercent": 2,
           "mpPercent": 1,
           "defPercent": 1,
@@ -5227,7 +5227,7 @@
           }
         ],
         "permanentBonuses": {
-          "dmgPercent": 5,
+          "dmgPercent": 2,
           "hpPercent": 3,
           "mpPercent": 3,
           "defPercent": 2,
@@ -5271,7 +5271,7 @@
           }
         ],
         "permanentBonuses": {
-          "dmgPercent": 7,
+          "dmgPercent": 2,
           "hpPercent": 2,
           "mpPercent": 1,
           "defPercent": 1,
@@ -5315,7 +5315,7 @@
           }
         ],
         "permanentBonuses": {
-          "dmgPercent": 7,
+          "dmgPercent": 2,
           "hpPercent": 2,
           "mpPercent": 3,
           "defPercent": 1,
@@ -5359,7 +5359,7 @@
           }
         ],
         "permanentBonuses": {
-          "dmgPercent": 5,
+          "dmgPercent": 2,
           "hpPercent": 3,
           "mpPercent": 3,
           "defPercent": 2,
@@ -5403,7 +5403,7 @@
           }
         ],
         "permanentBonuses": {
-          "dmgPercent": 8,
+          "dmgPercent": 3,
           "hpPercent": 2,
           "mpPercent": 3,
           "defPercent": 1,
@@ -5487,7 +5487,7 @@
       "ids": [
         1
       ],
-      "value": 1.03
+      "value": 1.01
     },
     {
       "cls": "Mage",
@@ -5496,7 +5496,7 @@
         2,
         3
       ],
-      "value": 1.24
+      "value": 1.09
     },
     {
       "cls": "Mage",
@@ -5506,7 +5506,7 @@
         3,
         11
       ],
-      "value": 1.32
+      "value": 1.12
     },
     {
       "cls": "Archer",
@@ -5523,7 +5523,7 @@
         10,
         11
       ],
-      "value": 1.77
+      "value": 1.22
     },
     {
       "cls": "Cleric",
@@ -5532,7 +5532,7 @@
         3,
         5
       ],
-      "value": 1.15
+      "value": 1.06
     },
     {
       "cls": "Rogue",
@@ -5541,14 +5541,14 @@
         99,
         5
       ],
-      "value": 1.1400000000000001
+      "value": 1.04
     },
     {
       "cls": "Bard",
       "ids": [
         11
       ],
-      "value": 1.05
+      "value": 1.02
     },
     {
       "cls": "Necromancer",
@@ -5557,7 +5557,7 @@
         4,
         6
       ],
-      "value": 1.21
+      "value": 1.06
     }
   ],
   "transformFlatBonuses": [
@@ -5915,7 +5915,7 @@
         1
       ],
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -5938,7 +5938,7 @@
         3
       ],
       "value": {
-        "dmgPercent": 24,
+        "dmgPercent": 9,
         "hpPercent": 6,
         "mpPercent": 9,
         "defPercent": 3,
@@ -5962,7 +5962,7 @@
         11
       ],
       "value": {
-        "dmgPercent": 32,
+        "dmgPercent": 12,
         "hpPercent": 8,
         "mpPercent": 12,
         "defPercent": 4,
@@ -5993,7 +5993,7 @@
         11
       ],
       "value": {
-        "dmgPercent": 77,
+        "dmgPercent": 22,
         "hpPercent": 22,
         "mpPercent": 11,
         "defPercent": 11,
@@ -6016,7 +6016,7 @@
         5
       ],
       "value": {
-        "dmgPercent": 15,
+        "dmgPercent": 6,
         "hpPercent": 9,
         "mpPercent": 9,
         "defPercent": 6,
@@ -6039,7 +6039,7 @@
         5
       ],
       "value": {
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "hpPercent": 4,
         "mpPercent": 2,
         "defPercent": 2,
@@ -6060,7 +6060,7 @@
         11
       ],
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -6083,7 +6083,7 @@
         6
       ],
       "value": {
-        "dmgPercent": 21,
+        "dmgPercent": 6,
         "hpPercent": 6,
         "mpPercent": 9,
         "defPercent": 3,
@@ -6195,7 +6195,7 @@
       ],
       "baked": false,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -6217,7 +6217,7 @@
       ],
       "baked": true,
       "value": {
-        "dmgPercent": 3,
+        "dmgPercent": 1,
         "hpPercent": 4,
         "mpPercent": 1,
         "defPercent": 3,
@@ -6241,7 +6241,7 @@
       ],
       "baked": false,
       "value": {
-        "dmgPercent": 24,
+        "dmgPercent": 9,
         "hpPercent": 6,
         "mpPercent": 9,
         "defPercent": 3,
@@ -6265,7 +6265,7 @@
       ],
       "baked": true,
       "value": {
-        "dmgPercent": 24,
+        "dmgPercent": 9,
         "hpPercent": 6,
         "mpPercent": 9,
         "defPercent": 3,
@@ -6290,7 +6290,7 @@
       ],
       "baked": false,
       "value": {
-        "dmgPercent": 32,
+        "dmgPercent": 12,
         "hpPercent": 8,
         "mpPercent": 12,
         "defPercent": 4,
@@ -6315,7 +6315,7 @@
       ],
       "baked": true,
       "value": {
-        "dmgPercent": 32,
+        "dmgPercent": 12,
         "hpPercent": 8,
         "mpPercent": 12,
         "defPercent": 4,
@@ -6347,7 +6347,7 @@
       ],
       "baked": false,
       "value": {
-        "dmgPercent": 77,
+        "dmgPercent": 22,
         "hpPercent": 22,
         "mpPercent": 11,
         "defPercent": 11,
@@ -6379,7 +6379,7 @@
       ],
       "baked": true,
       "value": {
-        "dmgPercent": 77,
+        "dmgPercent": 22,
         "hpPercent": 22,
         "mpPercent": 11,
         "defPercent": 11,
@@ -6403,7 +6403,7 @@
       ],
       "baked": false,
       "value": {
-        "dmgPercent": 15,
+        "dmgPercent": 6,
         "hpPercent": 9,
         "mpPercent": 9,
         "defPercent": 6,
@@ -6427,7 +6427,7 @@
       ],
       "baked": true,
       "value": {
-        "dmgPercent": 15,
+        "dmgPercent": 6,
         "hpPercent": 9,
         "mpPercent": 9,
         "defPercent": 6,
@@ -6451,7 +6451,7 @@
       ],
       "baked": false,
       "value": {
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "hpPercent": 4,
         "mpPercent": 2,
         "defPercent": 2,
@@ -6475,7 +6475,7 @@
       ],
       "baked": true,
       "value": {
-        "dmgPercent": 14,
+        "dmgPercent": 4,
         "hpPercent": 4,
         "mpPercent": 2,
         "defPercent": 2,
@@ -6497,7 +6497,7 @@
       ],
       "baked": false,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -6519,7 +6519,7 @@
       ],
       "baked": true,
       "value": {
-        "dmgPercent": 5,
+        "dmgPercent": 2,
         "hpPercent": 3,
         "mpPercent": 3,
         "defPercent": 2,
@@ -6543,7 +6543,7 @@
       ],
       "baked": false,
       "value": {
-        "dmgPercent": 21,
+        "dmgPercent": 6,
         "hpPercent": 6,
         "mpPercent": 9,
         "defPercent": 3,
@@ -6567,7 +6567,7 @@
       ],
       "baked": true,
       "value": {
-        "dmgPercent": 21,
+        "dmgPercent": 6,
         "hpPercent": 6,
         "mpPercent": 9,
         "defPercent": 3,

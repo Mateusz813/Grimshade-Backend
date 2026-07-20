@@ -21,7 +21,7 @@
         "atk_dmg_25"
       ],
       "result": {
-        "atkDamageMultiplier": 1.25,
+        "atkDamageMultiplier": 1.08,
         "spellDamageMultiplier": 1,
         "hpBonus": 0,
         "mpBonus": 0,
@@ -37,7 +37,7 @@
         "atk_dmg_50"
       ],
       "result": {
-        "atkDamageMultiplier": 1.5,
+        "atkDamageMultiplier": 1.15,
         "spellDamageMultiplier": 1,
         "hpBonus": 0,
         "mpBonus": 0,
@@ -53,7 +53,7 @@
         "atk_dmg_100"
       ],
       "result": {
-        "atkDamageMultiplier": 2,
+        "atkDamageMultiplier": 1.25,
         "spellDamageMultiplier": 1,
         "hpBonus": 0,
         "mpBonus": 0,
@@ -70,7 +70,7 @@
         "atk_dmg_25"
       ],
       "result": {
-        "atkDamageMultiplier": 1.5,
+        "atkDamageMultiplier": 1.15,
         "spellDamageMultiplier": 1,
         "hpBonus": 0,
         "mpBonus": 0,
@@ -88,7 +88,7 @@
         "atk_dmg_25"
       ],
       "result": {
-        "atkDamageMultiplier": 2,
+        "atkDamageMultiplier": 1.25,
         "spellDamageMultiplier": 1,
         "hpBonus": 0,
         "mpBonus": 0,
@@ -105,7 +105,7 @@
       ],
       "result": {
         "atkDamageMultiplier": 1,
-        "spellDamageMultiplier": 1.25,
+        "spellDamageMultiplier": 1.08,
         "hpBonus": 0,
         "mpBonus": 0,
         "hpPctMultiplier": 1,
@@ -121,7 +121,7 @@
       ],
       "result": {
         "atkDamageMultiplier": 1,
-        "spellDamageMultiplier": 1.5,
+        "spellDamageMultiplier": 1.15,
         "hpBonus": 0,
         "mpBonus": 0,
         "hpPctMultiplier": 1,
@@ -137,7 +137,7 @@
       ],
       "result": {
         "atkDamageMultiplier": 1,
-        "spellDamageMultiplier": 2,
+        "spellDamageMultiplier": 1.25,
         "hpBonus": 0,
         "mpBonus": 0,
         "hpPctMultiplier": 1,
@@ -155,7 +155,7 @@
       ],
       "result": {
         "atkDamageMultiplier": 1,
-        "spellDamageMultiplier": 2,
+        "spellDamageMultiplier": 1.25,
         "hpBonus": 0,
         "mpBonus": 0,
         "hpPctMultiplier": 1,
@@ -171,8 +171,8 @@
         "spell_dmg_50"
       ],
       "result": {
-        "atkDamageMultiplier": 2,
-        "spellDamageMultiplier": 1.5,
+        "atkDamageMultiplier": 1.25,
+        "spellDamageMultiplier": 1.15,
         "hpBonus": 0,
         "mpBonus": 0,
         "hpPctMultiplier": 1,
@@ -323,8 +323,8 @@
         "attack_speed"
       ],
       "result": {
-        "atkDamageMultiplier": 2,
-        "spellDamageMultiplier": 2,
+        "atkDamageMultiplier": 1.25,
+        "spellDamageMultiplier": 1.25,
         "hpBonus": 500,
         "mpBonus": 500,
         "hpPctMultiplier": 1.25,

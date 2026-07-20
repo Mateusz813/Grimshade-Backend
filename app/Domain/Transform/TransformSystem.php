@@ -27,37 +27,37 @@ final class TransformSystem
 
     private const CLASS_TRANSFORM_BONUSES = [
         'Mage' => [
-            'dmgPercent' => 8, 'hpPercent' => 2, 'mpPercent' => 3, 'defPercent' => 1, 'atkPercent' => 0,
+            'dmgPercent' => 3, 'hpPercent' => 2, 'mpPercent' => 3, 'defPercent' => 1, 'atkPercent' => 0,
             'flatHp' => 150, 'flatMp' => 400, 'attack' => 13, 'defense' => 3,
             'hpRegen' => 0, 'mpRegen' => 0, 'hpRegenFlat' => 0.2, 'mpRegenFlat' => 0.5, 'classSkillBonus' => 0,
         ],
         'Cleric' => [
-            'dmgPercent' => 5, 'hpPercent' => 3, 'mpPercent' => 3, 'defPercent' => 2, 'atkPercent' => 0,
+            'dmgPercent' => 2, 'hpPercent' => 3, 'mpPercent' => 3, 'defPercent' => 2, 'atkPercent' => 0,
             'flatHp' => 220, 'flatMp' => 380, 'attack' => 10, 'defense' => 10,
             'hpRegen' => 0, 'mpRegen' => 0, 'hpRegenFlat' => 0.5, 'mpRegenFlat' => 0.4, 'classSkillBonus' => 0,
         ],
         'Necromancer' => [
-            'dmgPercent' => 7, 'hpPercent' => 2, 'mpPercent' => 3, 'defPercent' => 1, 'atkPercent' => 0,
+            'dmgPercent' => 2, 'hpPercent' => 2, 'mpPercent' => 3, 'defPercent' => 1, 'atkPercent' => 0,
             'flatHp' => 180, 'flatMp' => 380, 'attack' => 12, 'defense' => 5,
             'hpRegen' => 0, 'mpRegen' => 0, 'hpRegenFlat' => 0.25, 'mpRegenFlat' => 0.4, 'classSkillBonus' => 0,
         ],
         'Archer' => [
-            'dmgPercent' => 7, 'hpPercent' => 2, 'mpPercent' => 1, 'defPercent' => 1, 'atkPercent' => 7,
+            'dmgPercent' => 2, 'hpPercent' => 2, 'mpPercent' => 1, 'defPercent' => 1, 'atkPercent' => 7,
             'flatHp' => 220, 'flatMp' => 150, 'attack' => 0, 'defense' => 5,
             'hpRegen' => 0, 'mpRegen' => 0, 'hpRegenFlat' => 0.3, 'mpRegenFlat' => 0.2, 'classSkillBonus' => 0,
         ],
         'Rogue' => [
-            'dmgPercent' => 7, 'hpPercent' => 2, 'mpPercent' => 1, 'defPercent' => 1, 'atkPercent' => 0,
+            'dmgPercent' => 2, 'hpPercent' => 2, 'mpPercent' => 1, 'defPercent' => 1, 'atkPercent' => 0,
             'flatHp' => 190, 'flatMp' => 150, 'attack' => 15, 'defense' => 4,
             'hpRegen' => 0, 'mpRegen' => 0, 'hpRegenFlat' => 0.3, 'mpRegenFlat' => 0.2, 'classSkillBonus' => 0,
         ],
         'Bard' => [
-            'dmgPercent' => 5, 'hpPercent' => 3, 'mpPercent' => 3, 'defPercent' => 2, 'atkPercent' => 0,
+            'dmgPercent' => 2, 'hpPercent' => 3, 'mpPercent' => 3, 'defPercent' => 2, 'atkPercent' => 0,
             'flatHp' => 230, 'flatMp' => 260, 'attack' => 10, 'defense' => 9,
             'hpRegen' => 0, 'mpRegen' => 0, 'hpRegenFlat' => 0.4, 'mpRegenFlat' => 0.3, 'classSkillBonus' => 0,
         ],
         'Knight' => [
-            'dmgPercent' => 3, 'hpPercent' => 4, 'mpPercent' => 1, 'defPercent' => 3, 'atkPercent' => 0,
+            'dmgPercent' => 1, 'hpPercent' => 4, 'mpPercent' => 1, 'defPercent' => 3, 'atkPercent' => 0,
             'flatHp' => 420, 'flatMp' => 70, 'attack' => 9, 'defense' => 16,
             'hpRegen' => 0, 'mpRegen' => 0, 'hpRegenFlat' => 0.5, 'mpRegenFlat' => 0.1, 'classSkillBonus' => 0,
         ],

@@ -23,13 +23,13 @@ final class CombatElixirs
     public static function getAtkDamageMultiplier(array $activeEffects): float
     {
         if (self::hasBuff($activeEffects, 'atk_dmg_100')) {
-            return 2.0;
+            return 1.25;
         }
         if (self::hasBuff($activeEffects, 'atk_dmg_50')) {
-            return 1.5;
+            return 1.15;
         }
         if (self::hasBuff($activeEffects, 'atk_dmg_25')) {
-            return 1.25;
+            return 1.08;
         }
 
         return 1.0;
@@ -38,13 +38,13 @@ final class CombatElixirs
     public static function getSpellDamageMultiplier(array $activeEffects): float
     {
         if (self::hasBuff($activeEffects, 'spell_dmg_100')) {
-            return 2.0;
+            return 1.25;
         }
         if (self::hasBuff($activeEffects, 'spell_dmg_50')) {
-            return 1.5;
+            return 1.15;
         }
         if (self::hasBuff($activeEffects, 'spell_dmg_25')) {
-            return 1.25;
+            return 1.08;
         }
 
         return 1.0;

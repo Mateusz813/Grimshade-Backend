@@ -50,6 +50,7 @@ final class CharacterStateService
         $prev = is_array($save->state ?? null) ? $save->state : [];
 
         $sanitized = $this->sanitizeState($submittedState);
+        $sanitized = $this->preserveClaimedDailyQuests($prev, $sanitized);
 
         $violations = $this->validateState($character, $sanitized, $effective);
         if ($violations !== []) {
@@ -182,6 +183,44 @@ final class CharacterStateService
                 'newItems' => $result['newItems'],
             ]);
         }
+    }
+
+    private function preserveClaimedDailyQuests(array $prev, array $next): array
+    {
+        $prevDaily = is_array($prev['dailyQuests'] ?? null) ? $prev['dailyQuests'] : [];
+        $nextDaily = is_array($next['dailyQuests'] ?? null) ? $next['dailyQuests'] : [];
+        $prevActive = is_array($prevDaily['activeQuests'] ?? null) ? $prevDaily['activeQuests'] : [];
+        $nextActive = is_array($nextDaily['activeQuests'] ?? null) ? $nextDaily['activeQuests'] : [];
+
+        if ($prevActive === [] || $nextActive === []) {
+            return $next;
+        }
+
+        $prevDate = $prevDaily['lastRefreshDate'] ?? null;
+        $nextDate = $nextDaily['lastRefreshDate'] ?? null;
+        if ($prevDate === null || $nextDate === null || $prevDate !== $nextDate) {
+            return $next;
+        }
+
+        $claimedIds = [];
+        foreach ($prevActive as $q) {
+            if (is_array($q) && ($q['claimed'] ?? false) === true && isset($q['questId'])) {
+                $claimedIds[(string) $q['questId']] = true;
+            }
+        }
+        if ($claimedIds === []) {
+            return $next;
+        }
+
+        foreach ($nextActive as $i => $q) {
+            if (is_array($q) && isset($q['questId']) && ($claimedIds[(string) $q['questId']] ?? false)) {
+                $nextActive[$i]['claimed'] = true;
+            }
+        }
+
+        $next['dailyQuests']['activeQuests'] = array_values($nextActive);
+
+        return $next;
     }
 
     public function sanitizeState(array $state): array
