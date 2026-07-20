@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Boss;
 
+use App\Domain\Combat\CombatMath;
 use App\Domain\Progression\LevelSystem;
 use App\Domain\Support\Rng\RngInterface;
 
@@ -153,8 +154,8 @@ final class BossSystem
         $playerHp = $character['max_hp'];
         $bossHp = $scaled['hp'];
         $bossMaxHp = $scaled['hp'];
-        $playerDmg = max(1, $character['attack'] - $scaled['defense']);
-        $baseBossDmg = max(1, $scaled['attack'] - $character['defense']);
+        $playerDmg = CombatMath::mitigateDamage($character['attack'], $scaled['defense'], $character['level'], true);
+        $baseBossDmg = CombatMath::mitigateDamage($scaled['attack'], $character['defense'], (int) $boss['level']);
         $turns = 0;
 
         while ($bossHp > 0 && $playerHp > 0 && $turns < 100000) {

@@ -9,13 +9,13 @@ use App\Domain\Progression\LevelSystem;
 final class StatReset
 {
     public const CLASS_BASE_STATS = [
-        'Knight' => ['attack' => 10, 'defense' => 5, 'max_hp' => 120, 'max_mp' => 30],
-        'Mage' => ['attack' => 6, 'defense' => 2, 'max_hp' => 80, 'max_mp' => 200],
-        'Cleric' => ['attack' => 7, 'defense' => 4, 'max_hp' => 100, 'max_mp' => 150],
-        'Archer' => ['attack' => 10, 'defense' => 3, 'max_hp' => 100, 'max_mp' => 80],
-        'Rogue' => ['attack' => 9, 'defense' => 3, 'max_hp' => 90, 'max_mp' => 60],
-        'Necromancer' => ['attack' => 6, 'defense' => 2, 'max_hp' => 85, 'max_mp' => 180],
-        'Bard' => ['attack' => 8, 'defense' => 3, 'max_hp' => 95, 'max_mp' => 120],
+        'Knight' => ['attack' => 12, 'defense' => 8, 'max_hp' => 150, 'max_mp' => 40],
+        'Mage' => ['attack' => 9, 'defense' => 3, 'max_hp' => 90, 'max_mp' => 200],
+        'Cleric' => ['attack' => 8, 'defense' => 6, 'max_hp' => 115, 'max_mp' => 155],
+        'Archer' => ['attack' => 11, 'defense' => 4, 'max_hp' => 110, 'max_mp' => 80],
+        'Rogue' => ['attack' => 10, 'defense' => 4, 'max_hp' => 100, 'max_mp' => 75],
+        'Necromancer' => ['attack' => 9, 'defense' => 3, 'max_hp' => 88, 'max_mp' => 200],
+        'Bard' => ['attack' => 9, 'defense' => 4, 'max_hp' => 105, 'max_mp' => 125],
     ];
 
     public static function compute(

@@ -23,18 +23,6 @@ it('matches calculateDualWieldDamage', function () {
     }
 });
 
-it('matches calculateBlockChance', function () {
-    foreach ($this->golden['calculateBlockChance'] as $case) {
-        expect(CombatMath::calculateBlockChance($case['lvl'], $case['phys']))->toEqual($case['value']);
-    }
-});
-
-it('matches calculateDodgeChance', function () {
-    foreach ($this->golden['calculateDodgeChance'] as $case) {
-        expect(CombatMath::calculateDodgeChance($case['cls'], $case['agi'], $case['phys']))->toEqual($case['value']);
-    }
-});
-
 it('matches calculateSkillDamageWithMlvl', function () {
     foreach ($this->golden['calculateSkillDamageWithMlvl'] as $case) {
         [$d, $m, $e, $c] = $case['args'];

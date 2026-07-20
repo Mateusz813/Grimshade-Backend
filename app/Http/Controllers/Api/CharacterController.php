@@ -30,13 +30,13 @@ final class CharacterController extends Controller
     ];
 
     private const CLASS_BASE_STATS = [
-        'Knight' => ['hp' => 120, 'max_hp' => 120, 'mp' => 30, 'max_mp' => 30, 'attack' => 10, 'defense' => 5, 'attack_speed' => 1.5, 'crit_chance' => 0.03, 'crit_damage' => 2.0, 'magic_level' => 0],
-        'Mage' => ['hp' => 80, 'max_hp' => 80, 'mp' => 200, 'max_mp' => 200, 'attack' => 6, 'defense' => 2, 'attack_speed' => 2.0, 'crit_chance' => 0.05, 'crit_damage' => 2.0, 'magic_level' => 5],
-        'Cleric' => ['hp' => 100, 'max_hp' => 100, 'mp' => 150, 'max_mp' => 150, 'attack' => 7, 'defense' => 4, 'attack_speed' => 2.0, 'crit_chance' => 0.03, 'crit_damage' => 2.0, 'magic_level' => 5],
-        'Archer' => ['hp' => 100, 'max_hp' => 100, 'mp' => 80, 'max_mp' => 80, 'attack' => 10, 'defense' => 3, 'attack_speed' => 2.5, 'crit_chance' => 0.10, 'crit_damage' => 2.0, 'magic_level' => 0],
-        'Rogue' => ['hp' => 90, 'max_hp' => 90, 'mp' => 60, 'max_mp' => 60, 'attack' => 9, 'defense' => 3, 'attack_speed' => 2.5, 'crit_chance' => 0.15, 'crit_damage' => 2.5, 'magic_level' => 0],
-        'Necromancer' => ['hp' => 85, 'max_hp' => 85, 'mp' => 180, 'max_mp' => 180, 'attack' => 6, 'defense' => 2, 'attack_speed' => 1.8, 'crit_chance' => 0.05, 'crit_damage' => 2.0, 'magic_level' => 5],
-        'Bard' => ['hp' => 95, 'max_hp' => 95, 'mp' => 120, 'max_mp' => 120, 'attack' => 8, 'defense' => 3, 'attack_speed' => 2.0, 'crit_chance' => 0.07, 'crit_damage' => 2.0, 'magic_level' => 3],
+        'Knight' => ['hp' => 150, 'max_hp' => 150, 'mp' => 40, 'max_mp' => 40, 'attack' => 12, 'defense' => 8, 'attack_speed' => 1.5, 'crit_chance' => 0.03, 'crit_damage' => 2.0, 'magic_level' => 0],
+        'Mage' => ['hp' => 90, 'max_hp' => 90, 'mp' => 200, 'max_mp' => 200, 'attack' => 9, 'defense' => 3, 'attack_speed' => 2.0, 'crit_chance' => 0.05, 'crit_damage' => 2.0, 'magic_level' => 5],
+        'Cleric' => ['hp' => 115, 'max_hp' => 115, 'mp' => 155, 'max_mp' => 155, 'attack' => 8, 'defense' => 6, 'attack_speed' => 2.0, 'crit_chance' => 0.03, 'crit_damage' => 2.0, 'magic_level' => 5],
+        'Archer' => ['hp' => 110, 'max_hp' => 110, 'mp' => 80, 'max_mp' => 80, 'attack' => 11, 'defense' => 4, 'attack_speed' => 2.5, 'crit_chance' => 0.10, 'crit_damage' => 2.0, 'magic_level' => 0],
+        'Rogue' => ['hp' => 100, 'max_hp' => 100, 'mp' => 75, 'max_mp' => 75, 'attack' => 10, 'defense' => 4, 'attack_speed' => 2.5, 'crit_chance' => 0.15, 'crit_damage' => 2.5, 'magic_level' => 0],
+        'Necromancer' => ['hp' => 88, 'max_hp' => 88, 'mp' => 200, 'max_mp' => 200, 'attack' => 9, 'defense' => 3, 'attack_speed' => 1.8, 'crit_chance' => 0.05, 'crit_damage' => 2.0, 'magic_level' => 5],
+        'Bard' => ['hp' => 105, 'max_hp' => 105, 'mp' => 125, 'max_mp' => 125, 'attack' => 9, 'defense' => 4, 'attack_speed' => 2.0, 'crit_chance' => 0.07, 'crit_damage' => 2.0, 'magic_level' => 3],
     ];
 
     private const STARTER_WEAPONS = [

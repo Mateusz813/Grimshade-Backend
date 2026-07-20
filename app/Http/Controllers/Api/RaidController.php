@@ -236,8 +236,6 @@ final class RaidController extends Controller
                 'classModifier' => 1,
                 'enemyDefense' => (int) $boss['defense'],
                 'isCrit' => $isCrit,
-                'isBlocked' => false,
-                'isDodged' => false,
                 'critDmg' => (float) $char->crit_damage,
             ]);
             $bossHp -= $hit['finalDamage'];

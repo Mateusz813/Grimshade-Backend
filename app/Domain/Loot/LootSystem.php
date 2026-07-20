@@ -14,6 +14,14 @@ final class LootSystem
         'normal' => 0.90, 'strong' => 0.07, 'epic' => 0.015, 'legendary' => 0.01, 'boss' => 0.005,
     ];
 
+    public const MONSTER_RARITY_MULTIPLIERS = [
+        'normal' => ['hp' => 1.0, 'atk' => 1.0, 'def' => 1.0, 'xp' => 1.0, 'gold' => 1.0],
+        'strong' => ['hp' => 1.5, 'atk' => 1.4, 'def' => 1.3, 'xp' => 2.0, 'gold' => 2.0],
+        'epic' => ['hp' => 2.5, 'atk' => 2.2, 'def' => 1.5, 'xp' => 4.0, 'gold' => 4.0],
+        'legendary' => ['hp' => 4.0, 'atk' => 3.2, 'def' => 1.8, 'xp' => 10.0, 'gold' => 10.0],
+        'boss' => ['hp' => 8.0, 'atk' => 5.0, 'def' => 2.0, 'xp' => 30.0, 'gold' => 30.0],
+    ];
+
     public const MONSTER_RARITY_DROP_MAP = [
         'normal' => 'common', 'strong' => 'rare', 'epic' => 'epic', 'legendary' => 'legendary', 'boss' => 'mythic',
     ];

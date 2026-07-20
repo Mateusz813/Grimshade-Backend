@@ -9,7 +9,6 @@ final class SkillBuffs
     public const CHARGE_ATOMS = [
         'dodge_next', 'dmg_amp_next', 'crit_next', 'crit_buff_next',
         'block_next_party', 'next_ally_heal', 'party_lifesteal_next',
-        'party_instant_kill_chance_next',
     ];
 
     private const PARTY_TIMED_ATOMS = [

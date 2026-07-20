@@ -15,6 +15,21 @@ final class BotSystem
 
     private const MAGIC_CLASSES = ['Mage', 'Cleric', 'Necromancer'];
 
+    private const DEF_K = 1.0;
+
+    private const DEF_CAP = 0.75;
+
+    private const DEF_BASE = 25;
+
+    private const DMG_COMPRESS_K = 0.48;
+
+    private const DMG_COMPRESS_P = 0.80;
+
+    private static function compressPlayerDamage(int|float $mitigatedDamage): float
+    {
+        return self::DMG_COMPRESS_K * ($mitigatedDamage <= 0 ? 0.0 : ($mitigatedDamage ** self::DMG_COMPRESS_P));
+    }
+
     public const BOT_NAMES = [
         'Knight' => ['Sir Aldric', 'Sir Gavain', 'Dame Irina', 'Sir Borin', 'Dame Elsa', 'Sir Tormund', 'Dame Kira'],
         'Mage' => ['Mystic Elara', 'Archmage Zed', 'Sorceress Lyra', 'Magus Kael', 'Enchanter Nyx', 'Sage Orin', 'Witch Mira'],
@@ -184,12 +199,12 @@ final class BotSystem
 
     public function calculateBotAction(RngInterface $rng, array $bot, int|float $bossDefense, bool $canUseSkill): array
     {
-        $baseDmg = max(1, $bot['attack'] - $bossDefense);
+        $baseDmg = self::mitigateDamage($bot['attack'], $bossDefense, $bot['level'], true);
         $variance = (int) floor($baseDmg * 0.2);
         $finalBaseDmg = max(1, $baseDmg - $variance + (int) floor($rng->nextFloat() * ($variance * 2 + 1)));
 
         if ($canUseSkill && $bot['skillId'] && $bot['mp'] >= $bot['skillMpCost'] && $bot['skillDamageMultiplier'] > 0) {
-            $skillDmg = max(1, (int) floor($bot['attack'] * $bot['skillDamageMultiplier'] * 0.15));
+            $skillDmg = max(1, (int) floor(self::compressPlayerDamage($bot['attack'] * $bot['skillDamageMultiplier'] * 0.15)));
             $skillInfo = $this->firstSkills[$bot['class']] ?? null;
 
             return [
@@ -224,11 +239,36 @@ final class BotSystem
         return PartySystem::pickWeightedAggroTarget($rng, $arg) ?? 'player';
     }
 
-    public static function calculateAoeDamage(int|float $bossAttack, int|float $targetDefense): int
+    public static function calculateAoeDamage(int|float $bossAttack, int|float $targetDefense, int|float $bossLevel = 1): int
     {
-        $baseDmg = max(1, $bossAttack - $targetDefense);
+        $baseDmg = self::mitigateDamage($bossAttack, $targetDefense, $bossLevel);
 
-        return max(1, (int) floor($baseDmg * 0.5));
+        return (int) max(1, floor($baseDmg * 0.5));
+    }
+
+    private static function safeN(int|float|null $value, float $fallback = 0.0): float
+    {
+        $n = (float) ($value ?? $fallback);
+
+        return is_finite($n) ? $n : $fallback;
+    }
+
+    private static function defMitigation(int|float $enemyDef, int|float $attackerLevel): float
+    {
+        $def = max(0.0, self::safeN($enemyDef));
+        $lvl = max(1.0, self::safeN($attackerLevel, 1.0));
+        if ($def <= 0.0) {
+            return 0.0;
+        }
+
+        return min(self::DEF_CAP, $def / ($def + self::DEF_K * $lvl + self::DEF_BASE));
+    }
+
+    private static function mitigateDamage(int|float $rawDamage, int|float $enemyDef, int|float $attackerLevel, bool $playerSource = false): int
+    {
+        $m = self::safeN($rawDamage) * (1 - self::defMitigation($enemyDef, $attackerLevel));
+
+        return (int) max(1, floor($playerSource ? self::compressPlayerDamage($m) : $m));
     }
 
     public static function isBossAoeTurn(int $turnCounter): bool

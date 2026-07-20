@@ -31,10 +31,6 @@
       "value": "skill_charge_party_lifesteal_next"
     },
     {
-      "head": "party_instant_kill_chance_next",
-      "value": "skill_charge_party_instant_kill_chance_next"
-    },
-    {
       "head": "arbitrary_head",
       "value": "skill_charge_arbitrary_head"
     }
@@ -91,7 +87,7 @@
         "mpCost": 500,
         "cooldown": 300000,
         "damage": 0,
-        "effect": "party_instant_kill_chance_next:3:5;party_immortal:3000;party_attack_up:100:30000;party_as_up:2.2:10000",
+        "effect": "party_immortal:3000;party_attack_up:100:30000;party_as_up:2.2:10000",
         "unlockLevel": 1000,
         "goldCost": 750000000
       }
@@ -535,14 +531,19 @@
     },
     {
       "skillId": "universe_song",
-      "effect": "party_instant_kill_chance_next:3:5;party_immortal:3000;party_attack_up:100:30000;party_as_up:2.2:10000",
+      "effect": "party_immortal:3000;party_attack_up:100:30000;party_as_up:2.2:10000",
       "ops": [
         {
-          "op": "addChargeBuff",
-          "id": "skill_charge_universe_song_0",
-          "effect": "skill_charge_party_instant_kill_chance_next",
-          "chargesToAdd": 3,
-          "cap": 6
+          "op": "removeBuffByEffect",
+          "effect": "skill_universe_song_0"
+        },
+        {
+          "op": "addBuffGameTime",
+          "id": "skill_buff_universe_song_0",
+          "effect": "skill_universe_song_0",
+          "durationMs": 3000,
+          "isParty": true,
+          "healPctPerSec": null
         },
         {
           "op": "removeBuffByEffect",
@@ -552,7 +553,7 @@
           "op": "addBuffGameTime",
           "id": "skill_buff_universe_song_1",
           "effect": "skill_universe_song_1",
-          "durationMs": 3000,
+          "durationMs": 30000,
           "isParty": true,
           "healPctPerSec": null
         },
@@ -564,18 +565,6 @@
           "op": "addBuffGameTime",
           "id": "skill_buff_universe_song_2",
           "effect": "skill_universe_song_2",
-          "durationMs": 30000,
-          "isParty": true,
-          "healPctPerSec": null
-        },
-        {
-          "op": "removeBuffByEffect",
-          "effect": "skill_universe_song_3"
-        },
-        {
-          "op": "addBuffGameTime",
-          "id": "skill_buff_universe_song_3",
-          "effect": "skill_universe_song_3",
           "durationMs": 10000,
           "isParty": true,
           "healPctPerSec": null
@@ -868,19 +857,6 @@
       "skillId": "syn_block_bare",
       "effect": "block_next_party",
       "ops": []
-    },
-    {
-      "skillId": "syn_pik_alone",
-      "effect": "party_instant_kill_chance_next:3:5",
-      "ops": [
-        {
-          "op": "addChargeBuff",
-          "id": "skill_charge_syn_pik_alone_0",
-          "effect": "skill_charge_party_instant_kill_chance_next",
-          "chargesToAdd": 3,
-          "cap": 6
-        }
-      ]
     },
     {
       "skillId": "syn_crit_next_2",

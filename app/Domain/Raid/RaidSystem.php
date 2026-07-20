@@ -12,9 +12,9 @@ final class RaidSystem
 
     public const SPELL_CHEST_CHANCE_PER_LEVEL = 0.0025;
 
-    private const BOSS_HP = 10.0;
+    private const BOSS_HP = 8.0;
 
-    private const BOSS_ATK = 2.5;
+    private const BOSS_ATK = 5.0;
 
     private const BOSS_DEF = 2.0;
 

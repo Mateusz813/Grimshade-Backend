@@ -13,7 +13,7 @@ final class SkillEffectsV2
     private const ENEMY_AFFINITY_HEADS = [
         'aoe', 'def_pen', 'dot', 'stun', 'stun_chance', 'paralyze',
         'instant_kill_chance', 'execute_below', 'mark_amp', 'mark_amp_all',
-        'mark_no_heal', 'mark_heal_to_dmg', 'enemy_atk_down', 'enemy_no_heal',
+        'mark_no_heal', 'mark_heal_to_dmg', 'enemy_atk_down', 'enemy_slow', 'enemy_no_heal',
         'multistrike', 'dark_ritual', 'death_apocalypse',
     ];
 
@@ -117,10 +117,11 @@ final class SkillEffectsV2
             'markNoHealMs' => 0,
             'enemyAtkDownPct' => 0,
             'enemyAtkDownMs' => 0,
+            'enemySlowPct' => 0,
+            'enemySlowMs' => 0,
             'enemyNoHealMs' => 0,
             'lifestealNext' => [],
             'nextAllyHeal' => [],
-            'nextAllyInstantKillPct' => [],
             'manaShieldMs' => 0,
             'darkRitualPending' => [],
         ];
@@ -171,6 +172,10 @@ final class SkillEffectsV2
         $s['enemyAtkDownMs'] = $drain($s['enemyAtkDownMs']);
         if ($s['enemyAtkDownMs'] <= 0) {
             $s['enemyAtkDownPct'] = 0;
+        }
+        $s['enemySlowMs'] = $drain($s['enemySlowMs']);
+        if ($s['enemySlowMs'] <= 0) {
+            $s['enemySlowPct'] = 0;
         }
         $s['enemyNoHealMs'] = $drain($s['enemyNoHealMs']);
 
@@ -552,11 +557,6 @@ final class SkillEffectsV2
                         }
                     }
                     break;
-                case 'party_instant_kill_chance_next':
-                    foreach ($partyStatus as $pi => $pp) {
-                        $partyStatus[$pi]['nextAllyInstantKillPct'][] = ['pct' => $e['a'] ?? 0, 'count' => $e['b'] ?? 0];
-                    }
-                    break;
                 case 'aggro_steal':
                     $r['aggroSteal'] = true;
                     break;
@@ -564,6 +564,17 @@ final class SkillEffectsV2
                     foreach ($enemyStatus as $ei => $en) {
                         $enemyStatus[$ei]['enemyAtkDownPct'] = max($en['enemyAtkDownPct'], $e['a'] ?? 0);
                         $enemyStatus[$ei]['enemyAtkDownMs'] = max($en['enemyAtkDownMs'], $e['b'] ?? 0);
+                    }
+                    break;
+                case 'enemy_slow':
+                    if ($isAoeCast) {
+                        foreach ($enemyStatus as $ei => $en) {
+                            $enemyStatus[$ei]['enemySlowPct'] = max($en['enemySlowPct'], $e['a'] ?? 0);
+                            $enemyStatus[$ei]['enemySlowMs'] = max($en['enemySlowMs'], $e['b'] ?? 0);
+                        }
+                    } elseif ($targetStatus !== null) {
+                        $targetStatus['enemySlowPct'] = max($targetStatus['enemySlowPct'] ?? 0, $e['a'] ?? 0);
+                        $targetStatus['enemySlowMs'] = max($targetStatus['enemySlowMs'] ?? 0, $e['b'] ?? 0);
                     }
                     break;
                 case 'enemy_no_heal':
@@ -698,16 +709,6 @@ final class SkillEffectsV2
             $attackerStatus['nextAllyHeal'][0]['count'] -= 1;
             if ($attackerStatus['nextAllyHeal'][0]['count'] <= 0) {
                 array_shift($attackerStatus['nextAllyHeal']);
-            }
-        }
-
-        if (count($attackerStatus['nextAllyInstantKillPct']) > 0) {
-            if ($rng->nextFloat() * 100 < $attackerStatus['nextAllyInstantKillPct'][0]['pct']) {
-                $out['executeBurstPct'] = 12;
-            }
-            $attackerStatus['nextAllyInstantKillPct'][0]['count'] -= 1;
-            if ($attackerStatus['nextAllyInstantKillPct'][0]['count'] <= 0) {
-                array_shift($attackerStatus['nextAllyInstantKillPct']);
             }
         }
 

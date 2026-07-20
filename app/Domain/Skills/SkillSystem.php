@@ -128,7 +128,7 @@ final class SkillSystem
         return in_array($cls, self::MLVL_FROM_ATTACKS_CLASSES, true);
     }
 
-    public static function shieldingXpPerBlock(int $shieldingLevel): int
+    public static function shieldingXpPerHit(int $shieldingLevel): int
     {
         return max(1, (int) floor(15 / (1 + $shieldingLevel * 0.06)));
     }
@@ -136,11 +136,6 @@ final class SkillSystem
     public static function getShieldingDefBonus(int $shieldingLevel): int
     {
         return (int) floor($shieldingLevel / 2);
-    }
-
-    public static function getShieldingBlockBonus(int $shieldingLevel): float
-    {
-        return $shieldingLevel * 0.005;
     }
 
     public static function offlineXpRate(int|float $skillLevel): float
@@ -274,24 +269,16 @@ final class SkillSystem
         return ['gold' => $gold, 'successRate' => max(0.1, 3 * (0.5 ** $levelsAbove10))];
     }
 
-    public static function getSkillUpgradeBonus(int $upgradeLevel): float
-    {
-        if ($upgradeLevel <= 0) {
-            return 0;
-        }
-
-        $mult = $upgradeLevel <= 10
-            ? (1.15 ** $upgradeLevel)
-            : ((1.15 ** 10) * (1.08 ** ($upgradeLevel - 10)));
-
-        return $mult - 1;
-    }
-
     public static function getCombatSkillUpgradeMultiplier(int $upgradeLevel): float
     {
         return $upgradeLevel <= 0
             ? 1
-            : 1 + min($upgradeLevel, 10) * 0.02 + max(0, $upgradeLevel - 10) * 0.01;
+            : 1 + 0.6 * (1 - (0.9 ** $upgradeLevel));
+    }
+
+    public static function getSkillUpgradeBonus(int $upgradeLevel): float
+    {
+        return self::getCombatSkillUpgradeMultiplier($upgradeLevel) - 1;
     }
 
     public static function getSpellChestUnlockCost(int $unlockLevel): array

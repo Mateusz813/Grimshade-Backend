@@ -6,12 +6,27 @@ namespace App\Domain\Combat;
 
 final class CombatMath
 {
+    public const DEF_K = 1.0;
+
+    public const DEF_CAP = 0.75;
+
+    public const DEF_BASE = 25;
+
+    public const DMG_COMPRESS_K = 0.48;
+
+    public const DMG_COMPRESS_P = 0.80;
+
+    public static function compressPlayerDamage(int|float $mitigatedDamage): float
+    {
+        return self::DMG_COMPRESS_K * ($mitigatedDamage <= 0 ? 0.0 : ($mitigatedDamage ** self::DMG_COMPRESS_P));
+    }
+
     public const MONSTER_STAT_MULTIPLIERS = [
         'normal' => ['hp' => 1.0, 'atk' => 1.0, 'def' => 1.0, 'xp' => 1.0, 'gold' => 1.0],
-        'strong' => ['hp' => 1.5, 'atk' => 1.2, 'def' => 1.3, 'xp' => 1.8, 'gold' => 2.0],
-        'epic' => ['hp' => 2.5, 'atk' => 1.6, 'def' => 1.5, 'xp' => 3.0, 'gold' => 4.0],
-        'legendary' => ['hp' => 5.0, 'atk' => 1.8, 'def' => 1.8, 'xp' => 5.0, 'gold' => 8.0],
-        'boss' => ['hp' => 10.0, 'atk' => 2.5, 'def' => 2.0, 'xp' => 10.0, 'gold' => 15.0],
+        'strong' => ['hp' => 1.5, 'atk' => 1.4, 'def' => 1.3, 'xp' => 1.8, 'gold' => 2.0],
+        'epic' => ['hp' => 2.5, 'atk' => 2.2, 'def' => 1.5, 'xp' => 3.0, 'gold' => 4.0],
+        'legendary' => ['hp' => 4.0, 'atk' => 3.2, 'def' => 1.8, 'xp' => 5.0, 'gold' => 8.0],
+        'boss' => ['hp' => 8.0, 'atk' => 5.0, 'def' => 2.0, 'xp' => 10.0, 'gold' => 15.0],
     ];
 
     private static function safeN(int|float|null $v, float $fallback = 0.0): float
@@ -22,6 +37,24 @@ final class CombatMath
         return is_finite($n) ? $n : $fallback;
     }
 
+    public static function defMitigation(int|float $enemyDef, int|float $attackerLevel): float
+    {
+        $def = max(0, self::safeN($enemyDef));
+        $lvl = max(1, self::safeN($attackerLevel, 1));
+        if ($def <= 0) {
+            return 0.0;
+        }
+
+        return min(self::DEF_CAP, $def / ($def + self::DEF_K * $lvl + self::DEF_BASE));
+    }
+
+    public static function mitigateDamage(int|float $rawDamage, int|float $enemyDef, int|float $attackerLevel, bool $playerSource = false): int
+    {
+        $m = self::safeN($rawDamage) * (1 - self::defMitigation($enemyDef, $attackerLevel));
+
+        return (int) max(1, floor($playerSource ? self::compressPlayerDamage($m) : $m));
+    }
+
     public static function calculateDamage(array $params): array
     {
         $baseAtk = self::safeN($params['baseAtk'] ?? null);
@@ -29,30 +62,19 @@ final class CombatMath
         $skillBonus = self::safeN($params['skillBonus'] ?? null);
         $classMod = self::safeN($params['classModifier'] ?? null, 1);
         $enemyDef = self::safeN($params['enemyDefense'] ?? null);
+        $critChance = self::safeN($params['critChance'] ?? null, 0.05);
         $critDmgMult = self::safeN($params['critDmg'] ?? null, 2.0);
+        $maxCrit = self::safeN($params['maxCritChance'] ?? null, 1.0);
+
+        $effectiveCritChance = min($critChance, $maxCrit);
 
         $baseDamage = ($baseAtk + $weaponAtk + $skillBonus) * $classMod;
-        $finalDamage = max(1, $baseDamage - $enemyDef);
+        $mitigated = $baseDamage * (1 - self::defMitigation($enemyDef, $params['attackerLevel'] ?? 1));
+        $finalDamage = ($params['playerSource'] ?? false) ? self::compressPlayerDamage($mitigated) : max(1, $mitigated);
 
-        $isDodged = (bool) ($params['isDodged'] ?? false);
-        if ($isDodged) {
-            return [
-                'damage' => (int) max(1, floor($baseDamage - $enemyDef)),
-                'isCrit' => false,
-                'isBlocked' => false,
-                'isDodged' => true,
-                'finalDamage' => 0,
-            ];
-        }
-
-        $isCrit = (bool) ($params['isCrit'] ?? false);
-        $isBlocked = (bool) ($params['isBlocked'] ?? false);
-
+        $isCrit = $params['isCrit'] ?? (mt_rand() / mt_getrandmax() < $effectiveCritChance);
         if ($isCrit) {
             $finalDamage *= $critDmgMult;
-        }
-        if ($isBlocked) {
-            $finalDamage = floor($finalDamage * 0.5);
         }
 
         $dmgMult = self::safeN($params['damageMultiplier'] ?? null, 1);
@@ -61,10 +83,8 @@ final class CombatMath
         }
 
         return [
-            'damage' => (int) max(1, floor($baseDamage - $enemyDef)),
-            'isCrit' => $isCrit,
-            'isBlocked' => $isBlocked,
-            'isDodged' => false,
+            'damage' => (int) max(1, floor($mitigated)),
+            'isCrit' => (bool) $isCrit,
             'finalDamage' => (int) max(1, floor($finalDamage)),
         ];
     }
@@ -85,39 +105,6 @@ final class CombatMath
             'hit2' => $hit2,
             'totalDamage' => $hit1['finalDamage'] + $hit2['finalDamage'],
         ];
-    }
-
-    public static function calculateBlockChance(int|float $shieldingLevel, bool $isPhysicalAttack = true): float
-    {
-        if (! $isPhysicalAttack) {
-            return 0.0;
-        }
-
-        $base = 0.05;
-        $perLevel = 0.005;
-        $max = 0.25;
-
-        return min($max, $base + self::safeN($shieldingLevel) * $perLevel);
-    }
-
-    public static function calculateDodgeChance(string $characterClass, int|float $agilityLevel = 0, bool $isPhysicalAttack = true): float
-    {
-        if (! $isPhysicalAttack) {
-            return 0.0;
-        }
-
-        $classConfig = [
-            'Archer' => ['base' => 0.05, 'perLevel' => 0.004, 'max' => 0.20],
-            'Rogue' => ['base' => 0.05, 'perLevel' => 0.005, 'max' => 0.20],
-            'Bard' => ['base' => 0.05, 'perLevel' => 0.003, 'max' => 0.15],
-        ];
-
-        $config = $classConfig[$characterClass] ?? null;
-        if ($config === null) {
-            return 0.0;
-        }
-
-        return min($config['max'], $config['base'] + self::safeN($agilityLevel) * $config['perLevel']);
     }
 
     public static function calculateSkillDamageWithMlvl(int|float $baseSkillDmg, int|float $mlvl, int|float $enemyDefense, int|float $classModifier): int

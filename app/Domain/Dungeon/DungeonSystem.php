@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Dungeon;
 
+use App\Domain\Combat\CombatMath;
 use App\Domain\Loot\ItemGenerator;
 use App\Domain\Support\Rng\RngInterface;
 use DateTimeImmutable;
@@ -293,14 +294,16 @@ final class DungeonSystem
         int $playerHp,
         int $playerAtk,
         int $playerDef,
+        int $playerLevel,
         int $monsterHp,
         int $monsterAtk,
-        int $monsterDef,
+        ?int $monsterDef = null,
+        ?int $monsterLevel = null,
     ): array {
         $pHp = $playerHp;
         $mHp = $monsterHp;
-        $pDmg = max(1, $playerAtk - $monsterDef);
-        $mDmg = max(1, $monsterAtk - $playerDef);
+        $pDmg = CombatMath::mitigateDamage($playerAtk, $monsterDef ?? 0, $playerLevel, true);
+        $mDmg = CombatMath::mitigateDamage($monsterAtk, $playerDef, $monsterLevel ?? 1);
 
         for ($i = 0; $i < 10000; $i++) {
             $mHp -= $pDmg;
@@ -385,8 +388,8 @@ final class DungeonSystem
 
             $res = self::resolveWave(
                 $playerHp,
-                (int) $character['attack'], (int) $character['defense'],
-                (int) $monster['hp'], (int) $monster['attack'], (int) $monster['defense'],
+                (int) $character['attack'], (int) $character['defense'], (int) $character['level'],
+                (int) $monster['hp'], (int) $monster['attack'], (int) $monster['defense'], (int) $monster['level'],
             );
 
             $playerHp = $res['playerHpLeft'];

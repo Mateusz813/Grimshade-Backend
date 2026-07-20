@@ -44,8 +44,6 @@ final class HuntResolver
                 'classModifier' => 1,
                 'enemyDefense' => $stats['defense'],
                 'isCrit' => $isCrit,
-                'isBlocked' => false,
-                'isDodged' => false,
                 'critDmg' => $character['crit_damage'],
             ]);
             $monsterHp -= $hit['finalDamage'];

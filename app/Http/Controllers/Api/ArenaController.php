@@ -377,8 +377,6 @@ final class ArenaController extends Controller
                 'classModifier' => 1,
                 'enemyDefense' => $defender->defense,
                 'isCrit' => $aCrit,
-                'isBlocked' => false,
-                'isDodged' => false,
                 'critDmg' => $attacker->crit_damage,
                 'damageMultiplier' => self::ARENA_DAMAGE_MULTIPLIER,
             ]);
@@ -395,8 +393,6 @@ final class ArenaController extends Controller
                 'classModifier' => 1,
                 'enemyDefense' => $attacker->defense,
                 'isCrit' => $dCrit,
-                'isBlocked' => false,
-                'isDodged' => false,
                 'critDmg' => $defender->crit_damage,
                 'damageMultiplier' => self::ARENA_DAMAGE_MULTIPLIER,
             ]);

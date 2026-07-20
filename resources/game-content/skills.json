@@ -1216,7 +1216,7 @@
         "mpCost": 500,
         "cooldown": 300000,
         "damage": 0,
-        "effect": "party_instant_kill_chance_next:3:5;party_immortal:3000;party_attack_up:100:30000;party_as_up:2.2:10000",
+        "effect": "party_immortal:3000;party_attack_up:100:30000;party_as_up:2.2:10000",
         "unlockLevel": 1000,
         "goldCost": 750000000
       }

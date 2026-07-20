@@ -59,15 +59,12 @@ it('matches doesClassGainMlvlFromAttacks', function () {
     }
 });
 
-it('matches shielding helpers (xpPerBlock, defBonus, blockBonus)', function () {
-    foreach ($this->golden['shieldingXpPerBlock'] as $case) {
-        expect(SkillSystem::shieldingXpPerBlock($case['level']))->toEqual($case['value'], "shieldingXpPerBlock({$case['level']})");
+it('matches shielding helpers (xpPerHit, defBonus)', function () {
+    foreach ($this->golden['shieldingXpPerHit'] as $case) {
+        expect(SkillSystem::shieldingXpPerHit($case['level']))->toEqual($case['value'], "shieldingXpPerHit({$case['level']})");
     }
     foreach ($this->golden['getShieldingDefBonus'] as $case) {
         expect(SkillSystem::getShieldingDefBonus($case['level']))->toEqual($case['value'], "getShieldingDefBonus({$case['level']})");
-    }
-    foreach ($this->golden['getShieldingBlockBonus'] as $case) {
-        expect(SkillSystem::getShieldingBlockBonus($case['level']))->toEqual($case['value'], "getShieldingBlockBonus({$case['level']})");
     }
 });
 
