@@ -21,7 +21,7 @@ final class BotSystem
 
     private const DEF_BASE = 25;
 
-    private const DMG_COMPRESS_K = 0.48;
+    private const DMG_COMPRESS_K = 2.3;
 
     private const DMG_COMPRESS_P = 0.80;
 

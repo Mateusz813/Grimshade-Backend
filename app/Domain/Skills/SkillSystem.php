@@ -273,7 +273,7 @@ final class SkillSystem
     {
         return $upgradeLevel <= 0
             ? 1
-            : 1 + 0.6 * (1 - (0.9 ** $upgradeLevel));
+            : 1 + 0.4 * (1 - (0.9 ** $upgradeLevel));
     }
 
     public static function getSkillUpgradeBonus(int $upgradeLevel): float

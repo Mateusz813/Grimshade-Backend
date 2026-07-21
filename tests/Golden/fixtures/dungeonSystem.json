@@ -35249,7 +35249,7 @@
       "monsterAtk": 12,
       "monsterDef": 3,
       "value": {
-        "playerHpLeft": 198,
+        "playerHpLeft": 200,
         "won": true
       }
     },
@@ -35261,7 +35261,7 @@
       "monsterAtk": 15,
       "monsterDef": 2,
       "value": {
-        "playerHpLeft": 22,
+        "playerHpLeft": 28,
         "won": true
       }
     },
@@ -35273,7 +35273,7 @@
       "monsterAtk": 5,
       "monsterDef": 0,
       "value": {
-        "playerHpLeft": 6,
+        "playerHpLeft": 8,
         "won": true
       }
     },
@@ -35285,8 +35285,8 @@
       "monsterAtk": 200,
       "monsterDef": 40,
       "value": {
-        "playerHpLeft": 0,
-        "won": false
+        "playerHpLeft": 688,
+        "won": true
       }
     },
     {
@@ -35297,8 +35297,8 @@
       "monsterAtk": 60,
       "monsterDef": 10,
       "value": {
-        "playerHpLeft": 0,
-        "won": false
+        "playerHpLeft": 14,
+        "won": true
       }
     },
     {
@@ -35309,8 +35309,8 @@
       "monsterAtk": 100,
       "monsterDef": 100,
       "value": {
-        "playerHpLeft": 0,
-        "won": false
+        "playerHpLeft": 75,
+        "won": true
       }
     },
     {
@@ -37241,7 +37241,7 @@
             "monsterName": "Wilk",
             "monsterSprite": "wolf",
             "isBossWave": false,
-            "playerHpAfter": 440,
+            "playerHpAfter": 494,
             "won": true
           },
           {
@@ -37249,7 +37249,7 @@
             "monsterName": "Wilk",
             "monsterSprite": "wolf",
             "isBossWave": false,
-            "playerHpAfter": 363,
+            "playerHpAfter": 480,
             "won": true
           },
           {
@@ -37257,14 +37257,14 @@
             "monsterName": "Ork",
             "monsterSprite": "ogre",
             "isBossWave": true,
-            "playerHpAfter": 143,
+            "playerHpAfter": 440,
             "won": true
           }
         ],
         "result": {
           "success": true,
           "wavesCleared": 3,
-          "playerHpLeft": 143,
+          "playerHpLeft": 440,
           "gold": 98,
           "xp": 480,
           "items": [
@@ -37313,7 +37313,7 @@
             "monsterName": "Wilk",
             "monsterSprite": "wolf",
             "isBossWave": false,
-            "playerHpAfter": 440,
+            "playerHpAfter": 494,
             "won": true
           },
           {
@@ -37321,7 +37321,7 @@
             "monsterName": "Wilk",
             "monsterSprite": "wolf",
             "isBossWave": false,
-            "playerHpAfter": 363,
+            "playerHpAfter": 480,
             "won": true
           },
           {
@@ -37329,14 +37329,14 @@
             "monsterName": "Ork",
             "monsterSprite": "ogre",
             "isBossWave": true,
-            "playerHpAfter": 143,
+            "playerHpAfter": 440,
             "won": true
           }
         ],
         "result": {
           "success": true,
           "wavesCleared": 3,
-          "playerHpLeft": 143,
+          "playerHpLeft": 440,
           "gold": 161,
           "xp": 480,
           "items": []
@@ -37368,7 +37368,7 @@
             "monsterName": "Wilk",
             "monsterSprite": "wolf",
             "isBossWave": false,
-            "playerHpAfter": 440,
+            "playerHpAfter": 494,
             "won": true
           },
           {
@@ -37376,7 +37376,7 @@
             "monsterName": "Wilk",
             "monsterSprite": "wolf",
             "isBossWave": false,
-            "playerHpAfter": 363,
+            "playerHpAfter": 480,
             "won": true
           },
           {
@@ -37384,14 +37384,14 @@
             "monsterName": "Ork",
             "monsterSprite": "ogre",
             "isBossWave": true,
-            "playerHpAfter": 143,
+            "playerHpAfter": 440,
             "won": true
           }
         ],
         "result": {
           "success": true,
           "wavesCleared": 3,
-          "playerHpLeft": 143,
+          "playerHpLeft": 440,
           "gold": 192,
           "xp": 480,
           "items": [

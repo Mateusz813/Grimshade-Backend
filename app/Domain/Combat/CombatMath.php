@@ -12,7 +12,7 @@ final class CombatMath
 
     public const DEF_BASE = 25;
 
-    public const DMG_COMPRESS_K = 0.48;
+    public const DMG_COMPRESS_K = 2.3;
 
     public const DMG_COMPRESS_P = 0.80;
 

@@ -103,7 +103,7 @@ it('aggregates effective char: equipment crit + attack, no elixir/transform', fu
 
     expect($e['attack'])->toBe(120)
         ->and($e['defense'])->toBe(50)
-        ->and($e['max_hp'])->toBe(508)
+        ->and($e['max_hp'])->toBe(502)
         ->and($e['max_mp'])->toBe(200);
     expect($e['attack_speed'])->toEqualWithDelta(1.0, 1e-9);
     expect($e['crit_chance'])->toEqualWithDelta(0.17, 1e-9);
@@ -148,5 +148,5 @@ it('applies gear-gap penalty when under-geared for content level', function () {
     $e = $this->eff->getEffectiveChar($baseRow, $equipment, [], 'Knight', [], [], 30);
 
     expect($e['attack'])->toBe(25)
-        ->and($e['max_hp'])->toBe(230);
+        ->and($e['max_hp'])->toBe(207);
 });

@@ -14,6 +14,8 @@ use App\Domain\Transform\TransformSystem;
 
 final class EffectiveStats
 {
+    public const GEAR_HP_SCALE = 0.25;
+
     public const CLASS_MODIFIER = [
         'Knight' => 1.0,
         'Mage' => 1.3,
@@ -239,7 +241,7 @@ final class EffectiveStats
 
         $baseAttackSpeed = $baseAttackSpeedV + $eq['speed'] * 0.01 + $tb['attack_speed'];
 
-        $rawMaxHp = $baseMaxHp + $eq['hp'] + $tb['max_hp'] + $elixHp + $transformFlatHp;
+        $rawMaxHp = $baseMaxHp + (int) floor($eq['hp'] * self::GEAR_HP_SCALE) + $tb['max_hp'] + $elixHp + $transformFlatHp;
         $rawMaxMp = $baseMaxMp + $eq['mp'] + $tb['max_mp'] + $elixMp + $transformFlatMp;
         $rawDefense = $baseDefense + $eq['defense'] + $tb['defense'] + $elixDef + $transformFlatDef;
 
