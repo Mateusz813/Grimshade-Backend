@@ -14,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 final class CharacterStateController extends Controller
@@ -38,6 +39,7 @@ final class CharacterStateController extends Controller
         $validated = $request->validate([
             'requestId' => ['required', 'string'],
             'state' => ['required', 'array'],
+            'base_updated_at' => ['sometimes', 'nullable', 'string', 'max:64'],
             'event' => ['sometimes', 'array'],
             'event.type' => ['sometimes', 'nullable', 'string', Rule::in([
                 'dungeon', 'boss', 'raid', 'transform', 'hunt', 'offline-hunt', 'arena',
@@ -61,9 +63,28 @@ final class CharacterStateController extends Controller
         $eventStrict = (bool) config('supabase.event_validation_strict', false);
         $event = isset($validated['event']) && is_array($validated['event']) ? $validated['event'] : null;
 
-        $payload = DB::transaction(function () use ($character, $state, $effective, $strict, $eventStrict, $event, $validated): array {
+        $baseUpdatedAt = isset($validated['base_updated_at']) && is_string($validated['base_updated_at'])
+            ? trim($validated['base_updated_at'])
+            : null;
+
+        $conflict = null;
+
+        $payload = DB::transaction(function () use ($character, $state, $effective, $strict, $eventStrict, $event, $validated, $baseUpdatedAt, &$conflict): array {
             $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
             $save = $state->lockedFor($fresh);
+
+            $serverUpdatedAt = optional($save->updated_at)->toIso8601String();
+            if ($baseUpdatedAt !== null && $baseUpdatedAt !== '' && $serverUpdatedAt !== null
+                && $baseUpdatedAt !== $serverUpdatedAt) {
+                $conflict = [
+                    'character' => (new CharacterResource($fresh))->resolve(),
+                    'state' => is_array($save->state) ? $save->state : [],
+                    'updated_at' => $serverUpdatedAt,
+                    'reason' => 'stale_base',
+                ];
+
+                return [];
+            }
 
             $sanitized = $state->commit($fresh, $save, $validated['state'], $effective, $strict, $event, $eventStrict);
 
@@ -73,6 +94,16 @@ final class CharacterStateController extends Controller
                 'updated_at' => optional($save->updated_at)->toIso8601String(),
             ];
         });
+
+        if ($conflict !== null) {
+            Log::warning('state.commit: 409 — klient wyslal stan oparty na nieaktualnej wersji', [
+                'character_id' => $character->id,
+                'base_updated_at' => $baseUpdatedAt,
+                'server_updated_at' => $conflict['updated_at'],
+            ]);
+
+            return response()->json($conflict, 409);
+        }
 
         Cache::put($cacheKey, $payload, now()->addHour());
 

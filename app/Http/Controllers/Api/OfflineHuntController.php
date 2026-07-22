@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Domain\Combat\CombatElixirs;
+use App\Domain\Content\ContentRepository;
 use App\Domain\OfflineHunt\OfflineHuntSystem;
 use App\Domain\Progression\LevelSystem;
 use App\Http\Controllers\Controller;
@@ -18,6 +19,76 @@ use Illuminate\Support\Facades\DB;
 
 final class OfflineHuntController extends Controller
 {
+    /**
+     * Rozpoczyna polowanie offline PO STRONIE SERWERA.
+     *
+     * Wcześniej start istniał wyłącznie w blobie klienta i docierał na serwer dopiero
+     * debounce'owanym commitem — kto ustawił polowanie i od razu zamknął apkę, tracił je
+     * w całości (`settle` nie widział `offlineHunt.isActive` i zwracał `settled: false`).
+     * Teraz zapis jest transakcyjny i natychmiastowy, więc zamknięcie apki nic nie zmienia.
+     */
+    public function start(Request $request, ContentRepository $content, CharacterStateService $state): JsonResponse
+    {
+        $character = $request->attributes->get('character');
+
+        $data = $request->validate([
+            'requestId' => ['required', 'string', 'max:200'],
+            'monsterId' => ['required', 'string', 'max:120'],
+            'skillId' => ['required', 'string', 'max:120'],
+        ]);
+
+        $cacheKey = "offlineHunt.start.{$character->id}.{$data['requestId']}";
+        if (Cache::has($cacheKey)) {
+            return response()->json(Cache::get($cacheKey));
+        }
+
+        $monster = null;
+        foreach ($content->get('monsters') as $row) {
+            if ((string) ($row['id'] ?? '') === $data['monsterId']) {
+                $monster = $row;
+                break;
+            }
+        }
+
+        if ($monster === null) {
+            return response()->json(['message' => "Nieznany potwor: {$data['monsterId']}"], 422);
+        }
+
+        if ((int) ($monster['level'] ?? 0) > (int) $character->level) {
+            return response()->json([
+                'message' => 'Potwor jest powyzej poziomu postaci',
+            ], 422);
+        }
+
+        $payload = DB::transaction(function () use ($character, $state, $monster, $data): array {
+            $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
+            $save = $state->lockedFor($fresh);
+
+            $blob = is_array($save->state) ? $save->state : [];
+            $blob['offlineHunt'] = [
+                'isActive' => true,
+                'startedAt' => now()->toIso8601String(),
+                'targetMonster' => $monster,
+                'trainedSkillId' => $data['skillId'],
+                '_entryOwner' => (string) $fresh->id,
+            ];
+
+            $save->state = $blob;
+            $state->persist($save);
+
+            return [
+                'started' => true,
+                'offlineHunt' => $blob['offlineHunt'],
+                'state' => $blob,
+                'updated_at' => optional($save->updated_at)->toIso8601String(),
+            ];
+        });
+
+        Cache::put($cacheKey, $payload, now()->addHour());
+
+        return response()->json($payload);
+    }
+
     public function settle(Request $request, CharacterStateService $state): JsonResponse
     {
         $character = $request->attributes->get('character');

@@ -65,6 +65,8 @@ final class CharacterStateService
             ]);
         }
 
+        $sanitized = $this->guardProgressRegression($character, $prev, $sanitized);
+
         $this->guardInvariants($character, $prev, $sanitized, $effective, $strict);
 
         if ($event !== null) {
@@ -78,6 +80,64 @@ final class CharacterStateService
         $character->save();
 
         return $sanitized;
+    }
+
+    public const REGRESSION_DEATH_ALLOWANCE = 2.0;
+
+    public const MIN_LEVEL_DROP_ALLOWANCE = 2;
+
+    /**
+     * Twarda ochrona przed cofnięciem postępu — działa NIEZALEŻNIE od trybu strict.
+     *
+     * Bez niej dowolny klient ze starym stanem (druga karta, drugie urządzenie, nieodświeżony
+     * cache) nadpisywał serwer w całości i kasował poziomy oraz taski. `highest_level` jest
+     * naprawiany w miejscu (nigdy nie maleje), a zbyt duży spadek `level` jest ODRZUCANY —
+     * legalny spadek pochodzi wyłącznie z kary za śmierć i jest ograniczony.
+     */
+    private function guardProgressRegression(Character $character, array $prev, array $next): array
+    {
+        $prevStats = is_array($prev['_characterStats'] ?? null) ? $prev['_characterStats'] : [];
+        $nextStats = is_array($next['_characterStats'] ?? null) ? $next['_characterStats'] : [];
+
+        $prevLevel = (int) $this->finiteNumber($prevStats['level'] ?? $character->level);
+        $nextLevel = (int) $this->finiteNumber($nextStats['level'] ?? $prevLevel);
+
+        $prevHighest = (int) $this->finiteNumber($prevStats['highest_level'] ?? $character->highest_level);
+        $nextHighest = (int) $this->finiteNumber($nextStats['highest_level'] ?? $prevHighest);
+
+        if ($nextLevel < $prevLevel) {
+            $allowance = max(
+                self::MIN_LEVEL_DROP_ALLOWANCE,
+                (int) ceil(LevelSystem::getDeathLossLevels($prevLevel) * self::REGRESSION_DEATH_ALLOWANCE),
+            );
+
+            if (($prevLevel - $nextLevel) > $allowance) {
+                Log::error('state.commit: ODRZUCONY — commit cofa poziom postaci', [
+                    'character_id' => $character->id,
+                    'prev_level' => $prevLevel,
+                    'submitted_level' => $nextLevel,
+                    'allowance' => $allowance,
+                ]);
+
+                throw new StateValidationException(
+                    "Odrzucono zapis: commit cofa poziom {$prevLevel} -> {$nextLevel} "
+                    ."(dozwolony spadek to {$allowance}, wiecej moze wynikac tylko z kary za smierc). "
+                    .'Prawdopodobnie klient wyslal nieaktualny stan.',
+                );
+            }
+        }
+
+        $repairedHighest = max($prevHighest, $nextHighest, $nextLevel);
+        if ($repairedHighest !== $nextHighest) {
+            Log::warning('state.commit: naprawiono cofniety highest_level', [
+                'character_id' => $character->id,
+                'submitted' => $nextHighest,
+                'repaired_to' => $repairedHighest,
+            ]);
+            $next['_characterStats']['highest_level'] = $repairedHighest;
+        }
+
+        return $next;
     }
 
     private function guardInvariants(Character $character, array $prev, array $next, EffectiveStats $effective, bool $strict): void
