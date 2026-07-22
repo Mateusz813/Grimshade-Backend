@@ -9,7 +9,7 @@ use App\Domain\Support\Rng\RngInterface;
 
 final class ItemGenerator
 {
-    private const BONUS_STAT_POOL = ['hp', 'mp', 'attack', 'defense', 'speed', 'critChance', 'critDmg'];
+    private const BONUS_STAT_POOL = ['hp', 'mp', 'attack', 'defense', 'speed', 'critChance'];
 
     private const BONUS_STAT_RANGES = [
         'common' => ['min' => 1, 'max' => 5],
@@ -22,7 +22,7 @@ final class ItemGenerator
 
     private const STAT_RANGE_MULTIPLIER = [
         'hp' => 1.0, 'mp' => 1.0, 'attack' => 1.0, 'defense' => 1.0, 'speed' => 1.0,
-        'critChance' => 0.3, 'critDmg' => 1.5,
+        'critChance' => 0.3,
     ];
 
     private const ARMOR_SLOT_BASE_STAT = [

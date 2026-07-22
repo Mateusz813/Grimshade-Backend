@@ -11,7 +11,7 @@
         "enemyDefense": 20,
         "attackerLevel": 20,
         "isCrit": false,
-        "critDmg": 2
+        "critRoll": 0.5
       },
       "result": {
         "damage": 55,
@@ -28,7 +28,7 @@
         "enemyDefense": 20,
         "attackerLevel": 20,
         "isCrit": true,
-        "critDmg": 2
+        "critRoll": 0.5
       },
       "result": {
         "damage": 62,
@@ -45,7 +45,7 @@
         "enemyDefense": 100,
         "attackerLevel": 100,
         "isCrit": false,
-        "critDmg": 2
+        "critRoll": 0.5
       },
       "result": {
         "damage": 44,
@@ -62,7 +62,7 @@
         "enemyDefense": 200,
         "attackerLevel": 100,
         "isCrit": false,
-        "critDmg": 2
+        "critRoll": 0.5
       },
       "result": {
         "damage": 30,
@@ -79,12 +79,12 @@
         "enemyDefense": 300,
         "attackerLevel": 100,
         "isCrit": true,
-        "critDmg": 2.5
+        "critRoll": 0.75
       },
       "result": {
         "damage": 23,
         "isCrit": true,
-        "finalDamage": 58
+        "finalDamage": 52
       }
     },
     {
@@ -96,7 +96,7 @@
         "enemyDefense": 999,
         "attackerLevel": 1,
         "isCrit": false,
-        "critDmg": 2
+        "critRoll": 0.5
       },
       "result": {
         "damage": 3,
@@ -113,7 +113,7 @@
         "enemyDefense": 40,
         "attackerLevel": 40,
         "isCrit": true,
-        "critDmg": 2,
+        "critRoll": 0.5,
         "damageMultiplier": 1.5
       },
       "result": {
@@ -131,7 +131,7 @@
         "enemyDefense": 10,
         "attackerLevel": 10,
         "isCrit": false,
-        "critDmg": 2,
+        "critRoll": 0.5,
         "damageMultiplier": 0.5
       },
       "result": {
@@ -152,7 +152,7 @@
         "enemyDefense": 15,
         "attackerLevel": 15,
         "isCrit": false,
-        "critDmg": 2
+        "critRoll": 0.5
       },
       "result": {
         "hit1": {
@@ -178,7 +178,7 @@
         "enemyDefense": 15,
         "attackerLevel": 15,
         "isCrit": true,
-        "critDmg": 2
+        "critRoll": 0.5
       },
       "result": {
         "hit1": {

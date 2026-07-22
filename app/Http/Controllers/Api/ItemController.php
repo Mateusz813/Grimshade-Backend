@@ -136,7 +136,7 @@ final class ItemController extends Controller
             }
 
             $stoneType = ItemEconomy::getRequiredStoneType($item['rarity']);
-            $gotStone = $rng->nextFloat() < 0.20;
+            $gotStone = $rng->nextFloat() < 0.25;
 
             $state->removeBagItem($save, $data['itemUuid']);
             if ($gotStone) {
@@ -182,7 +182,7 @@ final class ItemController extends Controller
                     continue;
                 }
                 $toRemove[] = $item['uuid'];
-                if ($rng->nextFloat() >= 0.20) {
+                if ($rng->nextFloat() >= 0.25) {
                     continue;
                 }
                 $stoneType = ItemEconomy::getRequiredStoneType($item['rarity']);

@@ -200,7 +200,7 @@ it('resets stats to class base + consumes the stat_reset elixir', function () {
     $fresh = Character::find($c->id);
     expect($fresh->max_hp)->toBe(942)
         ->and($fresh->max_mp)->toBe(238)
-        ->and($fresh->stat_points)->toBe(198)
+        ->and($fresh->stat_points)->toBe(10)
         ->and($fresh->attack)->toBe(12)
         ->and($fresh->defense)->toBe(8);
     expect(GameSave::where('character_id', $c->id)->first()->state['inventory']['consumables']['stat_reset'])->toBe(1);

@@ -153,44 +153,7 @@
       "value": 257150700269
     }
   ],
-  "statPointsForLevelUp": [
-    {
-      "class": "Knight",
-      "value": 2
-    },
-    {
-      "class": "Mage",
-      "value": 2
-    },
-    {
-      "class": "Cleric",
-      "value": 2
-    },
-    {
-      "class": "Archer",
-      "value": 2
-    },
-    {
-      "class": "Rogue",
-      "value": 2
-    },
-    {
-      "class": "Necromancer",
-      "value": 2
-    },
-    {
-      "class": "Bard",
-      "value": 2
-    },
-    {
-      "class": "Unknown",
-      "value": 2
-    },
-    {
-      "class": "",
-      "value": 2
-    }
-  ],
+  "attributePointsPerMilestone": 1,
   "processXpGain": [
     {
       "level": 1,
@@ -211,7 +174,7 @@
         "newLevel": 2,
         "remainingXp": 0,
         "levelsGained": 1,
-        "statPointsGained": 2
+        "statPointsGained": 0
       }
     },
     {
@@ -222,7 +185,7 @@
         "newLevel": 2,
         "remainingXp": 700,
         "levelsGained": 1,
-        "statPointsGained": 2
+        "statPointsGained": 0
       }
     },
     {
@@ -244,7 +207,7 @@
         "newLevel": 17,
         "remainingXp": 697,
         "levelsGained": 7,
-        "statPointsGained": 14
+        "statPointsGained": 0
       }
     },
     {
@@ -266,7 +229,7 @@
         "newLevel": 100,
         "remainingXp": 4489,
         "levelsGained": 1,
-        "statPointsGained": 2
+        "statPointsGained": 1
       }
     },
     {
@@ -277,7 +240,7 @@
         "newLevel": 101,
         "remainingXp": 300000,
         "levelsGained": 1,
-        "statPointsGained": 2
+        "statPointsGained": 0
       }
     },
     {
@@ -288,7 +251,7 @@
         "newLevel": 101,
         "remainingXp": 0,
         "levelsGained": 1,
-        "statPointsGained": 2
+        "statPointsGained": 0
       }
     },
     {
@@ -299,7 +262,7 @@
         "newLevel": 203,
         "remainingXp": 7649288,
         "levelsGained": 3,
-        "statPointsGained": 6
+        "statPointsGained": 0
       }
     },
     {
@@ -310,7 +273,7 @@
         "newLevel": 1000,
         "remainingXp": 3852000,
         "levelsGained": 1,
-        "statPointsGained": 2
+        "statPointsGained": 1
       }
     },
     {
@@ -321,7 +284,7 @@
         "newLevel": 1002,
         "remainingXp": 115985000,
         "levelsGained": 2,
-        "statPointsGained": 4
+        "statPointsGained": 0
       }
     },
     {
@@ -332,7 +295,7 @@
         "newLevel": 1001,
         "remainingXp": 500000000,
         "levelsGained": 1,
-        "statPointsGained": 2
+        "statPointsGained": 0
       }
     },
     {

@@ -21,7 +21,6 @@
       "mp_regen": 0.15,
       "hp_regen": 0.15,
       "crit_chance": 0.12,
-      "crit_dmg": 0.12,
       "attack_speed": 0.1
     },
     "CLASS_WEAPON_SKILLS": {
@@ -72,8 +71,7 @@
       "hp_regen",
       "mp_regen",
       "defense",
-      "crit_chance",
-      "crit_dmg"
+      "crit_chance"
     ],
     "ALL_TRAINABLE_STATS": [
       "sword_fighting",
@@ -88,8 +86,7 @@
       "hp_regen",
       "mp_regen",
       "defense",
-      "crit_chance",
-      "crit_dmg"
+      "crit_chance"
     ],
     "SPELL_CHEST_LEVELS": [
       5,
@@ -1332,8 +1329,7 @@
         "hp_regen",
         "mp_regen",
         "defense",
-        "crit_chance",
-        "crit_dmg"
+        "crit_chance"
       ]
     },
     {
@@ -1346,8 +1342,7 @@
         "hp_regen",
         "mp_regen",
         "defense",
-        "crit_chance",
-        "crit_dmg"
+        "crit_chance"
       ]
     },
     {
@@ -1360,8 +1355,7 @@
         "hp_regen",
         "mp_regen",
         "defense",
-        "crit_chance",
-        "crit_dmg"
+        "crit_chance"
       ]
     },
     {
@@ -1374,8 +1368,7 @@
         "hp_regen",
         "mp_regen",
         "defense",
-        "crit_chance",
-        "crit_dmg"
+        "crit_chance"
       ]
     },
     {
@@ -1388,8 +1381,7 @@
         "hp_regen",
         "mp_regen",
         "defense",
-        "crit_chance",
-        "crit_dmg"
+        "crit_chance"
       ]
     },
     {
@@ -1402,8 +1394,7 @@
         "hp_regen",
         "mp_regen",
         "defense",
-        "crit_chance",
-        "crit_dmg"
+        "crit_chance"
       ]
     },
     {
@@ -1416,8 +1407,7 @@
         "hp_regen",
         "mp_regen",
         "defense",
-        "crit_chance",
-        "crit_dmg"
+        "crit_chance"
       ]
     }
   ],
@@ -1432,8 +1422,7 @@
         "hp_regen": 0,
         "mp_regen": 0,
         "defense": 0,
-        "crit_chance": 0,
-        "crit_dmg": 0
+        "crit_chance": 0
       }
     },
     {
@@ -1455,8 +1444,7 @@
         "hp_regen": 4,
         "mp_regen": 0.75,
         "defense": 7,
-        "crit_chance": 0.02,
-        "crit_dmg": 0.16
+        "crit_chance": 0.02
       }
     },
     {
@@ -1474,8 +1462,7 @@
         "hp_regen": 0.6000000000000001,
         "mp_regen": 6,
         "defense": 2,
-        "crit_chance": 0,
-        "crit_dmg": 0
+        "crit_chance": 0
       }
     },
     {
@@ -1494,8 +1481,7 @@
         "hp_regen": 3,
         "mp_regen": 9,
         "defense": 0,
-        "crit_chance": 0.5,
-        "crit_dmg": 0.5
+        "crit_chance": 0.5
       }
     },
     {
@@ -1511,8 +1497,7 @@
         "hp_regen": 1,
         "mp_regen": 1,
         "defense": 0,
-        "crit_chance": 0,
-        "crit_dmg": 0
+        "crit_chance": 0
       }
     },
     {
@@ -1529,8 +1514,7 @@
         "hp_regen": 10,
         "mp_regen": 10,
         "defense": 33,
-        "crit_chance": 0,
-        "crit_dmg": 0
+        "crit_chance": 0
       }
     }
   ],

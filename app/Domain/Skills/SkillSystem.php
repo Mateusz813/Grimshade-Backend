@@ -25,7 +25,6 @@ final class SkillSystem
         'mp_regen' => 0.15,
         'hp_regen' => 0.15,
         'crit_chance' => 0.12,
-        'crit_dmg' => 0.12,
         'attack_speed' => 0.1,
     ];
 
@@ -54,12 +53,12 @@ final class SkillSystem
     ];
 
     public const GENERAL_TRAINABLE_STATS = [
-        'attack_speed', 'max_hp', 'max_mp', 'hp_regen', 'mp_regen', 'defense', 'crit_chance', 'crit_dmg',
+        'attack_speed', 'max_hp', 'max_mp', 'hp_regen', 'mp_regen', 'defense', 'crit_chance',
     ];
 
     public const ALL_TRAINABLE_STATS = [
         'sword_fighting', 'shielding', 'distance_fighting', 'dagger_fighting', 'magic_level', 'bard_level',
-        'attack_speed', 'max_hp', 'max_mp', 'hp_regen', 'mp_regen', 'defense', 'crit_chance', 'crit_dmg',
+        'attack_speed', 'max_hp', 'max_mp', 'hp_regen', 'mp_regen', 'defense', 'crit_chance',
     ];
 
     public const SPELL_CHEST_LEVELS = [5, 10, 20, 30, 40, 50, 60, 70, 80, 100, 150, 300, 600, 800, 1000];
@@ -236,7 +235,6 @@ final class SkillSystem
             'mp_regen' => ($skillLevels['mp_regen'] ?? 0) * $mpRate,
             'defense' => ($skillLevels['defense'] ?? 0),
             'crit_chance' => ($skillLevels['crit_chance'] ?? 0) * 0.005,
-            'crit_dmg' => ($skillLevels['crit_dmg'] ?? 0) * 0.02,
         ];
     }
 

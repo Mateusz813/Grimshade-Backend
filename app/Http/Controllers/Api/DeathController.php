@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Death;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 final class DeathController extends Controller
 {
@@ -33,7 +34,7 @@ final class DeathController extends Controller
             'result' => ['sometimes', 'string', 'in:killed,fled'],
         ]);
 
-        $death = Death::create([
+        $row = [
             'character_id' => $character->id,
             'character_name' => $character->name,
             'character_class' => $character->class,
@@ -41,9 +42,13 @@ final class DeathController extends Controller
             'source' => $data['source'],
             'source_name' => $data['source_name'],
             'source_level' => $data['source_level'],
-            'result' => $data['result'] ?? 'killed',
             'died_at' => now(),
-        ]);
+        ];
+        if (Schema::hasColumn('character_deaths', 'result')) {
+            $row['result'] = $data['result'] ?? 'killed';
+        }
+
+        $death = Death::create($row);
 
         return response()->json($death, 201);
     }

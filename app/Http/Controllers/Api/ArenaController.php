@@ -377,7 +377,6 @@ final class ArenaController extends Controller
                 'classModifier' => 1,
                 'enemyDefense' => $defender->defense,
                 'isCrit' => $aCrit,
-                'critDmg' => $attacker->crit_damage,
                 'damageMultiplier' => self::ARENA_DAMAGE_MULTIPLIER,
             ]);
             $defHp -= $aHit['finalDamage'];
@@ -393,7 +392,6 @@ final class ArenaController extends Controller
                 'classModifier' => 1,
                 'enemyDefense' => $attacker->defense,
                 'isCrit' => $dCrit,
-                'critDmg' => $defender->crit_damage,
                 'damageMultiplier' => self::ARENA_DAMAGE_MULTIPLIER,
             ]);
             $atkHp -= $dHit['finalDamage'];

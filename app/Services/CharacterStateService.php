@@ -142,6 +142,10 @@ final class CharacterStateService
                 $this->equipmentFrom($next),
                 $this->skillLevelsFrom($next),
                 (string) $character->class,
+                [],
+                [],
+                0,
+                $this->attributeAllocationFrom($next),
             );
             foreach (['attack', 'defense', 'max_hp'] as $field) {
                 $claimed = (float) $this->finiteNumber($stats[$field] ?? 0);
@@ -278,6 +282,10 @@ final class CharacterStateService
                 $this->equipmentFrom($state),
                 $this->skillLevelsFrom($state),
                 (string) $character->class,
+                [],
+                [],
+                0,
+                $this->attributeAllocationFrom($state),
             );
         } catch (Throwable $e) {
             $violations[] = 'getEffectiveChar rzucił: '.$e->getMessage();
@@ -365,6 +373,11 @@ final class CharacterStateService
         $inv = is_array($state['inventory'] ?? null) ? $state['inventory'] : [];
 
         return is_array($inv['equipment'] ?? null) ? $inv['equipment'] : [];
+    }
+
+    private function attributeAllocationFrom(array $state): array
+    {
+        return is_array($state['attributes'] ?? null) ? $state['attributes'] : [];
     }
 
     private function skillLevelsFrom(array $state): array

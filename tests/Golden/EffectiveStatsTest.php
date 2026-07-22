@@ -34,14 +34,14 @@ it('sums generated equipment stats: base-stat keys scale with upgrade, extras fl
         ],
         'ring1' => [
             'itemId' => 'ring_lvl10_mythic', 'rarity' => 'mythic',
-            'bonuses' => ['attack' => 15, 'critChance' => 12, 'critDmg' => 20],
+            'bonuses' => ['attack' => 15, 'critChance' => 12],
             'itemLevel' => 10, 'upgradeLevel' => 0,
         ],
     ];
 
     expect($this->eff->getTotalEquipmentStats($equipment))->toEqual([
         'attack' => 20, 'defense' => 0, 'hp' => 8, 'mp' => 0,
-        'speed' => 0, 'critChance' => 12, 'critDmg' => 20,
+        'speed' => 0, 'critChance' => 12,
     ]);
 });
 
@@ -94,7 +94,7 @@ it('aggregates effective char: equipment crit + attack, no elixir/transform', fu
         ],
         'ring1' => [
             'itemId' => 'ring_lvl10_mythic', 'rarity' => 'mythic',
-            'bonuses' => ['attack' => 15, 'critChance' => 12, 'critDmg' => 20],
+            'bonuses' => ['attack' => 15, 'critChance' => 12],
             'itemLevel' => 10, 'upgradeLevel' => 0,
         ],
     ];
@@ -107,7 +107,6 @@ it('aggregates effective char: equipment crit + attack, no elixir/transform', fu
         ->and($e['max_mp'])->toBe(200);
     expect($e['attack_speed'])->toEqualWithDelta(1.0, 1e-9);
     expect($e['crit_chance'])->toEqualWithDelta(0.17, 1e-9);
-    expect($e['crit_damage'])->toEqualWithDelta(1.70, 1e-9);
     expect($e['hp_regen'])->toEqualWithDelta(2.0, 1e-9);
     expect($e['mp_regen'])->toEqualWithDelta(1.0, 1e-9);
 });

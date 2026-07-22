@@ -32,8 +32,14 @@ final class LootSystem
     ];
 
     private const BASE_STONE_DROP_CHANCE = [
-        'normal' => 0.10, 'strong' => 0.07, 'epic' => 0.04, 'legendary' => 0.02, 'boss' => 0.01,
+        'normal' => 0.10, 'strong' => 0.12, 'epic' => 0.15, 'legendary' => 0.18, 'boss' => 0.22,
     ];
+
+    private const STONE_DROP_MAX_COUNT = [
+        'normal' => 1, 'strong' => 1, 'epic' => 2, 'legendary' => 3, 'boss' => 4,
+    ];
+
+    public const HEROIC_STONE_FROM_BOSS_CHANCE = 0.15;
 
     private const POTION_FLAT_DROP_CHANCE = 0.004;
 
@@ -187,7 +193,12 @@ final class LootSystem
     {
         $chance = self::BASE_STONE_DROP_CHANCE[$monsterRarity] ?? self::BASE_STONE_DROP_CHANCE['normal'];
         if ($rng->nextFloat() < $chance) {
-            return ['type' => self::MONSTER_RARITY_STONE_MAP[$monsterRarity], 'count' => 1];
+            $type = $monsterRarity === 'boss' && $rng->nextFloat() < self::HEROIC_STONE_FROM_BOSS_CHANCE
+                ? 'heroic_stone'
+                : self::MONSTER_RARITY_STONE_MAP[$monsterRarity];
+            $max = self::STONE_DROP_MAX_COUNT[$monsterRarity] ?? 1;
+
+            return ['type' => $type, 'count' => 1 + (int) floor($rng->nextFloat() * $max)];
         }
 
         return null;

@@ -11,121 +11,121 @@
     {
       "bossId": "sewer_king",
       "value": {
-        "hp": 16005,
-        "attack": 40,
-        "attack_min": 31,
-        "attack_max": 47,
-        "defense": 13
+        "hp": 12561,
+        "attack": 36,
+        "attack_min": 28,
+        "attack_max": 43,
+        "defense": 11
       }
     },
     {
       "bossId": "shadow_lord",
       "value": {
-        "hp": 24206,
-        "attack": 75,
-        "attack_min": 59,
-        "attack_max": 89,
-        "defense": 22
+        "hp": 18970,
+        "attack": 64,
+        "attack_min": 50,
+        "attack_max": 77,
+        "defense": 19
       }
     },
     {
       "bossId": "ancient_dragon",
       "value": {
-        "hp": 37408,
-        "attack": 187,
-        "attack_min": 148,
-        "attack_max": 224,
-        "defense": 37
+        "hp": 28756,
+        "attack": 168,
+        "attack_min": 133,
+        "attack_max": 201,
+        "defense": 35
       }
     },
     {
       "bossId": "demon_king",
       "value": {
-        "hp": 65348,
-        "attack": 367,
-        "attack_min": 294,
-        "attack_max": 441,
-        "defense": 68
+        "hp": 47827,
+        "attack": 325,
+        "attack_min": 259,
+        "attack_max": 390,
+        "defense": 63
       }
     },
     {
       "bossId": "lich_king",
       "value": {
-        "hp": 89267,
-        "attack": 551,
-        "attack_min": 441,
-        "attack_max": 661,
-        "defense": 100
+        "hp": 64865,
+        "attack": 491,
+        "attack_min": 392,
+        "attack_max": 589,
+        "defense": 94
       }
     },
     {
       "bossId": "chaos_emperor",
       "value": {
-        "hp": 110351,
-        "attack": 679,
-        "attack_min": 542,
-        "attack_max": 813,
-        "defense": 130
+        "hp": 80227,
+        "attack": 600,
+        "attack_min": 479,
+        "attack_max": 719,
+        "defense": 123
       }
     },
     {
       "bossId": "abyssal_titan",
       "value": {
-        "hp": 155820,
-        "attack": 1074,
-        "attack_min": 859,
-        "attack_max": 1288,
+        "hp": 112203,
+        "attack": 962,
+        "attack_min": 770,
+        "attack_max": 1155,
         "defense": 192
       }
     },
     {
       "bossId": "infernal_overlord",
       "value": {
-        "hp": 201243,
-        "attack": 1494,
-        "attack_min": 1195,
-        "attack_max": 1792,
-        "defense": 253
+        "hp": 143804,
+        "attack": 1352,
+        "attack_min": 1081,
+        "attack_max": 1622,
+        "defense": 266
       }
     },
     {
       "bossId": "celestial_destroyer",
       "value": {
-        "hp": 243628,
-        "attack": 1856,
-        "attack_min": 1484,
-        "attack_max": 2227,
-        "defense": 315
+        "hp": 173369,
+        "attack": 1690,
+        "attack_min": 1351,
+        "attack_max": 2028,
+        "defense": 338
       }
     },
     {
       "bossId": "world_eater",
       "value": {
-        "hp": 290503,
-        "attack": 2322,
-        "attack_min": 1856,
-        "attack_max": 2786,
-        "defense": 378
+        "hp": 205149,
+        "attack": 2136,
+        "attack_min": 1708,
+        "attack_max": 2563,
+        "defense": 425
       }
     },
     {
       "bossId": "world_destroyer",
       "value": {
-        "hp": 370013,
-        "attack": 3008,
-        "attack_min": 2406,
-        "attack_max": 3608,
-        "defense": 501
+        "hp": 261016,
+        "attack": 2798,
+        "attack_min": 2238,
+        "attack_max": 3356,
+        "defense": 575
       }
     },
     {
       "bossId": "end_of_all",
       "value": {
-        "hp": 441206,
-        "attack": 3596,
-        "attack_min": 2877,
-        "attack_max": 4315,
-        "defense": 625
+        "hp": 312347,
+        "attack": 3382,
+        "attack_min": 2705,
+        "attack_max": 4058,
+        "defense": 718
       }
     }
   ],
@@ -1595,8 +1595,8 @@
       "seed": 1,
       "result": {
         "won": true,
-        "playerHpLeft": 99910,
-        "turns": 8,
+        "playerHpLeft": 99938,
+        "turns": 6,
         "drops": [
           {
             "itemId": "rat_king_blade",
@@ -1619,8 +1619,8 @@
       "seed": 2,
       "result": {
         "won": true,
-        "playerHpLeft": 99910,
-        "turns": 8,
+        "playerHpLeft": 99938,
+        "turns": 6,
         "drops": [],
         "gold": 2122,
         "xp": 1649
@@ -1637,8 +1637,8 @@
       "seed": 3,
       "result": {
         "won": true,
-        "playerHpLeft": 99910,
-        "turns": 8,
+        "playerHpLeft": 99938,
+        "turns": 6,
         "drops": [
           {
             "itemId": "rat_king_blade",
@@ -1661,8 +1661,8 @@
       "seed": 7,
       "result": {
         "won": true,
-        "playerHpLeft": 99910,
-        "turns": 8,
+        "playerHpLeft": 99938,
+        "turns": 6,
         "drops": [
           {
             "itemId": "sewer_crown",
@@ -1685,8 +1685,8 @@
       "seed": 13,
       "result": {
         "won": true,
-        "playerHpLeft": 99910,
-        "turns": 8,
+        "playerHpLeft": 99938,
+        "turns": 6,
         "drops": [],
         "gold": 1607,
         "xp": 1649
@@ -1703,8 +1703,8 @@
       "seed": 42,
       "result": {
         "won": true,
-        "playerHpLeft": 99910,
-        "turns": 8,
+        "playerHpLeft": 99938,
+        "turns": 6,
         "drops": [],
         "gold": 3482,
         "xp": 1649
@@ -1721,8 +1721,8 @@
       "seed": 99,
       "result": {
         "won": true,
-        "playerHpLeft": 99910,
-        "turns": 8,
+        "playerHpLeft": 99938,
+        "turns": 6,
         "drops": [],
         "gold": 2735,
         "xp": 1649
@@ -1739,8 +1739,8 @@
       "seed": 777,
       "result": {
         "won": true,
-        "playerHpLeft": 99910,
-        "turns": 8,
+        "playerHpLeft": 99938,
+        "turns": 6,
         "drops": [
           {
             "itemId": "rat_king_blade",
@@ -1763,8 +1763,8 @@
       "seed": 1,
       "result": {
         "won": true,
-        "playerHpLeft": 35702,
-        "turns": 88,
+        "playerHpLeft": 41010,
+        "turns": 63,
         "drops": [
           {
             "itemId": "hellfire_crown",
@@ -1787,8 +1787,8 @@
       "seed": 2,
       "result": {
         "won": true,
-        "playerHpLeft": 35702,
-        "turns": 88,
+        "playerHpLeft": 41010,
+        "turns": 63,
         "drops": [],
         "gold": 133927,
         "xp": 26833
@@ -1805,8 +1805,8 @@
       "seed": 3,
       "result": {
         "won": true,
-        "playerHpLeft": 35702,
-        "turns": 88,
+        "playerHpLeft": 41010,
+        "turns": 63,
         "drops": [],
         "gold": 159781,
         "xp": 26833
@@ -1823,8 +1823,8 @@
       "seed": 7,
       "result": {
         "won": true,
-        "playerHpLeft": 35702,
-        "turns": 88,
+        "playerHpLeft": 41010,
+        "turns": 63,
         "drops": [
           {
             "itemId": "demon_king_sword",
@@ -1847,8 +1847,8 @@
       "seed": 13,
       "result": {
         "won": true,
-        "playerHpLeft": 35702,
-        "turns": 88,
+        "playerHpLeft": 41010,
+        "turns": 63,
         "drops": [],
         "gold": 101447,
         "xp": 26833
@@ -1865,8 +1865,8 @@
       "seed": 42,
       "result": {
         "won": true,
-        "playerHpLeft": 35702,
-        "turns": 88,
+        "playerHpLeft": 41010,
+        "turns": 63,
         "drops": [],
         "gold": 219729,
         "xp": 26833
@@ -1883,8 +1883,8 @@
       "seed": 99,
       "result": {
         "won": true,
-        "playerHpLeft": 35702,
-        "turns": 88,
+        "playerHpLeft": 41010,
+        "turns": 63,
         "drops": [],
         "gold": 172591,
         "xp": 26833
@@ -1901,8 +1901,8 @@
       "seed": 777,
       "result": {
         "won": true,
-        "playerHpLeft": 35702,
-        "turns": 88,
+        "playerHpLeft": 41010,
+        "turns": 63,
         "drops": [],
         "gold": 119872,
         "xp": 26833
@@ -1919,8 +1919,8 @@
       "seed": 1,
       "result": {
         "won": true,
-        "playerHpLeft": 195000,
-        "turns": 87,
+        "playerHpLeft": 196590,
+        "turns": 66,
         "drops": [
           {
             "itemId": "dragonslayer",
@@ -1943,8 +1943,8 @@
       "seed": 2,
       "result": {
         "won": true,
-        "playerHpLeft": 195000,
-        "turns": 87,
+        "playerHpLeft": 196590,
+        "turns": 66,
         "drops": [],
         "gold": 38459,
         "xp": 12931
@@ -1961,8 +1961,8 @@
       "seed": 3,
       "result": {
         "won": true,
-        "playerHpLeft": 195000,
-        "turns": 87,
+        "playerHpLeft": 196590,
+        "turns": 66,
         "drops": [],
         "gold": 45883,
         "xp": 12931
@@ -1979,8 +1979,8 @@
       "seed": 7,
       "result": {
         "won": true,
-        "playerHpLeft": 195000,
-        "turns": 87,
+        "playerHpLeft": 196590,
+        "turns": 66,
         "drops": [
           {
             "itemId": "dragon_scale_armor",
@@ -2003,8 +2003,8 @@
       "seed": 13,
       "result": {
         "won": true,
-        "playerHpLeft": 195000,
-        "turns": 87,
+        "playerHpLeft": 196590,
+        "turns": 66,
         "drops": [],
         "gold": 29131,
         "xp": 12931
@@ -2021,8 +2021,8 @@
       "seed": 42,
       "result": {
         "won": true,
-        "playerHpLeft": 195000,
-        "turns": 87,
+        "playerHpLeft": 196590,
+        "turns": 66,
         "drops": [],
         "gold": 63099,
         "xp": 12931
@@ -2039,8 +2039,8 @@
       "seed": 99,
       "result": {
         "won": true,
-        "playerHpLeft": 195000,
-        "turns": 87,
+        "playerHpLeft": 196590,
+        "turns": 66,
         "drops": [],
         "gold": 49562,
         "xp": 12931
@@ -2057,8 +2057,8 @@
       "seed": 777,
       "result": {
         "won": true,
-        "playerHpLeft": 195000,
-        "turns": 87,
+        "playerHpLeft": 196590,
+        "turns": 66,
         "drops": [],
         "gold": 34423,
         "xp": 12931

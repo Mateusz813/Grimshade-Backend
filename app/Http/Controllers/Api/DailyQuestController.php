@@ -9,6 +9,7 @@ use App\Domain\Content\ContentRepository;
 use App\Domain\Progression\DailyQuestSystem;
 use App\Domain\Progression\LevelSystem;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CharacterResource;
 use App\Models\Character;
 use App\Services\CharacterStateService;
 use Illuminate\Http\JsonResponse;
@@ -175,6 +176,8 @@ final class DailyQuestController extends Controller
                 'newLevel' => $lvl['newLevel'],
                 'gold' => $state->gold($save),
                 'questsDailyDone' => (int) $fresh->quests_daily_done,
+                'character' => (new CharacterResource($fresh))->resolve(),
+                'state' => $save->state,
             ];
         });
 

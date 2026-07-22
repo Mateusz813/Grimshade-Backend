@@ -1,0 +1,252 @@
+{
+  "system": "shopCatalog",
+  "note": "Generowane z src/stores/shopStore.ts ELIXIRS. NIE edytuj ręcznie.",
+  "elixirs": [
+    {
+      "id": "hp_potion_sm",
+      "price": 30,
+      "minLevel": 1,
+      "effect": "heal_hp_50"
+    },
+    {
+      "id": "hp_potion_md",
+      "price": 150,
+      "minLevel": 20,
+      "effect": "heal_hp_150"
+    },
+    {
+      "id": "hp_potion_lg",
+      "price": 600,
+      "minLevel": 50,
+      "effect": "heal_hp_400"
+    },
+    {
+      "id": "hp_potion_mega",
+      "price": 15000,
+      "minLevel": 100,
+      "effect": "heal_hp_1000"
+    },
+    {
+      "id": "hp_potion_great",
+      "price": 200000,
+      "minLevel": 200,
+      "effect": "heal_hp_pct_20"
+    },
+    {
+      "id": "hp_potion_super",
+      "price": 350000,
+      "minLevel": 350,
+      "effect": "heal_hp_pct_35"
+    },
+    {
+      "id": "hp_potion_ultimate",
+      "price": 500000,
+      "minLevel": 500,
+      "effect": "heal_hp_pct_50"
+    },
+    {
+      "id": "hp_potion_divine",
+      "price": 1000000,
+      "minLevel": 700,
+      "effect": "heal_hp_pct_100"
+    },
+    {
+      "id": "mp_potion_sm",
+      "price": 30,
+      "minLevel": 1,
+      "effect": "heal_mp_30"
+    },
+    {
+      "id": "mp_potion_md",
+      "price": 150,
+      "minLevel": 20,
+      "effect": "heal_mp_100"
+    },
+    {
+      "id": "mp_potion_lg",
+      "price": 600,
+      "minLevel": 50,
+      "effect": "heal_mp_300"
+    },
+    {
+      "id": "mp_potion_mega",
+      "price": 15000,
+      "minLevel": 100,
+      "effect": "heal_mp_1000"
+    },
+    {
+      "id": "mp_potion_great",
+      "price": 200000,
+      "minLevel": 200,
+      "effect": "heal_mp_pct_20"
+    },
+    {
+      "id": "mp_potion_super",
+      "price": 350000,
+      "minLevel": 350,
+      "effect": "heal_mp_pct_35"
+    },
+    {
+      "id": "mp_potion_ultimate",
+      "price": 500000,
+      "minLevel": 500,
+      "effect": "heal_mp_pct_50"
+    },
+    {
+      "id": "mp_potion_divine",
+      "price": 1000000,
+      "minLevel": 700,
+      "effect": "heal_mp_pct_100"
+    },
+    {
+      "id": "xp_boost",
+      "price": 100000,
+      "minLevel": 1,
+      "effect": "xp_boost_1h"
+    },
+    {
+      "id": "xp_boost_100",
+      "price": 200000,
+      "minLevel": 1,
+      "effect": "xp_boost_100_1h"
+    },
+    {
+      "id": "skill_xp_boost",
+      "price": 20000,
+      "minLevel": 1,
+      "effect": "skill_xp_boost_1h"
+    },
+    {
+      "id": "skill_xp_boost_100",
+      "price": 50000,
+      "minLevel": 1,
+      "effect": "skill_xp_boost_100_1h"
+    },
+    {
+      "id": "attack_speed_elixir",
+      "price": 120000,
+      "minLevel": 1,
+      "effect": "attack_speed_0.20_15m_pausable"
+    },
+    {
+      "id": "cd_reduction_elixir",
+      "price": 150000,
+      "minLevel": 1,
+      "effect": "cooldown_reduction_0.20_30m"
+    },
+    {
+      "id": "atk_dmg_elixir_25",
+      "price": 50000,
+      "minLevel": 1,
+      "effect": "atk_dmg_25_15m"
+    },
+    {
+      "id": "atk_dmg_elixir_50",
+      "price": 150000,
+      "minLevel": 30,
+      "effect": "atk_dmg_50_15m"
+    },
+    {
+      "id": "atk_dmg_elixir_100",
+      "price": 500000,
+      "minLevel": 80,
+      "effect": "atk_dmg_100_15m"
+    },
+    {
+      "id": "spell_dmg_elixir_25",
+      "price": 50000,
+      "minLevel": 1,
+      "effect": "spell_dmg_25_15m"
+    },
+    {
+      "id": "spell_dmg_elixir_50",
+      "price": 150000,
+      "minLevel": 30,
+      "effect": "spell_dmg_50_15m"
+    },
+    {
+      "id": "spell_dmg_elixir_100",
+      "price": 500000,
+      "minLevel": 200,
+      "effect": "spell_dmg_100_15m"
+    },
+    {
+      "id": "hp_boost_elixir",
+      "price": 5000,
+      "minLevel": 1,
+      "effect": "hp_boost_500_15m"
+    },
+    {
+      "id": "mp_boost_elixir",
+      "price": 5000,
+      "minLevel": 1,
+      "effect": "mp_boost_500_15m"
+    },
+    {
+      "id": "atk_boost_elixir",
+      "price": 80000,
+      "minLevel": 1,
+      "effect": "atk_def_boost_50_15m"
+    },
+    {
+      "id": "hp_pct_elixir_25",
+      "price": 350000,
+      "minLevel": 100,
+      "effect": "hp_pct_25_15m"
+    },
+    {
+      "id": "mp_pct_elixir_25",
+      "price": 350000,
+      "minLevel": 100,
+      "effect": "mp_pct_25_15m"
+    },
+    {
+      "id": "dungeon_reset",
+      "price": 50000,
+      "minLevel": 1,
+      "effect": "dungeon_reset"
+    },
+    {
+      "id": "boss_reset",
+      "price": 80000,
+      "minLevel": 1,
+      "effect": "boss_reset"
+    },
+    {
+      "id": "death_protection",
+      "price": 5000000,
+      "minLevel": 1,
+      "effect": "death_protection"
+    },
+    {
+      "id": "amulet_of_loss",
+      "price": 500000,
+      "minLevel": 1,
+      "effect": "amulet_of_loss"
+    },
+    {
+      "id": "stat_reset",
+      "price": 10000000,
+      "minLevel": 1,
+      "effect": "stat_reset"
+    },
+    {
+      "id": "offline_training_boost",
+      "price": 50000,
+      "minLevel": 1,
+      "effect": "offline_training_boost"
+    },
+    {
+      "id": "utamo_vita",
+      "price": 200000,
+      "minLevel": 1,
+      "effect": "utamo_vita"
+    },
+    {
+      "id": "premium_xp_boost",
+      "price": 10000000,
+      "minLevel": 1,
+      "effect": "premium_xp_boost"
+    }
+  ]
+}

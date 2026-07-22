@@ -236,7 +236,6 @@ final class RaidController extends Controller
                 'classModifier' => 1,
                 'enemyDefense' => (int) $boss['defense'],
                 'isCrit' => $isCrit,
-                'critDmg' => (float) $char->crit_damage,
             ]);
             $bossHp -= $hit['finalDamage'];
             if ($bossHp <= 0) {

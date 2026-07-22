@@ -33,8 +33,7 @@ final class StatReset
         $mpPerLevel = LevelSystem::BASE_MP_PER_LEVEL[$characterClass] ?? 3;
 
         $levelsGained = max(0, $highestLevel - 1);
-        $pointsPerLevel = LevelSystem::statPointsForLevelUp($characterClass);
-        $totalEarned = $levelsGained * $pointsPerLevel;
+        $totalEarned = AttributeSystem::getAttributePointsForLevel($highestLevel);
 
         $resetMaxHp = $base['max_hp'] + $levelsGained * $hpPerLevel;
         $resetMaxMp = $base['max_mp'] + $levelsGained * $mpPerLevel;

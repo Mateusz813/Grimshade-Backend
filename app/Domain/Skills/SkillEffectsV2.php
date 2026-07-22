@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Skills;
 
+use App\Domain\Combat\CombatMath;
 use App\Domain\Support\Rng\RngInterface;
 
 final class SkillEffectsV2
@@ -666,8 +667,8 @@ final class SkillEffectsV2
         } elseif ($attackerStatus['critBuffNext'] > 0) {
             if ($rng->nextFloat() * 100 < $attackerStatus['critBuffNext']) {
                 $out['wasCrit'] = true;
-                $out['critMult'] = 2;
-                $out['damage'] *= 2;
+                $out['critMult'] = CombatMath::rollCritMultiplier($rng->nextFloat());
+                $out['damage'] *= $out['critMult'];
             }
             $attackerStatus['critBuffNext'] = 0;
         }

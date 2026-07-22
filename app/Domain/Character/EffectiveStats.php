@@ -100,7 +100,7 @@ final class EffectiveStats
     public function getItemStats(array $item, ?array $baseData): array
     {
         $upgradeLevel = (int) ($item['upgradeLevel'] ?? 0);
-        $stats = ['attack' => 0, 'defense' => 0, 'hp' => 0, 'mp' => 0, 'speed' => 0, 'critChance' => 0, 'critDmg' => 0];
+        $stats = ['attack' => 0, 'defense' => 0, 'hp' => 0, 'mp' => 0, 'speed' => 0, 'critChance' => 0];
 
         if ($baseData !== null) {
             $stats['attack'] = ItemEconomy::getUpgradedBaseStat(self::num($baseData['baseAtk'] ?? 0), $upgradeLevel);
@@ -130,7 +130,7 @@ final class EffectiveStats
 
     public function getTotalEquipmentStats(array $equipment): array
     {
-        $total = ['attack' => 0, 'defense' => 0, 'hp' => 0, 'mp' => 0, 'speed' => 0, 'critChance' => 0, 'critDmg' => 0];
+        $total = ['attack' => 0, 'defense' => 0, 'hp' => 0, 'mp' => 0, 'speed' => 0, 'critChance' => 0];
 
         foreach ($equipment as $item) {
             if (! is_array($item) || $item === []) {
@@ -209,6 +209,7 @@ final class EffectiveStats
         array $completedTransforms = [],
         array $activeElixirBuffs = [],
         int|float $contentLevel = 0,
+        array $attributeAllocation = [],
     ): array {
         $eq = $this->getTotalEquipmentStats($equipment);
         $tb = SkillSystem::getTrainingBonuses($skillLevels, $characterClass);
@@ -248,15 +249,16 @@ final class EffectiveStats
         $gearGapMult = ItemEconomy::getGearGapMultiplier($this->getEquippedGearLevel($equipment), $contentLevel);
         $rawAttack = ($baseAttack + $eq['attack'] + $elixAtk + $transformFlatAtk) * $gearGapMult;
 
+        $attrMult = AttributeSystem::getAttributeMultipliers($attributeAllocation, $characterClass);
+
         return [
             ...$baseRow,
-            'attack' => (int) floor($rawAttack * $transformAtkPctMult),
-            'defense' => (int) floor($rawDefense * $transformDefPctMult),
-            'max_hp' => (int) floor($rawMaxHp * $elixHpPctMult * $transformHpPctMult),
+            'attack' => (int) floor($rawAttack * $transformAtkPctMult * $attrMult['attack']),
+            'defense' => (int) floor($rawDefense * $transformDefPctMult * $attrMult['defense']),
+            'max_hp' => (int) floor($rawMaxHp * $elixHpPctMult * $transformHpPctMult * $attrMult['hp']),
             'max_mp' => (int) floor($rawMaxMp * $elixMpPctMult * $transformMpPctMult),
             'attack_speed' => $baseAttackSpeed * $elixAsMult,
             'crit_chance' => min(0.5, $baseCritChance + $eq['critChance'] * 0.01 + $tb['crit_chance']),
-            'crit_damage' => self::num($baseRow['crit_damage'] ?? 2.0) + $eq['critDmg'] * 0.01 + $tb['crit_dmg'],
             'hp_regen' => self::num($baseRow['hp_regen'] ?? 0) + $tb['hp_regen'] + $transformHpRegenFlat,
             'mp_regen' => self::num($baseRow['mp_regen'] ?? 0) + $tb['mp_regen'] + $transformMpRegenFlat,
         ];

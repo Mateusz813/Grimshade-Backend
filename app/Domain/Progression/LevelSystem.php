@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Progression;
 
+use App\Domain\Character\AttributeSystem;
+
 final class LevelSystem
 {
     public const DEATH_SKILL_XP_LOSS_PCT = 25;
@@ -94,25 +96,24 @@ final class LevelSystem
         return $total;
     }
 
-    public static function statPointsForLevelUp(?string $characterClass = null): int
-    {
-        return 2;
-    }
+    public const ATTRIBUTE_POINTS_PER_MILESTONE = 1;
 
     public static function processXpGain(int $currentLevel, int $currentXp, int $xpGained): array
     {
         $level = $currentLevel;
         $xp = $currentXp + $xpGained;
         $levelsGained = 0;
-        $statPointsGained = 0;
 
         $hardSafetyCap = 10_000;
+        $startLevel = $level;
         while ($xp >= self::xpToNextLevel($level) && $level < $hardSafetyCap) {
             $xp -= self::xpToNextLevel($level);
             $level++;
             $levelsGained++;
-            $statPointsGained += self::statPointsForLevelUp();
         }
+
+        $statPointsGained = AttributeSystem::getAttributePointsForLevel($level)
+            - AttributeSystem::getAttributePointsForLevel($startLevel);
 
         return [
             'newLevel' => $level,

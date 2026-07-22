@@ -58,7 +58,7 @@ final class PartyController extends Controller
                 'min_join_level' => $minJoinLevel,
             ]);
 
-            $this->addMember($party, $fresh, 'leader');
+            $this->addMember($party, $fresh);
 
             return $this->snapshot($party);
         });
@@ -116,7 +116,7 @@ final class PartyController extends Controller
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Party jest pełne.');
             }
 
-            $this->addMember($party, $fresh, 'member');
+            $this->addMember($party, $fresh);
 
             return $this->snapshot($party);
         });
@@ -196,13 +196,6 @@ final class PartyController extends Controller
             if ($target === null) {
                 abort(Response::HTTP_UNPROCESSABLE_ENTITY, 'Nowy lider musi być członkiem party.');
             }
-
-            PartyMember::query()
-                ->where('party_id', $party->id)
-                ->where('character_id', $party->leader_id)
-                ->update(['role' => 'member']);
-            $target->role = 'leader';
-            $target->save();
 
             $party->leader_id = $newLeaderId;
             $party->save();
@@ -341,7 +334,7 @@ final class PartyController extends Controller
         return response()->json($this->snapshot($party));
     }
 
-    private function addMember(Party $party, Character $character, string $role): PartyMember
+    private function addMember(Party $party, Character $character): PartyMember
     {
         return PartyMember::create([
             'party_id' => $party->id,
@@ -349,7 +342,6 @@ final class PartyController extends Controller
             'character_name' => $character->name,
             'character_class' => $character->class,
             'character_level' => (int) $character->level,
-            'role' => $role,
             'joined_at' => now(),
         ]);
     }

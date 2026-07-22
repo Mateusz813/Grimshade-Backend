@@ -21,7 +21,7 @@ class PartyMember extends Model
 
     protected $fillable = [
         'party_id', 'character_id', 'character_name',
-        'character_class', 'character_level', 'role', 'joined_at',
+        'character_class', 'character_level', 'joined_at',
     ];
 
     protected function casts(): array

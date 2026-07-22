@@ -14,7 +14,7 @@ it('resets a Knight to base + level-derived pools (parity handleStatReset)', fun
         'max_mp' => 238,
         'hp' => 942,
         'mp' => 238,
-        'stat_points' => 198,
+        'stat_points' => 10,
     ]);
 });
 

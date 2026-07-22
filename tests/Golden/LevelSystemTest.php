@@ -23,11 +23,8 @@ it('matches totalXpForLevel', function () {
     }
 });
 
-it('matches statPointsForLevelUp for every class', function () {
-    foreach ($this->golden['statPointsForLevelUp'] as $case) {
-        $class = $case['class'] === '' ? null : $case['class'];
-        expect(LevelSystem::statPointsForLevelUp($class))->toEqual($case['value']);
-    }
+it('matches attributePointsPerMilestone', function () {
+    expect(LevelSystem::ATTRIBUTE_POINTS_PER_MILESTONE)->toEqual($this->golden['attributePointsPerMilestone']);
 });
 
 it('matches processXpGain (incl. multi-levelup)', function () {

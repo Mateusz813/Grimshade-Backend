@@ -10,6 +10,7 @@ use App\Domain\Loot\ItemGenerator;
 use App\Domain\Progression\LevelSystem;
 use App\Domain\Support\Rng\RngInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CharacterResource;
 use App\Models\Character;
 use App\Services\CharacterStateService;
 use Illuminate\Http\JsonResponse;
@@ -199,6 +200,8 @@ final class QuestController extends Controller
                 'statPoints' => (int) $fresh->stat_points,
                 'questsOneshotDone' => (int) $fresh->quests_oneshot_done,
                 'inventory' => $save->state['inventory'],
+                'character' => (new CharacterResource($fresh))->resolve(),
+                'state' => $save->state,
             ];
         });
 

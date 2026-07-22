@@ -12,6 +12,10 @@ final class CombatMath
 
     public const DEF_BASE = 25;
 
+    public const CRIT_MULT_MIN = 1.5;
+
+    public const CRIT_MULT_MAX = 2.5;
+
     public const DMG_COMPRESS_K = 2.3;
 
     public const DMG_COMPRESS_P = 0.80;
@@ -55,6 +59,13 @@ final class CombatMath
         return (int) max(1, floor($playerSource ? self::compressPlayerDamage($m) : $m));
     }
 
+    public static function rollCritMultiplier(?float $roll = null): float
+    {
+        $r = $roll ?? (mt_rand() / mt_getrandmax());
+
+        return self::CRIT_MULT_MIN + min(1.0, max(0.0, $r)) * (self::CRIT_MULT_MAX - self::CRIT_MULT_MIN);
+    }
+
     public static function calculateDamage(array $params): array
     {
         $baseAtk = self::safeN($params['baseAtk'] ?? null);
@@ -63,7 +74,6 @@ final class CombatMath
         $classMod = self::safeN($params['classModifier'] ?? null, 1);
         $enemyDef = self::safeN($params['enemyDefense'] ?? null);
         $critChance = self::safeN($params['critChance'] ?? null, 0.05);
-        $critDmgMult = self::safeN($params['critDmg'] ?? null, 2.0);
         $maxCrit = self::safeN($params['maxCritChance'] ?? null, 1.0);
 
         $effectiveCritChance = min($critChance, $maxCrit);
@@ -74,7 +84,7 @@ final class CombatMath
 
         $isCrit = $params['isCrit'] ?? (mt_rand() / mt_getrandmax() < $effectiveCritChance);
         if ($isCrit) {
-            $finalDamage *= $critDmgMult;
+            $finalDamage *= self::rollCritMultiplier(isset($params['critRoll']) ? (float) $params['critRoll'] : null);
         }
 
         $dmgMult = self::safeN($params['damageMultiplier'] ?? null, 1);

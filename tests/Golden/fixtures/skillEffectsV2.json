@@ -7142,10 +7142,10 @@
         "darkRitualPending": []
       },
       "result": {
-        "damage": 200,
+        "damage": 156,
         "dodged": false,
         "wasCrit": true,
-        "critMult": 2,
+        "critMult": 1.561958257574588,
         "casterHeal": 0,
         "instantKill": false,
         "executeBurstPct": 0,
@@ -7631,10 +7631,10 @@
         "darkRitualPending": []
       },
       "result": {
-        "damage": 200,
+        "damage": 230,
         "dodged": false,
         "wasCrit": true,
-        "critMult": 2,
+        "critMult": 2.304822765523568,
         "casterHeal": 0,
         "instantKill": false,
         "executeBurstPct": 0,
@@ -7957,10 +7957,10 @@
         "darkRitualPending": []
       },
       "result": {
-        "damage": 200,
+        "damage": 150,
         "dodged": false,
         "wasCrit": true,
-        "critMult": 2,
+        "critMult": 1.5027357211802155,
         "casterHeal": 0,
         "instantKill": false,
         "executeBurstPct": 0,

@@ -188,7 +188,6 @@ final class TransformController extends Controller
                 'classModifier' => 1,
                 'enemyDefense' => $boss['defense'],
                 'isCrit' => $isCrit,
-                'critDmg' => (float) $char->crit_damage,
             ]);
             $monsterHp -= $hit['finalDamage'];
             if ($monsterHp <= 0) {

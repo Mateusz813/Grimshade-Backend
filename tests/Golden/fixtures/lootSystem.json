@@ -718,7 +718,10 @@
       "seed": 7,
       "monsterLevel": 100,
       "monsterRarity": "boss",
-      "value": null
+      "value": {
+        "type": "heroic_stone",
+        "count": 4
+      }
     },
     {
       "seed": 13,
@@ -838,7 +841,10 @@
       "seed": 100,
       "monsterLevel": 100,
       "monsterRarity": "boss",
-      "value": null
+      "value": {
+        "type": "mythic_stone",
+        "count": 3
+      }
     },
     {
       "seed": 777,
@@ -963,7 +969,7 @@
       "monsterRarity": "legendary",
       "value": {
         "type": "legendary_stone",
-        "count": 1
+        "count": 2
       }
     },
     {
@@ -972,7 +978,7 @@
       "monsterRarity": "boss",
       "value": {
         "type": "mythic_stone",
-        "count": 1
+        "count": 3
       }
     }
   ],

@@ -9,6 +9,7 @@ use App\Domain\Content\ContentRepository;
 use App\Domain\Progression\LevelSystem;
 use App\Domain\Progression\TaskRewards;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CharacterResource;
 use App\Models\Character;
 use App\Services\CharacterStateService;
 use Illuminate\Http\JsonResponse;
@@ -90,6 +91,8 @@ final class ProgressionController extends Controller
                 'levelsGained' => $lvl['levelsGained'],
                 'newLevel' => $lvl['newLevel'],
                 'gold' => $state->gold($save),
+                'character' => (new CharacterResource($fresh))->resolve(),
+                'state' => $save->state,
             ];
         });
 

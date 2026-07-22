@@ -177,8 +177,7 @@ it('hands over leadership to another member', function () {
         ->assertJsonPath('leader_id', $member->id);
 
     expect(Party::find($partyId)->leader_id)->toBe($member->id);
-    expect(PartyMember::where('character_id', $member->id)->first()->role)->toBe('leader');
-    expect(PartyMember::where('character_id', $leader->id)->first()->role)->toBe('member');
+    expect(PartyMember::where('party_id', $partyId)->count())->toBe(2);
 });
 
 it('rejects a handover attempted by a non-leader (403)', function () {
