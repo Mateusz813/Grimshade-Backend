@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use App\Domain\Character\EffectiveStats;
-use App\Services\StateValidationException;
 use App\Models\Character;
 use App\Models\GameSave;
 use App\Services\CharacterStateService;
+use App\Services\StateValidationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
