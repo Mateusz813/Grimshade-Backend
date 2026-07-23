@@ -93,6 +93,7 @@ final class ProgressionController extends Controller
                 'gold' => $state->gold($save),
                 'character' => (new CharacterResource($fresh))->resolve(),
                 'state' => $save->state,
+                'updated_at' => optional($save->updated_at)->toIso8601String(),
             ];
         });
 

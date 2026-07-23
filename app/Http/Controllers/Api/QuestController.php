@@ -202,6 +202,7 @@ final class QuestController extends Controller
                 'inventory' => $save->state['inventory'],
                 'character' => (new CharacterResource($fresh))->resolve(),
                 'state' => $save->state,
+                'updated_at' => optional($save->updated_at)->toIso8601String(),
             ];
         });
 

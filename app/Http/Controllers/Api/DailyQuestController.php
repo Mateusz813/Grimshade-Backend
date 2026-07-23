@@ -178,6 +178,7 @@ final class DailyQuestController extends Controller
                 'questsDailyDone' => (int) $fresh->quests_daily_done,
                 'character' => (new CharacterResource($fresh))->resolve(),
                 'state' => $save->state,
+                'updated_at' => optional($save->updated_at)->toIso8601String(),
             ];
         });
 
