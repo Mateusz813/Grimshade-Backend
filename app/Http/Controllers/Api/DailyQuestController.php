@@ -14,6 +14,7 @@ use App\Models\Character;
 use App\Services\CharacterStateService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -100,6 +101,105 @@ final class DailyQuestController extends Controller
                 'todayQuestDefs' => $slice['todayQuestDefs'] ?? [],
             ];
         });
+
+        return response()->json($payload);
+    }
+
+    /**
+     * Odbiera WSZYSTKIE ukończone, nieodebrane questy dzienne jednym requestem i jedną transakcją.
+     *
+     * Wcześniej „Odbierz wszystkie" robiło N sekwencyjnych requestów (każdy poprzedzony flushem
+     * bloba po stronie klienta) — 6 questów potrafiło trwać kilkanaście sekund. Ten endpoint
+     * stosuje per-quest dokładnie tę samą logikę co pojedynczy claim.
+     */
+    public function claimAll(Request $request, ContentRepository $content, CharacterStateService $state): JsonResponse
+    {
+        $character = $request->attributes->get('character');
+
+        $data = $request->validate([
+            'requestId' => ['required', 'string', 'max:200'],
+        ]);
+
+        $cacheKey = "dailyQuests.claimAll.{$character->id}.{$data['requestId']}";
+        if (Cache::has($cacheKey)) {
+            return response()->json(Cache::get($cacheKey));
+        }
+
+        $payload = DB::transaction(function () use ($character, $content, $state): array {
+            $fresh = Character::query()->lockForUpdate()->findOrFail($character->id);
+            $save = $state->lockedFor($fresh);
+
+            $blob = $save->state;
+            $slice = $blob['dailyQuests'] ?? null;
+            $activeQuests = array_values($slice['activeQuests'] ?? []);
+
+            $nowMs = (int) round(microtime(true) * 1000);
+            $xpMult = CombatElixirs::getXpBoostMultiplier(
+                CombatElixirs::activeBuffEffects($blob, (string) $fresh->id, $nowMs),
+            );
+
+            $claims = [];
+            $goldTotal = 0;
+            $elixirGrants = [];
+
+            foreach ($activeQuests as $i => $aq) {
+                if (! ($aq['completed'] ?? false) || ($aq['claimed'] ?? false)) {
+                    continue;
+                }
+                $questId = (string) ($aq['questId'] ?? '');
+                $def = collect($slice['todayQuestDefs'] ?? [])->firstWhere('id', $questId)
+                    ?? collect($content->get('dailyQuests'))->firstWhere('id', $questId);
+                if ($def === null || ! isset($def['rewards'])) {
+                    continue;
+                }
+
+                $rewards = DailyQuestSystem::scaleRewards($def['rewards'], (int) $fresh->level);
+                $rewards['xp'] = (int) floor((int) $rewards['xp'] * $xpMult);
+
+                $lvl = LevelSystem::processXpGain((int) $fresh->level, (int) $fresh->xp, (int) $rewards['xp']);
+                $fresh->level = $lvl['newLevel'];
+                $fresh->xp = $lvl['remainingXp'];
+                $fresh->stat_points += $lvl['statPointsGained'];
+                $fresh->highest_level = max((int) $fresh->highest_level, $lvl['newLevel']);
+                $fresh->quests_daily_done = (int) $fresh->quests_daily_done + 1;
+
+                $activeQuests[$i]['claimed'] = true;
+                $goldTotal += (int) $rewards['gold'];
+                if (isset($rewards['elixir']) && $rewards['elixir'] !== '') {
+                    $elixirGrants[] = (string) $rewards['elixir'];
+                }
+
+                $claims[] = [
+                    'questId' => $questId,
+                    'rewards' => $rewards,
+                    'levelsGained' => $lvl['levelsGained'],
+                    'newLevel' => $lvl['newLevel'],
+                ];
+            }
+
+            $blob['dailyQuests']['activeQuests'] = $activeQuests;
+            $save->state = $blob;
+
+            $state->addGold($save, $goldTotal);
+            foreach ($elixirGrants as $elixirId) {
+                $state->addConsumable($save, $elixirId, 1);
+            }
+
+            $state->persist($save);
+            $fresh->save();
+
+            return [
+                'claimedCount' => count($claims),
+                'claims' => $claims,
+                'gold' => $state->gold($save),
+                'questsDailyDone' => (int) $fresh->quests_daily_done,
+                'character' => (new CharacterResource($fresh))->resolve(),
+                'state' => $save->state,
+                'updated_at' => optional($save->updated_at)->toIso8601String(),
+            ];
+        });
+
+        Cache::put($cacheKey, $payload, now()->addHour());
 
         return response()->json($payload);
     }

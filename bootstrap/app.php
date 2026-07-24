@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AppendStateVersion;
 use App\Http\Middleware\EnsureOwnsCharacter;
 use App\Http\Middleware\VerifySupabaseJwt;
 use App\Services\InsufficientFundsException;
@@ -27,6 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'supabase.auth' => VerifySupabaseJwt::class,
             'owns.character' => EnsureOwnsCharacter::class,
         ]);
+        $middleware->api(append: [AppendStateVersion::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (InsufficientFundsException $e) {
